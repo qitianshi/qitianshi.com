@@ -10,6 +10,9 @@ _site/
 .bundle/
 vendor/
 
+# Ignore Gem files
+Gemfile.lock
+
 # ----------- Misc -----------
 
 .vscode/

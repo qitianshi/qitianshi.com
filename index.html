@@ -1,24 +1,44 @@
 ---
-layout: default
 title: "Home"
 ---
 
 <!-- Homepage -->
 
-<div class="hero-banner-full">
 
-    <div class="banner-text">
-        <h2>From the desk of qitianshi</h2>
-        <p>Hello. It seems you've found my little corner of the Internet.</p>
-        <p>I'm Tianshi. Welcome.</p>
+<!DOCTYPE html>
+
+<html lang="{{ site.lang | default: "en-US" }}">
+
+<head>
+
+    {% include default-head.html %}
+
+    <link rel="stylesheet" href="{{ "/assets/css/home.css" | relative_url }}">
+
+</head>
+
+<body>
+
+    <div class="banner-full" id="home-hero-banner">
+
+        <div class="banner-full-text">
+            <h1>From the desk of qitianshi</h1>
+            <p>Hello. It seems you've found my little corner of the Internet.</p>
+            <p>I'm Tianshi. Welcome.</p>
+        </div>
+
     </div>
 
-</div>
+    <div class="banner-spread">
 
-<div class="spread-banner">
+        <img src="/assets/images/icons/construction.svg" id="construction-icon">
 
-    <img src="/assets/images/icons/construction.svg" id="construction-icon">
+        <p id="construction-text">qitianshi.github.io is still being built. Check back soon?</p>
 
-    <p id="construction-text">qitianshi.github.io is still being built. Check back soon?</p>
+    </div>
 
-</div>
+    {% include sitewide-footer.html %}
+
+</body>
+
+</html>

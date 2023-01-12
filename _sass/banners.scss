@@ -1,0 +1,44 @@
+// Stylesheet for banners
+
+
+// Legibility adjustment for small screen sizes
+@media screen and (max-width: 400px) {
+    .banner-full-text h2 {
+        font-size: 3rem;
+    }
+}
+
+.banner-full {
+
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.banner-full-text {
+
+    color: white;
+
+    // Centers text vertically
+    margin: auto 10%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+.banner-full h1 {
+    font-size: 4em;
+    margin: 0.5em 0;
+}
+
+.banner-full p {
+    font-size: 1.2em;
+}
+
+.banner-spread {
+    padding: 1em 2em;
+}
