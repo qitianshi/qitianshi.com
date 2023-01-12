@@ -3,12 +3,12 @@
 
 // Legibility adjustment for small screen sizes
 @media screen and (max-width: 400px) {
-    .banner-text h2 {
+    .banner-full-text h2 {
         font-size: 3rem;
     }
 }
 
-.hero-banner-full {
+.banner-full {
 
     height: 100%;
 
@@ -21,7 +21,7 @@
 
 }
 
-.banner-text {
+.banner-full-text {
 
     color: white;
 
@@ -33,15 +33,15 @@
 
 }
 
-.spread-banner {
-    padding: 1em 2em;
-}
-
-.hero-banner-full h1 {
+.banner-full h1 {
     font-size: 4em;
     margin: 0.5em 0;
 }
 
-.hero-banner-full p {
+.banner-full p {
     font-size: 1.2em;
+}
+
+.banner-spread {
+    padding: 1em 2em;
 }
