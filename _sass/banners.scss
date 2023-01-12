@@ -1,13 +1,6 @@
 // Stylesheet for banners
 
 
-// Legibility adjustment for small screen sizes
-@media screen and (max-width: 400px) {
-    .banner-full-text h2 {
-        font-size: 3rem;
-    }
-}
-
 .banner-full {
 
     height: 100%;
@@ -33,6 +26,13 @@
 .banner-full h1 {
     font-size: 4em;
     margin: 0.5em 0;
+}
+
+// Legibility adjustment for small screen sizes
+@media screen and (max-width: 400px) {
+    .banner-full-text h1 {
+        font-size: 3rem;
+    }
 }
 
 .banner-full p {
