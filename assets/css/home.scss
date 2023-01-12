@@ -18,3 +18,10 @@
     margin-right: 1em;
 
 }
+
+#home-hero-banner {
+    // Scales the background image to the height of the viewport, and applies a
+    // dark gradient over it for legibility.
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/images/home/desk_hero-banner.jpeg");
+    background-size: cover;
+}
