@@ -38,6 +38,7 @@ $text-primary-color-light: #000000;
 $text-secondary-color-light: #6a6a6a;
 $link-color-light: hsl(220, 80%, 50%);
 $link-hover-color-light: hsl(220, 75%, 55%);
+$icon-color-filter-light: none;
 
 $tiangerine-tangerine-dark: #ff5208;
 $background-primary-color-dark: #0f0f0f;
@@ -46,6 +47,7 @@ $text-primary-color-dark: #f5f5f5;
 $text-secondary-color-dark: #959595;
 $link-color-dark: #71a8f4;
 $link-hover-color-dark: #68a2f3;
+$icon-color-filter-dark: invert(100%) sepia(0%) saturate(7481%) hue-rotate(96deg) brightness(105%) contrast(101%);   // Converts #000000 SVGs to #ffffff
 
 @media (prefers-color-scheme: light) {
     :root {
@@ -56,6 +58,7 @@ $link-hover-color-dark: #68a2f3;
         --text-secondary-color: #{$text-secondary-color-light};
         --link-color: #{$link-color-light};
         --link-hover-color: #{$link-hover-color-light};
+        --icon-color-filter: #{$icon-color-filter-light};
     }
 }
 
@@ -68,6 +71,7 @@ $link-hover-color-dark: #68a2f3;
         --text-secondary-color: #{$text-secondary-color-dark};
         --link-color: #{$link-color-dark};
         --link-hover-color: #{$link-hover-color-dark};
+        --icon-color-filter: #{$icon-color-filter-dark};
     }
 }
 
