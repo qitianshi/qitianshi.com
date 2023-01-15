@@ -6,7 +6,7 @@
 // ---------- Fonts ----------
 
 // Adjusts size and descent for Verdana and Georgia to match Rokkitt
-// Not supported on Safari 16.2
+// Not supported in Safari 16.2
 @font-face {
     font-family: "Verdana Fallback";
     src: local(Verdana);
@@ -38,7 +38,7 @@ $text-primary-color-light: #000000;
 $text-secondary-color-light: #6a6a6a;
 $link-color-light: #195ee6;
 $link-hover-color-light: #3670e2;
-$icon-color-filter-light: none; // By default, SVG icons should be #000000.
+$icon-color-filter-light: none;   // By default, SVG icons should be #000000.
 
 $tiangerine-tangerine-dark: #ff5208;
 $background-primary-color-dark: #0f0f0f;

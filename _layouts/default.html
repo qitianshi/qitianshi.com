@@ -9,9 +9,9 @@
 
 <head>
 
-    <!-- Content moved _includes to allow custom <head> contents -->
     {% include default-head.html %}
 
+    <!-- Use "custom_stylesheet" variable in front matter to link a custom page-specific stylesheet. -->
     {% if page.custom_stylesheet %}
         <link rel="stylesheet" href="{{ page.custom_stylesheet | relative_url }}">
     {% endif %}

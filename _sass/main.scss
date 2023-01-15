@@ -14,6 +14,12 @@
 
 // --------- Colors ----------
 
+// Implements support for light and dark themes.
+
+// Use variables defined below to have colors dynamically adjust depending on
+// the currently active theme. Otherwise, specify a specific light or dark
+// theme color using variables in presets.scss.
+
 @media (prefers-color-scheme: light) {
     :root {
         --tiangerine-tangerine: #{$tiangerine-tangerine-light};
