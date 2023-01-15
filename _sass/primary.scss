@@ -43,6 +43,30 @@ $background-secondary-color-dark: #1e1e1e;
 $text-primary-color-dark: #f5f5f5;
 $text-secondary-color-dark: #959595;
 
+@media (prefers-color-scheme: light) {
+    :root {
+        --tiangerine-tangerine: #{$tiangerine-tangerine-light};
+        --background-primary-color: #{$background-primary-color-light};
+        --background-secondary-color: #{$background-secondary-color-light};
+        --text-primary-color: #{$text-primary-color-light};
+        --text-secondary-color: #{$text-secondary-color-light};
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --tiangerine-tangerine: #{$tiangerine-tangerine-dark};
+        --background-primary-color: #{$background-primary-color-dark};
+        --background-secondary-color: #{$background-secondary-color-dark};
+        --text-primary-color: #{$text-primary-color-dark};
+        --text-secondary-color: #{$text-secondary-color-dark};
+    }
+}
+
+:root {
+    color-scheme: light dark;
+}
+
 
 // --------- Styles ----------
 
