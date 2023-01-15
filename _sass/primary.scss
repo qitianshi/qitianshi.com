@@ -36,12 +36,16 @@ $background-primary-color-light: #ffffff;
 $background-secondary-color-light: #dcdcdc;
 $text-primary-color-light: #000000;
 $text-secondary-color-light: #6a6a6a;
+$link-color-light: hsl(220, 80%, 50%);
+$link-hover-color-light: hsl(220, 75%, 55%);
 
 $tiangerine-tangerine-dark: #ff5208;
 $background-primary-color-dark: #0f0f0f;
-$background-secondary-color-dark: #1e1e1e;
+$background-secondary-color-dark: #232323;
 $text-primary-color-dark: #f5f5f5;
 $text-secondary-color-dark: #959595;
+$link-color-dark: #71a8f4;
+$link-hover-color-dark: #68a2f3;
 
 @media (prefers-color-scheme: light) {
     :root {
@@ -50,6 +54,8 @@ $text-secondary-color-dark: #959595;
         --background-secondary-color: #{$background-secondary-color-light};
         --text-primary-color: #{$text-primary-color-light};
         --text-secondary-color: #{$text-secondary-color-light};
+        --link-color: #{$link-color-light};
+        --link-hover-color: #{$link-hover-color-light};
     }
 }
 
@@ -60,6 +66,8 @@ $text-secondary-color-dark: #959595;
         --background-secondary-color: #{$background-secondary-color-dark};
         --text-primary-color: #{$text-primary-color-dark};
         --text-secondary-color: #{$text-secondary-color-dark};
+        --link-color: #{$link-color-dark};
+        --link-hover-color: #{$link-hover-color-dark};
     }
 }
 
@@ -71,8 +79,13 @@ $text-secondary-color-dark: #959595;
 // --------- Styles ----------
 
 html, body {
+
     height: 100%;
     margin: 0;
+
+    background-color: var(--background-primary-color);
+    color: var(--text-primary-color);
+
 }
 
 h1  {
@@ -88,4 +101,12 @@ h2, h3, h4, h5, h6 {
 
 p {
     font-family: $body-font-family;
+}
+
+a:link, a:visited {
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--link-hover-color);
 }
