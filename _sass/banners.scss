@@ -1,6 +1,9 @@
 // Stylesheet for banners
 
+// Copyright 2023 Qi Tianshi. All rights reserved.
 
+
+// A div that rescales to match the viewport
 .banner-full {
 
     height: 100%;
@@ -11,8 +14,11 @@
 
 }
 
+// The div containing the text overlay on banner-full
 .banner-full-text {
 
+    // Text and color elements default to their dark theme versions; override
+    // if necessary.
     color: $text-primary-color-dark;
 
     // Centers text vertically
@@ -23,22 +29,40 @@
 
 }
 
-.banner-full h1 {
+// The main heading text in banner-full
+.banner-full-text h1 {
+
     font-size: 4em;
+
     margin: 0.5em 0;
+
+    // Adds an accent color beneath the text
+    border-bottom: 2px solid;
+    border-color: $tiangerine-tangerine-dark;
+
+}
+
+// Emphasized appearance for banner-full
+.banner-full-emphasized h1 {
+    color: $tiangerine-tangerine-dark;
 }
 
 // Legibility adjustment for small screen sizes
 @media screen and (max-width: 400px) {
+
+    // Reduces the font size of the heading text
     .banner-full-text h1 {
         font-size: 3rem;
     }
+
 }
 
+// The subtext in banner-full
 .banner-full p {
     font-size: 1.2em;
 }
 
+// A banner spanning the entire width of the viewport
 .banner-spread {
     padding: 1em 2em;
 }

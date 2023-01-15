@@ -1,33 +1,17 @@
 ---
 title: "Page not found"
+layout: default
+custom_stylesheet: "/assets/css/404.css"
 ---
 
 <!-- 404 page -->
 
+<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
 
-<!DOCTYPE html>
 
-<html lang="{{ site.lang | default: "en-US" }}">
-
-<head>
-
-    {% include default-head.html %}
-
-    <link rel="stylesheet" href="{{ "/assets/css/404.css" | relative_url }}">
-
-</head>
-
-<body>
-
-    <div class="banner-full" id="error-404-banner">
-        <div class="banner-full-text">
-            <h1>This page couldn't be found.</h1>
-            <p><a href="/">To the homepage &rarr;</a></p>
-        </div>
+<div class="banner-full" id="error-404-banner">
+    <div class="banner-full-text">
+        <h1>This page couldn't be found.</h1>
+        <p><a href="/">To the homepage &rarr;</a></p>
     </div>
-
-    {% include sitewide-footer.html %}
-
-</body>
-
-</html>
+</div>
