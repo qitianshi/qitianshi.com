@@ -7,7 +7,9 @@
     <!-- Content moved _includes to allow custom <head> contents -->
     {% include default-head.html %}
 
-    <link rel="stylesheet" href="{{ page.custom_stylesheet | relative_url }}">
+    {% if page.custom_stylesheet %}
+        <link rel="stylesheet" href="{{ page.custom_stylesheet | relative_url }}">
+    {% endif %}
 
 </head>
 
