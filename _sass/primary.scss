@@ -23,8 +23,8 @@
 
 // Import font families Inter and Rokkitt from Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Rokkitt:wght@100..900&display=swap');
-$headingFontFamily: "Rokkitt", "Georgia Fallback", "Verdana Fallback", Georgia, Verdana, Geneva, Tahoma, sans-serif;
-$bodyFontFamily: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+$heading-font-family: "Rokkitt", "Georgia Fallback", "Verdana Fallback", Georgia, Verdana, Geneva, Tahoma, sans-serif;
+$body-font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
 
 html, body {
     height: 100%;
@@ -32,16 +32,16 @@ html, body {
 }
 
 h1  {
-    font-family: $headingFontFamily;
+    font-family: $heading-font-family;
     margin: 1em auto 2em;
     font-size: 3em;
 }
 
 h2, h3, h4, h5, h6 {
-    font-family: $bodyFontFamily;
+    font-family: $body-font-family;
     margin: 2em auto 1em;
 }
 
 p {
-    font-family: $bodyFontFamily;
+    font-family: $body-font-family;
 }
