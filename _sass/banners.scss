@@ -26,6 +26,12 @@
 .banner-full h1 {
     font-size: 4em;
     margin: 0.5em 0;
+    border-bottom: 2px solid;
+    border-color: $tiangerine-tangerine-dark;
+}
+
+.banner-full-emphasized h1 {
+    color: $tiangerine-tangerine-dark;
 }
 
 // Legibility adjustment for small screen sizes
