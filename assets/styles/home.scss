@@ -6,23 +6,6 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-#construction-text {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-#construction-icon {
-
-    display: inline-block;
-    vertical-align: middle;
-
-    height: 2em;
-    margin-right: 1em;
-
-    filter: var(--icon-color-filter)
-
-}
-
 #home-hero-banner {
     // Scales the background image to the height of the viewport, and applies a
     // dark gradient over it for legibility.
