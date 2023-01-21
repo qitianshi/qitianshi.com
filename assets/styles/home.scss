@@ -7,9 +7,64 @@
 
 
 #home-hero-banner {
+
     // Scales the background image to the height of the viewport, and applies a
     // dark gradient over it for legibility.
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/images/home/desk-hero-banner.jpeg");
     background-size: cover;
     background-position: center;
+
+}
+
+#introduction-banner {
+
+    // Flexbox wraps text beneath image for mobile devices.
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4em;
+
+    padding: 4em 2em;
+
+}
+
+#profile-pic {
+
+    width: 300px;
+    max-width: 100%;      // Limits width for narrow mobile devices.
+    height: auto;
+
+    border-radius: 50%;
+
+}
+
+// Applies a white border and shadow in light theme. In dark theme the shadows
+// aren't visible so it's removed and a margin is added to prevent shifting.
+
+@media (prefers-color-scheme: light) {
+    #profile-pic {
+        border: 10px solid var(--background-primary-color);
+        box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    #profile-pic {
+        margin: 10px;
+    }
+}
+
+#introduction-text {
+    max-width: 80ch;
+}
+
+// Removes text margins above and below the div.
+
+#introduction-banner h1:first-of-type {
+    margin-top: 0;
+}
+
+#introduction-banner p:last-of-type {
+    margin-bottom: 0;
 }
