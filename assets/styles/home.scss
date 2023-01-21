@@ -27,6 +27,14 @@
 
     padding: 4em 2em;
 
+    // Lets the banner take up a healthy amount of screen space. min-height
+    // property ensures the div is always tall enough to accomodate its
+    // contents on mobile devices. max-height property is for desktop monitors
+    // in portrait orientation.
+    height: 65%;
+    min-height: fit-content;
+    max-height: 700px;
+
 }
 
 #profile-pic {
