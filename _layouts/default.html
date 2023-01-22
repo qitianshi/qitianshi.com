@@ -11,7 +11,7 @@
 
     {% include default-head.html %}
 
-    <!-- From "custom_stylesheet" variable in front matter. -->
+    <!-- From `custom_stylesheet` variable in front matter. -->
     {% if page.custom_stylesheet %}
         <link rel="stylesheet" href="{{ page.custom_stylesheet | relative_url }}">
     {% endif %}

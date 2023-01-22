@@ -6,27 +6,82 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-#construction-text {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-#construction-icon {
-
-    display: inline-block;
-    vertical-align: middle;
-
-    height: 2em;
-    margin-right: 1em;
-
-    filter: var(--icon-color-filter)
-
-}
-
 #home-hero-banner {
+
     // Scales the background image to the height of the viewport, and applies a
     // dark gradient over it for legibility.
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/images/home/desk_hero-banner.jpeg");
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/images/home/desk-hero-banner.jpeg");
     background-size: cover;
     background-position: center;
+
+}
+
+#introduction-banner {
+
+    // Flexbox wraps text beneath image for mobile devices.
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4em;
+
+    padding: 4em 2em;
+
+    // Lets the banner take up a healthy amount of screen space. min-height
+    // property ensures the div is always tall enough to accomodate its
+    // contents on mobile devices. max-height property is for desktop monitors
+    // in portrait orientation.
+    height: 65%;
+    min-height: fit-content;
+    max-height: 700px;
+
+}
+
+#profile-pic {
+
+    width: 300px;
+    max-width: 100%;      // Limits width for narrow mobile devices.
+    height: auto;
+
+    border: 10px solid var(--background-primary-color);
+    border-radius: 50%;
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+#introduction-text {
+    max-width: 80ch;
+}
+
+// Removes text margins above and below the div.
+
+#introduction-banner h1:first-of-type {
+    margin-top: 0;
+}
+
+#introduction-banner p:last-of-type {
+    margin-bottom: 0;
+}
+
+#construction-card {
+
+    margin: 5em auto;
+    padding: 2em;
+    width: fit-content;
+    max-width: 70%;
+
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+
+}
+
+@media (prefers-color-scheme: dark) {
+    #construction-card {
+        background-color: var(--background-secondary-color);
+    }
 }

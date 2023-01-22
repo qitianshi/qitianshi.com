@@ -66,9 +66,14 @@ html, body {
 }
 
 h1  {
+
     font-family: $heading-font-family;
-    margin: 1em auto 2em;
     font-size: 3em;
+
+    // Adds an accent color beneath the text
+    border-bottom: 2px solid;
+    border-color: var(--tiangerine-tangerine);
+
 }
 
 h2, h3, h4, h5, h6 {
@@ -78,6 +83,7 @@ h2, h3, h4, h5, h6 {
 
 p {
     font-family: $body-font-family;
+    font-size: 120%;
 }
 
 a:link, a:visited {
