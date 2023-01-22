@@ -6,6 +6,8 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@import "presets";
+
 #introduction-banner {
 
     // Flexbox wraps text beneath image for mobile devices.
@@ -27,10 +29,10 @@
 
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: $mobile-width-cuttoff) {
     #introduction-banner {
-        padding-left: 1em;
-        padding-right: 1em;
+        padding-left: $mobile-padding;
+        padding-right: $mobile-padding;
     }
 }
 
@@ -42,7 +44,7 @@
 
     border: 10px solid var(--background-primary-color);
     border-radius: 50%;
-    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: $default-shadow;
 
 }
 
@@ -67,8 +69,8 @@
     width: fit-content;
     max-width: 70%;
 
-    border-radius: 15px;
-    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+    border-radius: $corner-radius-large;
+    box-shadow: $default-shadow;
 
     display: flex;
     flex-wrap: wrap;

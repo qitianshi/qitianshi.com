@@ -3,6 +3,8 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@import "presets";
+
 // A div that rescales to match the viewport
 .banner-full {
 
@@ -56,7 +58,7 @@
 }
 
 // Legibility adjustment for small screen sizes
-@media screen and (max-width: 450px) {
+@media screen and (max-width: $mobile-width-cuttoff) {
 
     // Reduces the font size of the heading text
     .banner-full-text h1 {
