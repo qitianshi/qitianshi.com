@@ -15,7 +15,7 @@
     justify-content: center;
     gap: 4em;
 
-    padding: 4em 2em;
+    padding: 4em 3em;
 
     // Lets the banner take up a healthy amount of screen space. min-height
     // property ensures the div is always tall enough to accomodate its
@@ -25,6 +25,13 @@
     min-height: fit-content;
     max-height: 700px;
 
+}
+
+@media screen and (max-width: 450px) {
+    #introduction-banner {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
 }
 
 #profile-pic {
