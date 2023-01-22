@@ -43,24 +43,10 @@
     max-width: 100%;      // Limits width for narrow mobile devices.
     height: auto;
 
+    border: 10px solid var(--background-primary-color);
     border-radius: 50%;
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
 
-}
-
-// Applies a white border and shadow in light theme. In dark theme the shadows
-// aren't visible so it's removed and a margin is added to prevent shifting.
-
-@media (prefers-color-scheme: light) {
-    #profile-pic {
-        border: 10px solid var(--background-primary-color);
-        box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    #profile-pic {
-        margin: 10px;
-    }
 }
 
 #introduction-text {
