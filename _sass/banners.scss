@@ -14,6 +14,17 @@
 
 }
 
+// The background image that fills the banner.
+.banner-full-background {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    filter: brightness(0.35);
+
+}
+
 // The div containing the text overlay on banner-full
 .banner-full-text {
 
