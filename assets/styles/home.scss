@@ -79,6 +79,10 @@
 
 }
 
+#construction-card p {
+    margin: 0;
+}
+
 @media (prefers-color-scheme: dark) {
     #construction-card {
         background-color: var(--background-secondary-color);
