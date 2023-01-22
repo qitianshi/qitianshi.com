@@ -6,15 +6,7 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-#home-hero-banner {
-
-    // Scales the background image to the height of the viewport, and applies a
-    // dark gradient over it for legibility.
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/images/home/desk-hero-banner.jpeg");
-    background-size: cover;
-    background-position: center;
-
-}
+@import "presets";
 
 #introduction-banner {
 
@@ -25,7 +17,7 @@
     justify-content: center;
     gap: 4em;
 
-    padding: 4em 2em;
+    padding: 4em 3em;
 
     // Lets the banner take up a healthy amount of screen space. min-height
     // property ensures the div is always tall enough to accomodate its
@@ -37,6 +29,13 @@
 
 }
 
+@media screen and (max-width: $mobile-width-cuttoff) {
+    #introduction-banner {
+        padding-left: $mobile-padding;
+        padding-right: $mobile-padding;
+    }
+}
+
 #profile-pic {
 
     width: 300px;
@@ -45,7 +44,7 @@
 
     border: 10px solid var(--background-primary-color);
     border-radius: 50%;
-    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: $default-shadow;
 
 }
 
@@ -70,8 +69,8 @@
     width: fit-content;
     max-width: 70%;
 
-    border-radius: 15px;
-    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+    border-radius: $corner-radius-large;
+    box-shadow: $default-shadow;
 
     display: flex;
     flex-wrap: wrap;

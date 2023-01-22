@@ -3,6 +3,8 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@import "presets";
+
 // A div that rescales to match the viewport
 .banner-full {
 
@@ -11,6 +13,21 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+}
+
+// The background image that fills the banner.
+.banner-background {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    filter: brightness(0.35);
+
+    // A gray background that's only visible when the image is still waiting to
+    // load, to keep the overlaid text legible.
+    background: gray;
 
 }
 
@@ -41,7 +58,7 @@
 }
 
 // Legibility adjustment for small screen sizes
-@media screen and (max-width: 400px) {
+@media screen and (max-width: $mobile-width-cuttoff) {
 
     // Reduces the font size of the heading text
     .banner-full-text h1 {

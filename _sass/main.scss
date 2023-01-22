@@ -8,6 +8,26 @@
 
 // ---------- Fonts ----------
 
+// Adjusts size and descent for Verdana and Georgia to match Rokkitt
+// Not supported in Safari 16.2
+@font-face {
+    font-family: "Verdana Fallback";
+    src: local(Verdana);
+    size-adjust: 84%;
+    ascent-override: normal;
+    descent-override: 35%;
+    line-gap-override: normal;
+}
+
+@font-face {
+    font-family: "Georgia Fallback";
+    src: local(Georgia);
+    size-adjust: 93%;
+    ascent-override: normal;
+    descent-override: 32%;
+    line-gap-override: normal;
+}
+
 // Import font families Inter and Rokkitt from Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Rokkitt:wght@100..900&display=swap');
 
