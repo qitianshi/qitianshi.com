@@ -76,3 +76,26 @@
 #introduction-banner p:last-of-type {
     margin-bottom: 0;
 }
+
+#construction-card {
+
+    margin: 5em auto;
+    padding: 2em;
+    width: fit-content;
+    max-width: 70%;
+
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+
+}
+
+@media (prefers-color-scheme: dark) {
+    #construction-card {
+        background-color: var(--background-secondary-color);
+    }
+}
