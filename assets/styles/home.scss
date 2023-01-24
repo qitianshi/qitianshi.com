@@ -133,8 +133,17 @@
 
 }
 
-.project-card-text h1 {
+.project-card-text p {
+
     margin: 1em;
+
+    // Text styles mimic H1, but are defined instead using <p> for semantics.
+    font-family: $heading-font-family;
+    font-size: 3em;
+    font-weight: bold;
+    border-bottom: 2px solid;
+    border-color: $tiangerine-tangerine-dark;
+
 }
 
 // Changes to column layout in mobile versions.
