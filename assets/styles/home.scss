@@ -17,15 +17,9 @@
     justify-content: center;
     gap: 4em;
 
-    padding: 4em 3em;
+    padding: 25vh 3em;
 
-    // Lets the banner take up a healthy amount of screen space. min-height
-    // property ensures the div is always tall enough to accomodate its
-    // contents on mobile devices. max-height property is for desktop monitors
-    // in portrait orientation.
     height: fit-content;
-    min-height: 75%;
-    max-height: 700px;
 
 }
 
