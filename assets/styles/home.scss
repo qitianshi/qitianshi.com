@@ -23,8 +23,8 @@
     // property ensures the div is always tall enough to accomodate its
     // contents on mobile devices. max-height property is for desktop monitors
     // in portrait orientation.
-    height: 75%;
-    min-height: fit-content;
+    height: fit-content;
+    min-height: 75%;
     max-height: 700px;
 
 }
