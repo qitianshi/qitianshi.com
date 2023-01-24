@@ -149,6 +149,7 @@
     #project-cards-container {
         flex-direction: column;
         padding: 0 $mobile-padding;
+        min-height: 400px;
     }
 
     .project-card {
