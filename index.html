@@ -9,10 +9,10 @@ custom_stylesheet: "/assets/styles/home.css"
 <!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
 
 
-<!-- Main hero banner. Image background defined in CSS. -->
-<div class="banner-full banner-full-emphasized" id="home-hero-banner">
+<!-- Main hero banner. -->
+<section class="banner-full banner-full-emphasized" id="home-hero-banner">
 
-    <img class="banner-background" src="/assets/images/home/desk-hero-banner.jpeg" alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about.">
+    <img class="background-filled" src="/assets/images/home/desk-hero-banner.jpeg" alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about.">
 
     <div class="banner-full-text">
         <h1>From the desk of qitianshi</h1>
@@ -20,9 +20,10 @@ custom_stylesheet: "/assets/styles/home.css"
         <p>I'm Tianshi. Welcome.</p>
     </div>
 
-</div>
+</section>
 
-<div id="introduction-banner">
+<!-- Profile pic and introduction. -->
+<section id="introduction-banner">
 
     <img src="/assets/images/home/profile-pic.jpg" id="profile-pic" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
 
@@ -31,11 +32,31 @@ custom_stylesheet: "/assets/styles/home.css"
         <p>
             But you can call me "tian". I'm a student from Singapore, with a desk full of clutter and a pocketful of dreams.
         </p><p>
-            For over a decade, I've found my calling in robotics &mdash; the alluring magic of breathing life into dead parts. Since my early days of tinkering with LEGO robots, I've graduated to using industry-level tools, managing my robotics club, selecting and mentoring new generations of roboticists, and contributing research to a global community.
+            For over a decade, I've found my calling in robotics &mdash; the alluring magic of breathing life into dead parts. Since my early days of tinkering with LEGO robots, I've graduated to using industry-level tools, managing my robotics club, contributing research to a global community, and selecting and mentoring new generations of roboticists.
         </p><p>
             I'm also a developer, a writer, and an artist&mldr; to varying degrees. Why don't you have a look around at some of the stuff I've made?
         </p>
     </div>
+
+</section>
+
+<div id="project-cards-container">
+
+    {% for project in site.data.home.project_cards %}
+
+        <div class="project-card">
+
+            <a class="link-filled" href="{{ project.link }}"></a>
+
+            <img src="{{ project.image_src }}" class="background-filled" alt="{{ project.image_alt }}">
+
+            <div class="project-card-text">
+                <p>{{ project.title }}</p>
+            </div>
+
+        </div>
+
+    {% endfor %}
 
 </div>
 
