@@ -5,15 +5,23 @@
 
 @import "presets";
 
-// A div that rescales to match the viewport
+// A banner that fills the viewport.
 .banner-full {
 
-    height: 100%;
-    position: relative;
+    display: grid;
+
+    // Default height is to fill the entire screen, but if content is bigger
+    // the banner height will grow to accomodate it.
+    height: 100vh;
+    min-height: fit-content;
 
     // Text and color elements default to their dark theme versions since
     // there's usually an image background; override if necessary.
     color: $text-primary-color-dark;
+    // Places all elements within the same grid-area.
+    * {
+        grid-area: 1 / -1;
+    }
 
 }
 
@@ -24,6 +32,10 @@
     height: 100%;
     object-fit: cover;
 
+    // Allows size adjustment to work, otherwise `min-height: fit-content;` of
+    // banner-full will cause the full height of the image to be shown.
+    overflow: hidden;
+
     filter: brightness(0.3);
 
     // A gray background that's only visible when the image is still waiting to
@@ -33,18 +45,17 @@
 }
 
 // The div containing the text overlay on banner-full
-.banner-full-text {
+.banner-full-content {
 
     // Centers text vertically
+    z-index: 1;
     margin: auto 10%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    width: fit-content;
 
 }
 
 // The main heading text in banner-full
-.banner-full-text h1 {
+.banner-full-content h1 {
     font-size: 4em;
     margin: 0.5em 0;
 }
@@ -63,7 +74,7 @@
 @media screen and (max-width: $mobile-width-cuttoff) {
 
     // Reduces the font size of the heading text
-    .banner-full-text h1 {
+    .banner-full-content h1 {
         font-size: 3em;
     }
 
