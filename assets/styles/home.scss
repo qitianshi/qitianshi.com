@@ -21,39 +21,36 @@
 
     height: fit-content;
 
-}
-
-@media screen and (max-width: $mobile-width-cuttoff) {
-    #introduction-banner {
+    @media screen and (max-width: $mobile-width-cuttoff) {
         padding-left: $mobile-padding;
         padding-right: $mobile-padding;
     }
-}
 
-#profile-pic {
+    &__profile-pic {
 
-    width: 300px;
-    max-width: 100%;      // Limits width for narrow mobile devices.
-    height: auto;
+        width: 300px;
+        max-width: 100%; // Limits width for narrow mobile devices.
+        height: auto;
 
-    border: 10px solid var(--background-primary-color);
-    border-radius: 50%;
-    box-shadow: $default-shadow;
+        border: 10px solid var(--background-primary-color);
+        border-radius: 50%;
+        box-shadow: $default-shadow;
 
-}
+    }
 
-#introduction-text {
-    max-width: $main-content-width;
-}
+    &__introduction-text {
+        max-width: $main-content-width;
+    }
 
-// Removes text margins above and below the div.
+    // Removes text margins above and below the div.
+    h1 {
+        margin-top: 0;
+    }
 
-#introduction-banner h1:first-of-type {
-    margin-top: 0;
-}
+    p:last-of-type {
+        margin-bottom: 0;
+    }
 
-#introduction-banner p:last-of-type {
-    margin-bottom: 0;
 }
 
 #construction-card {
@@ -71,16 +68,14 @@
     align-items: center;
     gap: 1em;
 
-}
-
-#construction-card p {
-    margin: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-    #construction-card {
+    @media (prefers-color-scheme: dark) {
         background-color: var(--background-secondary-color);
     }
+
+    &__text {
+        margin: 0;
+    }
+
 }
 
 // The div that contains the three project cards
@@ -114,35 +109,35 @@
     transition-duration: 0.15s;
     transition-timing-function: ease-out;
 
-}
+    // On mouseover, the card grows and shadow increases to mimic height.
+    &:hover {
+        transform: scale(1.025);
+        box-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
+    }
 
-// On mouseover, the card grows and shadow increases to mimic height.
-.project-card:hover {
-    transform: scale(1.025);
-    box-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
-}
+    &__text {
 
-.project-card-text {
+        color: $text-primary-color-dark;
 
-    color: $text-primary-color-dark;
+        // Places text at bottom-left corner
+        position: absolute;
+        top: 100%;
+        transform: translateY(-100%);
 
-    // Places text at bottom-left corner
-    position: absolute;
-    top: 100%;
-    transform: translateY(-100%);
+    }
 
-}
+    &__text p {
 
-.project-card-text p {
+        margin: 1em;
 
-    margin: 1em;
+        // Text styles mimic H1, but are defined instead using <p> for semantics.
+        font-family: $heading-font-family;
+        font-size: 3em;
+        font-weight: bold;
+        border-bottom: 2px solid;
+        border-color: $tiangerine-tangerine-dark;
 
-    // Text styles mimic H1, but are defined instead using <p> for semantics.
-    font-family: $heading-font-family;
-    font-size: 3em;
-    font-weight: bold;
-    border-bottom: 2px solid;
-    border-color: $tiangerine-tangerine-dark;
+    }
 
 }
 
@@ -156,12 +151,14 @@
     }
 
     .project-card {
+
         height: 32%;
         width: 100%;
-    }
 
-    .project-card-text p {
-        margin: 0.5em;
+        &__text p {
+            margin: 0.5em;
+        }
+
     }
 
 }

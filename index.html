@@ -10,12 +10,12 @@ custom_stylesheet: "/assets/styles/home.css"
 
 
 <!-- Main hero banner. -->
-<section class="banner-full banner-full-emphasized" id="home-hero-banner">
+<section class="banner-full" id="home-hero-banner">
 
     <img class="background-filled" src="/assets/images/home/desk-hero-banner.jpeg" alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about.">
 
-    <div class="banner-full-content">
-        <h1>From the desk of qitianshi</h1>
+    <div class="banner-full__content dark-theme-text">
+        <h1 class="banner-full__heading banner-full__heading--emphasized">From the desk of qitianshi</h1>
         <p>Hello. It seems you've found my little corner of the Internet.</p>
         <p>I'm Tianshi. Welcome.</p>
     </div>
@@ -25,9 +25,9 @@ custom_stylesheet: "/assets/styles/home.css"
 <!-- Profile pic and introduction. -->
 <section id="introduction-banner">
 
-    <img src="/assets/images/home/profile-pic.jpg" id="profile-pic" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
+    <img src="/assets/images/home/profile-pic.jpg" id="introduction-banner__profile-pic" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
 
-    <div id="introduction-text">
+    <div id="introduction-banner__introduction-text">
         <h1>Hello, world! I'm Qi Tianshi.</h1>
         <p>
             But you can call me "tian". I'm a student from Singapore, with a desk full of clutter and a pocketful of dreams.
@@ -47,11 +47,11 @@ custom_stylesheet: "/assets/styles/home.css"
 
         <div class="project-card">
 
-            <a class="link-filled" href="{{ project.link }}"></a>
+            <a class="project-card__link" href="{{ project.link }}"></a>
 
             <img src="{{ project.image_src }}" class="background-filled" alt="{{ project.image_alt }}">
 
-            <div class="project-card-text">
+            <div class="project-card__text">
                 <p>{{ project.title }}</p>
             </div>
 
@@ -65,7 +65,7 @@ custom_stylesheet: "/assets/styles/home.css"
 <div id="construction-card">
 
     <img src="/assets/images/icons/construction.svg" id="construction-icon" alt="Under construction.">
-    <p id="construction-text">
+    <p id="construction-card__text">
         <b>There's more to come.</b><br>
         This site is still being built. Check back soon?
     </p>

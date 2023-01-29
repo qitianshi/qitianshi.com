@@ -15,12 +15,39 @@
     height: 100vh;
     min-height: fit-content;
 
-    // Text and color elements default to their dark theme versions since
-    // there's usually an image background; override if necessary.
-    color: $text-primary-color-dark;
-    // Places all elements within the same grid-area.
-    * {
+    // Places all immediate children in the same grid-area.
+    > * {
         grid-area: 1 / -1;
+    }
+
+    // The contents of the banner.
+    &__content {
+
+        // Places text above the image.
+        z-index: 1;
+
+        // Centers text vertically.
+        margin: auto 10%;
+        width: fit-content;
+
+    }
+
+    // The main heading text in banner-full
+    &__heading {
+
+        font-size: 4em;
+        margin: 0.5em 0;
+
+        // Legibility adjustment for small screen sizes
+        @media screen and (max-width: $mobile-width-cuttoff) {
+            font-size: 3em;
+        }
+
+        // Emphasized appearance for banner-full
+        &--emphasized {
+            color: $tiangerine-tangerine-dark;
+        }
+
     }
 
 }
@@ -41,41 +68,5 @@
     // A gray background that's only visible when the image is still waiting to
     // load, to keep the overlaid text legible.
     background: gray;
-
-}
-
-// The div containing the text overlay on banner-full
-.banner-full-content {
-
-    // Centers text vertically
-    z-index: 1;
-    margin: auto 10%;
-    width: fit-content;
-
-}
-
-// The main heading text in banner-full
-.banner-full-content h1 {
-    font-size: 4em;
-    margin: 0.5em 0;
-}
-
-// Emphasized appearance for banner-full
-.banner-full-emphasized h1 {
-    color: $tiangerine-tangerine-dark;
-}
-
-// A simple banner, with no background image.
-.banner-full-simple {
-    color: var(--text-primary-color);
-}
-
-// Legibility adjustment for small screen sizes
-@media screen and (max-width: $mobile-width-cuttoff) {
-
-    // Reduces the font size of the heading text
-    .banner-full-content h1 {
-        font-size: 3em;
-    }
 
 }
