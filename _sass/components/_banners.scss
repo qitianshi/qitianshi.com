@@ -6,7 +6,7 @@
 @import "presets";
 
 // A banner that fills the viewport.
-.banner-full {
+.c-banner-full {
 
     display: grid;
 
@@ -32,7 +32,7 @@
 
     }
 
-    // The main heading text in banner-full
+    // The main heading text in .c-banner-full
     &__heading {
 
         font-size: 4em;
@@ -43,7 +43,7 @@
             font-size: 3em;
         }
 
-        // Emphasized appearance for banner-full
+        // Emphasized appearance for .c-banner-full
         &--emphasized {
             color: $tiangerine-tangerine-dark;
         }
@@ -60,7 +60,7 @@
     object-fit: cover;
 
     // Allows size adjustment to work, otherwise `min-height: fit-content;` of
-    // banner-full will cause the full height of the image to be shown.
+    // .c-banner-full will cause the full height of the image to be shown.
     overflow: hidden;
 
     filter: brightness(0.3);
