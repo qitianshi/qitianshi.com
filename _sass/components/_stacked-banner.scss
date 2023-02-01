@@ -25,10 +25,21 @@
     // The contents of the banner.
     &__content {
 
+        // Places contents in the foreground.
+        z-index: 1;
+
+        // Removes the margins so that text margins won't affect positioning.
+        & :first-child {
+            margin-top: 0;
+        }
+
+        & :last-child {
+            margin-bottom: 0;
+        }
+
         &--leading {
 
-            // Places text above the image.
-            z-index: 1;
+            @extend .c-stacked-banner__content;
 
             // Centers text vertically.
             margin: auto 10%;
