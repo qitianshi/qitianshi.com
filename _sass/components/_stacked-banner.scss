@@ -25,12 +25,16 @@
     // The contents of the banner.
     &__content {
 
-        // Places text above the image.
-        z-index: 1;
+        &--leading {
 
-        // Centers text vertically.
-        margin: auto 10%;
-        width: fit-content;
+            // Places text above the image.
+            z-index: 1;
+
+            // Centers text vertically.
+            margin: auto 10%;
+            width: fit-content;
+
+        }
 
     }
 
