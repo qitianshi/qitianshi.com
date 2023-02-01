@@ -12,9 +12,7 @@
 
     display: grid;
 
-    // Default height is to fill the entire screen, but if content is bigger
-    // the banner height will grow to accomodate it.
-    height: 100vh;
+    // Increases the height of the banner to accommodate content if needed.
     min-height: fit-content;
 
     // Places all immediate children in the same grid-area.
