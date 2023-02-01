@@ -12,7 +12,7 @@ custom_stylesheet: "/assets/styles/home.css"
 <!-- Main hero banner. -->
 <section class="c-stacked-banner" id="home-hero-banner">
 
-    <img class="background-filled" src="/assets/images/home/desk-hero-banner.jpeg" alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about.">
+    <img class="c-stacked-banner__background" src="/assets/images/home/desk-hero-banner.jpeg" alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about.">
 
     <div class="c-stacked-banner__content dark-theme-text">
         <h1 class="c-stacked-banner__heading c-stacked-banner__heading--emphasized">From the desk of qitianshi</h1>
@@ -49,7 +49,7 @@ custom_stylesheet: "/assets/styles/home.css"
 
             <a class="project-card__link" href="{{ project.link }}"></a>
 
-            <img src="{{ project.image_src }}" class="background-filled" alt="{{ project.image_alt }}">
+            <img src="{{ project.image_src }}" class="c-stacked-banner__background" alt="{{ project.image_alt }}">
 
             <div class="project-card__text">
                 <p>{{ project.title }}</p>
