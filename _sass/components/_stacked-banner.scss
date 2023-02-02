@@ -23,8 +23,10 @@
     // The contents of the banner.
     &__content {
 
-        // Places contents in the foreground.
-        z-index: 1;
+        // Required for z-stacking to work, otherwise the filter on the
+        // background creates a new stacking context that breaks the grid
+        // stack.
+        position: relative;
 
         // Removes the margins so that text margins won't affect positioning.
         & :first-child {
