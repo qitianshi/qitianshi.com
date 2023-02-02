@@ -94,8 +94,6 @@
 
     position: relative;
 
-    cursor: pointer;
-
     // For :hover effect
     transition-property: transform, box-shadow;
     transition-duration: 0.15s;
@@ -104,30 +102,6 @@
     // On mouseover, the card grows and shadow increases to mimic height.
     &:hover {
         transform: scale(1.025);
-    }
-
-    &__text {
-
-        color: $text-primary-color-dark;
-
-        // Places text at bottom-left corner
-        position: absolute;
-        top: 100%;
-        transform: translateY(-100%);
-
-    }
-
-    &__text p {
-
-        margin: 1em;
-
-        // Text styles mimic H1, but are defined instead using <p> for semantics.
-        font-family: $heading-font-family;
-        font-size: 3em;
-        font-weight: bold;
-        border-bottom: 2px solid;
-        border-color: $tiangerine-tangerine-dark;
-
     }
 
 }

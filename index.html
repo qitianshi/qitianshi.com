@@ -45,14 +45,14 @@ custom_stylesheet: "/assets/styles/home.css"
 
     {% for project in site.data.home.project_cards %}
 
-        <div class="project-card o-container-card u-shadowed--hoverable">
+        <div class="project-card o-container-card u-shadowed--hoverable c-stacked-banner">
 
-            <a class="project-card__link" href="{{ project.link }}"></a>
+            <a class="o-block-link" href="{{ project.link }}"></a>
 
             <img src="{{ project.image_src }}" class="c-stacked-banner__background" alt="{{ project.image_alt }}">
 
-            <div class="project-card__text">
-                <p>{{ project.title }}</p>
+            <div class="c-stacked-banner__content--bottom-leading dark-theme-text">
+                <p class="c-stacked-banner__heading">{{ project.title }}</p>
             </div>
 
         </div>

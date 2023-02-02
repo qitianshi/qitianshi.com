@@ -6,6 +6,7 @@
 
 
 @import "presets";
+@import "base";
 
 // A banner that fills the viewport.
 .c-stacked-banner {
@@ -28,6 +29,9 @@
         // stack.
         position: relative;
 
+        width: fit-content;
+        padding: 10%;
+
         // Removes the margins so that text margins won't affect positioning.
         & :first-child {
             margin-top: 0;
@@ -38,13 +42,13 @@
         }
 
         &--leading {
-
             @extend .c-stacked-banner__content;
+            margin: auto auto auto 0;
+        }
 
-            // Centers text vertically.
-            margin: auto 10%;
-            width: fit-content;
-
+        &--bottom-leading {
+            @extend .c-stacked-banner__content;
+            margin: auto auto 0 0;
         }
 
     }
@@ -70,6 +74,8 @@
 
     // The main heading text in .c-stacked-banner
     &__heading {
+
+        @extend h1;
 
         font-size: 4em;
         margin: 0.5em 0;
