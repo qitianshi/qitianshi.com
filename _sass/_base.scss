@@ -133,3 +133,19 @@ a.project-card__link {
 .device-theme-text {
     color: var(--text-primary-color);
 }
+
+.u-shadowed {
+
+    box-shadow: $default-shadow;
+
+    &--hoverable {
+
+        @extend .u-shadowed;
+
+        &:hover {
+            box-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
+        }
+
+    }
+
+}

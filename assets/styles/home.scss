@@ -34,7 +34,6 @@
 
         border: 10px solid var(--background-primary-color);
         border-radius: 50%;
-        box-shadow: $default-shadow;
 
     }
 
@@ -59,9 +58,6 @@
     padding: 2em;
     width: fit-content;
     max-width: 70%;
-
-    border-radius: $corner-radius-large;
-    box-shadow: $default-shadow;
 
     display: flex;
     flex-wrap: wrap;
@@ -96,10 +92,6 @@
     height: 100%;
     width: 32%;
 
-    border-radius: $corner-radius-large;
-    overflow: hidden;
-    box-shadow: $default-shadow;
-
     position: relative;
 
     cursor: pointer;
@@ -112,7 +104,6 @@
     // On mouseover, the card grows and shadow increases to mimic height.
     &:hover {
         transform: scale(1.025);
-        box-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
     }
 
     &__text {
