@@ -38,16 +38,19 @@
     }
 
     &__introduction-text {
+
         max-width: $main-content-width;
-    }
 
-    // Removes text margins above and below the div.
-    h1 {
-        margin-top: 0;
-    }
+        // Removes text margins above and below the div.
 
-    p:last-of-type {
-        margin-bottom: 0;
+        & :first-child {
+            margin-top: 0;
+        }
+
+        & :last-child {
+            margin-bottom: 0;
+        }
+
     }
 
 }
