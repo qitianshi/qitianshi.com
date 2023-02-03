@@ -25,7 +25,7 @@ custom_stylesheet: "/assets/styles/home.css"
 <!-- Profile pic and introduction. -->
 <section id="introduction-banner">
 
-    <img src="/assets/images/home/profile-pic.jpg" class="u-shadowed" id="introduction-banner__profile-pic" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
+    <img src="/assets/images/home/profile-pic.jpg" class="u-shadow" id="introduction-banner__profile-pic" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
 
     <div id="introduction-banner__introduction-text">
         <h1>Hello, world! I'm Qi Tianshi.</h1>
@@ -45,7 +45,7 @@ custom_stylesheet: "/assets/styles/home.css"
 
     {% for project in site.data.home.project_cards %}
 
-        <div class="project-card o-container-card u-shadowed u-shadowed--hoverable c-stacked-banner">
+        <div class="project-card o-container-card u-shadow u-shadow--hoverable c-stacked-banner">
 
             <img src="{{ project.image_src }}" class="c-stacked-banner__background" alt="{{ project.image_alt }}">
 
@@ -62,7 +62,7 @@ custom_stylesheet: "/assets/styles/home.css"
 </div>
 
 <!-- "Under construction" banner -->
-<div class="o-container-card u-shadowed" id="construction-card">
+<div class="o-container-card u-shadow" id="construction-card">
 
     <img src="/assets/images/icons/construction.svg" id="construction-icon" alt="Under construction.">
     <p id="construction-card__text">
