@@ -42,12 +42,10 @@
         }
 
         &--leading {
-            @extend .c-stacked-banner__content;
             margin: auto auto auto 0;
         }
 
         &--bottom-leading {
-            @extend .c-stacked-banner__content;
             margin: auto auto 0 0;
         }
 

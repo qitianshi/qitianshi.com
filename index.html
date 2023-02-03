@@ -10,11 +10,11 @@ custom_stylesheet: "/assets/styles/home.css"
 
 
 <!-- Main hero banner. -->
-<section class="c-stacked-banner--hero c-stacked-banner" id="home-hero-banner">
+<section class="c-stacked-banner c-stacked-banner--hero" id="home-hero-banner">
 
     <img class="c-stacked-banner__background" src="/assets/images/home/desk-hero-banner.jpeg" alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about.">
 
-    <div class="c-stacked-banner__content--leading dark-theme-text">
+    <div class="c-stacked-banner__content c-stacked-banner__content--leading dark-theme-text">
         <h1 class="c-stacked-banner__heading c-stacked-banner__heading--emphasized">From the desk of qitianshi</h1>
         <p>Hello. It seems you've found my little corner of the Internet.</p>
         <p>I'm Tianshi. Welcome.</p>
@@ -45,7 +45,7 @@ custom_stylesheet: "/assets/styles/home.css"
 
     {% for project in site.data.home.project_cards %}
 
-        <div class="project-card o-container-card u-shadowed--hoverable c-stacked-banner">
+        <div class="project-card o-container-card u-shadowed u-shadowed--hoverable c-stacked-banner">
 
             <img src="{{ project.image_src }}" class="c-stacked-banner__background" alt="{{ project.image_alt }}">
 
