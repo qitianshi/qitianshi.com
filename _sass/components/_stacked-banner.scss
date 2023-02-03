@@ -5,6 +5,7 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "layout/containers";
 @import "presets";
 @import "base";
 
@@ -30,7 +31,6 @@
         position: relative;
 
         width: fit-content;
-        padding: 10%;
 
         // Removes the margins so that text margins won't affect positioning.
         & :first-child {
@@ -88,6 +88,17 @@
         // Emphasized appearance for .c-stacked-banner
         &--emphasized {
             color: $tiangerine-tangerine-dark;
+        }
+
+    }
+
+    // Specific implementation of .c-banner-stacked that fills the entire viewport.
+    &--hero {
+
+        @extend .o-container-fill-viewport;
+
+        .c-stacked-banner__content {
+            padding: 10%;
         }
 
     }
