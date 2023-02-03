@@ -114,21 +114,33 @@
 }
 
 // Changes to column layout in mobile versions.
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
 
     #project-cards-container {
-        flex-direction: column;
+
+        height: 450px;
+        min-height: 90%;
+
         padding: 0 $mobile-padding;
-        min-height: 400px;
+
+        flex-direction: column;
+        gap: 1em;
+        justify-content: space-between;
+
     }
 
     .project-card {
 
-        height: 32%;
         width: 100%;
 
-        &__text p {
-            margin: 0.5em;
+        .c-stacked-banner__background,
+        .o-block-link {
+            position: absolute;
+        }
+
+        .c-stacked-banner__content {
+            height: min-content;
+            padding: max(3vmax, 2em);
         }
 
     }
