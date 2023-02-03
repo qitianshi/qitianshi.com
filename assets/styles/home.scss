@@ -118,8 +118,8 @@
 
     #project-cards-container {
 
-        height: 450px;
-        min-height: 90%;
+        height: 90vh;
+        min-height: 450px;
 
         padding: 0 $mobile-padding;
 
@@ -133,14 +133,13 @@
 
         width: 100%;
 
-        .c-stacked-banner__background,
-        .o-block-link {
-            position: absolute;
-        }
-
         .c-stacked-banner__content {
-            height: min-content;
-            padding: max(3vmax, 2em);
+
+            // Ideally the padding would be 10% of parent element height, but
+            // it's difficult without JS. Since the parent height is known as
+            // at least 90vh, which contains 3 children, 10% is roughly 3vh.
+            padding: max(3vh, 2em);
+
         }
 
     }
