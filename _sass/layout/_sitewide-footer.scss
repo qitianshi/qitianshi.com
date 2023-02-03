@@ -4,12 +4,14 @@
 
 
 #sitewide-footer {
+
     padding: 0.1em 2em;
     background-color: var(--background-secondary-color);
-}
 
-#sitewide-footer__copyright-notice {
-    font-size: 0.75em;
-    color: var(--text-secondary-color);
-    text-align: right;
+    &__copyright-notice {
+        font-size: 0.75em;
+        color: var(--text-secondary-color);
+        text-align: right;
+    }
+
 }
