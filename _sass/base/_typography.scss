@@ -5,7 +5,6 @@
 
 @import "abstracts/variables";
 
-
 // ---------- Fonts ----------
 
 // Adjusts size and descent for Verdana and Georgia to match Rokkitt
@@ -118,26 +117,4 @@ a.o-block-link {
     position: relative;
     width: 100%;
     height: 100%;
-}
-
-.t-light-text {
-    color: $text-primary-color-light;
-}
-
-.t-dark-text {
-    color: $text-primary-color-dark;
-}
-
-.t-device-text {
-    color: var(--text-primary-color);
-}
-
-.u-shadow {
-
-    box-shadow: $default-shadow;
-
-    &--hoverable:hover {
-        box-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
-    }
-
 }

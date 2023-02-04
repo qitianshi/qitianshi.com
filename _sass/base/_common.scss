@@ -1,0 +1,14 @@
+// Common utility classes.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+.u-shadow {
+
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+
+    &--hoverable:hover {
+        box-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
+    }
+
+}

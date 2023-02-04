@@ -3,14 +3,12 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@import "abstracts/variables";
-
 .o-container-fill-viewport {
     width: 100vw;
     height: 100vh;
 }
 
 .o-container-card {
-    border-radius: $corner-radius-large;
+    border-radius: 15px;
     overflow: hidden;
 }

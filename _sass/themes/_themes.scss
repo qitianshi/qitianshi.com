@@ -1,0 +1,18 @@
+// Theme-specific classes.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/variables";
+
+.t-light-text {
+    color: variables.$text-primary-color-light;
+}
+
+.t-dark-text {
+    color: variables.$text-primary-color-dark;
+}
+
+.t-device-text {
+    color: var(--text-primary-color);
+}
