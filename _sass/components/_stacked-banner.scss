@@ -6,8 +6,8 @@
 
 
 @use "layout/containers";
-@import "presets";
-@import "base";
+@import "abstracts/variables";
+@import "base/typography";
 
 // A banner that fills the viewport.
 .c-stacked-banner {
