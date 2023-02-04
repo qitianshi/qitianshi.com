@@ -31,44 +31,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Rokkitt:wght@100..900&display=swap');
 
 
-// --------- Colors ----------
-
-// Implements support for light and dark themes.
-
-// Use variables defined below to have colors dynamically adjust depending on
-// the currently active theme. Otherwise, specify a specific light or dark
-// theme color using variables in presets.scss.
-
-@media (prefers-color-scheme: light) {
-    :root {
-        --tiangerine-tangerine: #{$tiangerine-tangerine-light};
-        --background-primary-color: #{$background-primary-color-light};
-        --background-secondary-color: #{$background-secondary-color-light};
-        --text-primary-color: #{$text-primary-color-light};
-        --text-secondary-color: #{$text-secondary-color-light};
-        --link-color: #{$link-color-light};
-        --link-hover-color: #{$link-hover-color-light};
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --tiangerine-tangerine: #{$tiangerine-tangerine-dark};
-        --background-primary-color: #{$background-primary-color-dark};
-        --background-secondary-color: #{$background-secondary-color-dark};
-        --text-primary-color: #{$text-primary-color-dark};
-        --text-secondary-color: #{$text-secondary-color-dark};
-        --link-color: #{$link-color-dark};
-        --link-hover-color: #{$link-hover-color-dark};
-    }
-}
+// --------- Styles ----------
 
 :root {
     color-scheme: light dark;
 }
-
-
-// --------- Styles ----------
 
 html, body {
 

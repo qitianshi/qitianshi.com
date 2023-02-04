@@ -27,13 +27,33 @@ $text-secondary-color-dark: #959595;
 $link-color-dark: #71a8f4;
 $link-hover-color-dark: #68a2f3;
 
+@media (prefers-color-scheme: light) {
+    :root {
+        --tiangerine-tangerine: #{$tiangerine-tangerine-light};
+        --background-primary-color: #{$background-primary-color-light};
+        --background-secondary-color: #{$background-secondary-color-light};
+        --text-primary-color: #{$text-primary-color-light};
+        --text-secondary-color: #{$text-secondary-color-light};
+        --link-color: #{$link-color-light};
+        --link-hover-color: #{$link-hover-color-light};
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --tiangerine-tangerine: #{$tiangerine-tangerine-dark};
+        --background-primary-color: #{$background-primary-color-dark};
+        --background-secondary-color: #{$background-secondary-color-dark};
+        --text-primary-color: #{$text-primary-color-dark};
+        --text-secondary-color: #{$text-secondary-color-dark};
+        --link-color: #{$link-color-dark};
+        --link-hover-color: #{$link-hover-color-dark};
+    }
+}
+
 
 // ----- Design elements -----
 
 $main-content-width: 80ch;
-
-
-// --------- Mobile ----------
-
 $mobile-padding: 1em;
 $mobile-width-cuttoff: 450px;
