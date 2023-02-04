@@ -7,6 +7,7 @@
 
 
 @use "abstracts/variables";
+@use "abstracts/mixins";
 
 #introduction-banner {
 
@@ -21,7 +22,7 @@
 
     height: fit-content;
 
-    @media screen and (max-width: variables.$mobile-width-cuttoff) {
+    @include mixins.respond-to-breakpoint("small") {
         padding-left: variables.$mobile-padding;
         padding-right: variables.$mobile-padding;
     }
@@ -114,7 +115,7 @@
 }
 
 // Changes to column layout in mobile versions.
-@media screen and (max-width: 1000px) {
+@include mixins.respond-to-width(1000px) {
 
     #project-cards-container {
 

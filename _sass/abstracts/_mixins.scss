@@ -1,0 +1,38 @@
+// Commonly used mixins.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/variables";
+
+/// Applies a media query to adjust styles for screens up to the width of the
+/// specified breakpoint.
+///
+/// @param {String} $breakpoint - The key of the breakpoint from $breakpoints.
+/// @require variables.$breakpoints
+@mixin respond-to-breakpoint($breakpoint) {
+
+    @if map-has-key($map: variables.$breakpoints, $key: $breakpoint) {
+
+        @media screen and (max-width: map-get(variables.$breakpoints, $breakpoint)) {
+            @content;
+        }
+
+    }
+
+    // Raise warning if the key doesn't exist.
+    @else {
+        @warn "No key `#{$breakpoint}` in $breakpoints.";
+    }
+
+}
+
+/// Applies a media query to adjust styles for screens up to the specified
+/// width.
+///
+/// @param {Number} $width - The max-width of the breakpoint.
+@mixin respond-to-width($width) {
+    @media screen and (max-width: $width) {
+        @content;
+    }
+}

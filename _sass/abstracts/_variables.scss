@@ -1,4 +1,4 @@
-// Preset variables for fonts, colors, and other global attributes
+// Preset variables for fonts, colors, and other global values.
 
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
@@ -56,4 +56,8 @@ $link-hover-color-dark: #68a2f3;
 
 $main-content-width: 80ch;
 $mobile-padding: 1em;
-$mobile-width-cuttoff: 450px;
+
+$breakpoints: (
+    "small": 450px
+)
+

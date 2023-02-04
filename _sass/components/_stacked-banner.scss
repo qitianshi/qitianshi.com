@@ -7,6 +7,7 @@
 
 @use "layout/containers";
 @use "abstracts/variables";
+@use "abstracts/mixins";
 @use "base/typography";
 
 // A banner that fills the viewport.
@@ -78,8 +79,7 @@
         font-size: 4em;
         margin: 0.5em 0;
 
-        // Legibility adjustment for small screen sizes
-        @media screen and (max-width: variables.$mobile-width-cuttoff) {
+        @include mixins.respond-to-breakpoint("small") {
             font-size: 3em;
         }
 
