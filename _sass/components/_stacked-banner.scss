@@ -6,8 +6,8 @@
 
 
 @use "layout/containers";
-@import "abstracts/variables";
-@import "base/typography";
+@use "abstracts/variables";
+@use "base/typography";
 
 // A banner that fills the viewport.
 .c-stacked-banner {
@@ -79,13 +79,13 @@
         margin: 0.5em 0;
 
         // Legibility adjustment for small screen sizes
-        @media screen and (max-width: $mobile-width-cuttoff) {
+        @media screen and (max-width: variables.$mobile-width-cuttoff) {
             font-size: 3em;
         }
 
         // Emphasized appearance for .c-stacked-banner
         &--emphasized {
-            color: $tiangerine-tangerine-dark;
+            color: variables.$tiangerine-tangerine-dark;
         }
 
     }

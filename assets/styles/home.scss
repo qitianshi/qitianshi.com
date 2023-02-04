@@ -6,7 +6,7 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@import "abstracts/variables";
+@use "abstracts/variables";
 
 #introduction-banner {
 
@@ -21,9 +21,9 @@
 
     height: fit-content;
 
-    @media screen and (max-width: $mobile-width-cuttoff) {
-        padding-left: $mobile-padding;
-        padding-right: $mobile-padding;
+    @media screen and (max-width: variables.$mobile-width-cuttoff) {
+        padding-left: variables.$mobile-padding;
+        padding-right: variables.$mobile-padding;
     }
 
     &__profile-pic {
@@ -39,7 +39,7 @@
 
     &__introduction-text {
 
-        max-width: $main-content-width;
+        max-width: variables.$main-content-width;
 
         // Removes text margins above and below the div.
 
@@ -121,7 +121,7 @@
         height: 90vh;
         min-height: 450px;
 
-        padding: 0 $mobile-padding;
+        padding: 0 variables.$mobile-padding;
 
         flex-direction: column;
         gap: 1em;
