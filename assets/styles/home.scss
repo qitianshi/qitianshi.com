@@ -29,7 +29,7 @@
     &__profile-pic {
 
         width: 300px;
-        max-width: 100%; // Limits width for narrow mobile devices.
+        max-width: 90vw; // Limits width for narrow mobile devices.
         height: auto;
 
         border: 10px solid var(--background-primary-color);
@@ -80,7 +80,7 @@
 // The div that contains the three project cards
 #project-cards-container {
 
-    height: 90%;
+    height: 90vh;
 
     display: flex;
     justify-content: space-evenly;
