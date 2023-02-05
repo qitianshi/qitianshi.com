@@ -46,9 +46,21 @@
 
     max-width: 80ch;
 
+    & p {
+        text-align: justify;
+    }
+
     @include mix.respond-to-breakpoint("small") {
+
         padding-left: var.$mobile-padding;
         padding-right: var.$mobile-padding;
+
+        // Returns text-align to its unset value if the screen is too narrow to
+        // avoid ugly stretched lines.
+        & p {
+            text-align: unset;
+        }
+
     }
 
 }
