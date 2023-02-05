@@ -23,11 +23,11 @@ custom_stylesheet: "/assets/styles/home.css"
 </section>
 
 <!-- Profile pic and introduction. -->
-<section id="introduction-banner">
+<section class="o-media" id="introduction-banner">
 
-    <img src="/assets/images/home/profile-pic.jpg" class="u-shadow" id="introduction-banner__profile-pic" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
+    <img src="/assets/images/home/profile-pic.jpg" class="o-media__image u-shadow" id="introduction-banner__profile-pic" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
 
-    <div id="introduction-banner__introduction-text">
+    <div class="o-media__content" id="introduction-banner__introduction-text">
         <h1>Hello, world! I'm Qi Tianshi.</h1>
         <p>
             But you can call me "tian". I'm a student from Singapore, with a desk full of clutter and a pocketful of dreams.
@@ -62,12 +62,14 @@ custom_stylesheet: "/assets/styles/home.css"
 </div>
 
 <!-- "Under construction" banner -->
-<div class="o-container-card u-shadow" id="construction-card">
+<div class="o-media o-container-card u-shadow" id="construction-card">
 
-    <img src="/assets/images/icons/construction.svg" id="construction-icon" alt="Under construction.">
-    <p id="construction-card__text">
-        <b>There's more to come.</b><br>
-        This site is still being built. Check back soon?
-    </p>
+    <img src="/assets/images/icons/construction.svg" class="o-media__image" id="construction-icon" alt="Under construction.">
+    <div class="o-media__content">
+        <p id="construction-card__text">
+            <b>There's more to come.</b><br>
+            This site is still being built. Check back soon?
+        </p>
+    </div>
 
 </div>

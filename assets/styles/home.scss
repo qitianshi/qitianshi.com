@@ -11,16 +11,10 @@
 
 #introduction-banner {
 
-    // Flexbox wraps text beneath image for mobile devices.
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
     gap: 4em;
 
     padding: 25vh 3em;
-
-    height: fit-content;
 
     @include mixins.respond-to-breakpoint("small") {
         padding-left: variables.$mobile-padding;
@@ -39,18 +33,7 @@
     }
 
     &__introduction-text {
-
         max-width: variables.$main-content-width;
-
-        // Removes text margins above and below the div.
-        & :first-child {
-            margin-top: 0;
-        }
-
-        & :last-child {
-            margin-bottom: 0;
-        }
-
     }
 
 }
@@ -62,17 +45,10 @@
     width: fit-content;
     max-width: 70%;
 
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
     gap: 1em;
 
     @media (prefers-color-scheme: dark) {
         background-color: var(--background-secondary-color);
-    }
-
-    &__text {
-        margin: 0;
     }
 
 }

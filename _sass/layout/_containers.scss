@@ -14,3 +14,25 @@
     border-radius: 15px;
     overflow: hidden;
 }
+
+// The Media Object. An image with text that appears as columns on wide screens
+// and rows on narrow screens.
+.o-media {
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &__content {
+
+        & :first-child {
+            margin-top: 0;
+        }
+
+        & :last-child {
+            margin-bottom: 0;
+        }
+
+    }
+
+}
