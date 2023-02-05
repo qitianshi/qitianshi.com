@@ -17,8 +17,8 @@
     padding: 25vh 3em;
 
     @include mixins.respond-to-breakpoint("small") {
-        padding-left: variables.$mobile-padding;
-        padding-right: variables.$mobile-padding;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .o-media__image {
@@ -30,10 +30,6 @@
         border: 10px solid var(--background-primary-color);
         border-radius: 50%;
 
-    }
-
-    .o-media__content {
-        max-width: variables.$main-content-width;
     }
 
 }

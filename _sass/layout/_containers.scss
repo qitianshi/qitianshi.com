@@ -3,6 +3,9 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/variables";
+@use "abstracts/mixins";
+
 // Fills the entire viewport.
 .o-container-fill-viewport {
     width: 100vw;
@@ -33,6 +36,19 @@
             margin-bottom: 0;
         }
 
+    }
+
+}
+
+// Contains long-form text. Sets a max-width for readability, and adds padding
+// on narrow screens.
+.o-long-text-container {
+
+    max-width: 80ch;
+
+    @include mixins.respond-to-breakpoint("small") {
+        padding-left: variables.$mobile-padding;
+        padding-right: variables.$mobile-padding;
     }
 
 }
