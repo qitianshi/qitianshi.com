@@ -51,6 +51,10 @@
         background-color: var(--background-secondary-color);
     }
 
+    .o-media__content * {
+        margin: 0;
+    }
+
 }
 
 // The div that contains the three project cards
