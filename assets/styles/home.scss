@@ -30,7 +30,7 @@
     &__profile-pic {
 
         width: 300px;
-        max-width: 90vw; // Limits width for narrow mobile devices.
+        max-width: 90vw;       // Limits width for narrower screens.
         height: auto;
 
         border: 10px solid var(--background-primary-color);
@@ -43,7 +43,6 @@
         max-width: variables.$main-content-width;
 
         // Removes text margins above and below the div.
-
         & :first-child {
             margin-top: 0;
         }
@@ -115,13 +114,14 @@
 
 }
 
-// Changes to column layout in mobile versions.
+// Changes to column layout in mobile versions. 1000px is the size at which the
+// text begins to get cut off in flex-direction: row;.
 @include mixins.respond-to-width(1000px) {
 
     #project-cards-container {
 
         height: 90vh;
-        min-height: 450px;
+        min-height: 450px;    // The min height to keep all text visible.
 
         padding: 0 variables.$mobile-padding;
 

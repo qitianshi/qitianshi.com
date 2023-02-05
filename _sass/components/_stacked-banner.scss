@@ -10,7 +10,6 @@
 @use "abstracts/mixins";
 @use "base/typography";
 
-// A banner that fills the viewport.
 .c-stacked-banner {
 
     display: grid;
@@ -18,7 +17,7 @@
     // Increases the height of the banner to accommodate content if needed.
     min-height: fit-content;
 
-    // Places all immediate children in the same grid-area.
+    // Places all immediate children in the same grid-area for stacking effect.
     > * {
         grid-area: 1 / -1;
     }
@@ -33,7 +32,8 @@
 
         width: fit-content;
 
-        // Removes the margins so that text margins won't affect positioning.
+        // Removes the leading and trailing margins so text margins won't
+        // affect positioning.
         & :first-child {
             margin-top: 0;
         }
@@ -59,19 +59,20 @@
         height: 100%;
         object-fit: cover;
 
-        // Allows size adjustment to work, otherwise `min-height: fit-content;` of
-        // .c-stacked-banner will cause the full height of the image to be shown.
+        // Allows size adjustment to work, otherwise `min-height: fit-content;`
+        // of .c-stacked-banner will cause the full height of the image to
+        // always be shown.
         overflow: hidden;
 
         filter: brightness(0.3);
 
-        // A gray background that's only visible when the image is still waiting to
-        // load, to keep the overlaid text legible.
+        // A gray background that's only visible when the image loading, to
+        // keep the overlaid text legible.
         background: gray;
 
     }
 
-    // The main heading text in .c-stacked-banner
+    // The main heading text in .c-stacked-banner.
     &__heading {
 
         @extend h1;
@@ -83,14 +84,16 @@
             font-size: 3em;
         }
 
-        // Emphasized appearance for .c-stacked-banner
+        // Emphasized appearance for .c-stacked-banner; gives text the accent
+        // color.
         &--emphasized {
             color: variables.$tiangerine-tangerine-dark;
         }
 
     }
 
-    // Specific implementation of .c-banner-stacked that fills the entire viewport.
+    // Specific implementation of .c-banner-stacked that fills the entire
+    // viewport.
     &--hero {
 
         @extend .o-container-fill-viewport;
