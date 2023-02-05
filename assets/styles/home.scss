@@ -21,7 +21,7 @@
         padding-right: variables.$mobile-padding;
     }
 
-    &__profile-pic {
+    .o-media__image {
 
         width: 300px;
         max-width: 90vw;       // Limits width for narrower screens.
@@ -32,7 +32,7 @@
 
     }
 
-    &__introduction-text {
+    .o-media__content {
         max-width: variables.$main-content-width;
     }
 
