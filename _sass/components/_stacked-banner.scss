@@ -92,6 +92,12 @@
 
     }
 
+    // If &__content follows &__background, text color is automatically set to
+    // dark theme colors.
+    &__background ~ &__content {
+        color: var.$text-primary-color-dark;
+    }
+
     // Specific implementation of .c-banner-stacked that fills the entire
     // viewport.
     &--hero {
