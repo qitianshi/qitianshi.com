@@ -7,13 +7,13 @@
 @use "abstracts/mixins";
 
 // Fills the entire viewport.
-.o-container-fill-viewport {
+.o-fill-viewport-container {
     width: 100vw;
     height: 100vh;
 }
 
 // A card with rounded corners.
-.o-container-card {
+.o-card-container {
     border-radius: 15px;
     overflow: hidden;
 }

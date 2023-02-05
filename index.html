@@ -45,7 +45,7 @@ custom_stylesheet: "/assets/styles/home.css"
 
     {% for project in site.data.home.project_cards %}
 
-        <div class="project-card o-container-card u-shadow u-shadow--hoverable c-stacked-banner">
+        <div class="project-card o-card-container u-shadow u-shadow--hoverable c-stacked-banner">
 
             <img src="{{ project.image_src }}" class="c-stacked-banner__background" alt="{{ project.image_alt }}">
 
@@ -62,7 +62,7 @@ custom_stylesheet: "/assets/styles/home.css"
 </div>
 
 <!-- "Under construction" banner -->
-<div class="o-media o-container-card u-shadow" id="construction-card">
+<div class="o-media o-card-container u-shadow" id="construction-card">
 
     <img src="/assets/images/icons/construction.svg" class="o-media__image" alt="Under construction.">
     <div class="o-media__content">

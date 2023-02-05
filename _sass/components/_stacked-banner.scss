@@ -96,7 +96,7 @@
     // viewport.
     &--hero {
 
-        @extend .o-container-fill-viewport;
+        @extend .o-fill-viewport-container;
 
         .c-stacked-banner__content {
             padding: 10%;
