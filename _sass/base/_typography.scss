@@ -3,7 +3,7 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@use "abstracts/variables";
+@use "abstracts/variables" as var;
 
 
 // ---------- Fonts ----------
@@ -46,13 +46,13 @@ html, body {
     background-color: var(--background-primary-color);
     color: var(--text-primary-color);
 
-    font-family: variables.$body-font-family;
+    font-family: var.$body-font-family;
 
 }
 
 h1  {
 
-    font-family: variables.$heading-font-family;
+    font-family: var.$heading-font-family;
     font-size: 3em;
 
     // Adds an accent color beneath the text
@@ -62,12 +62,12 @@ h1  {
 }
 
 h2, h3, h4, h5, h6 {
-    font-family: variables.$body-font-family;
+    font-family: var.$body-font-family;
     margin: 2em auto 1em;
 }
 
 p {
-    font-family: variables.$body-font-family;
+    font-family: var.$body-font-family;
     font-size: 120%;
 }
 

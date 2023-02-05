@@ -6,8 +6,8 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@use "abstracts/variables";
-@use "abstracts/mixins";
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
 
 #introduction-banner {
 
@@ -16,7 +16,7 @@
 
     padding: 25vh 3em;
 
-    @include mixins.respond-to-breakpoint("small") {
+    @include mix.respond-to-breakpoint("small") {
         padding-left: 0;
         padding-right: 0;
     }
@@ -92,14 +92,14 @@
 
 // Changes to column layout in mobile versions. 1000px is the size at which the
 // text begins to get cut off in flex-direction: row;.
-@include mixins.respond-to-width(1000px) {
+@include mix.respond-to-width(1000px) {
 
     #project-cards-container {
 
         height: 90vh;
         min-height: 450px;    // The min height to keep all text visible.
 
-        padding: 0 variables.$mobile-padding;
+        padding: 0 var.$mobile-padding;
 
         flex-direction: column;
         gap: 1em;

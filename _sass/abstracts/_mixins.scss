@@ -3,18 +3,18 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@use "abstracts/variables";
+@use "abstracts/variables" as var;
 
 /// Applies a media query to adjust styles for screens up to the width of the
 /// specified breakpoint.
 ///
 /// @param {String} $breakpoint - The key of the breakpoint from $breakpoints.
-/// @require variables.$breakpoints
+/// @require var.$breakpoints
 @mixin respond-to-breakpoint($breakpoint) {
 
-    @if map-has-key($map: variables.$breakpoints, $key: $breakpoint) {
+    @if map-has-key($map: var.$breakpoints, $key: $breakpoint) {
 
-        @media screen and (max-width: map-get(variables.$breakpoints, $breakpoint)) {
+        @media screen and (max-width: map-get(var.$breakpoints, $breakpoint)) {
             @content;
         }
 

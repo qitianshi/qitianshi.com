@@ -5,10 +5,10 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@use "layout/containers";
-@use "abstracts/variables";
-@use "abstracts/mixins";
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
 @use "base/typography";
+@use "layout/containers";
 
 .c-stacked-banner {
 
@@ -80,14 +80,14 @@
         font-size: 4em;
         margin: 0.5em 0;
 
-        @include mixins.respond-to-breakpoint("small") {
+        @include mix.respond-to-breakpoint("small") {
             font-size: 3em;
         }
 
         // Emphasized appearance for .c-stacked-banner; gives text the accent
         // color.
         &--emphasized {
-            color: variables.$tiangerine-tangerine-dark;
+            color: var.$tiangerine-tangerine-dark;
         }
 
     }

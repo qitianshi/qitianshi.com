@@ -3,14 +3,14 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@use "abstracts/variables";
+@use "abstracts/variables" as var;
 
 .t-light-text {
-    color: variables.$text-primary-color-light;
+    color: var.$text-primary-color-light;
 }
 
 .t-dark-text {
-    color: variables.$text-primary-color-dark;
+    color: var.$text-primary-color-dark;
 }
 
 .t-device-text {

@@ -3,8 +3,8 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@use "abstracts/variables";
-@use "abstracts/mixins";
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
 
 // Fills the entire viewport.
 .o-fill-viewport-container {
@@ -46,9 +46,9 @@
 
     max-width: 80ch;
 
-    @include mixins.respond-to-breakpoint("small") {
-        padding-left: variables.$mobile-padding;
-        padding-right: variables.$mobile-padding;
+    @include mix.respond-to-breakpoint("small") {
+        padding-left: var.$mobile-padding;
+        padding-right: var.$mobile-padding;
     }
 
 }
