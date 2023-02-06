@@ -51,16 +51,21 @@
 
 }
 
-html, body {
+body {
 
     height: 100%;
     margin: 0;
 
     background-color: var(--background-primary-color);
-    color: var(--text-primary-color);
 
     font-family: var.$body-font-family;
 
+}
+
+// Color variable must be explicitly set for every element, because otherwise
+// the value calculated in :root will be inherited.
+body * {
+    color: var(--text-primary-color);
 }
 
 h1  {

@@ -5,14 +5,12 @@
 
 @use "abstracts/variables" as var;
 
-.t-light-text {
-    color: var.$text-primary-color-light;
+.t-light {
+    @include var.light-theme-colors();
+    color-scheme: light;
 }
 
-.t-dark-text {
-    color: var.$text-primary-color-dark;
-}
-
-.t-device-text {
-    color: var(--text-primary-color);
+.t-dark {
+    @include var.dark-theme-colors();
+    color-scheme: dark;
 }
