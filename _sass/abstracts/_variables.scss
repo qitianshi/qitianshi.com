@@ -27,16 +27,15 @@ $text-secondary-color-dark: #959595;
 $link-color-dark: #71a8f4;
 $link-hover-color-dark: #68a2f3;
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --tiangerine-tangerine: #{$tiangerine-tangerine-light};
-        --background-primary-color: #{$background-primary-color-light};
-        --background-secondary-color: #{$background-secondary-color-light};
-        --text-primary-color: #{$text-primary-color-light};
-        --text-secondary-color: #{$text-secondary-color-light};
-        --link-color: #{$link-color-light};
-        --link-hover-color: #{$link-hover-color-light};
-    }
+// prefers-color-scheme: light
+:root {
+    --tiangerine-tangerine: #{$tiangerine-tangerine-light};
+    --background-primary-color: #{$background-primary-color-light};
+    --background-secondary-color: #{$background-secondary-color-light};
+    --text-primary-color: #{$text-primary-color-light};
+    --text-secondary-color: #{$text-secondary-color-light};
+    --link-color: #{$link-color-light};
+    --link-hover-color: #{$link-hover-color-light};
 }
 
 @media (prefers-color-scheme: dark) {
