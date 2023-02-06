@@ -34,8 +34,21 @@
 
 // --------- Styles ----------
 
+// prefers-color-scheme: light
 :root {
+
     color-scheme: light dark;
+
+    // Sets the light theme colors as default for compatibility with browsers
+    // that don't support prefers-color-scheme.
+    @include var.light-theme-colors();
+
+    // If the browser requests a dark theme, the light theme variables are
+    // overridden.
+    @media (prefers-color-scheme: dark) {
+        @include var.dark-theme-colors();
+    }
+
 }
 
 html, body {
