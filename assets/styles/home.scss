@@ -43,7 +43,7 @@
 
     gap: 1em;
 
-    @media (prefers-color-scheme: dark) {
+    @include mix.dark-theme() {
         background-color: var(--background-secondary-color);
     }
 
