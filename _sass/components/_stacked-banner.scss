@@ -9,6 +9,7 @@
 @use "abstracts/variables" as var;
 @use "base/typography";
 @use "layout/containers";
+@use "themes/themes";
 
 .c-stacked-banner {
 
@@ -87,15 +88,14 @@
         // Emphasized appearance for .c-stacked-banner; gives text the accent
         // color.
         &--emphasized {
-            color: var.$tiangerine-tangerine-dark;
+            color: var(--tiangerine-tangerine);
         }
 
     }
 
-    // If &__content follows &__background, text color is automatically set to
-    // dark theme colors.
+    // If &__content follows &__background, content is set to dark theme.
     &__background ~ &__content {
-        color: var.$text-primary-color-dark;
+        @extend .t-dark;
     }
 
     // Specific implementation of .c-banner-stacked that fills the entire
