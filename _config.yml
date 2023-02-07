@@ -8,6 +8,8 @@
 url: "https://qitianshi.github.io"
 baseurl: "/"
 title: "qitianshi"
+exclude:
+  - README.md
 plugins:
   - jekyll-autoprefixer
 
