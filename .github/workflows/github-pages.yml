@@ -1,9 +1,17 @@
 name: Build and deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
+
+  # helaili/jekyll-action currently doesn't work with jekyll-sass-converter v3,
+  # which this project is dependent on. Until this is fixed, or until a custom
+  # workflow is developed, CI/CD is disabled and the built site will be pushed
+  # manually to the gh-pages branch.
+
+  # push:
+  #   branches:
+  #     - main
+
+  workflow_dispatch:
 
 jobs:
 
