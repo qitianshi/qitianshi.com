@@ -6,54 +6,32 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@import "presets";
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
 
 #introduction-banner {
 
-    // Flexbox wraps text beneath image for mobile devices.
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
     gap: 4em;
 
     padding: 25vh 3em;
 
-    height: fit-content;
-
-}
-
-@media screen and (max-width: $mobile-width-cuttoff) {
-    #introduction-banner {
-        padding-left: $mobile-padding;
-        padding-right: $mobile-padding;
+    @include mix.respond-to-breakpoint("small") {
+        padding-left: 0;
+        padding-right: 0;
     }
-}
 
-#profile-pic {
+    .o-media__image {
 
-    width: 300px;
-    max-width: 100%;      // Limits width for narrow mobile devices.
-    height: auto;
+        width: 300px;
+        max-width: 90vw;       // Limits width for narrower screens.
+        height: auto;
 
-    border: 10px solid var(--background-primary-color);
-    border-radius: 50%;
-    box-shadow: $default-shadow;
+        border: 10px solid var(--background-primary-color);
+        border-radius: 50%;
 
-}
+    }
 
-#introduction-text {
-    max-width: 80ch;
-}
-
-// Removes text margins above and below the div.
-
-#introduction-banner h1:first-of-type {
-    margin-top: 0;
-}
-
-#introduction-banner p:last-of-type {
-    margin-bottom: 0;
 }
 
 #construction-card {
@@ -63,30 +41,22 @@
     width: fit-content;
     max-width: 70%;
 
-    border-radius: $corner-radius-large;
-    box-shadow: $default-shadow;
-
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
     gap: 1em;
 
-}
-
-#construction-card p {
-    margin: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-    #construction-card {
+    @include mix.dark-theme() {
         background-color: var(--background-secondary-color);
     }
+
+    .o-media__content * {
+        margin: 0;
+    }
+
 }
 
 // The div that contains the three project cards
 #project-cards-container {
 
-    height: 90%;
+    height: 90vh;
 
     display: flex;
     justify-content: space-evenly;
@@ -101,67 +71,55 @@
     height: 100%;
     width: 32%;
 
-    border-radius: $corner-radius-large;
-    overflow: hidden;
-    box-shadow: $default-shadow;
-
     position: relative;
-
-    cursor: pointer;
 
     // For :hover effect
     transition-property: transform, box-shadow;
     transition-duration: 0.15s;
     transition-timing-function: ease-out;
 
-}
+    // On mouseover, the card grows and shadow increases to mimic height.
+    &:hover {
+        transform: scale(1.025);
+    }
 
-// On mouseover, the card grows and shadow increases to mimic height.
-.project-card:hover {
-    transform: scale(1.025);
-    box-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
-}
-
-.project-card-text {
-
-    color: $text-primary-color-dark;
-
-    // Places text at bottom-left corner
-    position: absolute;
-    top: 100%;
-    transform: translateY(-100%);
+    .c-stacked-banner__content {
+        padding: 10%;
+        font-weight: normal;
+    }
 
 }
 
-.project-card-text p {
-
-    margin: 1em;
-
-    // Text styles mimic H1, but are defined instead using <p> for semantics.
-    font-family: $heading-font-family;
-    font-size: 3em;
-    font-weight: bold;
-    border-bottom: 2px solid;
-    border-color: $tiangerine-tangerine-dark;
-
-}
-
-// Changes to column layout in mobile versions.
-@media screen and (max-width: 900px) {
+// Changes to column layout in mobile versions. 1000px is the size at which the
+// text begins to get cut off in flex-direction: row;.
+@include mix.respond-to-width(1000px) {
 
     #project-cards-container {
+
+        height: 90vh;
+        min-height: 450px;    // The min height to keep all text visible.
+
+        padding: 0 var.$mobile-padding;
+
         flex-direction: column;
-        padding: 0 $mobile-padding;
-        min-height: 400px;
+        gap: 1em;
+        justify-content: space-between;
+
     }
 
     .project-card {
-        height: 32%;
-        width: 100%;
-    }
 
-    .project-card-text p {
-        margin: 0.5em;
+        width: 100%;
+
+        .c-stacked-banner__content {
+
+            // Ideally the padding would be 10% of parent element height, but
+            // it's difficult without JS. Since the parent height is known as
+            // at least 90vh, which contains 3 children, 10% is roughly 3vh.
+            padding: max(3vh, 2em);
+
+        }
+
     }
 
 }

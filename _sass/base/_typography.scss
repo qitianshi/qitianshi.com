@@ -1,0 +1,97 @@
+// Base stylesheet, including typography and resets.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/variables" as var;
+
+
+// ---------- Fonts ----------
+
+// Adjusts size and descent for Verdana and Georgia to match Rokkitt.
+// Not supported in Safari 16.
+@font-face {
+    font-family: "Verdana Fallback";
+    src: local(Verdana);
+    size-adjust: 84%;
+    ascent-override: normal;
+    descent-override: 35%;
+    line-gap-override: normal;
+}
+
+@font-face {
+    font-family: "Georgia Fallback";
+    src: local(Georgia);
+    size-adjust: 93%;
+    ascent-override: normal;
+    descent-override: 32%;
+    line-gap-override: normal;
+}
+
+// Import font families Inter and Rokkitt from Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Rokkitt:wght@100..900&display=swap');
+
+
+// --------- Styles ----------
+
+:root {
+
+    color-scheme: light dark;
+
+    // Sets the light theme colors as default for compatibility with browsers
+    // that don't support prefers-color-scheme.
+    @include var.light-theme-colors();
+
+    // If the browser requests a dark theme, the light theme variables are
+    // overridden.
+    @media (prefers-color-scheme: dark) {
+        @include var.dark-theme-colors();
+    }
+
+}
+
+body {
+
+    height: 100%;
+    margin: 0;
+
+    background-color: var(--background-primary-color);
+
+    font-family: var.$body-font-family;
+
+}
+
+// Color variable must be explicitly set for every element, because otherwise
+// the value calculated in :root will be inherited.
+body * {
+    color: var(--text-primary-color);
+}
+
+h1  {
+
+    font-family: var.$heading-font-family;
+    font-size: 3em;
+
+    // Adds an accent color beneath the text
+    border-bottom: 2px solid;
+    border-color: var(--tiangerine-tangerine);
+
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: var.$body-font-family;
+    margin: 2em auto 1em;
+}
+
+p {
+    font-family: var.$body-font-family;
+    font-size: 120%;
+}
+
+a:link, a:visited {
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}

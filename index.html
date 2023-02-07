@@ -10,12 +10,12 @@ custom_stylesheet: "/assets/styles/home.css"
 
 
 <!-- Main hero banner. -->
-<section class="banner-full banner-full-emphasized" id="home-hero-banner">
+<section class="c-stacked-banner c-stacked-banner--hero">
 
-    <img class="background-filled" src="/assets/images/home/desk-hero-banner.jpeg" alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about.">
+    <img class="c-stacked-banner__background" src="/assets/images/home/desk-hero-banner.jpeg" alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about.">
 
-    <div class="banner-full-text">
-        <h1>From the desk of qitianshi</h1>
+    <div class="c-stacked-banner__content c-stacked-banner__content--leading">
+        <h1 class="c-stacked-banner__heading c-stacked-banner__heading--emphasized">From the desk of qitianshi</h1>
         <p>Hello. It seems you've found my little corner of the Internet.</p>
         <p>I'm Tianshi. Welcome.</p>
     </div>
@@ -23,50 +23,51 @@ custom_stylesheet: "/assets/styles/home.css"
 </section>
 
 <!-- Profile pic and introduction. -->
-<section id="introduction-banner">
+<section class="o-media" id="introduction-banner">
 
-    <img src="/assets/images/home/profile-pic.jpg" id="profile-pic" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
+    <img src="/assets/images/home/profile-pic.jpg" class="o-media__image u-shadow" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
 
-    <div id="introduction-text">
+    <div class="o-media__content o-body-text-container">
         <h1>Hello, world! I'm Qi Tianshi.</h1>
         <p>
             But you can call me "tian". I'm a student from Singapore, with a desk full of clutter and a pocketful of dreams.
         </p><p>
             For over a decade, I've found my calling in robotics &mdash; the alluring magic of breathing life into dead parts. Since my early days of tinkering with LEGO robots, I've graduated to using industry-level tools, managing my robotics club, contributing research to a global community, and selecting and mentoring new generations of roboticists.
         </p><p>
-            I'm also a developer, a writer, and an artist&mldr; to varying degrees. Why don't you have a look around at some of the stuff I've made?
+            I'm also a developer, a researcher, a writer, and an artist&mldr; to varying degrees. Why don't you have a look around at some of the stuff I've made?
         </p>
     </div>
 
 </section>
 
-<div id="project-cards-container">
+<!-- Clickable cards that link to projects. -->
+<section id="project-cards-container">
 
     {% for project in site.data.home.project_cards %}
 
-        <div class="project-card">
+        <div class="project-card o-card-container u-shadow u-shadow--hoverable c-stacked-banner">
 
-            <a class="link-filled" href="{{ project.link }}"></a>
+            <img src="{{ project.image_src }}" class="c-stacked-banner__background" alt="{{ project.image_alt }}">
 
-            <img src="{{ project.image_src }}" class="background-filled" alt="{{ project.image_alt }}">
-
-            <div class="project-card-text">
-                <p>{{ project.title }}</p>
+            <div class="c-stacked-banner__content c-stacked-banner__content--bottom-leading">
+                <p class="c-stacked-banner__heading">{{ project.title }}</p>
             </div>
+
+            <a class="u-block-link" href="{{ project.link }}"></a>
 
         </div>
 
     {% endfor %}
 
-</div>
+</section>
 
 <!-- "Under construction" banner -->
-<div id="construction-card">
+<div class="o-media o-card-container u-shadow" id="construction-card">
 
-    <img src="/assets/images/icons/construction.svg" id="construction-icon" alt="Under construction.">
-    <p id="construction-text">
-        <b>There's more to come.</b><br>
-        This site is still being built. Check back soon?
-    </p>
+    <img src="/assets/images/icons/construction.svg" class="o-media__image" alt="Under construction.">
+    <div class="o-media__content">
+        <h3>There's more to come.</h3>
+        <p>This site is still being built. Check back soon?</p>
+    </div>
 
 </div>

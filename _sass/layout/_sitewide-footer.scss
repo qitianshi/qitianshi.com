@@ -1,0 +1,17 @@
+// Stylesheet for the sitewide footer.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+#sitewide-footer {
+
+    padding: 0.1em 2em;
+    background-color: var(--background-secondary-color);
+
+    &__copyright-notice {
+        font-size: 0.75em;
+        color: var(--text-secondary-color);
+        text-align: right;
+    }
+
+}

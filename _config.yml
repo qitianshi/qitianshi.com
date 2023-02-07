@@ -3,6 +3,21 @@
 # Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+# --------- Jekyll ----------
+
 url: "https://qitianshi.github.io"
 baseurl: "/"
 title: "qitianshi"
+exclude:
+  - README.md
+plugins:
+  - jekyll-autoprefixer
+
+
+# --------- Plugins ---------
+
+# For jekyll-autoprefixer
+autoprefixer:
+  only_production: true
+  browsers:
+    - last 2 versions

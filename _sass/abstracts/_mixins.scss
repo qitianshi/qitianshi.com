@@ -1,0 +1,56 @@
+// Commonly used mixins.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/variables" as var;
+
+/// Applies a media query to adjust styles for screens up to the width of the
+/// specified breakpoint.
+///
+/// @param {String} $breakpoint - The key of the breakpoint from $breakpoints.
+/// @require var.$breakpoints
+@mixin respond-to-breakpoint($breakpoint) {
+
+    @if map-has-key($map: var.$breakpoints, $key: $breakpoint) {
+
+        @media screen and (max-width: map-get(var.$breakpoints, $breakpoint)) {
+            @content;
+        }
+
+    }
+
+    // Raise warning if the key doesn't exist.
+    @else {
+        @warn "No key `#{$breakpoint}` in $breakpoints.";
+    }
+
+}
+
+/// Applies a media query to adjust styles for screens up to the specified
+/// width.
+///
+/// @param {Number} $width - The max-width of the breakpoint.
+@mixin respond-to-width($width) {
+    @media screen and (max-width: $width) {
+        @content;
+    }
+}
+
+/// Specifies additional styles for dark theme, whether it's applied using
+/// @media or .t-dark. As much as possible, prefer using color variables.
+@mixin dark-theme() {
+
+    // When the user has specified the dark theme through their browser.
+    @media screen and (prefers-color-scheme: dark) {
+        @content;
+    }
+
+    // When the element has been programmatically set to the dark theme, or
+    // when it's the child of an element that has.
+    &.t-dark,
+    .t-dark & {
+        @content;
+    }
+
+}

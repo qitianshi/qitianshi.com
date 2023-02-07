@@ -1,0 +1,113 @@
+// A stacked banner is a block-level element wherein all immediate children
+// are overlaid in the z-direction. It contains primary content and optionally
+// a background.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
+@use "base/typography";
+@use "layout/containers";
+@use "themes/themes";
+
+.c-stacked-banner {
+
+    display: grid;
+
+    // Increases the height of the banner to accommodate content if needed.
+    min-height: fit-content;
+
+    // Places all immediate children in the same grid-area for stacking effect.
+    > * {
+        grid-area: 1 / -1;
+    }
+
+    // The contents of the banner.
+    &__content {
+
+        // Required for z-stacking to work, otherwise the filter on the
+        // background creates a new stacking context that breaks the grid
+        // stack.
+        position: relative;
+
+        width: fit-content;
+
+        // Removes the leading and trailing margins so text margins won't
+        // affect positioning.
+        & :first-child {
+            margin-top: 0;
+        }
+
+        & :last-child {
+            margin-bottom: 0;
+        }
+
+        &--leading {
+            margin: auto auto auto 0;
+        }
+
+        &--bottom-leading {
+            margin: auto auto 0 0;
+        }
+
+    }
+
+    // The background image that fills the banner.
+    &__background {
+
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        // Allows size adjustment to work, otherwise `min-height: fit-content;`
+        // of .c-stacked-banner will cause the full height of the image to
+        // always be shown.
+        overflow: hidden;
+
+        filter: brightness(0.3);
+
+        // A gray background that's only visible when the image loading, to
+        // keep the overlaid text legible.
+        background: gray;
+
+    }
+
+    // The main heading text in .c-stacked-banner.
+    &__heading {
+
+        @extend h1;
+
+        font-size: 4em;
+        margin: 0.5em 0;
+
+        @include mix.respond-to-breakpoint("small") {
+            font-size: 3em;
+        }
+
+        // Emphasized appearance for .c-stacked-banner; gives text the accent
+        // color.
+        &--emphasized {
+            color: var(--tiangerine-tangerine);
+        }
+
+    }
+
+    // If &__content follows &__background, content is set to dark theme.
+    &__background ~ &__content {
+        @extend .t-dark;
+    }
+
+    // Specific implementation of .c-banner-stacked that fills the entire
+    // viewport.
+    &--hero {
+
+        @extend .o-fill-viewport-container;
+
+        .c-stacked-banner__content {
+            padding: 10%;
+        }
+
+    }
+
+}

@@ -1,0 +1,42 @@
+// Color theme classes. Add a class to an element to force it and its children
+// to adhere to the corresponding color theme regardless of the browser
+// settings.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/variables" as var;
+
+// Private mixins. Prevents code repetition.
+
+/// Attributes for .t-light
+@mixin _light-attributes() {
+    @include var.light-theme-colors();
+    color-scheme: light;
+}
+
+/// Attributes for .t-dark
+@mixin _dark-attributes() {
+    @include var.dark-theme-colors();
+    color-scheme: dark;
+}
+
+.t-light {
+    @include _light-attributes();
+}
+
+.t-dark {
+    @include _dark-attributes();
+}
+
+// Follows the user's preferred color scheme, from the prefers-color-scheme
+// media query. Defaults to light theme.
+.t-preference {
+
+    @include _light-attributes();
+
+    @media screen and (prefers-color-scheme: dark) {
+        @include _dark-attributes();
+    }
+
+}

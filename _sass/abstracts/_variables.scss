@@ -1,0 +1,60 @@
+// Preset variables for fonts, colors, and other global values.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+// ---------- Fonts ----------
+
+$heading-font-family: "Rokkitt", "Georgia Fallback", "Verdana Fallback", Georgia, Verdana, Geneva, Tahoma, sans-serif;
+$body-font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+
+
+// --------- Colors ----------
+
+$tiangerine-tangerine-light: #ef4b07;
+$background-primary-color-light: #ffffff;
+$background-secondary-color-light: #dcdcdc;
+$text-primary-color-light: #000000;
+$text-secondary-color-light: #6a6a6a;
+$link-color-light: #195ee6;
+$link-hover-color-light: #3670e2;
+
+$tiangerine-tangerine-dark: #ff5208;
+$background-primary-color-dark: #0f0f0f;
+$background-secondary-color-dark: #232323;
+$text-primary-color-dark: #f5f5f5;
+$text-secondary-color-dark: #959595;
+$link-color-dark: #71a8f4;
+$link-hover-color-dark: #68a2f3;
+
+/// Sets the light theme color pallete as CSS variables.
+@mixin light-theme-colors() {
+    --tiangerine-tangerine: #{$tiangerine-tangerine-light};
+    --background-primary-color: #{$background-primary-color-light};
+    --background-secondary-color: #{$background-secondary-color-light};
+    --text-primary-color: #{$text-primary-color-light};
+    --text-secondary-color: #{$text-secondary-color-light};
+    --link-color: #{$link-color-light};
+    --link-hover-color: #{$link-hover-color-light};
+}
+
+/// Sets the dark theme color pallete as CSS variables.
+@mixin dark-theme-colors() {
+    --tiangerine-tangerine: #{$tiangerine-tangerine-dark};
+    --background-primary-color: #{$background-primary-color-dark};
+    --background-secondary-color: #{$background-secondary-color-dark};
+    --text-primary-color: #{$text-primary-color-dark};
+    --text-secondary-color: #{$text-secondary-color-dark};
+    --link-color: #{$link-color-dark};
+    --link-hover-color: #{$link-hover-color-dark};
+}
+
+
+// ----- Design elements -----
+
+$mobile-padding: 1em;
+
+// Used with mix.respond-to-breakpoint for responsive design.
+$breakpoints: (
+    "small": 450px
+)

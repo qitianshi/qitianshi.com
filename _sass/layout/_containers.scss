@@ -1,0 +1,66 @@
+// Classes for common containers.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
+
+// Fills the entire viewport.
+.o-fill-viewport-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+// A card with rounded corners.
+.o-card-container {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+// The Media Object. An image with text that appears as columns on wide screens
+// and rows on narrow screens.
+.o-media {
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &__content {
+
+        & :first-child {
+            margin-top: 0;
+        }
+
+        & :last-child {
+            margin-bottom: 0;
+        }
+
+    }
+
+}
+
+// Contains long-form text. Sets a max-width for readability, and adds padding
+// on narrow screens.
+.o-body-text-container {
+
+    max-width: 80ch;
+
+    & p {
+        text-align: justify;
+    }
+
+    @include mix.respond-to-breakpoint("small") {
+
+        padding-left: var.$mobile-padding;
+        padding-right: var.$mobile-padding;
+
+        // Returns text-align to its unset value if the screen is too narrow to
+        // avoid ugly stretched lines.
+        & p {
+            text-align: unset;
+        }
+
+    }
+
+}
