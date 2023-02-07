@@ -54,6 +54,7 @@ $link-hover-color-dark: #68a2f3;
 
 $mobile-padding: 1em;
 
+// Used with mix.respond-to-breakpoint for responsive design.
 $breakpoints: (
     "small": 450px
 )

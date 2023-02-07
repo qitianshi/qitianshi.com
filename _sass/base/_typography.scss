@@ -8,8 +8,8 @@
 
 // ---------- Fonts ----------
 
-// Adjusts size and descent for Verdana and Georgia to match Rokkitt
-// Not supported in Safari 16.2
+// Adjusts size and descent for Verdana and Georgia to match Rokkitt.
+// Not supported in Safari 16.
 @font-face {
     font-family: "Verdana Fallback";
     src: local(Verdana);
@@ -34,7 +34,6 @@
 
 // --------- Styles ----------
 
-// prefers-color-scheme: light
 :root {
 
     color-scheme: light dark;
