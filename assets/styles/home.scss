@@ -88,6 +88,28 @@
         font-weight: normal;
     }
 
+    .c-stacked-banner__background {
+        filter: none;
+    }
+
+    // Applies a legibility gradient over the image.
+    &__background-container::after {
+
+        // An empty block that fills its container.
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+
+        // Applies a gradient. The stops are defined to to ensure legibility at
+        // all screen sizes.
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent calc(4em + 30%));
+
+    }
+
 }
 
 // Changes to column layout in mobile versions. 1000px is the size at which the
