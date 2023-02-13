@@ -12,9 +12,9 @@
 #introduction-banner {
 
     justify-content: center;
-    gap: 4em;
+    gap: 3rem;
 
-    padding: 25vh 3em;
+    padding: 25vh 3rem;
 
     @include mix.respond-to-breakpoint("small") {
         padding-left: 0;
@@ -36,12 +36,12 @@
 
 #construction-card {
 
-    margin: 5em auto;
-    padding: 2em;
+    margin: 5rem auto;
+    padding: 2rem;
     width: fit-content;
     max-width: 70%;
 
-    gap: 1em;
+    gap: 1rem;
 
     @include mix.dark-theme() {
         background-color: var(--background-secondary-color);
@@ -106,7 +106,7 @@
 
         // Applies a gradient. The stops are defined to to ensure legibility at
         // all screen sizes.
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent calc(4em + 30%));
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent calc(3.5rem + 30%));
 
     }
 
@@ -114,17 +114,17 @@
 
 // Changes to column layout in mobile versions. 1000px is the size at which the
 // text begins to get cut off in flex-direction: row;.
-@include mix.respond-to-width(1000px) {
+@include mix.respond-to-width(1050px) {
 
     #project-cards-container {
 
         height: 90vh;
-        min-height: 450px;    // The min height to keep all text visible.
+        min-height: 500px;    // The min height to keep all text visible.
 
         padding: 0 var.$mobile-padding;
 
         flex-direction: column;
-        gap: 1em;
+        gap: 1rem;
         justify-content: space-between;
 
     }
@@ -138,7 +138,7 @@
             // Ideally the padding would be 10% of parent element height, but
             // it's difficult without JS. Since the parent height is known as
             // at least 90vh, which contains 3 children, 10% is roughly 3vh.
-            padding: max(3vh, 2em);
+            padding: max(3vh, 2rem);
 
         }
 
