@@ -47,7 +47,10 @@ custom_stylesheet: "/assets/styles/home.css"
 
         <div class="project-card o-card-container u-shadow u-shadow--hoverable c-stacked-banner">
 
-            <img src="{{ project.image_src }}" class="c-stacked-banner__background" alt="{{ project.image_alt }}">
+            <!-- A legibility gradient is applied over the image using a pseudo-element. -->
+            <div class="project-card__background-container c-stacked-banner__background">
+                <img src="{{ project.image_src }}" class="c-stacked-banner__background" alt="{{ project.image_alt }}">
+            </div>
 
             <div class="c-stacked-banner__content c-stacked-banner__content--bottom-leading">
                 <p class="c-stacked-banner__heading">{{ project.title }}</p>

@@ -5,11 +5,11 @@
 
 #sitewide-footer {
 
-    padding: 0.1em 2em;
+    padding: 0.1rem 1.5rem;
     background-color: var(--background-secondary-color);
 
     &__copyright-notice {
-        font-size: 0.75em;
+        font-size: 0.6rem;
         color: var(--text-secondary-color);
         text-align: right;
     }
