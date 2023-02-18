@@ -71,7 +71,7 @@ body {
 // other elements have their colors defined lower in the hierarchy and thus
 // will be correctly affected by applying theme classes.
 body * {
-    color: var(--text-primary-color);
+    color: var(--foreground-primary-color);
 }
 
 h1  {
