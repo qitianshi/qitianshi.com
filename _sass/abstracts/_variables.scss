@@ -15,14 +15,14 @@ $body-font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe
 $tiangerine-tangerine-light: #ef4b07;
 
 $background-primary-color-light: #ffffff;
-$background-secondary-color-light: rgb(230, 230, 230);
+$background-secondary-color-light: #e8e8e8;
 
-$foreground-primary-color-light: rgb(0, 0, 0);
-$foreground-secondary-color-light: rgb(106, 106, 106);
-$foreground-tertiary-color-light: rgb(186, 186, 186);
+$foreground-primary-color-light: #000000;
+$foreground-secondary-color-light: #6a6a6a;
+$foreground-tertiary-color-light: #bababa;
 
 $link-color-light: #195ee6;
-$link-hover-color-light: #3670e2;
+$link-hover-color-light: #1d2026;
 
 // Dark theme colors
 $tiangerine-tangerine-dark: #ff5208;
@@ -30,9 +30,9 @@ $tiangerine-tangerine-dark: #ff5208;
 $background-primary-color-dark: #0f0f0f;
 $background-secondary-color-dark: #232323;
 
-$foreground-primary-color-dark: rgb(245, 245, 245);
-$foreground-secondary-color-dark: rgb(149, 149, 149);
-$foreground-tertiary-color-dark: rgb(99, 99, 99);
+$foreground-primary-color-dark: #f5f5f5;
+$foreground-secondary-color-dark: #959595;
+$foreground-tertiary-color-dark: #636363;
 
 $link-color-dark: #71a8f4;
 $link-hover-color-dark: #68a2f3;
