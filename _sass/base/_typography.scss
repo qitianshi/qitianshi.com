@@ -106,19 +106,30 @@ a {
         color: var(--link-hover-color);
     }
 
+    // A link that represents a backward navigation.
     &.back-link::before {
         // A left arrow (&larr;) and a space.
         content: "\02190\00a0";
     }
 
+    // A link that represents a forward navigation.
     &.forward-link::after {
         // A space and a right arrow (&rarr;).
         content: "\00a0\2192";
     }
 
+    // A link to an external website.
     &.external-link::after {
         // A space and a north east arrow (&nearr;).
         content: "\00a0\2197";
+    }
+
+    // A link that fills its entire parent element.
+    &.fill-link {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
     }
 
 }
