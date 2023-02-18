@@ -13,17 +13,19 @@ $body-font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe
 
 $tiangerine-tangerine-light: #ef4b07;
 $background-primary-color-light: #ffffff;
-$background-secondary-color-light: #dcdcdc;
-$text-primary-color-light: #000000;
-$text-secondary-color-light: #6a6a6a;
+$background-secondary-color-light: rgb(230, 230, 230);
+$text-primary-color-light: rgb(0, 0, 0);
+$text-secondary-color-light: rgb(106, 106, 106);
+$text-tertiary-color-light: rgb(186, 186, 186);
 $link-color-light: #195ee6;
 $link-hover-color-light: #3670e2;
 
 $tiangerine-tangerine-dark: #ff5208;
 $background-primary-color-dark: #0f0f0f;
 $background-secondary-color-dark: #232323;
-$text-primary-color-dark: #f5f5f5;
-$text-secondary-color-dark: #959595;
+$text-primary-color-dark: rgb(245, 245, 245);
+$text-secondary-color-dark: rgb(149, 149, 149);
+$text-tertiary-color-dark: rgb(99, 99, 99);
 $link-color-dark: #71a8f4;
 $link-hover-color-dark: #68a2f3;
 
@@ -34,6 +36,7 @@ $link-hover-color-dark: #68a2f3;
     --background-secondary-color: #{$background-secondary-color-light};
     --text-primary-color: #{$text-primary-color-light};
     --text-secondary-color: #{$text-secondary-color-light};
+    --text-tertiary-color: #{$text-tertiary-color-light};
     --link-color: #{$link-color-light};
     --link-hover-color: #{$link-hover-color-light};
 }
@@ -45,6 +48,7 @@ $link-hover-color-dark: #68a2f3;
     --background-secondary-color: #{$background-secondary-color-dark};
     --text-primary-color: #{$text-primary-color-dark};
     --text-secondary-color: #{$text-secondary-color-dark};
+    --text-tertiary-color: #{$text-tertiary-color-dark};
     --link-color: #{$link-color-dark};
     --link-hover-color: #{$link-hover-color-dark};
 }
