@@ -95,10 +95,30 @@ p {
     font-size: 1rem;
 }
 
-a:link, a:visited {
-    color: var(--link-color);
-}
+a {
 
-a:hover {
-    color: var(--link-hover-color);
+    &:link,
+    &:visited {
+        color: var(--link-color);
+    }
+
+    &:hover {
+        color: var(--link-hover-color);
+    }
+
+    &.back-link::before {
+        // A left arrow (&larr;) and a space.
+        content: "\02190\00a0";
+    }
+
+    &.forward-link::after {
+        // A space and a right arrow (&rarr;).
+        content: "\00a0\2192";
+    }
+
+    &.external-link::after {
+        // A space and a north east arrow (&nearr;).
+        content: "\00a0\2197";
+    }
+
 }
