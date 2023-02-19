@@ -100,10 +100,12 @@ a {
     &:link,
     &:visited {
         color: var(--link-color);
+        text-decoration: none;
     }
 
     &:hover {
         color: var(--link-hover-color);
+        text-decoration: underline;
     }
 
     // A link that represents a backward navigation.
