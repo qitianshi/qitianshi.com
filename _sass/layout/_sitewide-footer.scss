@@ -3,15 +3,37 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-#sitewide-footer {
+@use "abstracts/mixins" as mix;
 
-    padding: 0.1rem 1.5rem;
-    background-color: var(--background-secondary-color);
+// For classes in the footer.
+.sitewide-footer {
 
-    &__copyright-notice {
+    * {
         font-size: 0.6rem;
-        color: var(--text-secondary-color);
-        text-align: right;
+        color: var(--foreground-secondary-color);
     }
 
+    // For every &__content that follows another &__content, add a top border.
+    // Effectively places a border between each &__content.
+    & > &__content + &__content {
+        border-top: 1px solid var(--foreground-tertiary-color);
+    }
+
+    &__content {
+
+        // Keeps a 10% margin on both sides, similar to .c-stacked-banner--hero
+        width: 80%;
+        max-width: 130ch;
+
+        // Keeps it centered.
+        margin: 0 auto;
+
+    }
+
+}
+
+// For IDs in the footer.
+#sitewide-footer {
+    padding: 1rem 0;
+    background-color: var(--background-secondary-color);
 }
