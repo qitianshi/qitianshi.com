@@ -6,7 +6,23 @@
 <footer class="sitewide-footer" id="sitewide-footer">
 
     <div id="sitewide-footer__main" class="sitewide-footer__content">
+
         <p>Made in the small hours by <b>Qi Tianshi</b>. <a href="https://github.com/qitianshi/qitianshi.github.io" target="_blank" class="external-link">Source code on GitHub</a></p>
+
+        <!-- A three-way toggle that allows the user to override their browser color scheme. Event handled in JavaScript. -->
+        <div id="sitewide-footer__color-theme-toggle" role="radiogroup">
+
+            <input type="radio" name="color-theme-toggle" value="light" id="color-theme-toggle__light">
+            <label for="color-theme-toggle__light">Light</label>
+
+            <input type="radio" name="color-theme-toggle" value="dark" id="color-theme-toggle__dark">
+            <label for="color-theme-toggle__dark">Dark</label>
+
+            <input type="radio" name="color-theme-toggle" value="auto" id="color-theme-toggle__auto" checked>
+            <label for="color-theme-toggle__auto">Auto</label>
+
+        </div>
+
     </div>
 
     <div id="sitewide-footer__legal" class="sitewide-footer__content">

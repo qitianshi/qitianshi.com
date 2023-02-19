@@ -34,6 +34,58 @@
 
 // For IDs in the footer.
 #sitewide-footer {
+
     padding: 1rem 0;
     background-color: var(--background-secondary-color);
+
+    // Places the authorship text and the toggle at opposite ends.
+    &__main {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+    }
+
+    &__color-theme-toggle {
+
+        // Border around the toggle. Value of the radius is arbitrary; it just
+        // needs to be bigger than half the height of the element to make it
+        // pill-shaped.
+        border: 1px solid var(--foreground-secondary-color);
+        border-radius: 1rem;
+
+        width: fit-content;
+        height: min-content;
+
+        // By default, the cursor between each label is "text".
+        cursor: default;
+
+        // The space between the outer border and the inner selection is meant
+        // to be 1px all round. However, because the label has a vertical
+        // padding of 1px; this outer padding must be 2px vertically to account
+        // for padding collapse.
+        padding: 2px 1px;
+
+        // Makes the radio button UI element invisible.
+        & input {
+            position: fixed;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        // See above notes on border radius and padding.
+        & label {
+            cursor: pointer;
+            border-radius: 1rem;
+            padding: 1px 0.3rem;
+        }
+
+        // Highlights the selected option.
+        & input:checked + label {
+            background: var(--foreground-secondary-color);
+            color: var(--background-secondary-color);
+        }
+
+    }
+
 }
