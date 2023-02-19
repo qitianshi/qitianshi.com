@@ -41,9 +41,10 @@
     // Places the authorship text and the toggle at opposite ends.
     &__main {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: wrap-reverse;
         align-items: baseline;
         justify-content: space-between;
+        gap: 0 1em;
     }
 
     &__color-theme-toggle {
