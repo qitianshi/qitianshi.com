@@ -126,7 +126,7 @@
         padding: 0 var.$mobile-padding;
 
         flex-direction: column;
-        gap: 1rem;
+        gap: var.$mobile-padding;
         justify-content: space-between;
 
     }
