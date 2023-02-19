@@ -4,6 +4,7 @@
 
 
 @use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
 
 // For classes in the footer.
 .sitewide-footer {
@@ -27,6 +28,8 @@
 
         // Keeps it centered.
         margin: 0 auto;
+
+        @include mix.apply-mobile-margin();
 
     }
 

@@ -47,6 +47,8 @@
         background-color: var(--background-secondary-color);
     }
 
+    @include mix.apply-mobile-margin();
+
     .o-media__content * {
         margin: 0;
     }
