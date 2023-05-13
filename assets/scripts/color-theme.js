@@ -1,4 +1,4 @@
-// Toggles the color theme and saves the preference in storage.
+// Manages the color theme toggle in the sitewide footer.
 
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
@@ -6,9 +6,11 @@
 const themePreferenceStorageKey = "user-theme-preference";
 
 /**
- * Determines the color theme (light or dark) that should be applied based on
- * the user's preference, or the system default.
- * @returns {String} Either "light" or "dark".
+ * Checks localStorage if a color theme has previously been specified,
+ * otherwise uses the default.
+ *
+ * @returns {String} The preferred color theme, either "light", "dark", or
+ *                   "auto".
  */
 function getPreferredTheme() {
 
@@ -26,19 +28,42 @@ function getPreferredTheme() {
 
 }
 
+/**
+ * Saves the preferred color theme to localStorage.
+ *
+ * @param {String} theme The theme to be saved.
+ */
 function savePreferredTheme(theme) {
     localStorage.setItem(themePreferenceStorageKey, theme);
 }
 
+/**
+ * Updates the color theme toggle in the sitewide footer to reflect the
+ * currently applied color theme. Only necessary when the page is being loaded,
+ * or when some script other than the toggle causes the color theme to be
+ * changed.
+ *
+ * @param {String} theme The theme to be applied.
+ */
 function updateToggleWithSavedPreference(theme) {
-    document.querySelector(`#sitewide-footer__color-theme-toggle [value=${theme}]`).checked = true;
+
+    // Selects the option whose value corresponds to the selected theme.
+    document
+        .querySelector(`#sitewide-footer__color-theme-toggle [value=${theme}]`)
+        .checked = true;
+
 }
 
+/**
+ * Applies the preferred color theme to the webpage.
+ *
+ * @param {*} theme The theme to be applied.
+ */
 function applyPreferredTheme(theme) {
 
     const bodyElementClasses = document.body.classList;
 
-    // First remove all existing theme classes.
+    // Removes all existing theme classes first.
     bodyElementClasses.remove("t-light", "t-dark", "t-preference");
 
     switch (theme) {
@@ -60,10 +85,16 @@ function applyPreferredTheme(theme) {
 
 }
 
+/**
+ * Handles the event of the user choosing a color theme. Applies the theme and
+ * saves the preference.
+ */
 function onUserChangeThemeToggle() {
 
     // Get the selected value from the input.
-    const chosenTheme = document.querySelector("input[name='color-theme-toggle']:checked").value;
+    const chosenTheme = document
+        .querySelector("input[name='color-theme-toggle']:checked")
+        .value;
 
     applyPreferredTheme(chosenTheme);
     savePreferredTheme(chosenTheme);
@@ -72,10 +103,13 @@ function onUserChangeThemeToggle() {
 
 window.onload = () => {
 
+    // Checks if a preference has previously been set, and updates the toggle
+    // in the sitewide footer.
     const preferredTheme = getPreferredTheme();
     applyPreferredTheme(preferredTheme);
     updateToggleWithSavedPreference(preferredTheme);
 
+    // Adds the event listener for the user choosing a color theme.
     document
         .getElementById("sitewide-footer__color-theme-toggle")
         .addEventListener("change", onUserChangeThemeToggle);
