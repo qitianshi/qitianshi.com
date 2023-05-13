@@ -3,15 +3,108 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
+
+// For classes in the footer.
+.sitewide-footer {
+
+    * {
+        font-size: 0.6rem;
+        color: var(--foreground-secondary-color);
+    }
+
+    // For every &__content that follows another &__content, add a top border.
+    // Effectively places a border between each &__content.
+    & > &__content + &__content {
+        border-top: 1px solid var(--foreground-tertiary-color);
+    }
+
+    &__content {
+
+        // Keeps a 10% margin on both sides, similar to .c-stacked-banner--hero
+        width: 80%;
+        max-width: 130ch;
+
+        // Keeps it centered.
+        margin: 0 auto;
+
+        @include mix.apply-mobile-margin();
+
+    }
+
+}
+
+// For IDs in the footer.
 #sitewide-footer {
 
-    padding: 0.1rem 1.5rem;
+    padding: 1rem 0;
     background-color: var(--background-secondary-color);
 
-    &__copyright-notice {
-        font-size: 0.6rem;
-        color: var(--text-secondary-color);
-        text-align: right;
+    // Places the authorship text and the toggle at opposite ends.
+    &__main {
+        display: flex;
+        flex-wrap: wrap-reverse;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0 1rem;
+    }
+
+    &__color-theme-toggle {
+
+        // Border around the toggle. Value of the radius is arbitrary; it just
+        // needs to be bigger than half the height of the element to make it
+        // pill-shaped.
+        border: 1px solid var(--foreground-secondary-color);
+        border-radius: 1rem;
+
+        width: fit-content;
+        height: min-content;
+
+        // By default, the cursor between each label is "text".
+        cursor: default;
+
+        // The space between the outer border and the inner selection is meant
+        // to be 1px all round. However, because the label has a vertical
+        // padding of 1px; this outer padding must be 2px vertically to account
+        // for padding collapse.
+        padding: 2px 1px;
+
+        // Makes the radio button UI element invisible.
+        & input {
+            position: fixed;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        // See above notes on border radius and padding.
+        & label {
+            cursor: pointer;
+            border-radius: 1rem;
+            padding: 1px 0.3rem;
+        }
+
+        // Highlights the selected option.
+        & input:checked + label {
+            background-color: var(--foreground-secondary-color);
+            color: var(--background-secondary-color);
+        }
+
+        // On hovering, the toggle becomes the accent color.
+        &:hover {
+
+            border-color: var(--tiangerine-tangerine);
+
+            & label {
+                color: var(--tiangerine-tangerine);
+            }
+
+            & input:checked + label {
+                background-color: var(--tiangerine-tangerine);
+            }
+
+        }
+
     }
 
 }
