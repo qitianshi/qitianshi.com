@@ -43,6 +43,13 @@
 
     gap: 1rem;
 
+    // The card looks better in the light theme with just a shadow and no
+    // background color, but in dark theme there must be a background color for
+    // visual hierarchy.
+    @include mix.light-theme() {
+        background-color: var(--background-primary-color);
+    }
+
     @include mix.dark-theme() {
         background-color: var(--background-secondary-color);
     }
