@@ -48,17 +48,31 @@
     }
 }
 
-/// Specifies additional styles for dark theme, whether it's applied using
-/// @media or .t-dark. As much as possible, prefer using color variables.
+/// Specifies additional styles for the light theme, whether it's applied using
+/// @media or .t-light. As much as possible, prefer using color variables.
+@mixin light-theme() {
+
+    // When the user has specified the light theme through their browser.
+    @media screen and (prefers-color-scheme: light) {
+        @content;
+    }
+
+    // When the element has been programmatically set to the light theme, or
+    // when it's the child of an element that has.
+    &.t-light,
+    .t-light & {
+        @content;
+    }
+
+}
+
+/// Specifies additional styles for the dark theme.
 @mixin dark-theme() {
 
-    // When the user has specified the dark theme through their browser.
     @media screen and (prefers-color-scheme: dark) {
         @content;
     }
 
-    // When the element has been programmatically set to the dark theme, or
-    // when it's the child of an element that has.
     &.t-dark,
     .t-dark & {
         @content;
