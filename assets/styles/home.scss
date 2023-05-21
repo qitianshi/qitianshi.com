@@ -9,6 +9,34 @@
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
+#landing-banner .c-stacked-banner__heading {
+
+    font-size: 2.5rem;
+
+    @include mix.respond-to-breakpoint("small") {
+        font-size: 1.5rem;
+    }
+
+    #landing-banner__big-name {
+
+        display: block;
+
+        font-size: 3em;
+        color: var.$foreground-primary-color-dark;
+        line-height: 0.9em;
+
+        @include mix.respond-to-width(700px) {
+            font-size: 2em;
+        }
+
+        @include mix.respond-to-breakpoint("small") {
+            font-size: 2.5em;
+        }
+
+    }
+
+}
+
 #introduction-banner {
 
     justify-content: center;
