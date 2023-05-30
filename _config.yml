@@ -7,7 +7,7 @@
 
 url: "https://qitianshi.github.io"
 baseurl: "/"
-title: "qitianshi"
+title: "tian"
 exclude:
   - README.md
 plugins:
