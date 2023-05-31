@@ -17,7 +17,15 @@
     z-index: 999;
     width: 100vw;
 
-    backdrop-filter: blur(10px) brightness(0.25);
+    // Fallback for browsers that don't support backdrop-filter.
+    background-color: var.$background-secondary-color-dark;
+
+    // Checks for backdrop-filter support. If available, the fallback
+    // background-color is overriden.
+    @supports (backdrop-filter: blur(10px) brightness(0.25)) {
+        backdrop-filter: blur(10px) brightness(0.25);
+        background-color: transparent;
+    }
 
     nav {
 
