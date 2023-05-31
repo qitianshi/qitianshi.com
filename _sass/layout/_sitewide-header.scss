@@ -1,0 +1,42 @@
+// Stylesheet for the sitewide footer.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
+@use "themes/themes";
+
+#sitewide-header {
+
+    // Causes text to appear in dark theme colors.
+    @extend .t-dark;
+
+    // Places header above other page elements.
+    position: fixed;
+    z-index: 999;
+    width: 100vw;
+
+    backdrop-filter: blur(10px) brightness(0.3);
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+
+        display: block;
+        text-align: center;
+        padding: 0.75em;
+
+        color: var(--foreground-primary-color);
+
+    }
+
+}
