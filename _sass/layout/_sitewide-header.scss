@@ -32,7 +32,7 @@
     }
 
     &__logo {
-        height: 2em;
+        height: 1.75em;
         margin: 0 3em;
     }
 
@@ -49,10 +49,12 @@
             a {
 
                 display: block;
-                padding: 0.75em 3em;
+                padding: 0.75em 2em;
 
                 // Overrides default link appearance.
                 color: var(--foreground-primary-color);
+                font-size: 0.9em;
+                font-weight: 300;
 
             }
 
