@@ -31,9 +31,36 @@
 
     }
 
-    &__logo {
-        height: 1.75em;
-        margin: 0 3em;
+    &__home-navlink {
+
+        transition-property: transform;
+        transition-duration: 0.1s;
+
+        #sitewide-header__logo {
+
+            height: 1.75em;
+            margin: 0 3em;
+
+            // Selects the <path> tag in the SVG element. Otherwise, the
+            // `body *` selector in _typography will override the color of the
+            // path.
+            path {
+                transition: color 0.1s;
+                color: var(--foreground-primary-color);
+            }
+
+        }
+
+        &:hover {
+
+            transform: scale(110%);
+
+            #sitewide-header__logo path {
+                color: var(--tiangerine-tangerine);
+            }
+
+        }
+
     }
 
     &__navigation-links {
@@ -55,6 +82,15 @@
                 color: var(--foreground-primary-color);
                 font-size: 0.9em;
                 font-weight: 300;
+
+                transition-property: color, transform;
+                transition-duration: 0.1s;
+
+                &:hover {
+                    color: var(--tiangerine-tangerine);
+                    text-decoration: none;
+                    transform: scale(110%);
+                }
 
             }
 
