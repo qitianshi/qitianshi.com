@@ -1,3 +1,8 @@
+# Source data for project cards on the homepage.
+
+# Copyright 2023 Qi Tianshi. All rights reserved.
+
+
 - title: "Research"
   link: "/under-construction"
   image_src: "/assets/images/home/smp-photodiode-probes.jpeg"
