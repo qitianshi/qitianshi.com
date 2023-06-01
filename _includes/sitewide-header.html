@@ -14,10 +14,19 @@
         </a>
 
         <ul id="sitewide-header__navigation-links">
-            <li><a href="/under-construction.html">About</a></li>
-            <li><a href="/under-construction.html">Projects</a></li>
-            <li><a href="/under-construction.html">Gallery</a></li>
-            <li><a href="/under-construction.html">Contact</a></li>
+
+            {% for link in site.data.sitewide_header_navlinks %}
+
+                <li
+                    {% if page.active_navlink == link.text %}
+                        class="sitewide-header__navlink--active"
+                    {% endif %}
+                >
+                    <a href="{{ link.destination | relative_url }}">{{ link.text }}</a>
+                </li>
+
+            {% endfor %}
+
         </ul>
 
     </nav>
