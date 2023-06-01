@@ -41,8 +41,7 @@
 
     &__home-navlink {
 
-        transition-property: transform;
-        transition-duration: 0.1s;
+        transition: transform 0.1s ease-out;
 
         #sitewide-header__logo {
 
@@ -91,8 +90,10 @@
                 font-size: 0.9em;
                 font-weight: 300;
 
+                // For hover effect.
                 transition-property: color, transform;
                 transition-duration: 0.1s;
+                transition-timing-function: ease-out;
 
                 &:hover {
                     color: var(--tiangerine-tangerine);
