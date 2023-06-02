@@ -10,6 +10,10 @@
 $_navbar-height: 48px;
 $_link-horizontal-padding: 35px;
 $_link-line-height: 20px;
+$_hamburger-icon-width: 28px;
+$_hamburger-icon-height: 21px;
+$_hamburger-bar-height: 2px;
+$_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-height) / 2);
 
 #sitewide-header {
 
@@ -131,6 +135,90 @@ $_link-line-height: 20px;
 
             }
 
+        }
+
+    }
+
+    &__hamburger-button {
+
+        // Padding keeps the icon centered.
+        padding: calc(($_navbar-height - $_hamburger-icon-height) / 2) $_link-horizontal-padding;
+
+        cursor: pointer;
+
+        // By default, the hamburger button is hidden.
+        display: none;
+
+    }
+
+    &__hamburger-icon {
+
+        width: $_hamburger-icon-width;
+        height: $_hamburger-icon-height;
+        position: relative;
+
+        transition: 0.15s ease-out;
+
+        span {
+
+            display: block;
+            position: absolute;
+            left: 0;
+
+            height: $_hamburger-bar-height;
+            width: 100%;
+
+            background: var(--foreground-primary-color);
+            border-radius: $_hamburger-bar-height;
+
+            transition: 0.15s ease-out;
+
+            &:nth-of-type(1) {
+                top: 0px;
+            }
+
+            // Places the two overlaid middle bars in the middle of the icon.
+            &:nth-of-type(2),
+            &:nth-of-type(3) {
+                top: calc($_hamburger-bar-height + $_hamburger-gap-height);
+            }
+
+            // Places the bottom bar at the bottom of the icon.
+            &:nth-of-type(4) {
+                top: calc(($_hamburger-bar-height + $_hamburger-gap-height) * 2);
+            }
+
+        }
+
+        &.sitewide-header__hamburger-icon--open span {
+
+            &:nth-of-type(1),
+            &:nth-of-type(4) {
+                top: calc($_hamburger-bar-height + $_hamburger-gap-height);
+                width: 0%;
+                left: 50%;
+            }
+
+            &:nth-of-type(2) {
+                transform: rotate(45deg);
+            }
+
+            &:nth-of-type(3) {
+                transform: rotate(-45deg);
+            }
+
+        }
+
+    }
+
+    @include mix.respond-to-width(750px) {
+
+        &__navigation-links {
+            display: none;
+        }
+
+        &__hamburger-button {
+            display: block;
         }
 
     }
