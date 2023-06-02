@@ -119,6 +119,18 @@ $_link-line-height: 20px;
 
             }
 
+            &.sitewide-header__navlink--active {
+
+                box-sizing: border-box;
+                border-top: 2px solid var(--tiangerine-tangerine);
+
+                // Compensates for the 2px border by shifting the text upwards.
+                a {
+                    padding-top: calc(($_navbar-height - $_link-line-height) / 2) - 2px;
+                }
+
+            }
+
         }
 
     }
