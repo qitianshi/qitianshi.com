@@ -26,6 +26,10 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
 
     width: 100vw;
 
+    // For the --transparent modifier.
+    transition-property: background-color, backdrop-filter;
+    transition-duration: 0.2s;
+
     // Fallback for browsers that don't support backdrop-filter.
     background-color: var.$background-secondary-color-dark;
 
@@ -209,6 +213,12 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
 
         }
 
+    }
+
+    &.sitewide-header--transparent {
+        background-color: transparent;
+        backdrop-filter: none;
+        border-bottom: 0.5px solid var.$background-secondary-color-dark;
     }
 
     // The width at which the screen is too narrow to fit the navbar links.
