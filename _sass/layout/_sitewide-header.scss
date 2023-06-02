@@ -95,7 +95,7 @@ $_link-line-height: 20px;
             a {
 
                 display: block;
-                padding: (($_navbar-height - $_link-line-height) / 2) $_link-horizontal-padding;
+                padding: calc(($_navbar-height - $_link-line-height) / 2) $_link-horizontal-padding;
 
                 color: var(--foreground-primary-color);
                 font-size: 0.9rem;
