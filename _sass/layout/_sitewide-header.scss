@@ -7,6 +7,10 @@
 @use "abstracts/variables" as var;
 @use "themes/themes";
 
+$_navbar-height: 48px;
+$_link-horizontal-padding: 35px;
+$_link-line-height: 20px;
+
 #sitewide-header {
 
     // Causes text to appear in dark theme colors.
@@ -15,6 +19,7 @@
     // Places header above other page elements.
     position: fixed;
     z-index: 999;
+
     width: 100vw;
 
     // Fallback for browsers that don't support backdrop-filter.
@@ -29,9 +34,11 @@
 
     nav {
 
-        // Links have 3em of horizontal padding, but visually aligns links with
-        // landing page hero banner.
-        padding: 0 calc(10vw - 3em);
+        height: $_navbar-height;
+
+        // Links have horizontal padding to increase their clickable area, but
+        // remain visually aligned.
+        padding: 0 calc(10vw - $_link-horizontal-padding);
 
         display: flex;
         justify-content: space-between;
@@ -41,12 +48,16 @@
 
     &__home-navlink {
 
+        height: $_navbar-height;
+
         transition: transform 0.1s ease-out;
 
         #sitewide-header__logo {
 
-            height: 1.75em;
-            margin: 0 3em;
+            height: 35px;
+
+            // Keeps the logo visually centered in the navbar.
+            margin: 5px $_link-horizontal-padding auto;
 
             // Selects the <path> tag in the SVG element. Otherwise, the
             // `body *` selector in _typography will override the color of the
@@ -75,6 +86,7 @@
         list-style-type: none;
         margin: 0;
         padding: 0;
+        height: $_navbar-height;
 
         li {
 
@@ -83,12 +95,16 @@
             a {
 
                 display: block;
-                padding: 0.75em 2em;
+                padding: (($_navbar-height - $_link-line-height) / 2) $_link-horizontal-padding;
 
-                // Overrides default link appearance.
                 color: var(--foreground-primary-color);
-                font-size: 0.9em;
+                font-size: 0.9rem;
                 font-weight: 300;
+
+                // 20px is the normal line-height for 0.9rem, but it's
+                // explicitly defined so that the vertical padding can be
+                // calculated to center the text.
+                line-height: $_link-line-height;
 
                 // For hover effect.
                 transition-property: color, transform;
