@@ -142,7 +142,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
     &__hamburger-button {
 
         // Padding keeps the icon centered.
-        padding: calc(($_navbar-height - $_hamburger-icon-height) / 2) $_link-horizontal-padding;
+        padding: calc(($_navbar-height - $_hamburger-icon-height) / 2) var.$mobile-padding;
 
         cursor: pointer;
 
@@ -211,7 +211,20 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
 
     }
 
+    // The width at which the screen is too narrow to fit the navbar links.
     @include mix.respond-to-width(750px) {
+
+        // Adjusts margins to make the navbar less crowded in narrow screens.
+
+        nav {
+            padding: 0;
+        }
+
+        &__home-navlink #sitewide-header__logo {
+            margin-left: var.$mobile-padding;
+        }
+
+        // Hides the navlinks and shows the hamburger button.
 
         &__navigation-links {
             display: none;
