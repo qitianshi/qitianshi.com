@@ -7,7 +7,6 @@ const path = require("path");
 
 module.exports = {
     mode: "none",       // Use `--mode` instead.
-    watch: false,       // Use `--watch` in development.
     entry: path.join(__dirname, "src", "_webpack", "main.js"),
     output: {
         path: path.resolve(__dirname, "src", "assets", "scripts"),
