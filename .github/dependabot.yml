@@ -13,6 +13,15 @@ updates:
     reviewers:
       - "qitianshi"
 
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    assignees:
+      - "qitianshi"
+    reviewers:
+      - "qitianshi"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
