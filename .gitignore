@@ -13,6 +13,11 @@ vendor/
 # Ignore Gem files
 Gemfile.lock
 
+# Ignore webpack and Node files
+src/assets/scripts/
+public
+node_modules
+
 # ----------- Misc -----------
 
 .vscode/
