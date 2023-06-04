@@ -1,4 +1,4 @@
-// Manages the color theme toggle in the sitewide footer.
+// Manages the color theme toggle in the global footer.
 
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
@@ -38,7 +38,7 @@ function savePreferredTheme(theme) {
 }
 
 /**
- * Updates the color theme toggle in the sitewide footer to reflect the
+ * Updates the color theme toggle in the global footer to reflect the
  * currently applied color theme. Only necessary when the page is being loaded,
  * or when some script other than the toggle causes the color theme to be
  * changed.
@@ -49,7 +49,7 @@ function updateToggleWithSavedPreference(theme) {
 
     // Selects the option whose value corresponds to the selected theme.
     document
-        .querySelector(`#sitewide-footer__color-theme-toggle [value=${theme}]`)
+        .querySelector(`#global-footer__color-theme-toggle [value=${theme}]`)
         .checked = true;
 
 }
@@ -104,14 +104,14 @@ function onUserChangeThemeToggle() {
 window.onload = () => {
 
     // Checks if a preference has previously been set, and updates the toggle
-    // in the sitewide footer.
+    // in the global footer.
     const preferredTheme = getPreferredTheme();
     applyPreferredTheme(preferredTheme);
     updateToggleWithSavedPreference(preferredTheme);
 
     // Adds the event listener for the user choosing a color theme.
     document
-        .getElementById("sitewide-footer__color-theme-toggle")
+        .getElementById("global-footer__color-theme-toggle")
         .addEventListener("change", onUserChangeThemeToggle);
 
 }
