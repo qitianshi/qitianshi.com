@@ -8,6 +8,7 @@
 
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
+@use "base/common";
 
 #landing-banner .c-stacked-banner__heading {
 
@@ -51,6 +52,8 @@
 
     .o-media__image {
 
+        @extend .u-shadow;
+
         width: 300px;
         max-width: 90vw;       // Limits width for narrower screens.
         height: auto;
@@ -63,6 +66,8 @@
 }
 
 #construction-card {
+
+    @extend .u-shadow;
 
     margin: 5rem auto;
     padding: 2rem;
@@ -104,6 +109,8 @@
 
 // A div with an image background and text.
 .project-card {
+
+    @extend .u-shadow, .u-shadow--hoverable;
 
     height: 100%;
     width: 32%;
