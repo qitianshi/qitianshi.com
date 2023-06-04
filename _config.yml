@@ -10,7 +10,8 @@ baseurl: "/"
 title: "tian"
 source: "./src"
 exclude:
-  - README.md
+  - "README.md"
+  - "node_modules"
 plugins:
   - jekyll-autoprefixer
 
