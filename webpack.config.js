@@ -1,4 +1,7 @@
 // webpack config file.
+// JavaScript source files are placed in ./src/_webpack. webpack minifies the
+// files and writes the compiled results to ./src/assets/scripts, where they
+// are served from.
 
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
