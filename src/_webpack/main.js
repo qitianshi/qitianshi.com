@@ -4,5 +4,7 @@
 
 
 import ColorTheme from "./utils/color-theme";
+import GlobalHeader from "./components/global-header";
 
 ColorTheme.init();
+GlobalHeader.init();
