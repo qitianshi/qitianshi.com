@@ -1,5 +1,8 @@
 # Dependabot config file.
 
+# Copyright 2023 Qi Tianshi. All rights reserved.
+
+
 version: 2
 
 updates:

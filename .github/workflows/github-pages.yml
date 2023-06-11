@@ -1,6 +1,8 @@
 # Builds the website using Jekyll and deploys to GitHub Pages.
 # Adapted from https://github.com/actions/starter-workflows/blob/main/pages/jekyll.yml.
 
+# Copyright 2023 Qi Tianshi. All rights reserved.
+
 
 name: Build and deploy to GitHub Pages
 

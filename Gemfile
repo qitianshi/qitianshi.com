@@ -1,3 +1,8 @@
+# Gemfile
+
+# Copyright 2023 Qi Tianshi. All rights reserved.
+
+
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3"
