@@ -109,21 +109,24 @@ function onUserChangeThemeToggle() {
 
 const ColorTheme = {
 
-    // Adds the event listener for the user choosing a color theme.
     init: function () {
 
+        // If a theme has already been set, the selected toggle option is
+        // updated.
         updateToggleWithSavedPreference(getPreferredTheme())
 
+        // Adds the event listener for the user choosing a color theme.
         document
             .getElementById("global-footer__color-theme-toggle")
             .addEventListener("change", onUserChangeThemeToggle);
 
     },
 
-    // Checks if a preference has previously been set, and updates the toggle
-    // in the global footer.
     initPreload: function () {
+
+        // Applies the preferred theme if it has previously been set.
         applyPreferredTheme(getPreferredTheme());
+
     },
 
 }
