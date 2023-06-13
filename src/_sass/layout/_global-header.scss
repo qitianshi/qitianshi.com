@@ -143,58 +143,75 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
 
     }
 
-    &__hamburger-button {
+    &__hamburger {
 
-        // Padding keeps the icon centered.
-        padding: calc(($_navbar-height - $_hamburger-icon-height) / 2) var.$mobile-padding;
+        &-container {
 
-        cursor: pointer;
+            // By default, the hamburger button is hidden. The media query
+            // below overrides this property.
+            display: none;
 
-        // By default, the hamburger button is hidden.
-        display: none;
+        }
 
-    }
+        &-checkbox {
+            display: none;
+        }
 
-    &__hamburger-icon {
-
-        width: $_hamburger-icon-width;
-        height: $_hamburger-icon-height;
-        position: relative;
-
-        transition: 0.15s ease-out;
-
-        span {
+        &-button {
 
             display: block;
-            position: absolute;
-            left: 0;
 
-            height: $_hamburger-bar-height;
-            width: 100%;
+            // Padding keeps the icon centered.
+            padding: calc(($_navbar-height - $_hamburger-icon-height) / 2) var.$mobile-padding;
 
-            background: var(--foreground-primary-color);
-            border-radius: $_hamburger-bar-height;
+            cursor: pointer;
 
+        }
+
+        &-icon {
+
+            width: $_hamburger-icon-width;
+            height: $_hamburger-icon-height;
+            position: relative;
+
+            // For the opening and closing animations.
             transition: 0.15s ease-out;
 
-            &:nth-of-type(1) {
-                top: 0px;
-            }
+            span {
 
-            // Places the two overlaid middle bars in the middle of the icon.
-            &:nth-of-type(2),
-            &:nth-of-type(3) {
-                top: calc($_hamburger-bar-height + $_hamburger-gap-height);
-            }
+                display: block;
+                position: absolute;
+                left: 0;
 
-            // Places the bottom bar at the bottom of the icon.
-            &:nth-of-type(4) {
-                top: calc(($_hamburger-bar-height + $_hamburger-gap-height) * 2);
+                height: $_hamburger-bar-height;
+                width: 100%;
+
+                background-color: var(--foreground-primary-color);
+                border-radius: $_hamburger-bar-height;
+
+                transition: 0.15s ease-out;
+
+                &:nth-of-type(1) {
+                    top: 0px;
+                }
+
+                // Places the two overlaid middle bars in the middle of the icon.
+                &:nth-of-type(2),
+                &:nth-of-type(3) {
+                    top: calc($_hamburger-bar-height + $_hamburger-gap-height);
+                }
+
+                // Places the bottom bar at the bottom of the icon.
+                &:nth-of-type(4) {
+                    top: calc(($_hamburger-bar-height + $_hamburger-gap-height) * 2);
+                }
+
             }
 
         }
 
-        &.global-header__hamburger-icon--open span {
+        // Selects the <span>s if the checkbox is checked.
+        &-checkbox:checked + &-button span {
 
             &:nth-of-type(1),
             &:nth-of-type(4) {
@@ -240,7 +257,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
             display: none;
         }
 
-        &__hamburger-button {
+        &__hamburger-container {
             display: block;
         }
 

@@ -29,16 +29,24 @@
 
         </ul>
 
-        <!-- Hamburger button that hides navbar items for narrow screens. -->
-        <div id="global-header__hamburger-button" role="navigation">
+        <!-- Hamburger button that expands navbar items for narrow screens. -->
+        <div id="global-header__hamburger-container">
 
-            <!-- Each span is a line that is styled and animated in CSS. -->
-            <div id="global-header__hamburger-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <!-- Checkbox allows opening and closing of the menu without JavaScript. -->
+            <input type="checkbox" id="global-header__hamburger-checkbox">
+
+            <!-- Clickable area of the button. Clicking the button checks the checkbox. -->
+            <label for="global-header__hamburger-checkbox" id="global-header__hamburger-button">
+
+                <!-- Each span is a line that is styled and animated in CSS. -->
+                <div id="global-header__hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </label>
 
         </div>
 
