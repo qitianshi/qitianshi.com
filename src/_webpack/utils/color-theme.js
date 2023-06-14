@@ -52,7 +52,8 @@ function updateToggleWithSavedPreference(theme) {
     // Selects the option whose value corresponds to the selected theme.
     document
         .querySelector(`#global-footer__color-theme-toggle [value=${theme}]`)
-        .checked = true;
+        .checked
+        = true;
 
 }
 
