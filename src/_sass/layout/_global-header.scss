@@ -107,7 +107,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
 
                 color: var(--foreground-primary-color);
                 font-size: 0.9rem;
-                font-weight: 300;
+                font-weight: 200;
 
                 // 20px is the normal line-height for 0.9rem, but it's
                 // explicitly defined so that the vertical padding can be
@@ -276,21 +276,33 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
             // By default, navigation links are hidden.
             display: none;
 
-            // Overrides default height.
+            // Resets default values.
             height: unset;
+            padding: 0 var.$mobile-padding;
 
             grid-area: menu;
+
+            // Adds a border between the navigation links and the navbar.
+            border-top: 1px solid var.$foreground-tertiary-color-dark;
 
             li {
 
                 display: block;
-                width: 100vw;
+
+                // Adds a border between each link.
+                border-top: 1px solid var.$foreground-tertiary-color-dark;
+
+                // The first link doesn't need a border because the parent
+                // element already has a top border.
+                &:first-of-type {
+                    border-top: none;
+                }
 
                 a {
 
                     // Overrides default values.
-                    padding: 0.75rem 0 0.75rem var.$mobile-padding;
-                    font-size: 1.3rem;
+                    padding: 1rem var.$mobile-padding;
+                    font-size: 1.1rem;
                     line-height: unset;
 
                     // Overrides default scaling behavior on hover.
