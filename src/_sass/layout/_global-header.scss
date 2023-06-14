@@ -174,9 +174,6 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
             height: $_hamburger-icon-height;
             position: relative;
 
-            // For the opening and closing animations.
-            transition: 0.15s ease-out;
-
             span {
 
                 display: block;
@@ -189,6 +186,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
                 background-color: var(--foreground-primary-color);
                 border-radius: $_hamburger-bar-height;
 
+                // For the opening and closing animations.
                 transition: 0.15s ease-out;
 
                 &:nth-of-type(1) {
