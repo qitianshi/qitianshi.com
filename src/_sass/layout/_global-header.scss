@@ -242,21 +242,77 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
         // Adjusts margins to make the navbar less crowded in narrow screens.
 
         nav {
+
+            // Resets default values.
             padding: 0;
+            height: unset;
+
+            // Creates a 2 by 2 grid to place the logo, the hamburger button,
+            // and the navigation links.
+            display: grid;
+            grid-template-columns: auto calc($_hamburger-icon-width + 2 * var.$mobile-padding);
+            grid-template-areas:
+                "logo hamburger"
+                "menu menu";
+
         }
 
-        &__home-navlink #global-header__logo {
-            margin-left: var.$mobile-padding;
-        }
+        &__home-navlink {
 
-        // Hides the navlinks and shows the hamburger button.
+            #global-header__logo {
+                margin-left: var.$mobile-padding;
+                grid-area: logo;
+            }
+
+            // Overrides default scaling behavior on hover.
+            &:hover {
+                transform: none;
+            }
+
+        }
 
         &__navigation-links {
+
+            // By default, navigation links are hidden.
             display: none;
+
+            // Overrides default height.
+            height: unset;
+
+            grid-area: menu;
+
+            li {
+
+                display: block;
+                width: 100vw;
+
+                a {
+
+                    // Overrides default values.
+                    padding: 0.75rem 0 0.75rem var.$mobile-padding;
+                    font-size: 1.3rem;
+                    line-height: unset;
+
+                    // Overrides default scaling behavior on hover.
+                    &:hover {
+                        transform: none;
+                    }
+
+                }
+
+            }
+
+            // This class is applied to the navigation links in JS when the
+            // hamburger button is clicked.
+            &.global-header__navigation-links--mobile-visible {
+                display: block;
+            }
+
         }
 
         &__hamburger-container {
             display: block;
+            grid-area: hamburger;
         }
 
     }
