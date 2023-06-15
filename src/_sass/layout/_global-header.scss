@@ -13,6 +13,7 @@ $_hamburger-icon-width: 24px;
 $_hamburger-icon-height: 18px;
 $_hamburger-bar-height: 2px;
 $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-height) / 2);
+$_mobile-navlink-height: 64px;
 
 #global-header {
 
@@ -124,7 +125,6 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
 
             &.global-header__navlink--active {
 
-                box-sizing: border-box;
                 border-top: 2px solid var(--tiangerine-tangerine);
 
                 // Compensates for the 2px border by shifting the text upwards.
@@ -283,28 +283,52 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-heig
             li {
 
                 display: block;
+                height: $_mobile-navlink-height;
 
                 // Adds a border between each link.
-                border-top: 1px solid var.$foreground-tertiary-color-dark;
-
-                // The first link doesn't need a border because the parent
-                // element already has a top border.
-                &:first-of-type {
-                    border-top: none;
-                }
+                border-top: inherit;
 
                 a {
 
-                    // Overrides default values.
-                    padding: 1rem var.$mobile-padding;
+                    padding: 0 var.$mobile-padding;
                     font-size: 1.1rem;
-                    line-height: unset;
+                    line-height: $_mobile-navlink-height;
 
                     // Overrides default scaling behavior on hover.
                     &:hover {
                         transform: none;
                     }
 
+                }
+
+                &.global-header__navlink--active {
+
+                    border-top: inherit;
+
+                    &::before {
+
+                        // An empty block that fills its container.
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        width: 2px;
+                        height: $_mobile-navlink-height;
+
+                        background: var(--tiangerine-tangerine);
+
+                    }
+
+                    // Overrides default.
+                    a {
+                        margin-top: 0;
+                    }
+
+                }
+
+                // The first link doesn't need a border because the parent
+                // element already has a top border.
+                &:first-of-type {
+                    border-top: none;
                 }
 
             }
