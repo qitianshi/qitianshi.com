@@ -12,20 +12,20 @@ function onUserClickHamburgerButton() {
     // Reads the value of the hamburger button checkbox, and applies a class to
     // the navigation links. CSS will cause the links to appear.
 
-    const navLinksClasses = document
-        .getElementById("global-header__navigation-links")
+    const globalHeaderClasses = document
+        .getElementById("global-header")
         .classList;
 
     const hamburgerIsChecked = document
         .getElementById("global-header__hamburger-checkbox")
         .checked;
 
-    const classToToggle = "global-header__navigation-links--mobile-visible";
+    const classToToggle = "global-header--mobile-expanded";
 
     if (hamburgerIsChecked) {
-        navLinksClasses.add(classToToggle);
+        globalHeaderClasses.add(classToToggle);
     } else {
-        navLinksClasses.remove(classToToggle);
+        globalHeaderClasses.remove(classToToggle);
     }
 
 }

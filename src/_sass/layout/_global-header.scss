@@ -333,17 +333,21 @@ $_mobile-navlink-height: 64px;
 
             }
 
-            // This class is applied to the navigation links in JS when the
-            // hamburger button is clicked.
-            &.global-header__navigation-links--mobile-visible {
-                display: block;
-            }
-
         }
 
         &__hamburger-container {
             display: block;
             grid-area: hamburger;
+        }
+
+        // This class is applied to the navigation links in JS when the
+        // hamburger button is clicked.
+        &.global-header--mobile-expanded {
+
+            #global-header__navigation-links {
+                display: block;
+            }
+
         }
 
     }
