@@ -18,8 +18,7 @@ $_mobile-navlink-height: 64px;
 
 #global-header {
 
-    // Causes text to appear in dark theme colors.
-    @extend .t-dark;
+    @extend .u-shadow;
 
     // Places header above other page elements.
     position: fixed;
@@ -32,18 +31,25 @@ $_mobile-navlink-height: 64px;
     transition-duration: 0.2s;
 
     // Fallback for browsers that don't support backdrop-filter.
-    background-color: var.$background-secondary-color-dark;
+    background-color: var(--background-secondary-color);
 
     // Checks for backdrop-filter support. If available, the fallback
     // background-color is overriden.
-    @supports (backdrop-filter: blur(10px) brightness(0.25)) {
-        backdrop-filter: blur(10px) brightness(0.25);
-        background-color: rgba(255, 255, 255, 0.1);
+    @include mix.light-theme() {
+        @supports (backdrop-filter: blur(10px)) {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+    }
+
+    @include mix.dark-theme() {
+        @supports (backdrop-filter: blur(10px)) {
+            backdrop-filter: blur(10px) brightness(0.25);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
     }
 
     nav {
-
-        @extend .u-shadow;
 
         height: $_navbar-height;
 
@@ -122,6 +128,7 @@ $_mobile-navlink-height: 64px;
                     color: var(--tiangerine-tangerine);
                     text-decoration: none;
                     transform: scale(110%);
+                    font-weight: 300;               // For readability.
                 }
 
             }
@@ -229,10 +236,15 @@ $_mobile-navlink-height: 64px;
     }
 
     &.global-header--transparent {
+
+        // Forces the navbar into dark mode.
+        @extend .t-dark;
+
         background-color: transparent;
         backdrop-filter: none;
         border-bottom: 0.5px solid var.$background-secondary-color-dark;
         box-shadow: none;
+
     }
 
     // The width at which the screen is too narrow to fit the navbar links.
@@ -282,7 +294,7 @@ $_mobile-navlink-height: 64px;
             grid-area: menu;
 
             // Adds a border between the navigation links and the navbar.
-            border-top: 1px solid var.$foreground-tertiary-color-dark;
+            border-top: 1px solid var(--foreground-tertiary-color);
 
             li {
 
