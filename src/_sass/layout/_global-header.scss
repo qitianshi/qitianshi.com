@@ -5,6 +5,7 @@
 
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
+@use "base/common";
 @use "themes/themes";
 
 $_navbar-height: 48px;
@@ -41,6 +42,8 @@ $_mobile-navlink-height: 64px;
     }
 
     nav {
+
+        @extend .u-shadow;
 
         height: $_navbar-height;
 
@@ -229,6 +232,7 @@ $_mobile-navlink-height: 64px;
         background-color: transparent;
         backdrop-filter: none;
         border-bottom: 0.5px solid var.$background-secondary-color-dark;
+        box-shadow: none;
     }
 
     // The width at which the screen is too narrow to fit the navbar links.
