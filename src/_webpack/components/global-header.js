@@ -22,7 +22,7 @@ function toggleNavbarTransparency() {
     // on mobile, it has not been expanded. The 750px value is from the CSS
     // media selector for changing to the mobile layout in _global-header.scss.
     if (
-        (window.scrollY == 0)
+        (window.scrollY <= 0)
         && (
             !(globalHeaderClasses.contains(mobileExpandedClass))
             || window.innerWidth > 750
