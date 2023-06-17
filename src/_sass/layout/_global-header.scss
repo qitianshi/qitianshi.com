@@ -116,7 +116,7 @@ $_mobile-navlink-height: 64px;
 
                 color: var(--foreground-primary-color);
                 font-size: 0.9rem;
-                font-weight: 200;
+                font-weight: 300;
                 line-height: $_navbar-height;       // Centers text vertically.
 
                 // For hover effect.
@@ -128,7 +128,6 @@ $_mobile-navlink-height: 64px;
                     color: var(--tiangerine-tangerine);
                     text-decoration: none;
                     transform: scale(110%);
-                    font-weight: 300;               // For readability.
                 }
 
             }
