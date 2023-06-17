@@ -3,6 +3,8 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+import throttle from "lodash.throttle";
+
 const globalHeaderClasses = document
     .getElementById("global-header")
     .classList;
@@ -67,13 +69,19 @@ const GlobalHeader = {
             // Adds event listeners for scroll and resize.
             for (const type of ["scroll", "resize"]) {
 
-                // This should eventually be replaced by the currently
-                // experimental "scrollend" event.
                 window
                     .addEventListener(
+
                         type,
-                        toggleNavbarTransparency,
+
+                        // Throttles the function call to reduce the rate it's
+                        // triggered at.
+                        throttle(toggleNavbarTransparency, 250),
+
+                        // Makes the event listener passive for performance
+                        // optimizations.
                         { passive: true }
+
                     )
 
             }
