@@ -68,19 +68,19 @@ function applyPreferredTheme(theme) {
     // not yet been parsed. To prevent the page from flashing due to the
     // default theme rendering first then being replaced by the preferred
     // theme, the class is applied to the <html> tag.
-    const bodyElementClasses = document.firstElementChild.classList;
+    const htmlElementClasses = document.firstElementChild.classList;
 
     // Removes all existing theme classes first.
-    bodyElementClasses.remove("t-light", "t-dark", "t-preference");
+    htmlElementClasses.remove("t-light", "t-dark", "t-preference");
 
     switch (theme) {
 
         case "light":
-            bodyElementClasses.add("t-light");
+            htmlElementClasses.add("t-light");
             break;
 
         case "dark":
-            bodyElementClasses.add("t-dark");
+            htmlElementClasses.add("t-dark");
             break;
 
         // By default, elements will already follow the browser default theme,
