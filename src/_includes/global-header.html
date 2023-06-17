@@ -3,7 +3,11 @@
 <!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
 
 
-<header id="global-header">
+<header id="global-header"
+    {% if page.navbar_transparency_top %}
+        class="global-header--transparency-top-enabled"
+    {% endif %}
+>
     <nav>
 
         <a href="/" id="global-header__home-navlink" aria-label="To the homepage">
