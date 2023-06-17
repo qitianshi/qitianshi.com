@@ -37,14 +37,14 @@ $_mobile-navlink-height: 64px;
     // background-color is overriden.
     @supports (backdrop-filter: blur()) {
 
+        backdrop-filter: blur(30px);
+
         @include mix.light-theme() {
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.75);
+            background-color: rgba(var.$background-primary-color-light, 0.8);
         }
 
         @include mix.dark-theme() {
-            backdrop-filter: blur(10px) brightness(0.25);
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(var.$background-secondary-color-dark, 0.8);
         }
 
     }
