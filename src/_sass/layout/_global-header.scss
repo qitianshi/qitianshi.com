@@ -8,13 +8,16 @@
 @use "base/common";
 @use "themes/themes";
 
+// Navbar layout
 $_navbar-height: 48px;
-$_link-horizontal-padding: 35px;
+$_navlink-horizontal-padding: 35px;
+$_mobile-navlink-height: 64px;
+
+// Hamburger button
 $_hamburger-icon-width: 24px;
 $_hamburger-icon-height: 18px;
-$_hamburger-bar-height: 2px;
-$_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-bar-height) / 2);
-$_mobile-navlink-height: 64px;
+$_hamburger-line-weight: 2px;
+$_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-weight) / 2);
 
 #global-header {
 
@@ -52,7 +55,7 @@ $_mobile-navlink-height: 64px;
 
         // Links have horizontal padding to increase their clickable area, but
         // remain visually aligned.
-        padding: 0 calc(10vw - $_link-horizontal-padding);
+        padding: 0 calc(10vw - $_navlink-horizontal-padding);
 
         display: flex;
         justify-content: space-between;
@@ -71,7 +74,7 @@ $_mobile-navlink-height: 64px;
             height: 35px;
 
             // Keeps the logo visually centered in the navbar.
-            margin: 5px $_link-horizontal-padding auto;
+            margin: 5px $_navlink-horizontal-padding auto;
 
             // Selects the <path> tag in the SVG element. Otherwise, the
             // `body *` selector in _typography will override the color of the
@@ -109,7 +112,7 @@ $_mobile-navlink-height: 64px;
             a {
 
                 display: block;
-                padding: 0 $_link-horizontal-padding;
+                padding: 0 $_navlink-horizontal-padding;
 
                 color: var(--foreground-primary-color);
                 font-size: 0.9rem;
@@ -181,11 +184,11 @@ $_mobile-navlink-height: 64px;
                 position: absolute;
                 left: 0;
 
-                height: $_hamburger-bar-height;
+                height: $_hamburger-line-weight;
                 width: 100%;
 
                 background-color: var(--foreground-primary-color);
-                border-radius: $_hamburger-bar-height;
+                border-radius: $_hamburger-line-weight;
 
                 // For the opening and closing animations.
                 transition: 0.15s ease-out;
@@ -197,12 +200,12 @@ $_mobile-navlink-height: 64px;
                 // Places the two overlaid middle bars in the middle of the icon.
                 &:nth-of-type(2),
                 &:nth-of-type(3) {
-                    top: calc($_hamburger-bar-height + $_hamburger-gap-height);
+                    top: calc($_hamburger-line-weight + $_hamburger-gap-height);
                 }
 
                 // Places the bottom bar at the bottom of the icon.
                 &:nth-of-type(4) {
-                    top: calc(($_hamburger-bar-height + $_hamburger-gap-height) * 2);
+                    top: calc(($_hamburger-line-weight + $_hamburger-gap-height) * 2);
                 }
 
             }
@@ -214,7 +217,7 @@ $_mobile-navlink-height: 64px;
 
             &:nth-of-type(1),
             &:nth-of-type(4) {
-                top: calc($_hamburger-bar-height + $_hamburger-gap-height);
+                top: calc($_hamburger-line-weight + $_hamburger-gap-height);
                 width: 0%;
                 left: 50%;
             }
