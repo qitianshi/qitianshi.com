@@ -1,0 +1,16 @@
+# Source data for navigation links in the global header.
+
+# Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+- text: "About"
+  destination: "/under-construction.html"
+
+- text: "Projects"
+  destination: "/under-construction.html"
+
+- text: "Gallery"
+  destination: "/under-construction.html"
+
+- text: "Contact"
+  destination: "/under-construction.html"

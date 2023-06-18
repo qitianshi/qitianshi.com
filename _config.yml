@@ -8,8 +8,12 @@
 url: "https://qitianshi.github.io"
 baseurl: "/"
 title: "tian"
+source: "./src"
 exclude:
-  - README.md
+  - "README.md"
+  - "node_modules"
+sass:
+  sourcemap: development
 plugins:
   - jekyll-autoprefixer
 

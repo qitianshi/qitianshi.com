@@ -1,4 +1,4 @@
-// Stylesheet for the sitewide footer.
+// Stylesheet for the global footer.
 
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
@@ -7,7 +7,7 @@
 @use "abstracts/variables" as var;
 
 // For classes in the footer.
-.sitewide-footer {
+.global-footer {
 
     * {
         font-size: 0.6rem;
@@ -36,7 +36,7 @@
 }
 
 // For IDs in the footer.
-#sitewide-footer {
+#global-footer {
 
     padding: 1rem 0;
     background-color: var(--background-secondary-color);

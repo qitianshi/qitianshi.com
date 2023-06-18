@@ -1,10 +1,22 @@
 # Dependabot config file.
 
+# Copyright 2023 Qi Tianshi. All rights reserved.
+
+
 version: 2
 
 updates:
 
   - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    assignees:
+      - "qitianshi"
+    reviewers:
+      - "qitianshi"
+
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "monthly"

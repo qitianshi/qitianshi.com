@@ -1,7 +1,8 @@
 ---
 title: "Home"
 layout: default
-custom_stylesheet: "/assets/styles/home.css"
+local_stylesheet: "/assets/styles/home.css"
+navbar_transparency_top: true
 ---
 
 <!-- Homepage -->
@@ -15,7 +16,7 @@ custom_stylesheet: "/assets/styles/home.css"
     <img class="c-stacked-banner__background" src="/assets/images/home/desk-hero-banner.jpeg" alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about.">
 
     <div class="c-stacked-banner__content c-stacked-banner__content--leading">
-        <h1 class="c-stacked-banner__heading c-stacked-banner__heading--emphasized">from the desk of<span id="landing-banner__big-name">Qi Tianshi</span></h1>
+        <h1 class="c-stacked-banner__heading c-stacked-banner__heading--emphasized">from the desk of <span id="landing-banner__big-name">Qi Tianshi</span></h1>
         <p>Hello. It seems you've found my little corner of the Internet.</p>
         <p>I'm Tianshi. Welcome.</p>
     </div>
@@ -25,7 +26,7 @@ custom_stylesheet: "/assets/styles/home.css"
 <!-- Profile pic and introduction. -->
 <section class="o-media" id="introduction-banner">
 
-    <img src="/assets/images/home/profile-pic.jpg" class="o-media__image u-shadow" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
+    <img src="/assets/images/home/profile-pic.jpg" class="o-media__image" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
 
     <div class="o-media__content o-body-text-container">
         <h1>Hello, world! I'm Qi Tianshi.</h1>
@@ -45,7 +46,7 @@ custom_stylesheet: "/assets/styles/home.css"
 
     {% for project in site.data.home.project_cards %}
 
-        <div class="project-card o-card-container u-shadow u-shadow--hoverable c-stacked-banner">
+        <div class="project-card o-card-container c-stacked-banner">
 
             <!-- A legibility gradient is applied over the image using a pseudo-element. -->
             <div class="project-card__background-container c-stacked-banner__background">
@@ -56,7 +57,7 @@ custom_stylesheet: "/assets/styles/home.css"
                 <p class="c-stacked-banner__heading">{{ project.title }}</p>
             </div>
 
-            <a href="{{ project.link }}" class="fill-link"></a>
+            <a href="{{ project.link }}" class="fill-link" aria-label="{{ project.title }}"></a>
 
         </div>
 
@@ -64,8 +65,8 @@ custom_stylesheet: "/assets/styles/home.css"
 
 </section>
 
-<!-- "Under construction" banner -->
-<div class="o-media o-card-container u-shadow" id="construction-card">
+<!-- "Under construction" card -->
+<div class="o-media o-card-container" id="construction-card">
 
     <img src="/assets/images/icons/construction.svg" class="o-media__image" alt="Under construction.">
     <div class="o-media__content">

@@ -8,6 +8,7 @@
 
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
+@use "base/common";
 
 #landing-banner .c-stacked-banner__heading {
 
@@ -51,6 +52,8 @@
 
     .o-media__image {
 
+        @extend .u-shadow;
+
         width: 300px;
         max-width: 90vw;       // Limits width for narrower screens.
         height: auto;
@@ -64,25 +67,15 @@
 
 #construction-card {
 
+    @extend .u-elevated;
+    @include mix.apply-mobile-margin();
+
     margin: 5rem auto;
     padding: 2rem;
     width: fit-content;
     max-width: 70%;
 
     gap: 1rem;
-
-    // The card looks better in the light theme with just a shadow and no
-    // background color, but in dark theme there must be a background color for
-    // visual hierarchy.
-    @include mix.light-theme() {
-        background-color: var(--background-primary-color);
-    }
-
-    @include mix.dark-theme() {
-        background-color: var(--background-secondary-color);
-    }
-
-    @include mix.apply-mobile-margin();
 
     .o-media__content * {
         margin: 0;
@@ -105,6 +98,8 @@
 // A div with an image background and text.
 .project-card {
 
+    @extend .u-shadow, .u-shadow--hoverable;
+
     height: 100%;
     width: 32%;
 
@@ -117,7 +112,7 @@
 
     // On mouseover, the card grows and shadow increases to mimic height.
     &:hover {
-        transform: scale(1.025);
+        transform: scale(102.5%);
     }
 
     .c-stacked-banner__content {

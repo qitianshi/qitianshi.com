@@ -1,4 +1,4 @@
-// Manages the color theme toggle in the sitewide footer.
+// Manages the color theme toggle in the global footer.
 
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
@@ -13,6 +13,8 @@ const themePreferenceStorageKey = "user-theme-preference";
  *                   "auto".
  */
 function getPreferredTheme() {
+
+    var preference;
 
     if (preference = localStorage.getItem(themePreferenceStorageKey)) {
 
@@ -38,7 +40,7 @@ function savePreferredTheme(theme) {
 }
 
 /**
- * Updates the color theme toggle in the sitewide footer to reflect the
+ * Updates the color theme toggle in the global footer to reflect the
  * currently applied color theme. Only necessary when the page is being loaded,
  * or when some script other than the toggle causes the color theme to be
  * changed.
@@ -49,31 +51,36 @@ function updateToggleWithSavedPreference(theme) {
 
     // Selects the option whose value corresponds to the selected theme.
     document
-        .querySelector(`#sitewide-footer__color-theme-toggle [value=${theme}]`)
-        .checked = true;
+        .querySelector(`#global-footer__color-theme-toggle [value=${theme}]`)
+        .checked
+        = true;
 
 }
 
 /**
  * Applies the preferred color theme to the webpage.
  *
- * @param {*} theme The theme to be applied.
+ * @param {String} theme The theme to be applied.
  */
 function applyPreferredTheme(theme) {
 
-    const bodyElementClasses = document.body.classList;
+    // When this function is called through initPreload(), the <body> tag has
+    // not yet been parsed. To prevent the page from flashing due to the
+    // default theme rendering first then being replaced by the preferred
+    // theme, the class is applied to the <html> tag.
+    const htmlElementClasses = document.firstElementChild.classList;
 
     // Removes all existing theme classes first.
-    bodyElementClasses.remove("t-light", "t-dark", "t-preference");
+    htmlElementClasses.remove("t-light", "t-dark", "t-preference");
 
     switch (theme) {
 
         case "light":
-            bodyElementClasses.add("t-light");
+            htmlElementClasses.add("t-light");
             break;
 
         case "dark":
-            bodyElementClasses.add("t-dark");
+            htmlElementClasses.add("t-dark");
             break;
 
         // By default, elements will already follow the browser default theme,
@@ -101,17 +108,28 @@ function onUserChangeThemeToggle() {
 
 }
 
-window.onload = () => {
+const ColorTheme = {
 
-    // Checks if a preference has previously been set, and updates the toggle
-    // in the sitewide footer.
-    const preferredTheme = getPreferredTheme();
-    applyPreferredTheme(preferredTheme);
-    updateToggleWithSavedPreference(preferredTheme);
+    init: function () {
 
-    // Adds the event listener for the user choosing a color theme.
-    document
-        .getElementById("sitewide-footer__color-theme-toggle")
-        .addEventListener("change", onUserChangeThemeToggle);
+        // If a theme has already been set, the selected toggle option is
+        // updated.
+        updateToggleWithSavedPreference(getPreferredTheme())
+
+        // Adds the event listener for the user choosing a color theme.
+        document
+            .getElementById("global-footer__color-theme-toggle")
+            .addEventListener("change", onUserChangeThemeToggle);
+
+    },
+
+    initPreload: function () {
+
+        // Applies the preferred theme if it has previously been set.
+        applyPreferredTheme(getPreferredTheme());
+
+    },
 
 }
+
+export default ColorTheme;

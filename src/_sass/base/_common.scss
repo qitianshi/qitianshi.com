@@ -1,0 +1,36 @@
+// Common utility classes.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
+
+/// Applies a shadow.
+.u-shadow {
+
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+
+    &--hoverable:hover {
+        box-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
+    }
+
+}
+
+/// Makes elements appear elevated above the primary background. Applies a
+/// shadow; in light theme, keeps the background color the same as the
+/// primary background, and in dark theme, makes the background the secondary
+/// background color.
+.u-elevated {
+
+    @extend .u-shadow;
+
+    @include mix.light-theme() {
+        background-color: var.$background-primary-color-light;
+    }
+
+    @include mix.dark-theme() {
+        background-color: var.$background-secondary-color-dark;
+    }
+
+}

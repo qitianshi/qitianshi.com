@@ -1,6 +1,8 @@
 # Builds the website using Jekyll and deploys to GitHub Pages.
 # Adapted from https://github.com/actions/starter-workflows/blob/main/pages/jekyll.yml.
 
+# Copyright 2023 Qi Tianshi. All rights reserved.
+
 
 name: Build and deploy to GitHub Pages
 
@@ -25,7 +27,7 @@ concurrency:
 
 jobs:
 
-  # Build with Jekyll.
+  # Build with webpack and Jekyll.
   build:
 
     runs-on: ubuntu-latest
@@ -42,9 +44,24 @@ jobs:
           bundler-cache: true   # Runs `bundle install` and caches installed gems automatically.
           cache-version: 0
 
-      - name: Setup Pages
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.2"
+          cache: "npm"
+          cache-dependency-path: "package-lock.json"
+
+      - name: Install npm packages
+        run: |
+          npm ci
+
+      - name: Set up Pages
         id: pages
         uses: actions/configure-pages@v3
+
+      - name: Run webpack
+        run: |
+          webpack --mode production
 
       - name: Build with Jekyll
         run: |                 # Outputs to the './_site' directory by default.

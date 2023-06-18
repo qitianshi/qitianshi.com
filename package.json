@@ -1,0 +1,21 @@
+{
+  "name": "qitianshi.co",
+  "description": "Tianshi's website.",
+  "author": "Qi Tianshi",
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "serve": "webpack --mode development --devtool eval-cheap-source-map --watch & JEKYLL_ENV=development bundle exec jekyll serve",
+    "preview": "webpack --mode production --watch & JEKYLL_ENV=production bundle exec jekyll serve",
+    "build": "webpack --mode production && JEKYLL_ENV=production bundle exec jekyll build"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^9.1.2",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "lodash.throttle": "^4.1.1"
+  }
+}
