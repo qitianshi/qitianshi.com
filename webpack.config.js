@@ -5,7 +5,7 @@
 
 // JavaScript source files are placed in ./src/_webpack. webpack minifies the
 // files and writes the compiled results to ./src/assets/scripts, where they
-// are served from.
+// are picked up by Jekyll.
 
 const path = require("path");
 
@@ -30,14 +30,13 @@ module.exports = {
         rules: [
             {
                 test: /.js$/,
-                exclude: [
-                    path.resolve(__dirname, "node_modules"),
-                    path.resolve(__dirname, "bower_components"),
+                include: [
+                    path.resolve(__dirname, "src", "_webpack"),
                 ],
                 loader: "babel-loader",
-                // query: {
-                //     presets: ["env"],
-                // },
+                options: {
+                    presets: ['@babel/preset-env']
+                }
             },
         ],
     },
