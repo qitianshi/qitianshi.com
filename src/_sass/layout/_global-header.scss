@@ -18,7 +18,7 @@ $_mobile-navlink-height: 64px;
 
 #global-header {
 
-    @extend .u-shadow;
+    @extend .u-elevated;
 
     // Places header above other page elements.
     position: fixed;
@@ -30,11 +30,8 @@ $_mobile-navlink-height: 64px;
     transition-property: background-color, backdrop-filter;
     transition-duration: 0.2s;
 
-    // Fallback for browsers that don't support backdrop-filter.
-    background-color: var(--background-secondary-color);
-
-    // Checks for backdrop-filter support. If available, the fallback
-    // background-color is overriden.
+    // Checks for backdrop-filter support. If available, the default
+    // background-color of .u-elevated is overriden.
     @supports (backdrop-filter: blur()) {
 
         backdrop-filter: blur(30px);
