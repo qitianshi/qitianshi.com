@@ -15,5 +15,8 @@
     "lodash.throttle": "^4.1.1",
     "webpack": "^5.87.0",
     "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.43.0"
   }
 }
