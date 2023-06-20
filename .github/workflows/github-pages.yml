@@ -53,7 +53,7 @@ jobs:
 
       - name: Install npm packages
         run: |
-          npm ci
+          npm ci --omit=dev
 
       - name: Set up Pages
         id: pages
