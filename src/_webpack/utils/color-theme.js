@@ -14,9 +14,9 @@ const themePreferenceStorageKey = "user-theme-preference";
  */
 function getPreferredTheme() {
 
-    var preference;
+    var preference = localStorage.getItem(themePreferenceStorageKey);
 
-    if (preference = localStorage.getItem(themePreferenceStorageKey)) {
+    if (preference) {
 
         // If a preference has already been set.
         return preference;
@@ -114,7 +114,7 @@ const ColorTheme = {
 
         // If a theme has already been set, the selected toggle option is
         // updated.
-        updateToggleWithSavedPreference(getPreferredTheme())
+        updateToggleWithSavedPreference(getPreferredTheme());
 
         // Adds the event listener for the user choosing a color theme.
         document
@@ -130,6 +130,6 @@ const ColorTheme = {
 
     },
 
-}
+};
 
 export default ColorTheme;
