@@ -19,6 +19,11 @@
 <!-- Default stylesheet -->
 <link rel="stylesheet" href="{{ "/assets/styles/default.css" | relative_url }}">
 
+<!-- Local stylesheet -->
+{% if page.local_stylesheet %}
+    <link rel="stylesheet" href="{{ page.local_stylesheet | relative_url }}">
+{% endif %}
+
 <!-- Deferred scripts -->
 <script src="{{ "/assets/scripts/main.js" | relative_url }}" defer></script>
 

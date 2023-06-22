@@ -11,11 +11,6 @@
 
     {% include default-head.html %}
 
-    <!-- From `local_stylesheet` variable in front matter. -->
-    {% if page.local_stylesheet %}
-        <link rel="stylesheet" href="{{ page.local_stylesheet | relative_url }}">
-    {% endif %}
-
 </head>
 
 <body>
