@@ -13,6 +13,11 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1f1f1f" media="(prefers-color-scheme: dark)">
 
+<!-- Web crawlers -->
+{% if page.noindex %}
+    <meta name="robots" content="noindex">
+{% endif %}
+
 <!-- Blocking scripts -->
 <script src="{{ "/assets/scripts/preload.js" | relative_url }}"></script>
 
