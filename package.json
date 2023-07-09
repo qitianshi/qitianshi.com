@@ -8,14 +8,15 @@
     "preview": "webpack --mode production --watch & JEKYLL_ENV=production bundle exec jekyll serve",
     "build": "webpack --mode production && JEKYLL_ENV=production bundle exec jekyll build"
   },
-  "devDependencies": {
-    "webpack": "^5.87.0",
-    "webpack-cli": "^5.1.4",
-    "babel-loader": "^9.1.2",
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5"
-  },
   "dependencies": {
-    "lodash.throttle": "^4.1.1"
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "babel-loader": "^9.1.2",
+    "lodash.throttle": "^4.1.1",
+    "webpack": "^5.87.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.43.0"
   }
 }

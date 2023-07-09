@@ -64,7 +64,7 @@ const GlobalHeader = {
         ) {
 
             // Applies the transparency on page load.
-            toggleNavbarTransparency()
+            toggleNavbarTransparency();
 
             // Adds event listeners for scroll and resize.
             for (const type of ["scroll", "resize"]) {
@@ -82,7 +82,7 @@ const GlobalHeader = {
                         // optimizations.
                         { passive: true }
 
-                    )
+                    );
 
             }
 
@@ -93,6 +93,6 @@ const GlobalHeader = {
             .addEventListener("change", toggleExpandedMobileNavbar);
 
     },
-}
+};
 
 export default GlobalHeader;
