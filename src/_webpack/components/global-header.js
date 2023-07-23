@@ -60,7 +60,7 @@ const GlobalHeader = {
         // If the page has opted in, navbar transparency is applied.
         if (
             globalHeaderClasses
-                .contains("global-header--transparency-top-enabled")
+                .contains("global-header--transparency-enabled")
         ) {
 
             // Applies the transparency on page load.

@@ -4,8 +4,8 @@
 
 
 <header id="global-header"
-    {% if page.navbar_transparency_top %}
-        class="global-header--transparency-top-enabled"
+    {% if page.navbar_transparency_theme %}
+        class="global-header--transparency-enabled global-header--transparency-theme-{{ page.navbar_transparency_theme }}"
     {% endif %}
 >
     <nav>

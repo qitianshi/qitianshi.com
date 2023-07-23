@@ -236,12 +236,14 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
     &.global-header--transparent {
 
-        // Forces the navbar into dark mode.
-        @extend .t-dark;
+        &.global-header--transparency-theme {
+            &-dark { @extend .t-dark; }
+            &-light { @extend .t-light; }
+        }
 
-        background-color: transparent;
+        background-color: transparent !important;
         backdrop-filter: none;
-        border-bottom: 0.5px solid var.$background-secondary-color-dark;
+        border-bottom: 0.5px solid var(--background-secondary-color);
         box-shadow: none;
 
     }
