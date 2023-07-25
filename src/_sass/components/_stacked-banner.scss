@@ -98,16 +98,10 @@
         @extend .t-dark;
     }
 
-    // Specific implementation of .c-banner-stacked that fills the entire
-    // viewport.
-    &--hero {
-
-        @extend .o-fill-viewport-container;
-
-        .c-stacked-banner__content {
-            padding: 10%;
-        }
-
+    // Specific implementation of .c-stacked-banner for hero banners as page
+    // headers.
+    &--hero .c-stacked-banner__content {
+        padding: 10%;
     }
 
 }
