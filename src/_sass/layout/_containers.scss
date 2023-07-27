@@ -12,6 +12,12 @@
     height: 100vh;
 }
 
+// Fills half the height of the viewport.
+.o-half-height-viewport-container {
+    width: 100vw;
+    height: 50vh;
+}
+
 // A card with rounded corners.
 .o-card-container {
     border-radius: 15px;
