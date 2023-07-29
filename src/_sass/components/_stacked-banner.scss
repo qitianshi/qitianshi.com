@@ -7,6 +7,7 @@
 
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
+@use "base/common";
 @use "base/typography";
 @use "layout/containers";
 @use "themes/themes";
@@ -26,22 +27,14 @@
     // The contents of the banner.
     &__content {
 
+        @extend .u-trim-vertical-margins;
+
         // Required for z-stacking to work, otherwise the filter on the
         // background creates a new stacking context that breaks the grid
         // stack.
         position: relative;
 
         width: fit-content;
-
-        // Removes the leading and trailing margins so text margins won't
-        // affect positioning.
-        & :first-child {
-            margin-top: 0;
-        }
-
-        & :last-child {
-            margin-bottom: 0;
-        }
 
         &--leading {
             margin: auto auto auto 0;
