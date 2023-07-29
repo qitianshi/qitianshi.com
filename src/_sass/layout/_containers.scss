@@ -43,6 +43,9 @@
 
     max-width: 65ch;
 
+    // Prevents text highlighting from extending to the edges of the page.
+    position: relative;
+
     & p {
         text-align: justify;
     }
