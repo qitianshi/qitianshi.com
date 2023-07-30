@@ -48,6 +48,7 @@
 
     & p {
         text-align: justify;
+        line-height: 1.5em;
     }
 
     @include mix.respond-to-breakpoint("small") {
