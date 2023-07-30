@@ -40,6 +40,7 @@
 .o-text-container {
 
     @extend .u-trim-vertical-margins;
+    @include mix.apply-mobile-margin();
 
     max-width: 65ch;
 
@@ -52,9 +53,6 @@
     }
 
     @include mix.respond-to-breakpoint("small") {
-
-        padding-left: var.$mobile-padding;
-        padding-right: var.$mobile-padding;
 
         // Returns text-align to its unset value if the screen is too narrow to
         // avoid ugly stretched lines.
