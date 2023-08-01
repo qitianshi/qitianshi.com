@@ -26,7 +26,7 @@
         color: var.$foreground-primary-color-dark;
         line-height: 0.9em;
 
-        @include mix.respond-to-width(700px) {
+        @media screen and (max-width: 700px) {
             font-size: 2em;
         }
 
@@ -146,7 +146,7 @@
 
 // Changes to column layout in mobile versions. 1000px is the size at which the
 // text begins to get cut off in flex-direction: row;.
-@include mix.respond-to-width(1050px) {
+@media screen and (max-width: 1050px) {
 
     #project-cards-container {
 

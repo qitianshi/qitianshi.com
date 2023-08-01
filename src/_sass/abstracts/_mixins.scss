@@ -27,16 +27,6 @@
 
 }
 
-/// Applies a media query to adjust styles for screens up to the specified
-/// width.
-///
-/// @param {Number} $width - The max-width of the breakpoint.
-@mixin respond-to-width($width) {
-    @media screen and (max-width: $width) {
-        @content;
-    }
-}
-
 /// Uses a media query to apply the correct margin for narrow screens. Also
 /// resets the width and max-width.
 @mixin apply-mobile-margin {

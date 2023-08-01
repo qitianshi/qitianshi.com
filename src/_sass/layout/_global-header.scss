@@ -249,7 +249,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
     }
 
     // The width at which the screen is too narrow to fit the navbar links.
-    @include mix.respond-to-width(750px) {
+    @media screen and (max-width: 750px) {
 
         // Adjusts margins to make the navbar less crowded in narrow screens.
 
