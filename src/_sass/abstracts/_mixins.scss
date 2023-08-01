@@ -27,14 +27,24 @@
 
 }
 
-/// Uses a media query to apply the correct margin for narrow screens. Also
-/// resets the width and max-width.
+/// When the screen is narrow, a margin is applied on the left and right edges
+/// and the width and max-width are reset, so that the element fills the width
+/// of the screen, less the margins.
 @mixin apply-mobile-margin {
     @include respond-to-breakpoint("small") {
         margin-left: var.$mobile-padding;
         margin-right: var.$mobile-padding;
         width: unset;
         max-width: unset;
+    }
+}
+
+/// When the screen is narrow, changes the left and right paddings to
+/// var.$mobile-padding.
+@mixin apply-mobile-padding {
+    @include respond-to-breakpoint("small") {
+        padding-left: var.$mobile-padding;
+        padding-right: var.$mobile-padding;
     }
 }
 
