@@ -35,12 +35,11 @@
 
 }
 
-// Contains long-form text. Sets a max-width for readability, and adds padding
-// on narrow screens.
+// Contains long-form text. Sets a max-width and adjusts the appearance of <p>
+// elements for better readability.
 .o-text-container {
 
     @extend .u-trim-vertical-margins;
-    @include mix.apply-mobile-margin();
 
     max-width: 65ch;
 

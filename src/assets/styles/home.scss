@@ -40,15 +40,12 @@
 
 #introduction-banner {
 
+    @include mix.apply-mobile-padding();
+
     justify-content: center;
     gap: 3rem;
 
     padding: 25vh 3rem;
-
-    @include mix.respond-to-breakpoint("small") {
-        padding-left: 0;
-        padding-right: 0;
-    }
 
     .o-media__image {
 
