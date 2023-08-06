@@ -34,3 +34,16 @@
     }
 
 }
+
+/// Removes the top and bottom margins from the first-child and last-child.
+.u-trim-vertical-margins {
+
+    & :first-child {
+        margin-top: 0;
+    }
+
+    & :last-child {
+        margin-bottom: 0;
+    }
+
+}

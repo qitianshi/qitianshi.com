@@ -1,0 +1,18 @@
+// The body text component contains long-form text, such as a blog post.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
+@use "layout/containers";
+
+.c-body-text {
+
+    @extend .o-text-container;
+    @include mix.apply-mobile-padding();
+
+    margin: 3rem auto 6rem;
+    padding: 0 10%;
+
+}

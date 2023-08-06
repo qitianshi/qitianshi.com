@@ -4,7 +4,7 @@
 # Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-name: Build and deploy to GitHub Pages
+name: Build and deploy
 
 on:
 
@@ -12,68 +12,90 @@ on:
     branches:
       - main
 
-  workflow_dispatch:
+  # Test-builds pull requests to check compatibility.
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - edited
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages.
+  workflow_dispatch:
+    inputs:
+      no_deploy:
+        description: "Test build without deploying"
+        type: boolean
+        default: false
+
+# Sets permissions of GITHUB_TOKEN to allow deployment to GitHub Pages.
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allows one concurrent deployment.
+# Allows only one concurrent deployment.
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
 
-  # Build with webpack and Jekyll.
+  # Builds with webpack and Jekyll.
   build:
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Checkout
+      - name: Git checkout
         uses: actions/checkout@v3
 
-      - name: Setup Ruby
+      # Runs `bundle install` and caches installed gems automatically.
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
-          bundler-cache: true   # Runs `bundle install` and caches installed gems automatically.
+          bundler-cache: true
           cache-version: 0
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20.2"
           cache: "npm"
           cache-dependency-path: "package-lock.json"
 
+      # Installs production dependencies from package.json.
       - name: Install npm packages
         run: |
           npm ci --omit=dev
 
-      - name: Set up Pages
+      - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v3
 
-      - name: Run webpack
+      # Bundles ./src/_webpack files into static assets.
+      - name: Bundle with webpack
         run: |
           webpack --mode production
 
+      # Builds Jekyll and outputs to ./_site.
       - name: Build with Jekyll
-        run: |                 # Outputs to the './_site' directory by default.
+        run: |
           bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
 
+      # Uploads the artifact from the ./_site directory.
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1   # Automatically uploads an artifact from the './_site' directory by default.
+        uses: actions/upload-pages-artifact@v1
 
-  # Deploy to GitHub Pages.
+  # Deploys to GitHub Pages.
   deploy:
+
+    # This step is not run if the workflow trigger was `pull_request`, or
+    # `workflow_dispatch` with `no_deploy` set to `true`.
+    if: |
+      !(github.event_name == 'pull_request' || github.event.inputs.no_deploy)
 
     environment:
       name: github-pages

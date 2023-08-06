@@ -8,6 +8,7 @@
 url: "https://qitianshi.github.io"
 baseurl: "/"
 title: "tian"
+lang: "en-US"
 source: "./src"
 exclude:
   - "README.md"

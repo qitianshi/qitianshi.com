@@ -71,7 +71,7 @@ function applyPreferredTheme(theme) {
     const htmlElementClasses = document.firstElementChild.classList;
 
     // Removes all existing theme classes first.
-    htmlElementClasses.remove("t-light", "t-dark", "t-preference");
+    htmlElementClasses.remove("t-light", "t-dark", "t-auto");
 
     switch (theme) {
 
@@ -84,7 +84,7 @@ function applyPreferredTheme(theme) {
             break;
 
         // By default, elements will already follow the browser default theme,
-        // thus it's unnecessary to add the .t-preference class.
+        // so it's unnecessary to add the .t-auto class.
         default:
             break;
 

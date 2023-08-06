@@ -7,6 +7,7 @@
 
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
+@use "base/common";
 @use "base/typography";
 @use "layout/containers";
 @use "themes/themes";
@@ -26,6 +27,8 @@
     // The contents of the banner.
     &__content {
 
+        @extend .u-trim-vertical-margins;
+
         // Required for z-stacking to work, otherwise the filter on the
         // background creates a new stacking context that breaks the grid
         // stack.
@@ -33,22 +36,16 @@
 
         width: fit-content;
 
-        // Removes the leading and trailing margins so text margins won't
-        // affect positioning.
-        & :first-child {
-            margin-top: 0;
-        }
-
-        & :last-child {
-            margin-bottom: 0;
-        }
-
         &--leading {
             margin: auto auto auto 0;
         }
 
         &--bottom-leading {
             margin: auto auto 0 0;
+        }
+
+        &--center {
+            margin: auto;
         }
 
     }
@@ -64,8 +61,6 @@
         // of .c-stacked-banner will cause the full height of the image to
         // always be shown.
         overflow: hidden;
-
-        filter: brightness(0.3);
 
         // A gray background that's only visible when the image loading, to
         // keep the overlaid text legible.
@@ -98,14 +93,34 @@
         @extend .t-dark;
     }
 
-    // Specific implementation of .c-banner-stacked that fills the entire
-    // viewport.
-    &--hero {
+    // Specific implementation of .c-stacked-banner for hero banners as page
+    // headers.
+    &--hero &__content {
+        padding: 10%;
+    }
 
-        @extend .o-fill-viewport-container;
+    // Specific implementation of .c-stacked-banner for headers for
+    // .c-body-text.
+    &--text-header &__content {
 
-        .c-stacked-banner__content {
-            padding: 10%;
+        @include mix.apply-mobile-margin();
+
+        // Makes the heading the same width as the body text.
+        width: 80vw;
+        max-width: 65ch;
+
+        // Vertical padding ensures sufficient separation between text and the
+        // global header.
+        padding: 4rem 0;
+
+        // Overrides the width properties in mix.apply-mobile-margin.
+        @include mix.respond-to-breakpoint("small") {
+            width: calc(100vw - 2 * var.$mobile-padding);
+        }
+
+        .c-stacked-banner__heading {
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
     }

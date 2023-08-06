@@ -3,8 +3,7 @@ title: "Home"
 layout: default
 local_stylesheet: "/assets/styles/home.css"
 description: "From the desk of Qi Tianshi &mdash; I'm a student from Singapore, with a desk full of clutter and a pocketful of dreams. Here's some of the stuff I've made."
-
-navbar_transparency_top: true
+navbar_transparency_theme: "dark"
 ---
 
 <!-- Homepage -->
@@ -13,14 +12,27 @@ navbar_transparency_top: true
 
 
 <!-- Main hero banner. -->
-<section class="c-stacked-banner c-stacked-banner--hero" id="landing-banner">
+<section
+    class="c-stacked-banner c-stacked-banner--hero o-fill-viewport-container"
+    id="landing-banner"
+>
 
-    <img class="c-stacked-banner__background" src="/assets/images/home/desk-hero-banner.jpeg" alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about.">
+    <img
+        src="/assets/images/home/desk-hero-banner.jpeg"
+        class="c-stacked-banner__background"
+        style="filter: brightness(30%);"
+        alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about."
+    >
 
     <div class="c-stacked-banner__content c-stacked-banner__content--leading">
-        <h1 class="c-stacked-banner__heading c-stacked-banner__heading--emphasized">from the desk of <span id="landing-banner__big-name">Qi Tianshi</span></h1>
+
+        <h1 class="c-stacked-banner__heading c-stacked-banner__heading--emphasized">
+            from the desk of <span id="landing-banner__big-name">Qi Tianshi</span>
+        </h1>
+
         <p>Hello. It seems you've found my little corner of the Internet.</p>
         <p>I'm Tianshi. Welcome.</p>
+
     </div>
 
 </section>
@@ -28,15 +40,21 @@ navbar_transparency_top: true
 <!-- Profile pic and introduction. -->
 <section class="o-media" id="introduction-banner">
 
-    <img src="/assets/images/home/profile-pic.jpg" class="o-media__image" alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop.">
+    <img
+        src="/assets/images/home/profile-pic.jpg"
+        class="o-media__image"
+        alt="A portrait of Tianshi in dramatic blue and purple lighting against a dark backdrop."
+    >
 
-    <div class="o-media__content o-body-text-container">
+    <div class="o-media__content o-text-container">
         <h1>Hello, world! I'm Qi Tianshi.</h1>
         <p>
             But you can call me "tian". I'm a student from Singapore, with a desk full of clutter and a pocketful of dreams.
-        </p><p>
+        </p>
+        <p>
             For over a decade, I've found my calling in robotics &mdash; the alluring magic of breathing life into dead parts. Since my early days of tinkering with LEGO robots, I've graduated to using industry-level tools, managing my robotics club, contributing research to a global community, and selecting and mentoring new generations of roboticists.
-        </p><p>
+        </p>
+        <p>
             I'm also a developer, a researcher, a writer, and an artist&mldr; to varying degrees. Why don't you have a look around at some of the stuff I've made?
         </p>
     </div>
@@ -52,7 +70,11 @@ navbar_transparency_top: true
 
             <!-- A legibility gradient is applied over the image using a pseudo-element. -->
             <div class="project-card__background-container c-stacked-banner__background">
-                <img src="{{ project.image_src }}" class="c-stacked-banner__background" alt="{{ project.image_alt }}">
+                <img
+                    src="{{ project.image_src }}"
+                    class="c-stacked-banner__background"
+                    alt="{{ project.image_alt }}"
+                >
             </div>
 
             <div class="c-stacked-banner__content c-stacked-banner__content--bottom-leading">
@@ -70,7 +92,12 @@ navbar_transparency_top: true
 <!-- "Under construction" card -->
 <div class="o-media o-card-container" id="construction-card">
 
-    <img src="/assets/images/icons/construction.svg" class="o-media__image" alt="Under construction.">
+    <img
+        src="/assets/images/icons/construction.svg"
+        class="o-media__image"
+        alt="Under construction."
+    >
+
     <div class="o-media__content">
         <h4>There's more to come.</h4>
         <p>This site is still being built. Check back soon?</p>

@@ -236,18 +236,30 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
     &.global-header--transparent {
 
-        // Forces the navbar into dark mode.
-        @extend .t-dark;
+        &.global-header--transparency-theme {
+            &-dark { @extend .t-dark; }
+            &-light { @extend .t-light; }
+        }
 
-        background-color: transparent;
+        background-color: transparent !important;
         backdrop-filter: none;
-        border-bottom: 0.5px solid var.$background-secondary-color-dark;
         box-shadow: none;
+
+        // CSS variables containing colors don't support adding alpha channels
+        // after the fact, so a mixin with Sass variables is used instead.
+
+        @include mix.light-theme {
+            border-bottom: 0.5px solid rgba(var.$foreground-primary-color-light, 0.2);
+        }
+
+        @include mix.dark-theme {
+            border-bottom: 0.5px solid rgba(var.$foreground-primary-color-dark, 0.2);
+        }
 
     }
 
     // The width at which the screen is too narrow to fit the navbar links.
-    @include mix.respond-to-width(750px) {
+    @media screen and (max-width: 750px) {
 
         // Adjusts margins to make the navbar less crowded in narrow screens.
 

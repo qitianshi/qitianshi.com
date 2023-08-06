@@ -31,7 +31,7 @@
 
 // Follows the user's preferred color scheme, from the prefers-color-scheme
 // media query. Defaults to light theme.
-.t-preference {
+.t-auto {
 
     @include _light-attributes();
 

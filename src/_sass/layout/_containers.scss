@@ -5,11 +5,18 @@
 
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
+@use "base/common";
 
 // Fills the entire viewport.
 .o-fill-viewport-container {
     width: 100vw;
     height: 100vh;
+}
+
+// Fills half the height of the viewport.
+.o-half-height-viewport-container {
+    width: 100vw;
+    height: 50vh;
 }
 
 // A card with rounded corners.
@@ -26,34 +33,25 @@
     align-items: center;
     flex-wrap: wrap;
 
-    &__content {
-
-        & :first-child {
-            margin-top: 0;
-        }
-
-        & :last-child {
-            margin-bottom: 0;
-        }
-
-    }
-
 }
 
-// Contains long-form text. Sets a max-width for readability, and adds padding
-// on narrow screens.
-.o-body-text-container {
+// Contains long-form text. Sets a max-width and adjusts the appearance of <p>
+// elements for better readability.
+.o-text-container {
+
+    @extend .u-trim-vertical-margins;
 
     max-width: 65ch;
 
+    // Prevents text highlighting from extending to the edges of the page.
+    position: relative;
+
     & p {
         text-align: justify;
+        line-height: 1.5em;
     }
 
     @include mix.respond-to-breakpoint("small") {
-
-        padding-left: var.$mobile-padding;
-        padding-right: var.$mobile-padding;
 
         // Returns text-align to its unset value if the screen is too narrow to
         // avoid ugly stretched lines.

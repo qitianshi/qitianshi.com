@@ -75,6 +75,11 @@ h1  {
     border-bottom: 2px solid;
     border-color: var(--tiangerine-tangerine);
 
+    // Makes the width fit its content; otherwise, the underline would extend
+    // beyond the text.
+    width: fit-content;
+    max-width: 100%;
+
 }
 
 h2, h3, h4, h5, h6 {
