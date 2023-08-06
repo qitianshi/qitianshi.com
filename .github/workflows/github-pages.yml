@@ -32,11 +32,6 @@ permissions:
   pages: write
   id-token: write
 
-# Allows only one concurrent deployment.
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
 
   # Builds with webpack and Jekyll.
@@ -104,6 +99,11 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: build
+
+    # Allows only one concurrent deployment.
+    concurrency:
+      group: "deploy-pages"
+      cancel-in-progress: true
 
     steps:
       - name: Deploy to GitHub Pages
