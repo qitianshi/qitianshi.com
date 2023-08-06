@@ -95,8 +95,34 @@
 
     // Specific implementation of .c-stacked-banner for hero banners as page
     // headers.
-    &--hero .c-stacked-banner__content {
+    &--hero &__content {
         padding: 10%;
+    }
+
+    // Specific implementation of .c-stacked-banner for headers for
+    // .c-body-text.
+    &--text-header &__content {
+
+        @include mix.apply-mobile-margin();
+
+        // Makes the heading the same width as the body text.
+        width: 80vw;
+        max-width: 65ch;
+
+        // Vertical padding ensures sufficient separation between text and the
+        // global header.
+        padding: 4rem 0;
+
+        // Overrides the width properties in mix.apply-mobile-margin.
+        @include mix.respond-to-breakpoint("small") {
+            width: calc(100vw - 2 * var.$mobile-padding);
+        }
+
+        .c-stacked-banner__heading {
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
     }
 
 }
