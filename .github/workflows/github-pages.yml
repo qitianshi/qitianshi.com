@@ -14,10 +14,6 @@ on:
 
   # Test-builds pull requests to check compatibility.
   pull_request:
-    types:
-      - opened
-      - reopened
-      - edited
 
   workflow_dispatch:
     inputs:
