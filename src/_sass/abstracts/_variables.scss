@@ -37,7 +37,7 @@ $foreground-tertiary-color-dark: #636363;
 $link-color-dark: #71a8f4;
 $link-hover-color-dark: #68a2f3;
 
-/// Sets the light theme color pallete as CSS variables.
+/// Sets the light theme color palette as CSS variables.
 @mixin light-theme-colors() {
 
     --tiangerine-tangerine: #{$tiangerine-tangerine-light};
@@ -54,7 +54,7 @@ $link-hover-color-dark: #68a2f3;
 
 }
 
-/// Sets the dark theme color pallete as CSS variables.
+/// Sets the dark theme color palette as CSS variables.
 @mixin dark-theme-colors() {
 
     --tiangerine-tangerine: #{$tiangerine-tangerine-dark};
