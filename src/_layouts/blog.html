@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<!-- Layout for blog posts, with a half-fill banner heading and body text. -->
+
+<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
+
+
+<!-- Page header. -->
+<section
+    class="c-stacked-banner c-stacked-banner--text-header o-half-height-viewport-container"
+>
+
+    <img
+        src="{{ page.header_background_src }}"
+        class="c-stacked-banner__background"
+        style="filter: brightness({{ page.header_background_brightness }});"
+        alt=""
+    >
+
+    <div class="c-stacked-banner__content c-stacked-banner__content--center">
+        <h1 class="c-stacked-banner__heading">{{ page.header_title | default: page.title }}</h1>
+    </div>
+
+</section>
+
+<!-- Body text. -->
+<section class="c-body-text">
+
+    {{ content }}
+
+</section>
