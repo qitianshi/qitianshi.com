@@ -4,13 +4,13 @@
 
 
 - text: "About"
-  destination: "/under-construction.html"
+  destination: "/under-construction"
 
 - text: "Projects"
-  destination: "/under-construction.html"
+  destination: "/under-construction"
 
 - text: "Gallery"
-  destination: "/under-construction.html"
+  destination: "/under-construction"
 
 - text: "Contact"
-  destination: "/under-construction.html"
+  destination: "/under-construction"
