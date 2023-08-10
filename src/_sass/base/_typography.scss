@@ -102,8 +102,15 @@ a {
         text-decoration: none;
     }
 
-    &:hover {
+    &:hover,
+    &.quiet-link:hover {
         color: var(--link-hover-color);
+        text-decoration: underline;
+    }
+
+    // A link that follows the color of its parent.
+    &.quiet-link {
+        color: inherit;
         text-decoration: underline;
     }
 
