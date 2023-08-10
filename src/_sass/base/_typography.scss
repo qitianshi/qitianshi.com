@@ -95,7 +95,9 @@ p {
 a {
 
     &:link,
-    &:visited {
+    &:link *,
+    &:visited,
+    &:visited * {
         color: var(--link-color);
         text-decoration: none;
     }
