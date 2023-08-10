@@ -95,32 +95,41 @@ p {
 a {
 
     &:link,
-    &:visited {
+    &:link *,
+    &:visited,
+    &:visited * {
         color: var(--link-color);
         text-decoration: none;
     }
 
-    &:hover {
+    &:hover,
+    &.quiet-link:hover {
         color: var(--link-hover-color);
+        text-decoration: underline;
+    }
+
+    // A link that follows the color of its parent.
+    &.quiet-link {
+        color: inherit;
         text-decoration: underline;
     }
 
     // A link that represents a backward navigation.
     &.back-link::before {
         // A left arrow (&larr;) and a space.
-        content: "\02190\00a0";
+        content: "\02190\202f";
     }
 
     // A link that represents a forward navigation.
     &.forward-link::after {
         // A space and a right arrow (&rarr;).
-        content: "\00a0\2192";
+        content: "\202f\2192";
     }
 
     // A link to an external website.
     &.external-link::after {
         // A space and a north east arrow (&nearr;).
-        content: "\00a0\2197";
+        content: "\202f\2197";
     }
 
     // A link that fills its entire parent element.

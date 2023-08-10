@@ -34,7 +34,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
     transition-duration: 0.2s;
 
     // Checks for backdrop-filter support. If available, the default
-    // background-color of .u-elevated is overriden.
+    // background-color of .u-elevated is overridden.
     @supports (backdrop-filter: blur()) {
 
         backdrop-filter: blur(30px);
