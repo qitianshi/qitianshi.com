@@ -104,22 +104,38 @@
 
         // Makes the radio button UI element invisible.
         & input {
+
             position: fixed;
             opacity: 0;
             pointer-events: none;
+
+            // Highlights the selected option.
+            &:checked + label {
+
+                background-color: var(--foreground-secondary-color);
+
+                span {
+                    color: var(--background-secondary-color);
+                }
+
+            }
+
         }
 
         // See above notes on border radius and padding.
         & label {
+
             cursor: pointer;
             border-radius: 1rem;
             padding: 1px 0.3rem;
-        }
 
-        // Highlights the selected option.
-        & input:checked + label {
-            background-color: var(--foreground-secondary-color);
-            color: var(--background-secondary-color);
+            // Repositions text to better center it in the pill.
+            span {
+                position: relative;
+                bottom: 0.5px;
+                left: 0.5px;
+            }
+
         }
 
         // On hovering, the toggle becomes the accent color.
@@ -127,7 +143,7 @@
 
             border-color: var(--tiangerine-tangerine);
 
-            & label {
+            & label span {
                 color: var(--tiangerine-tangerine);
             }
 
