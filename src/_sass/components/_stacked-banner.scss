@@ -73,11 +73,11 @@
 
         @extend h1;
 
-        font-size: 3.5rem;
+        font-size: 3.4rem;
         margin: 1.5rem 0;
 
         @include mix.respond-to-breakpoint("small") {
-            font-size: 2.5rem;  // Returns the size to the original h1 size.
+            font-size: 2.6rem;  // Returns the size to the original h1 size.
         }
 
         // Emphasized appearance for .c-stacked-banner; gives text the accent

@@ -20,8 +20,7 @@
 }
 
 // Import font families Inter and Grape Nuts from Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Grape+Nuts&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,700;0,800;1,400;1,700;1,800&family=Grape+Nuts&display=swap');
 
 // --------- Styles ----------
 
@@ -42,7 +41,7 @@
 }
 
 html {
-    font-size: 120%;   // Increases all font sizes by 20% for better legibility.
+    font-size: 125%;   // Increases all font sizes by 20% for better legibility.
 }
 
 body {
@@ -68,8 +67,9 @@ body * {
 h1  {
 
     font-family: var.$heading-font-family;
-    font-size: 2.75rem;
+    font-size: 2.6rem;
     line-height: 0.9em;
+    margin: 1.8em 0 1rem;
 
     // Adds an accent color beneath the text
     border-bottom: 2px solid;
@@ -84,7 +84,11 @@ h1  {
 
 h2, h3, h4, h5, h6 {
     font-family: var.$body-font-family;
-    margin: 2em auto 1em;
+    margin: 2em 0 1em;
+}
+
+h2 {
+    font-weight: 800;
 }
 
 p {
