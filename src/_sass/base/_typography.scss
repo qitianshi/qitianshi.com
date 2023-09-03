@@ -145,3 +145,16 @@ a {
     }
 
 }
+
+small {
+
+    font-size: 0.65rem;
+    color: var(--foreground-secondary-color);
+
+    // By default, any link in <small> is displayed discreetly.
+    & a:any-link,
+    & a:any-link * {
+        @extend .quiet-link;
+    }
+
+}
