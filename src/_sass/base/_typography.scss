@@ -98,10 +98,8 @@ p {
 
 a {
 
-    &:link,
-    &:link *,
-    &:visited,
-    &:visited * {
+    &:any-link,
+    &:any-link * {
         color: var(--link-color);
         text-decoration: none;
     }
@@ -113,7 +111,8 @@ a {
     }
 
     // A link that follows the color of its parent.
-    &.quiet-link {
+    &.quiet-link,
+    &.quiet-link * {
         color: inherit;
         text-decoration: underline;
     }
