@@ -1,0 +1,207 @@
+// Styles for forms.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
+@use "base/common";
+@use "layout/containers";
+
+// Gives form UI elements the same font family as the rest of the website,
+// instead of the default system font.
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+// Styles for all text-style inputs.
+input[type=text],
+input[type=email],
+textarea {
+
+    font-size: 1rem;
+
+    padding: 0.5em;
+
+    border: none;
+    border-bottom: 2px solid var(--foreground-secondary-color);
+    border-radius: 2px;
+
+    background-color: transparent;
+
+    &:focus {
+        border-bottom-color: var(--tiangerine-tangerine);
+        outline: none;
+    }
+
+}
+
+// Styles for short text-style inputs.
+input[type=text],
+input[type=email] {
+
+    height: 1.3em;
+    max-width: 20em;
+
+    // Changes the color of the WebKit autofill button to match
+    // foreground-primary-color for better legibility in the dark theme, except
+    // when the input has been auto-filled, in which case the user agent
+    // -applied background makes the change unnecessary.
+    &:not(input:-webkit-autofill)::-webkit-contacts-auto-fill-button {
+        background-color: var(--foreground-primary-color);
+    }
+
+}
+
+// Styles for long text-style inputs.
+textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+// Styles for button-style inputs.
+input[type=button],
+input[type=submit] {
+
+    padding: 0.5em 2em;
+
+    border: 2px solid var(--tiangerine-tangerine);
+    border-radius: 7.5px;
+
+    font-size: 0.8rem;
+    color: var(--tiangerine-tangerine);
+    background: none;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--tiangerine-tangerine);
+        color: white;
+    }
+
+}
+
+// The default form object.
+.c-form {
+
+    @extend .o-card-container;
+    @extend .u-elevated;
+
+    padding: var.$mobile-padding;
+
+    // Formats all immediate children as block-level elements with vertical
+    // margins.
+    & > * {
+        display: block;
+        margin: 1em 0;
+    }
+
+    label {
+        font-weight: 300;
+    }
+
+    // Adds an asterisk to labels for required inputs.
+    input:required,
+    textarea:required {
+
+        & + label::after {
+
+            // A non-breaking space and an asterisk.
+            content: "\00a0\002a";
+
+            color: var(--foreground-secondary-color);
+
+        }
+
+        // Changes the color when the input is focused.
+        &:focus + label::after {
+            color: var(--tiangerine-tangerine);
+        }
+
+    }
+
+    // A field containing a text-style input and a label. Labels initially
+    // appear as full-sized text in the input field, but when the input is
+    // focused, the label moves to the top and becomes smaller.
+    &__text-field {
+
+        display: grid;
+
+        // Stacks all immediate children in the same grid area.
+        & > * {
+            grid-area: 1 / -1;
+        }
+
+        input[type=text],
+        input[type=email],
+        textarea {
+
+            & + label {
+
+                width: max-content;
+                height: max-content;
+
+                // Aligns the label so that it appears horizontally aligned
+                // with the input text.
+                align-self: start;
+                position: relative;
+                top: 0.5em;
+
+                // Prevents the label from interfering with clicking the input
+                // beneath it.
+                pointer-events: none;
+
+                // Transitions for transforming the label on focus.
+                transition-property: font-size, transform;
+                transition-duration: 0.1s;
+                transition-timing-function: ease-out;
+
+                // Applies a background color for legibility, for when the
+                // field is auto-filled.
+                background-color: var.$background-primary-color-light;
+
+                @include mix.dark-theme() {
+                    background-color: var.$background-secondary-color-dark;
+                }
+
+            }
+
+            // Transforms the label when the field is focused or when it
+            // contains text.
+            &:focus,
+            &:not(:placeholder-shown) {
+
+                & + label {
+
+                    color: var(--foreground-secondary-color);
+                    font-size: 0.7em;
+                    transform: translateY(-1.25em);
+
+                }
+
+            }
+
+        }
+
+        // <textarea> elements are stacked with a <pre> element that copies
+        // their contents so that the field resizes to fit them. These elements
+        // are added programmatically.
+        textarea ~ pre[id$="__textarea-sizing"] {
+
+            @extend textarea;
+
+            visibility: hidden;
+            margin: 0;
+
+            span {
+                white-space: pre-wrap;
+            }
+
+        }
+
+    }
+
+}
