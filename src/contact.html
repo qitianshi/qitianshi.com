@@ -1,0 +1,49 @@
+---
+title: "Contact"
+layout: "blog"
+description: "If you wanna get in touch with me, I'd be happy to hear from you! I read all your messages, and I'll do my best to get back to you."
+
+active_navlink: "Contact"
+header_background_brightness: 75%
+header_background_src: "/assets/images/extras/generic-banner.svg"
+navbar_transparency_theme: "dark"
+---
+
+<!-- Contact page. -->
+
+<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
+
+
+<p>
+    If you wanna get in touch with me, I'd be happy to hear from you! I read all your messages, and I'll do my best to get back to you.
+</p>
+
+<form id="contact-form" class="c-form">
+
+    <div class="c-form__text-field">
+        <input type="text" id="contact-form__name" autocomplete="name" placeholder="&ZeroWidthSpace;" required>
+        <label for="contact-form__name">Name</label>
+    </div>
+
+    <div class="c-form__text-field">
+        <input type="email" id="contact-form__email" autocomplete="email" placeholder="&ZeroWidthSpace;" required>
+        <label for="contact-form__email">Email</label>
+    </div>
+
+    <div class="c-form__text-field">
+        <input type="text" id="contact-form__subject" placeholder="&ZeroWidthSpace;" required>
+        <label for="contact-form__subject">Subject</label>
+    </div>
+
+    <div class="c-form__text-field">
+        <textarea id="contact-form__message" placeholder="&ZeroWidthSpace;" rows="1" required></textarea>
+        <label for="contact-form__message">Message</label>
+    </div>
+
+    <input type="submit">
+
+    <small>
+        Don't submit sensitive information. Responses are handled by Formspree. See the <a href="/legal/privacy">privacy policy</a>.
+    </small>
+
+</form>
