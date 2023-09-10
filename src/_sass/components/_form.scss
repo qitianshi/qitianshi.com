@@ -161,7 +161,9 @@ input[type=submit] {
 
                 // Applies a background color for legibility, for when the
                 // field is auto-filled.
-                background-color: var.$background-primary-color-light;
+                @include mix.light-theme() {
+                    background-color: var.$background-primary-color-light;
+                }
 
                 @include mix.dark-theme() {
                     background-color: var.$background-secondary-color-dark;
