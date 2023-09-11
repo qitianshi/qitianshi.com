@@ -20,25 +20,42 @@ navbar_transparency_theme: "dark"
 
 <form id="contact-form" class="c-form">
 
-    <div class="c-form__text-field">
-        <input type="text" id="contact-form__name" autocomplete="name" placeholder="&ZeroWidthSpace;" required>
-        <label for="contact-form__name">Name</label>
-    </div>
+    {%
+        include form/text-field.html
+        label="Name"
+        tag="input"
+        type="text"
+        id="contact-form__name"
+        autocomplete="name"
+        required=true
+    %}
 
-    <div class="c-form__text-field">
-        <input type="email" id="contact-form__email" autocomplete="email" placeholder="&ZeroWidthSpace;" required>
-        <label for="contact-form__email">Email</label>
-    </div>
+    {%
+        include form/text-field.html
+        label="Email"
+        tag="input"
+        type="email"
+        id="contact-form__email"
+        autocomplete="email"
+        required=true
+    %}
 
-    <div class="c-form__text-field">
-        <input type="text" id="contact-form__subject" placeholder="&ZeroWidthSpace;" required>
-        <label for="contact-form__subject">Subject</label>
-    </div>
+    {%
+        include form/text-field.html
+        label="Subject"
+        tag="input"
+        type="text"
+        id="contact-form__subject"
+        required=true
+    %}
 
-    <div class="c-form__text-field">
-        <textarea id="contact-form__message" placeholder="&ZeroWidthSpace;" rows="1" required></textarea>
-        <label for="contact-form__message">Message</label>
-    </div>
+    {%
+        include form/text-field.html
+        label="Message"
+        tag="textarea"
+        id="contact-form__message"
+        required=true
+    %}
 
     <input type="submit">
 
