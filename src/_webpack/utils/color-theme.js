@@ -3,14 +3,19 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+
+/**
+ * @typedef {"auto" | "light" | "dark"} ColorTheme Represents a user's
+ *      preferred color theme.
+ */
+
 const themePreferenceStorageKey = "user-theme-preference";
 
 /**
  * Checks localStorage if a color theme has previously been specified,
  * otherwise uses the default.
  *
- * @returns {String} The preferred color theme, either "light", "dark", or
- *                   "auto".
+ * @returns {ColorTheme} The preferred color theme.
  */
 function getPreferredTheme() {
 
@@ -33,7 +38,7 @@ function getPreferredTheme() {
 /**
  * Saves the preferred color theme to localStorage.
  *
- * @param {String} theme The theme to be saved.
+ * @param {ColorTheme} theme The theme to be saved.
  */
 function savePreferredTheme(theme) {
     localStorage.setItem(themePreferenceStorageKey, theme);
@@ -45,7 +50,7 @@ function savePreferredTheme(theme) {
  * or when some script other than the toggle causes the color theme to be
  * changed.
  *
- * @param {String} theme The theme to be applied.
+ * @param {ColorTheme} theme The theme to be applied.
  */
 function updateToggleWithSavedPreference(theme) {
 
@@ -60,7 +65,7 @@ function updateToggleWithSavedPreference(theme) {
 /**
  * Applies the preferred color theme to the webpage.
  *
- * @param {String} theme The theme to be applied.
+ * @param {ColorTheme} theme The theme to be applied.
  */
 function applyPreferredTheme(theme) {
 
