@@ -61,7 +61,10 @@ navbar_transparency_theme: "dark"
         required=true
     %}
 
-    <button type="submit">Submit</button>
+    {%
+        include form/submit-button.html
+        class="c-form__submit--default"
+    %}
 
     <small>
         Don't share sensitive info. Responses are handled by <a href="https://formspree.io" class="external-link" target="_blank">Formspree</a>. See the <a href="/legal/privacy">privacy policy</a>.

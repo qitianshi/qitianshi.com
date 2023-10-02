@@ -1,0 +1,27 @@
+<!-- The submit button for a .c-form, with status indicators. -->
+
+<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
+
+
+<button type="submit" class="c-form__submit {{ include.class }}">
+
+    <span class="c-form__submit-label--default">
+        Submit
+    </span>
+
+    <span class="c-form__submit-label--waiting o-media">
+        <span class="material-symbols-rounded">progress_activity</span>
+        Working&mldr;
+    </span>
+
+    <span class="c-form__submit-label--success o-media">
+        <span class="material-symbols-rounded">check_circle</span>
+        Submitted.
+    </span>
+
+    <span class="c-form__submit-label--failure o-media">
+        <span class="material-symbols-rounded">cancel</span>
+        Try again.
+    </span>
+
+</button>
