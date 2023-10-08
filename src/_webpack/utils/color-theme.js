@@ -19,19 +19,10 @@ const themePreferenceStorageKey = "user-theme-preference";
  */
 function getPreferredTheme() {
 
-    var preference = localStorage.getItem(themePreferenceStorageKey);
+    const preference = localStorage.getItem(themePreferenceStorageKey);
 
-    if (preference) {
-
-        // If a preference has already been set.
-        return preference;
-
-    } else {
-
-        // Fallback
-        return "auto";
-
-    }
+    // Returns preference if it has already been set; if not, "auto".
+    return preference ? preference : "auto";
 
 }
 
