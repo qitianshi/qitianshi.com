@@ -72,14 +72,22 @@ button {
     border-radius: 7.5px;
 
     font-size: 0.8rem;
-    color: var(--tiangerine-tangerine);
     background: none;
 
     cursor: pointer;
 
+    * {
+        color: var(--tiangerine-tangerine);
+    }
+
     &:hover {
+
         background-color: var(--tiangerine-tangerine);
-        color: white;
+
+        * {
+            color: white;
+        }
+
     }
 
 }
