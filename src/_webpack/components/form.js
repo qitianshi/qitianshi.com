@@ -29,9 +29,8 @@ function updateSubmitButtonState(targetButton, state) {
     );
     targetButton.classList.add(`c-form__submit--${state}`);
 
-    if (state in ["waiting", "success"]) {
-        targetButton.disabled = true;
-    }
+    // Disables the button for waiting and success states.
+    targetButton.disabled = (["waiting", "success"].includes(state));
 
 }
 
