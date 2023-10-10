@@ -72,21 +72,28 @@ button {
     border-radius: 7.5px;
 
     font-size: 0.8rem;
+    color: var(--tiangerine-tangerine);
     background: none;
+
+    // Transitions for hover effects.
+    transition-property: transform, box-shadow, color, background-color;
+    transition-duration: 0.5s;
+    transition-timing-function: var.$fast-ease-out;
 
     cursor: pointer;
 
     * {
-        color: var(--tiangerine-tangerine);
+        color: inherit;
     }
 
-    &:hover {
+    &:enabled:hover,
+    &:enabled:focus {
 
         background-color: var(--tiangerine-tangerine);
+        color: var.$foreground-primary-color-dark;
 
-        * {
-            color: white;
-        }
+        transform: scale(105%);
+        box-shadow: var.$small-shadow;
 
     }
 
