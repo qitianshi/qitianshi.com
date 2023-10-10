@@ -138,6 +138,79 @@ button {
 
     }
 
+    &__submit {
+
+        // The minimum width needed to accommodate every state of the button.
+        width: 166px;
+
+        & > span {
+
+            // Only the state that is selected will be displayed.
+            display: none;
+
+            // For positioning the UI symbol and the button text.
+            align-items: center;
+            justify-content: center;
+            column-gap: 0.25em;
+
+            // For styling the UI symbol.
+            & > svg {
+
+                height: 0.8rem;
+                width: auto;
+
+                position: relative;
+                top: 0.5px;
+
+            }
+
+        }
+
+        &--default {
+            span.c-form__submit-label--default { display: flex; }
+        }
+
+        &--waiting {
+
+            span.c-form__submit-label--waiting { display: flex; }
+
+            cursor: wait;
+
+            // Matches the style of the button on :focus.
+            color: var.$foreground-primary-color-dark;
+            background-color: var(--tiangerine-tangerine);
+            transform: scale(105%);
+            box-shadow: var.$small-shadow;
+
+            // Spins the loading spinner.
+            & > span > svg {
+                animation: continuous-rotation 1s infinite;
+                animation-timing-function: cubic-bezier(0.1, 0.35, 0.9, 0.65);
+            }
+
+        }
+
+        &--success {
+
+            span.c-form__submit-label--success { display: flex; }
+
+            cursor: not-allowed;
+
+            // Disables hover effects.
+            &:hover,
+            &:focus {
+                color: var(--tiangerine-tangerine);
+                background-color: transparent;
+            }
+
+        }
+
+        &--failure {
+            span.c-form__submit-label--failure { display: flex; }
+        }
+
+    }
+
     // A field containing a text-style input and a label. Labels initially
     // appear as full-sized text in the input field, but when the input is
     // focused, the label moves to the top and becomes smaller.
