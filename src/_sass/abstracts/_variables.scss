@@ -83,3 +83,8 @@ $big-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
 $breakpoints: (
     "small": 450px
 );
+
+
+// ------- Animations --------
+
+$fast-ease-out: cubic-bezier(0, 1, 0.25, 1);
