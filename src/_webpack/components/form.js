@@ -60,7 +60,7 @@ async function onFormSubmitted(event) {
 
     // The form that is being submitted, its submit button, and its data.
     const targetForm = event.target;
-    const submitButton = targetForm.querySelector("button[type='submit'");
+    const submitButton = targetForm.querySelector("button[type='submit']");
     const submittedData = new FormData(targetForm);
 
     updateSubmitButtonState(submitButton, "waiting");
