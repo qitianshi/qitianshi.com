@@ -294,6 +294,8 @@ button {
 
     }
 
+    // A warning that is shown when submission repeatedly fails.
+    // Programmatically displayed in JavaScript.
     &__multiple-failed-submits-warning {
         display: none;
     }

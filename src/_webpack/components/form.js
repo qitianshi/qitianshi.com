@@ -35,20 +35,6 @@ function updateSubmitButtonState(targetButton, state) {
 }
 
 /**
- *
- * @param {Element} targetForm The form whose submission is failing.
- */
-function handleMultipleFailedSubmits(targetForm) {
-
-    targetForm
-        .getElementsByClassName("c-form__multiple-failed-submits-warning")[0]
-        .style
-        .display
-        = "block";
-
-}
-
-/**
  * Makes an AJAX request to submit the form's data to the `action` attribute of
  * the form, and updates the submit button of the form with the status.
  *
@@ -128,15 +114,19 @@ async function onFormSubmitted(event) {
             error
         );
 
+    }).finally(function () {
+
+        // Controls the multiple failed submits warning if submission has
+        // been repeatedly failing.
+
+        targetForm
+            .getElementsByClassName(
+                "c-form__multiple-failed-submits-warning")[0]
+            .style
+            .display
+            = failedSubmitCount >= 2 ? "block" : "none";
+
     });
-
-    // If submission has been failing repeatedly, a warning message is shown to
-    // suggest alternatives.
-    if (failedSubmitCount > 2) {
-        handleMultipleFailedSubmits(targetForm);
-    }
-
-    //TODO: Hide multiple failed submits warning if subsequently succeeds.
 
 }
 
