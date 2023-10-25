@@ -67,7 +67,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
         height: $_navbar-height;
 
-        transition: transform 0.1s ease-out;
+        transition: transform 0.3s var.$fast-ease-out;
 
         #global-header__logo {
 
@@ -121,8 +121,8 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
                 // For hover effect.
                 transition-property: color, transform;
-                transition-duration: 0.1s;
-                transition-timing-function: ease-out;
+                transition-duration: 0.3s;
+                transition-timing-function: var.$fast-ease-out;
 
                 &:hover {
                     color: var(--tiangerine-tangerine);
