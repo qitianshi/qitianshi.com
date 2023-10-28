@@ -1,0 +1,36 @@
+<!-- The submit button for a .c-form, with status indicators. -->
+
+<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
+
+
+<button
+    type="submit"
+    class="c-form__submit c-form__submit--{{ include.state }}"
+    {% if include.state == "waiting" or include.state=="success" %} disabled {% endif %}
+    tabindex="0"
+>
+
+    <span class="c-form__submit-label--default">
+        Submit
+    </span>
+
+    <span class="c-form__submit-label--waiting o-media">
+        {% include svg/progress_activity.svg %}
+        Working&mldr;
+    </span>
+
+    <span class="c-form__submit-label--success o-media">
+        {% include svg/check_circle.svg %}
+        Submitted.
+    </span>
+
+    <span class="c-form__submit-label--failure o-media">
+        {% include svg/error.svg %}
+        Try again.
+    </span>
+
+</button>
+
+<small class="c-form__multiple-failed-submits-warning">
+    Something's been going wrong while trying to submit this form. If you keep seeing this error, try reaching out through my socials instead. <a href="https://status.formspree.io" class="external-link" target="_blank">Formspree status</a>
+</small>

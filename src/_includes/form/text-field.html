@@ -1,0 +1,42 @@
+<!-- A .c-form__text-field element. A short or long text field in a form. -->
+
+<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
+
+
+<div class="c-form__text-field">
+
+    {% if include.tag == "input" %}
+
+        <input
+            type="{{ include.type }}"
+            id="{{ include.id }}"
+            name="{{ include.name }}"
+            {% if include.autocomplete %} autocomplete="{{ include.autocomplete }}" {% endif %}
+            placeholder="&ZeroWidthSpace;"
+            {% if include.required %} required {% endif %}
+        >
+
+    {% elsif include.tag == "textarea" %}
+
+        <!-- Textareas have a default height of 1 row as they will expand to fit their content. -->
+        <textarea
+            id="{{ include.id }}"
+            name="{{ include.name }}"
+            placeholder="&ZeroWidthSpace;"
+            rows="1"
+            {% if include.required %} required {% endif %}
+        ></textarea>
+
+    {% endif %}
+
+    <label for="{{ include.id }}">{{ include.label }}</label>
+
+    <!--
+        Sizing element for textareas. <span> contains a mirror of the contents
+        of the textarea. <br> ensures trailing newlines are rendered correctly.
+    -->
+    {% if include.tag == "textarea" %}
+        <pre id="{{ include.id }}__textarea-sizing"><span></span><br></pre>
+    {% endif %}
+
+</div>
