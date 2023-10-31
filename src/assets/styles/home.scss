@@ -74,6 +74,15 @@
 
     gap: 1rem;
 
+    .o-media__image {
+
+        height: 48px;
+        width: auto;
+
+        path { fill: var(--tiangerine-tangerine); }
+
+    }
+
     .o-media__content * {
         margin: 0;
     }

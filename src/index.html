@@ -93,7 +93,10 @@ navbar_transparency_theme: "dark"
 <!-- "Under construction" card -->
 <div class="o-media o-card-container" id="construction-card">
 
-    {% include svg/construction.svg %}
+    {%
+        include svg/construction.svg
+        attributes='class="o-media__image"'
+    %}
 
     <div class="o-media__content">
         <h4>There's more to come.</h4>
