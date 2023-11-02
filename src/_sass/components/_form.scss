@@ -247,16 +247,6 @@ button {
                 transition-duration: 0.4s;
                 transition-timing-function: var.$fast-ease-out;
 
-                // Applies a background color for legibility, for when the
-                // field is auto-filled.
-                @include mix.light-theme() {
-                    background-color: var.$background-primary-color-light;
-                }
-
-                @include mix.dark-theme() {
-                    background-color: var.$background-secondary-color-dark;
-                }
-
             }
 
             // Transforms the label when the field is focused or when it

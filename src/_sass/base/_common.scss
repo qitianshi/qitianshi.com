@@ -47,3 +47,19 @@
     }
 
 }
+
+.u-background-scribble-modal {
+
+    @include mix.light-theme() {
+        background-image: url("/assets/images/extras/scribble-light.svg");
+    }
+
+    @include mix.dark-theme() {
+        background-image: url("/assets/images/extras/scribble-dark.svg");
+    }
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom right 20%;
+
+}
