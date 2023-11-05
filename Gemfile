@@ -13,4 +13,5 @@ gem "execjs", "~> 2.7.0"
 
 group :jekyll_plugins do
     gem "jekyll-autoprefixer", "~> 1.0.2"
+    gem "jekyll-minifier", "~> 0.1.10"
 end
