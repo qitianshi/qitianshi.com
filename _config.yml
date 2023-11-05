@@ -15,6 +15,7 @@ exclude:
   - "node_modules"
 sass:
   sourcemap: development
+  style: compressed
 plugins:
   - jekyll-autoprefixer
 
