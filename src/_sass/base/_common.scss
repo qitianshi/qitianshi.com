@@ -60,6 +60,9 @@
 
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: bottom right 20%;
+
+    // Positioning options.
+    background-position: bottom right 20%;              // Default.
+    &--top-right { background-position: top 20% right 20%; }
 
 }
