@@ -169,8 +169,8 @@ small {
     }
 
     // By default, any link in <small> is displayed discreetly.
-    & a:any-link,
-    & a:any-link * {
+    a:any-link,
+    a:any-link * {
         @extend .quiet-link;
     }
 

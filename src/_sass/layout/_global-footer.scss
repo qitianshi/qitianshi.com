@@ -103,7 +103,7 @@
         padding: 2px 1px;
 
         // Makes the radio button UI element invisible.
-        & input {
+        input {
 
             position: fixed;
             opacity: 0;
@@ -123,7 +123,7 @@
         }
 
         // See above notes on border radius and padding.
-        & label {
+        label {
 
             cursor: pointer;
             border-radius: 1rem;
@@ -143,11 +143,11 @@
 
             border-color: var(--tiangerine-tangerine);
 
-            & label span {
+            label span {
                 color: var(--tiangerine-tangerine);
             }
 
-            & input:checked + label {
+            input:checked + label {
                 background-color: var(--tiangerine-tangerine);
             }
 

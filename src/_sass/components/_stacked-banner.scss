@@ -20,7 +20,7 @@
     min-height: fit-content;
 
     // Places all immediate children in the same grid-area for stacking effect.
-    > * {
+    & > * {
         grid-area: 1 / -1;
     }
 
