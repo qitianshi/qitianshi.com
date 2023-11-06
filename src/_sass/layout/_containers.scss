@@ -46,17 +46,18 @@
     // Prevents text highlighting from extending to the edges of the page.
     position: relative;
 
-    & p {
+    p {
         text-align: justify;
-        line-height: 1.4em;
+        line-height: 1.6;
     }
 
     @include mix.respond-to-breakpoint("small") {
 
         // Returns text-align to its unset value if the screen is too narrow to
         // avoid ugly stretched lines.
-        & p {
+        p {
             text-align: unset;
+            line-height: 1.4;
         }
 
     }
