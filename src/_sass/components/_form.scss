@@ -102,8 +102,7 @@ button {
 // The default form object.
 .c-form {
 
-    @extend .o-card-container;
-    @extend .u-elevated;
+    @extend .o-card-container, .u-elevated;
 
     padding: var.$mobile-padding;
 
