@@ -34,7 +34,7 @@
 
     // If the browser requests a dark theme, the light theme variables are
     // overridden.
-    @media (prefers-color-scheme: dark) {
+    @media screen and (prefers-color-scheme: dark) {
         @include var.dark-theme-colors();
     }
 
