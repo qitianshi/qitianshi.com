@@ -39,7 +39,7 @@
 // elements for better readability.
 .o-text-container {
 
-    @extend .u-trim-vertical-margins;
+    @include mix.trim-vertical-margins();
 
     max-width: 65ch;
 

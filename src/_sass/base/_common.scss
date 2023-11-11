@@ -6,48 +6,6 @@
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
-/// Applies a shadow.
-.u-shadow {
-
-    box-shadow: var.$small-shadow;
-
-    &--hoverable:hover {
-        box-shadow: var.$big-shadow;
-    }
-
-}
-
-/// Makes elements appear elevated above the primary background. Applies a
-/// shadow; in light theme, keeps the background color the same as the
-/// primary background, and in dark theme, makes the background the secondary
-/// background color.
-.u-elevated {
-
-    @extend .u-shadow;
-
-    @include mix.light-theme() {
-        background-color: var.$background-primary-color-light;
-    }
-
-    @include mix.dark-theme() {
-        background-color: var.$background-secondary-color-dark;
-    }
-
-}
-
-/// Removes the top and bottom margins from the first-child and last-child.
-.u-trim-vertical-margins {
-
-    & :first-child {
-        margin-top: 0;
-    }
-
-    & :last-child {
-        margin-bottom: 0;
-    }
-
-}
-
 .u-background-scribble-modal {
 
     @include mix.light-theme() {

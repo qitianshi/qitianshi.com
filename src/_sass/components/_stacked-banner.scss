@@ -27,7 +27,7 @@
     // The contents of the banner.
     &__content {
 
-        @extend .u-trim-vertical-margins;
+        @include mix.trim-vertical-margins();
 
         // Required for z-stacking to work, otherwise the filter on the
         // background creates a new stacking context that breaks the grid

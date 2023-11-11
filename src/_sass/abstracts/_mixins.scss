@@ -30,7 +30,7 @@
 /// When the screen is narrow, a margin is applied on the left and right edges
 /// and the width and max-width are reset, so that the element fills the width
 /// of the screen, less the margins.
-@mixin apply-mobile-margin {
+@mixin apply-mobile-margin() {
     @include respond-to-breakpoint("small") {
         margin-left: var.$mobile-padding;
         margin-right: var.$mobile-padding;
@@ -41,7 +41,7 @@
 
 /// When the screen is narrow, changes the left and right paddings to
 /// var.$mobile-padding.
-@mixin apply-mobile-padding {
+@mixin apply-mobile-padding() {
     @include respond-to-breakpoint("small") {
         padding-left: var.$mobile-padding;
         padding-right: var.$mobile-padding;
@@ -76,6 +76,52 @@
     &.t-dark,
     .t-dark & {
         @content;
+    }
+
+}
+
+/// Applies the default shadow, with optional :hover styles.
+///
+/// @param {Bool} $hoverable - Increases the shadow on :hover.
+@mixin default-shadow($hoverable: false) {
+
+    box-shadow: var.$small-shadow;
+
+    @if $hoverable {
+        &:hover {
+            box-shadow: var.$big-shadow;
+        }
+    }
+
+}
+
+/// Makes elements appear elevated above the primary background. Applies a
+/// shadow; in light theme, keeps the background color the same as the
+/// primary background, and in dark theme, makes the background the secondary
+/// background color.
+@mixin hierarchy-elevated() {
+
+    @include default-shadow();
+
+    @include light-theme() {
+        background-color: var.$background-primary-color-light;
+    }
+
+    @include dark-theme() {
+        background-color: var.$background-secondary-color-dark;
+    }
+
+}
+
+/// Removes the top and bottom margins from :first-child and :last-child.
+@mixin trim-vertical-margins() {
+
+    & :first-child {
+        margin-top: 0;
+    }
+
+    & :last-child {
+        margin-bottom: 0;
     }
 
 }
