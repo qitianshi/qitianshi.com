@@ -248,11 +248,11 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
         // CSS variables containing colors don't support adding alpha channels
         // after the fact, so a mixin with Sass variables is used instead.
 
-        @include mix.light-theme {
+        @include mix.light-theme() {
             border-bottom: 0.5px solid rgba(var.$foreground-primary-color-light, 0.2);
         }
 
-        @include mix.dark-theme {
+        @include mix.dark-theme() {
             border-bottom: 0.5px solid rgba(var.$foreground-primary-color-dark, 0.2);
         }
 
