@@ -20,8 +20,6 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
 #global-header {
 
-    @include mix.hierarchy-elevated();
-
     // Places header above other page elements.
     position: fixed;
     z-index: 999;

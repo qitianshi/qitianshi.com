@@ -3,10 +3,13 @@
 <!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
 
 
-<header id="global-header"
-    {% if page.navbar_transparency_theme %}
-        class="global-header--transparency-enabled global-header--transparency-theme-{{ page.navbar_transparency_theme }}"
-    {% endif %}
+<header
+    id="global-header"
+    class="
+        {% if page.navbar_transparency_theme %}
+            global-header--transparency-enabled global-header--transparency-theme-{{ page.navbar_transparency_theme }}
+        {% endif %}
+        u-hierarchy-elevated"
 >
     <nav>
 

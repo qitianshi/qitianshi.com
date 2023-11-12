@@ -102,7 +102,6 @@ button {
 .c-form {
 
     @extend .o-card-container;
-    @include mix.hierarchy-elevated();
 
     padding: var.$mobile-padding;
 

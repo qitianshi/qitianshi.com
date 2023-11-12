@@ -64,7 +64,6 @@
 #construction-card {
 
     @include mix.apply-mobile-margin();
-    @include mix.hierarchy-elevated();
 
     margin: 5rem auto;
     padding: 2rem;

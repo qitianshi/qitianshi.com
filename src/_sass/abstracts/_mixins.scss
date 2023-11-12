@@ -133,24 +133,6 @@
 
 }
 
-/// Makes elements appear elevated above the primary background. Applies a
-/// shadow; in light theme, keeps the background color the same as the
-/// primary background, and in dark theme, makes the background the secondary
-/// background color.
-@mixin hierarchy-elevated() {
-
-    @include default-shadow();
-
-    @include light-theme() {
-        background-color: var.$background-primary-color-light;
-    }
-
-    @include dark-theme() {
-        background-color: var.$background-secondary-color-dark;
-    }
-
-}
-
 /// Removes the top and bottom margins from :first-child and :last-child.
 @mixin trim-vertical-margins() {
 

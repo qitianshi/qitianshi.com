@@ -4,6 +4,25 @@
 
 
 @use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
+
+/// Makes elements appear elevated above the primary background. Applies a
+/// shadow; in light theme, keeps the background color the same as the
+/// primary background, and in dark theme, makes the background the secondary
+/// background color.
+.u-hierarchy-elevated {
+
+    @include mix.default-shadow();
+
+    @include mix.light-theme() {
+        background-color: var.$background-primary-color-light;
+    }
+
+    @include mix.dark-theme() {
+        background-color: var.$background-secondary-color-dark;
+    }
+
+}
 
 .u-background-scribble-modal {
 
