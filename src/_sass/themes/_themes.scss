@@ -7,11 +7,11 @@
 
 @use "abstracts/mixins" as mix;
 
-.t-light {
+.t-light, %t-light {
     @include mix.light-theme-palette();
 }
 
-.t-dark {
+.t-dark, %t-dark {
     @include mix.dark-theme-palette();
 }
 

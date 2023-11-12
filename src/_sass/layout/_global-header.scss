@@ -4,8 +4,8 @@
 
 
 @use "abstracts/mixins" as mix;
-@use "abstracts/placeholders";
 @use "abstracts/variables" as var;
+@use "themes/themes";
 
 // Navbar layout
 $_navbar-height: 48px;
@@ -234,8 +234,8 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
     &.global-header--transparent {
 
         &.global-header--transparency-theme {
-            &-dark { @extend %always-dark-theme; }
-            &-light { @extend %always-light-theme; }
+            &-dark { @extend %t-dark; }
+            &-light { @extend %t-light; }
         }
 
         background-color: transparent !important;
