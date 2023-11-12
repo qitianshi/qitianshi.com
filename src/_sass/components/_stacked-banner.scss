@@ -69,7 +69,7 @@
     // The main heading text in .c-stacked-banner.
     &__heading {
 
-        @extend h1;
+        @extend %h1-style;
 
         font-size: 3.4rem;
         margin: 1.5rem 0;
