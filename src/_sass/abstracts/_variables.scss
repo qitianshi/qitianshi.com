@@ -37,40 +37,6 @@ $foreground-tertiary-color-dark: #636363;
 $link-color-dark: #71a8f4;
 $link-hover-color-dark: #68a2f3;
 
-/// Sets the light theme color palette as CSS variables.
-@mixin light-theme-colors() {
-
-    --tiangerine-tangerine: #{$tiangerine-tangerine-light};
-
-    --background-primary-color: #{$background-primary-color-light};
-    --background-secondary-color: #{$background-secondary-color-light};
-
-    --foreground-primary-color: #{$foreground-primary-color-light};
-    --foreground-secondary-color: #{$foreground-secondary-color-light};
-    --foreground-tertiary-color: #{$foreground-tertiary-color-light};
-
-    --link-color: #{$link-color-light};
-    --link-hover-color: #{$link-hover-color-light};
-
-}
-
-/// Sets the dark theme color palette as CSS variables.
-@mixin dark-theme-colors() {
-
-    --tiangerine-tangerine: #{$tiangerine-tangerine-dark};
-
-    --background-primary-color: #{$background-primary-color-dark};
-    --background-secondary-color: #{$background-secondary-color-dark};
-
-    --foreground-primary-color: #{$foreground-primary-color-dark};
-    --foreground-secondary-color: #{$foreground-secondary-color-dark};
-    --foreground-tertiary-color: #{$foreground-tertiary-color-dark};
-
-    --link-color: #{$link-color-dark};
-    --link-hover-color: #{$link-hover-color-dark};
-
-}
-
 
 // ----- Design elements -----
 

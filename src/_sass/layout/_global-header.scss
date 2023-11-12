@@ -4,6 +4,7 @@
 
 
 @use "abstracts/mixins" as mix;
+@use "abstracts/placeholders";
 @use "abstracts/variables" as var;
 @use "base/common";
 @use "themes/themes";
@@ -237,8 +238,8 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
     &.global-header--transparent {
 
         &.global-header--transparency-theme {
-            &-dark { @extend .t-dark; }
-            &-light { @extend .t-light; }
+            &-dark { @extend %always-dark-theme; }
+            &-light { @extend %always-light-theme; }
         }
 
         background-color: transparent !important;

@@ -48,6 +48,44 @@
     }
 }
 
+/// Sets the light theme color palette as CSS variables.
+@mixin light-theme-palette() {
+
+    --tiangerine-tangerine: #{var.$tiangerine-tangerine-light};
+
+    --background-primary-color: #{var.$background-primary-color-light};
+    --background-secondary-color: #{var.$background-secondary-color-light};
+
+    --foreground-primary-color: #{var.$foreground-primary-color-light};
+    --foreground-secondary-color: #{var.$foreground-secondary-color-light};
+    --foreground-tertiary-color: #{var.$foreground-tertiary-color-light};
+
+    --link-color: #{var.$link-color-light};
+    --link-hover-color: #{var.$link-hover-color-light};
+
+    color-scheme: light;
+
+}
+
+/// Sets the dark theme color palette as CSS variables.
+@mixin dark-theme-palette() {
+
+    --tiangerine-tangerine: #{var.$tiangerine-tangerine-dark};
+
+    --background-primary-color: #{var.$background-primary-color-dark};
+    --background-secondary-color: #{var.$background-secondary-color-dark};
+
+    --foreground-primary-color: #{var.$foreground-primary-color-dark};
+    --foreground-secondary-color: #{var.$foreground-secondary-color-dark};
+    --foreground-tertiary-color: #{var.$foreground-tertiary-color-dark};
+
+    --link-color: #{var.$link-color-dark};
+    --link-hover-color: #{var.$link-hover-color-dark};
+
+    color-scheme: dark;
+
+}
+
 /// Specifies additional styles for the light theme, whether it's applied using
 /// @media or .t-light. As much as possible, prefer using color variables.
 @mixin light-theme() {

@@ -3,6 +3,7 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
 
@@ -26,16 +27,14 @@
 
 :root {
 
-    color-scheme: light dark;
-
     // Sets the light theme colors as default for compatibility with browsers
     // that don't support prefers-color-scheme.
-    @include var.light-theme-colors();
+    @include mix.light-theme-palette();
 
     // If the browser requests a dark theme, the light theme variables are
     // overridden.
     @media screen and (prefers-color-scheme: dark) {
-        @include var.dark-theme-colors();
+        @include mix.dark-theme-palette();
     }
 
 }

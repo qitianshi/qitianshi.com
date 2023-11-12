@@ -6,11 +6,9 @@
 
 
 @use "abstracts/mixins" as mix;
+@use "abstracts/placeholders";
 @use "abstracts/variables" as var;
-@use "base/common";
 @use "base/typography";
-@use "layout/containers";
-@use "themes/themes";
 
 .c-stacked-banner {
 
@@ -90,7 +88,7 @@
 
     // If &__content follows &__background, content is set to dark theme.
     &__background ~ &__content {
-        @extend .t-dark;
+        @extend %always-dark-theme;
     }
 
     // Specific implementation of .c-stacked-banner for hero banners as page
