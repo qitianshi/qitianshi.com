@@ -6,8 +6,6 @@
 @use "abstracts/mixins" as mix;
 @use "abstracts/placeholders";
 @use "abstracts/variables" as var;
-@use "base/common";
-@use "themes/themes";
 
 // Navbar layout
 $_navbar-height: 48px;
