@@ -14,11 +14,11 @@
 
     @include mix.default-shadow();
 
-    @include mix.light-theme() {
+    @include mix.color-theme(light) {
         background-color: var.$background-primary-color-light;
     }
 
-    @include mix.dark-theme() {
+    @include mix.color-theme(dark) {
         background-color: var.$background-secondary-color-dark;
     }
 
@@ -26,11 +26,11 @@
 
 .u-background-scribble-modal {
 
-    @include mix.light-theme() {
+    @include mix.color-theme(light) {
         background-image: url("/assets/images/extras/scribble-light.svg");
     }
 
-    @include mix.dark-theme() {
+    @include mix.color-theme(dark) {
         background-image: url("/assets/images/extras/scribble-dark.svg");
     }
 
