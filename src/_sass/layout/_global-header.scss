@@ -18,6 +18,10 @@ $_hamburger-icon-height: 18px;
 $_hamburger-line-weight: 2px;
 $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-weight) / 2);
 
+// Transparent mode
+$_transparent-mode-border-light: 0.5px solid rgba(var.$foreground-primary-color-light, 0.2);
+$_transparent-mode-border-dark: 0.5px solid rgba(var.$foreground-primary-color-dark, 0.2);
+
 #global-header {
 
     // Places header above other page elements.
@@ -234,8 +238,17 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
     &.global-header--transparent {
 
         &.global-header--transparency-theme {
-            &-dark { @extend %t-dark; }
-            &-light { @extend %t-light; }
+
+            &-light {
+                @extend %t-light;
+                border-bottom: $_transparent-mode-border-light;
+            }
+
+            &-dark {
+                @extend %t-dark;
+                border-bottom: $_transparent-mode-border-dark;
+            }
+
         }
 
         background-color: transparent !important;
@@ -246,11 +259,11 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
         // after the fact, so a mixin with Sass variables is used instead.
 
         @include mix.color-theme(light) {
-            border-bottom: 0.5px solid rgba(var.$foreground-primary-color-light, 0.2);
+            border-bottom: $_transparent-mode-border-light;
         }
 
         @include mix.color-theme(dark) {
-            border-bottom: 0.5px solid rgba(var.$foreground-primary-color-dark, 0.2);
+            border-bottom: $_transparent-mode-border-dark;
         }
 
     }
