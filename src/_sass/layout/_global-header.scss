@@ -20,8 +20,13 @@ $_hamburger-line-weight: 2px;
 $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-weight) / 2);
 
 // Transparent mode
-$_transparent-mode-border-light: 0.5px solid rgba(func.palette("light", "foreground", 1), 0.2);
-$_transparent-mode-border-dark: 0.5px solid rgba(func.palette("dark", "foreground", 1), 0.2);
+@mixin _transparent-mode-border($theme) {
+
+    // CSS color variables don't support adding alpha channels, so a mixin with
+    // Sass variables is used instead.
+    border-bottom: 0.5px solid rgba(func.palette($theme, "foreground", 1), 0.2);
+
+}
 
 #global-header {
 
@@ -238,33 +243,21 @@ $_transparent-mode-border-dark: 0.5px solid rgba(func.palette("dark", "foregroun
 
     &.global-header--transparent {
 
-        &.global-header--transparency-theme {
-
-            &-light {
-                @extend %t-light;
-                border-bottom: $_transparent-mode-border-light;
-            }
-
-            &-dark {
-                @extend %t-dark;
-                border-bottom: $_transparent-mode-border-dark;
-            }
-
-        }
-
         background-color: transparent !important;
         backdrop-filter: none;
         box-shadow: none;
 
-        // CSS variables containing colors don't support adding alpha channels
-        // after the fact, so a mixin with Sass variables is used instead.
+        @each $theme in "light", "dark" {
 
-        @include mix.color-theme(light) {
-            border-bottom: $_transparent-mode-border-light;
-        }
+            @include mix.color-theme($theme) {
+                @include _transparent-mode-border($theme);
+            }
 
-        @include mix.color-theme(dark) {
-            border-bottom: $_transparent-mode-border-dark;
+            &.global-header--transparency-theme-#{$theme} {
+                @extend %t-#{$theme};
+                @include _transparent-mode-border($theme);
+            }
+
         }
 
     }
