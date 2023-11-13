@@ -71,16 +71,17 @@
 /// Specifies additional styles for a specific color theme.
 ///
 /// @param {String} $theme - The theme for which the styles are applied. Either
-///     "light" or "dark".
-@mixin color-theme($theme) {
+///     `light` or `dark`.
+/// @param {Bool} $as-fallback - Whether these styles should also be included
+///     as a fallback if prefers-color-scheme is not supported. By default,
+///     $theme as `light` is the fallback.
+@mixin color-theme($theme, $as-fallback: ($theme == light)) {
 
-    @media screen and (prefers-color-scheme: $theme) {
-        @content;
-    }
+    @if $as-fallback { @content; }
 
-    &.t-#{$theme}, .t-#{$theme} & {
-        @content;
-    }
+    @media screen and (prefers-color-scheme: $theme) { @content; }
+
+    &.t-#{$theme}, .t-#{$theme} & { @content; }
 
 }
 
