@@ -6,6 +6,7 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/functions" as func;
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
@@ -22,7 +23,7 @@
         display: block;
 
         font-size: 3em;
-        color: var.$foreground-primary-color-dark;
+        color: func.palette("dark", "foreground", 1);
         line-height: 0.9em;
 
         @media screen and (max-width: 700px) {

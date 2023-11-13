@@ -1,0 +1,35 @@
+// Global functions.
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+
+@use "abstracts/variables" as var;
+
+/// Gets a value from a map with nested keys.
+@function map-deep-get($map, $keys...) {
+
+    $scope: $map;
+    $i: 1;
+
+    @while (meta.type-of($scope) == map) and ($i <= list.length($keys)) {
+        $scope: map.get($scope, list.nth($keys, $i));
+        $i: $i + 1;
+    }
+
+    @return $scope;
+
+}
+
+/// Gets a color from the color palette by the color theme, key, and level.
+///
+/// @param {String} $theme - The color theme, either "light" or "dark".
+/// @param {String} $key - The key identifier of the color.
+/// @param {Integer} $level - The hierarchical level of the color; 1 for
+///     "primary", 2 for "secondary", and so on.
+@function palette($theme, $key, $level: 1) {
+    @return list.nth(map-deep-get(var.$color-palette, $theme, $key), $level);
+}

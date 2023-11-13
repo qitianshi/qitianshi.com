@@ -3,6 +3,7 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/functions" as func;
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
@@ -15,11 +16,11 @@
     @include mix.default-shadow();
 
     @include mix.color-theme(light) {
-        background-color: var.$background-primary-color-light;
+        background-color: func.palette("light", "background", 1);
     }
 
     @include mix.color-theme(dark) {
-        background-color: var.$background-secondary-color-dark;
+        background-color: func.palette("dark", "background", 2);
     }
 
 }

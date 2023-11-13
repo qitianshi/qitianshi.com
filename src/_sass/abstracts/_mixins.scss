@@ -3,6 +3,7 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/functions" as func;
 @use "abstracts/variables" as var;
 
 /// Applies a media query to adjust styles for screens up to the width of the
@@ -51,17 +52,17 @@
 /// Sets the light theme color palette as CSS variables.
 @mixin light-theme-palette() {
 
-    --tiangerine-tangerine: #{var.$tiangerine-tangerine-light};
+    --tiangerine-tangerine: #{func.palette("light", "tiangerine-tangerine")};
 
-    --background-primary-color: #{var.$background-primary-color-light};
-    --background-secondary-color: #{var.$background-secondary-color-light};
+    --background-primary-color: #{func.palette("light", "background", 1)};
+    --background-secondary-color: #{func.palette("light", "background", 2)};
 
-    --foreground-primary-color: #{var.$foreground-primary-color-light};
-    --foreground-secondary-color: #{var.$foreground-secondary-color-light};
-    --foreground-tertiary-color: #{var.$foreground-tertiary-color-light};
+    --foreground-primary-color: #{func.palette("light", "foreground", 1)};
+    --foreground-secondary-color: #{func.palette("light", "foreground", 2)};
+    --foreground-tertiary-color: #{func.palette("light", "foreground", 3)};
 
-    --link-color: #{var.$link-color-light};
-    --link-hover-color: #{var.$link-hover-color-light};
+    --link-color: #{func.palette("light", "link", 1)};
+    --link-hover-color: #{func.palette("light", "link", 2)};
 
     color-scheme: light;
 
@@ -70,17 +71,17 @@
 /// Sets the dark theme color palette as CSS variables.
 @mixin dark-theme-palette() {
 
-    --tiangerine-tangerine: #{var.$tiangerine-tangerine-dark};
+    --tiangerine-tangerine: #{func.palette("dark", "tiangerine-tangerine")};
 
-    --background-primary-color: #{var.$background-primary-color-dark};
-    --background-secondary-color: #{var.$background-secondary-color-dark};
+    --background-primary-color: #{func.palette("dark", "background", 1)};
+    --background-secondary-color: #{func.palette("dark", "background", 2)};
 
-    --foreground-primary-color: #{var.$foreground-primary-color-dark};
-    --foreground-secondary-color: #{var.$foreground-secondary-color-dark};
-    --foreground-tertiary-color: #{var.$foreground-tertiary-color-dark};
+    --foreground-primary-color: #{func.palette("dark", "foreground", 1)};
+    --foreground-secondary-color: #{func.palette("dark", "foreground", 2)};
+    --foreground-tertiary-color: #{func.palette("dark", "foreground", 3)};
 
-    --link-color: #{var.$link-color-dark};
-    --link-hover-color: #{var.$link-hover-color-dark};
+    --link-color: #{func.palette("dark", "link", 1)};
+    --link-hover-color: #{func.palette("dark", "link", 2)};
 
     color-scheme: dark;
 

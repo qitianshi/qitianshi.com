@@ -3,6 +3,7 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/functions" as func;
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 @use "themes/themes";
@@ -19,8 +20,8 @@ $_hamburger-line-weight: 2px;
 $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-weight) / 2);
 
 // Transparent mode
-$_transparent-mode-border-light: 0.5px solid rgba(var.$foreground-primary-color-light, 0.2);
-$_transparent-mode-border-dark: 0.5px solid rgba(var.$foreground-primary-color-dark, 0.2);
+$_transparent-mode-border-light: 0.5px solid rgba(func.palette("light", "foreground", 1), 0.2);
+$_transparent-mode-border-dark: 0.5px solid rgba(func.palette("dark", "foreground", 1), 0.2);
 
 #global-header {
 
@@ -41,11 +42,11 @@ $_transparent-mode-border-dark: 0.5px solid rgba(var.$foreground-primary-color-d
         backdrop-filter: blur(30px);
 
         @include mix.color-theme(light) {
-            background-color: rgba(var.$background-primary-color-light, 0.8);
+            background-color: rgba(func.palette("light", "background", 1), 0.8);
         }
 
         @include mix.color-theme(dark) {
-            background-color: rgba(var.$background-secondary-color-dark, 0.8);
+            background-color: rgba(func.palette("dark", "background", 2), 0.8);
         }
 
     }

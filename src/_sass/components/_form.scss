@@ -3,6 +3,7 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/functions" as func;
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 @use "layout/containers";
@@ -89,7 +90,7 @@ button {
     &:enabled:focus {
 
         background-color: var(--tiangerine-tangerine);
-        color: var.$foreground-primary-color-dark;
+        color: func.palette("dark", "foreground", 1);
 
         transform: scale(105%);
         box-shadow: var.$small-shadow;
@@ -173,7 +174,7 @@ button {
             cursor: wait;
 
             // Matches the style of the button on :focus.
-            color: var.$foreground-primary-color-dark;
+            color: func.palette("dark", "foreground", 1);
             background-color: var(--tiangerine-tangerine);
             transform: scale(105%);
             box-shadow: var.$small-shadow;
