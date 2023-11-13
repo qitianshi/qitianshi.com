@@ -28,12 +28,12 @@
 
     // Sets the light theme colors as default for compatibility with browsers
     // that don't support prefers-color-scheme.
-    @include mix.light-theme-palette();
+    @include mix.set-color-palette(light);
 
     // If the browser requests a dark theme, the light theme variables are
     // overridden.
     @media screen and (prefers-color-scheme: dark) {
-        @include mix.dark-theme-palette();
+        @include mix.set-color-palette(dark);
     }
 
 }

@@ -49,41 +49,22 @@
     }
 }
 
-/// Sets the light theme color palette as CSS variables.
-@mixin light-theme-palette() {
+/// Sets the color palette for a chosen color theme as CSS variables.
+@mixin set-color-palette($theme) {
 
-    --tiangerine-tangerine: #{func.palette("light", "tiangerine-tangerine")};
+    --tiangerine-tangerine: #{func.palette($theme, "tiangerine-tangerine")};
 
-    --background-primary-color: #{func.palette("light", "background", 1)};
-    --background-secondary-color: #{func.palette("light", "background", 2)};
+    --background-primary-color: #{func.palette($theme, "background", 1)};
+    --background-secondary-color: #{func.palette($theme, "background", 2)};
 
-    --foreground-primary-color: #{func.palette("light", "foreground", 1)};
-    --foreground-secondary-color: #{func.palette("light", "foreground", 2)};
-    --foreground-tertiary-color: #{func.palette("light", "foreground", 3)};
+    --foreground-primary-color: #{func.palette($theme, "foreground", 1)};
+    --foreground-secondary-color: #{func.palette($theme, "foreground", 2)};
+    --foreground-tertiary-color: #{func.palette($theme, "foreground", 3)};
 
-    --link-color: #{func.palette("light", "link", 1)};
-    --link-hover-color: #{func.palette("light", "link", 2)};
+    --link-color: #{func.palette($theme, "link", 1)};
+    --link-hover-color: #{func.palette($theme, "link", 2)};
 
-    color-scheme: light;
-
-}
-
-/// Sets the dark theme color palette as CSS variables.
-@mixin dark-theme-palette() {
-
-    --tiangerine-tangerine: #{func.palette("dark", "tiangerine-tangerine")};
-
-    --background-primary-color: #{func.palette("dark", "background", 1)};
-    --background-secondary-color: #{func.palette("dark", "background", 2)};
-
-    --foreground-primary-color: #{func.palette("dark", "foreground", 1)};
-    --foreground-secondary-color: #{func.palette("dark", "foreground", 2)};
-    --foreground-tertiary-color: #{func.palette("dark", "foreground", 3)};
-
-    --link-color: #{func.palette("dark", "link", 1)};
-    --link-hover-color: #{func.palette("dark", "link", 2)};
-
-    color-scheme: dark;
+    color-scheme: $theme;
 
 }
 

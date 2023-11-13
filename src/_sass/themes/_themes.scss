@@ -8,21 +8,21 @@
 @use "abstracts/mixins" as mix;
 
 .t-light, %t-light {
-    @include mix.light-theme-palette();
+    @include mix.set-color-palette(light);
 }
 
 .t-dark, %t-dark {
-    @include mix.dark-theme-palette();
+    @include mix.set-color-palette(dark);
 }
 
 // Follows the user's preferred color scheme, from the prefers-color-scheme
 // media query. Defaults to light theme.
 .t-auto {
 
-    @include mix.light-theme-palette();
+    @include mix.set-color-palette(light);
 
     @media screen and (prefers-color-scheme: dark) {
-        @include mix.dark-theme-palette();
+        @include mix.set-color-palette(dark);
     }
 
 }
