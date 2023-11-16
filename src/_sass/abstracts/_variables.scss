@@ -11,6 +11,8 @@ $body-font-family: "Barlow", system-ui, -apple-system, BlinkMacSystemFont, 'Sego
 
 // --------- Colors ----------
 
+// Color palette map is divided into light and dark palettes, both with color
+// keys mapping to lists of colors in decreasing order of hierarchical level.
 $color-palette: (
     "light": (
         "tiangerine-tangerine": #ef4b07,
@@ -25,6 +27,7 @@ $color-palette: (
         "link": #71a8f4 #68a2f3,
     ),
 );
+
 
 // ----- Design elements -----
 
