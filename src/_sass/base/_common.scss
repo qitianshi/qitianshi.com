@@ -5,7 +5,6 @@
 
 @use "abstracts/functions" as func;
 @use "abstracts/mixins" as mix;
-@use "abstracts/variables" as var;
 
 /// Makes elements appear elevated above the primary background. Applies a
 /// shadow; in light theme, keeps the background color the same as the
