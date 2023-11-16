@@ -19,33 +19,32 @@
             @content;
         }
 
-    }
+    } @else {
 
-    // Raise warning if the key doesn't exist.
-    @else {
+        // Raise warning if the key doesn't exist.
         @warn "No key `#{$breakpoint}` in $breakpoints.";
+
     }
 
 }
 
-/// When the screen is narrow, a margin is applied on the left and right edges
-/// and the width and max-width are reset, so that the element fills the width
-/// of the screen, less the margins.
-@mixin apply-mobile-margin() {
+/// Adjusts the horizontal spacing of an element for mobile screens.
+///
+/// @param {Bool} $space-interior - Whether the interior or the exterior should
+///     be adjusted. If true, the paddings of the element are changed; if
+///     false, the margins are changed and its width is reset.
+@mixin mobile-horizontal-spacing($space-interior) {
     @include respond-to-breakpoint("small") {
-        margin-left: var.$mobile-padding;
-        margin-right: var.$mobile-padding;
-        width: unset;
-        max-width: unset;
-    }
-}
 
-/// When the screen is narrow, changes the left and right paddings to
-/// var.$mobile-padding.
-@mixin apply-mobile-padding() {
-    @include respond-to-breakpoint("small") {
-        padding-left: var.$mobile-padding;
-        padding-right: var.$mobile-padding;
+        $adjusted-property: if($space-interior, padding, margin);
+        #{$adjusted-property}-left: var.$mobile-padding;
+        #{$adjusted-property}-right: var.$mobile-padding;
+
+        @if (not $space-interior) {
+            width: unset;
+            max-width: unset;
+        }
+
     }
 }
 

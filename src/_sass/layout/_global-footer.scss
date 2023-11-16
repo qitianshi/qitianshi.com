@@ -20,7 +20,7 @@
 
     &__content {
 
-        @include mix.apply-mobile-margin();
+        @include mix.mobile-horizontal-spacing($space-interior: false);
 
         // Keeps a 10% margin on both sides, similar to .c-stacked-banner--hero
         width: 80%;

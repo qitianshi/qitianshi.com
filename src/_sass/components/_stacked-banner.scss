@@ -101,7 +101,7 @@
     // .c-body-text.
     &--text-header &__content {
 
-        @include mix.apply-mobile-margin();
+        @include mix.mobile-horizontal-spacing($space-interior: false);
 
         // Makes the heading the same width as the body text.
         width: 80vw;

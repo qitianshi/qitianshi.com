@@ -40,7 +40,7 @@
 
 #introduction-banner {
 
-    @include mix.apply-mobile-padding();
+    @include mix.mobile-horizontal-spacing($space-interior: true);
 
     justify-content: center;
     gap: 3rem;
@@ -64,7 +64,7 @@
 
 #construction-card {
 
-    @include mix.apply-mobile-margin();
+    @include mix.mobile-horizontal-spacing($space-interior: false);
 
     margin: 5rem auto;
     padding: 2rem;
