@@ -27,12 +27,10 @@
 
 .u-background-scribble-modal {
 
-    @include mix.color-theme(light) {
-        background-image: url("/assets/images/extras/scribble-light.svg");
-    }
-
-    @include mix.color-theme(dark) {
-        background-image: url("/assets/images/extras/scribble-dark.svg");
+    @each $theme in "light", "dark" {
+        @include mix.color-theme($theme) {
+            background-image: url("/assets/images/extras/scribble-#{$theme}.svg");
+        }
     }
 
     background-size: cover;
