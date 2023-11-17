@@ -67,7 +67,7 @@ button {
     padding: 0.5em 2em;
 
     border: 2px solid var(--tiangerine-tangerine);
-    border-radius: 7.5px;
+    border-radius: calc(var.$default-corner-radius / 2);
 
     font-size: 0.8rem;
     color: var(--tiangerine-tangerine);

@@ -4,6 +4,7 @@
 
 
 @use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
 
 // Fills the entire viewport.
 .o-fill-viewport-container {
@@ -19,7 +20,7 @@
 
 // A card with rounded corners.
 .o-card-container {
-    border-radius: 15px;
+    border-radius: var.$default-corner-radius;
     overflow: hidden;
 }
 

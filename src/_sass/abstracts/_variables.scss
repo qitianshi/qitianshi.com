@@ -31,15 +31,17 @@ $color-palette: (
 
 // ----- Design elements -----
 
-$mobile-padding: 16px;
-
-$small-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
-$big-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
-
 // Used with mix.respond-to-breakpoint for responsive design.
 $breakpoints: (
     "small": 450px
 );
+
+$mobile-padding: 16px;
+
+$default-corner-radius: 15px;
+
+$small-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+$big-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
 
 
 // ------- Animations --------
