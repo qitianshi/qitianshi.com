@@ -6,6 +6,17 @@
 @use "abstracts/functions" as func;
 @use "abstracts/variables" as var;
 
+// The styling for button-type inputs when hovered or focused.
+@mixin _focused-button-style() {
+
+    background-color: var(--tiangerine-tangerine);
+    color: func.palette("dark", "foreground", 1);
+
+    transform: scale(105%);
+    box-shadow: var.$small-shadow;
+
+}
+
 // Gives form UI elements the same font family as the rest of the website,
 // instead of the default system font.
 button,
@@ -86,13 +97,7 @@ button {
 
     &:enabled:hover,
     &:enabled:focus {
-
-        background-color: var(--tiangerine-tangerine);
-        color: func.palette("dark", "foreground", 1);
-
-        transform: scale(105%);
-        box-shadow: var.$small-shadow;
-
+        @include _focused-button-style();
     }
 
 }
@@ -138,7 +143,7 @@ button {
         // The minimum width needed to accommodate every state of the button.
         width: 168px;
 
-        & > span {
+        & > span[class^="c-form__submit-label"] {
 
             // Only the state that is selected will be displayed.
             display: none;
@@ -161,21 +166,18 @@ button {
 
         }
 
-        &--default {
-            span.c-form__submit-label--default { display: flex; }
+        // Makes the label for the active state visible.
+        @each $state in "default", "waiting", "success", "failure" {
+            &--#{$state} span.c-form__submit-label--#{$state} {
+                display: flex;
+            }
         }
 
         &--waiting {
 
-            span.c-form__submit-label--waiting { display: flex; }
+            @include _focused-button-style();
 
             cursor: wait;
-
-            // Matches the style of the button on :focus.
-            color: func.palette("dark", "foreground", 1);
-            background-color: var(--tiangerine-tangerine);
-            transform: scale(105%);
-            box-shadow: var.$small-shadow;
 
             // Spins the loading spinner.
             & > span > svg {
@@ -186,22 +188,7 @@ button {
         }
 
         &--success {
-
-            span.c-form__submit-label--success { display: flex; }
-
             cursor: not-allowed;
-
-            // Disables hover effects.
-            &:hover,
-            &:focus {
-                color: var(--tiangerine-tangerine);
-                background-color: transparent;
-            }
-
-        }
-
-        &--failure {
-            span.c-form__submit-label--failure { display: flex; }
         }
 
     }
@@ -248,7 +235,6 @@ button {
             // contains text.
             &:focus,
             &:not(:placeholder-shown) {
-
                 & + label {
 
                     color: var(--foreground-secondary-color);
@@ -256,7 +242,6 @@ button {
                     transform: translateY(-1.25em);
 
                 }
-
             }
 
         }
