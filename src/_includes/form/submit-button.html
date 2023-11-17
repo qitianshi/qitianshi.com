@@ -5,7 +5,7 @@
 
 <button
     type="submit"
-    class="c-form__submit c-form__submit--{{ include.state }}"
+    class="c-form__submit c-form__submit--{{ include.state | default: 'default' }}"
     {% if include.state == "waiting" or include.state=="success" %} disabled {% endif %}
     tabindex="0"
 >
