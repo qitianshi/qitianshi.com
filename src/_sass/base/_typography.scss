@@ -70,7 +70,7 @@ h1, %h1-style {
     margin: 1.8em 0 1rem;
 
     // Adds an accent color beneath the text
-    border-bottom: 2px solid;
+    border-bottom: var.$default-accent-line-weight solid;
     border-color: var(--tiangerine-tangerine);
 
     // Makes the width fit its content; otherwise, the underline would extend

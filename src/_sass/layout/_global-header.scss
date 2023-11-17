@@ -16,7 +16,7 @@ $_mobile-navlink-height: 64px;
 // Hamburger button
 $_hamburger-icon-width: 24px;
 $_hamburger-icon-height: 18px;
-$_hamburger-line-weight: 2px;
+$_hamburger-line-weight: var.$default-accent-line-weight;
 $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-weight) / 2);
 
 // Transparent mode
@@ -141,11 +141,11 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
             &.global-header__navlink--active {
 
-                border-top: 2px solid var(--tiangerine-tangerine);
+                border-top: var.$default-accent-line-weight solid var(--tiangerine-tangerine);
 
                 // Compensates for the 2px border by shifting the text upwards.
                 a {
-                    margin-top: -2px;
+                    margin-top: calc(-1 * var.$default-accent-line-weight);
                 }
 
             }
@@ -342,7 +342,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
                         content: '';
                         position: absolute;
                         left: 0;
-                        width: 2px;
+                        width: var.$default-accent-line-weight;
                         height: $_mobile-navlink-height;
 
                         background: var(--tiangerine-tangerine);
