@@ -22,7 +22,7 @@
     } @else {
 
         // Raise warning if the key doesn't exist.
-        @warn "No key `#{$breakpoint}` in $breakpoints.";
+        @error "No key `#{$breakpoint}` in $breakpoints.";
 
     }
 
