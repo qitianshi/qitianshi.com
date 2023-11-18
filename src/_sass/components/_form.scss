@@ -143,7 +143,8 @@ button {
         // The minimum width needed to accommodate every state of the button.
         width: 168px;
 
-        & > span[class^="c-form__submit-label"] {
+        & > span[class^="c-form__submit-label"],
+        & > span[class*=" c-form__submit-label"] {
 
             // Only the state that is selected will be displayed.
             display: none;
