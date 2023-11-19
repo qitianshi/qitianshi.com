@@ -6,17 +6,6 @@
 @use "abstracts/functions" as func;
 @use "abstracts/variables" as var;
 
-// The styling for button-type inputs when hovered or focused.
-@mixin _focused-button-style() {
-
-    background-color: var(--tiangerine-tangerine);
-    color: func.palette("dark", "foreground", 1);
-
-    transform: scale(105%);
-    box-shadow: var.$small-shadow;
-
-}
-
 // Gives form UI elements the same font family as the rest of the website,
 // instead of the default system font.
 button,
@@ -95,9 +84,16 @@ button {
         color: inherit;
     }
 
+    @at-root %focused-button-style,
     &:enabled:hover,
     &:enabled:focus {
-        @include _focused-button-style();
+
+        background-color: var(--tiangerine-tangerine);
+        color: func.palette("dark", "foreground", 1);
+
+        transform: scale(105%);
+        box-shadow: var.$small-shadow;
+
     }
 
 }
@@ -176,7 +172,7 @@ button {
 
         &--waiting {
 
-            @include _focused-button-style();
+            @extend %focused-button-style;
 
             cursor: wait;
 
