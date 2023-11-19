@@ -13,6 +13,7 @@
 #landing-banner .c-stacked-banner__heading {
 
     font-size: 2.5rem;
+    color: var(--tiangerine-tangerine);
 
     @include mix.respond-to-breakpoint("small") {
         font-size: 1.5rem;
@@ -58,33 +59,6 @@
         border: 10px solid var(--background-primary-color);
         border-radius: 50%;
 
-    }
-
-}
-
-#construction-card {
-
-    @include mix.mobile-horizontal-spacing($space-interior: false);
-
-    margin: 5rem auto;
-    padding: 2rem;
-    width: fit-content;
-    max-width: 70%;
-
-    gap: 1rem;
-
-    .o-media__image {
-
-        height: 48px;
-        width: auto;
-
-        path { fill: var(--tiangerine-tangerine); }
-
-    }
-
-    .o-media__content * {
-        margin: 0;
-        color: var(--foreground-primary-color);
     }
 
 }
@@ -180,6 +154,35 @@
 
         }
 
+    }
+
+}
+
+#construction-card {
+
+    @include mix.mobile-horizontal-spacing($space-interior: false);
+
+    margin: 5rem auto;
+    padding: 2rem;
+    width: fit-content;
+    max-width: 70%;
+
+    gap: 1rem;
+
+    .o-media__image {
+
+        height: 48px;
+        width: auto;
+
+        path {
+            fill: var(--tiangerine-tangerine);
+        }
+
+    }
+
+    .o-media__content * {
+        margin: 0;
+        color: var(--foreground-primary-color);
     }
 
 }

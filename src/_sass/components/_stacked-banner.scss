@@ -78,12 +78,6 @@
             font-size: 2.6rem;  // Returns the size to the original h1 size.
         }
 
-        // Emphasized appearance for .c-stacked-banner; gives text the accent
-        // color.
-        &--emphasized {
-            color: var(--tiangerine-tangerine);
-        }
-
     }
 
     // If &__content follows &__background, content is set to dark theme.
@@ -111,7 +105,7 @@
         // global header.
         padding: calc(1.5 * var.$global-header-height) 0;
 
-        // Overrides the width properties in mix.apply-mobile-margin.
+        // Overrides the width properties in mix.mobile-horizontal-spacing.
         @include mix.respond-to-breakpoint("small") {
             width: calc(100vw - 2 * var.$mobile-padding);
         }
