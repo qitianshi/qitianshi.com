@@ -36,9 +36,12 @@ $breakpoints: (
     "small": 450px
 );
 
-$mobile-padding: 16px;
-$default-corner-radius: 15px;
+$body-text-horizontal-padding: 10vw;
+$body-text-max-width: 65ch;
 $default-accent-line-weight: 2px;
+$default-corner-radius: 15px;
+$global-header-height: 48px;
+$mobile-padding: 16px;
 
 $small-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
 $big-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);

@@ -104,12 +104,12 @@
         @include mix.mobile-horizontal-spacing($space-interior: false);
 
         // Makes the heading the same width as the body text.
-        width: 80vw;
-        max-width: 65ch;
+        width: calc(100vw - 2 * var.$body-text-horizontal-padding);
+        max-width: var.$body-text-max-width;
 
         // Vertical padding ensures sufficient separation between text and the
         // global header.
-        padding: 4rem 0;
+        padding: calc(1.5 * var.$global-header-height) 0;
 
         // Overrides the width properties in mix.apply-mobile-margin.
         @include mix.respond-to-breakpoint("small") {

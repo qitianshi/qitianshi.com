@@ -9,7 +9,6 @@
 @use "themes/themes";
 
 // Navbar layout
-$_navbar-height: 48px;
 $_navlink-horizontal-padding: 35px;
 $_mobile-navlink-height: 64px;
 
@@ -58,7 +57,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
     nav {
 
-        height: $_navbar-height;
+        height: var.$global-header-height;
 
         // Links have horizontal padding to increase their clickable area, but
         // remain visually aligned.
@@ -72,7 +71,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
     &__home-navlink {
 
-        height: $_navbar-height;
+        height: var.$global-header-height;
 
         transition: transform 0.3s var.$fast-ease-out;
 
@@ -110,7 +109,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
         list-style-type: none;
         margin: 0;
         padding: 0;
-        height: $_navbar-height;
+        height: var.$global-header-height;
 
         li {
 
@@ -124,7 +123,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
                 color: var(--foreground-primary-color);
                 font-size: 0.9rem;
                 font-weight: 300;
-                line-height: $_navbar-height;       // Centers text vertically.
+                line-height: var.$global-header-height;       // Centers text vertically.
 
                 // For hover effect.
                 transition-property: color, transform;
@@ -173,7 +172,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
             display: block;
 
             // Padding keeps the icon centered.
-            padding: calc(($_navbar-height - $_hamburger-icon-height) / 2) var.$mobile-padding;
+            padding: calc((var.$global-header-height - $_hamburger-icon-height) / 2) var.$mobile-padding;
 
             cursor: pointer;
 

@@ -4,6 +4,7 @@
 
 
 @use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
 @use "layout/containers";
 
 .c-body-text {
@@ -12,6 +13,6 @@
     @include mix.mobile-horizontal-spacing($space-interior: true);
 
     margin: 3rem auto 6rem;
-    padding: 0 10%;
+    padding: 0 var.$body-text-horizontal-padding;
 
 }

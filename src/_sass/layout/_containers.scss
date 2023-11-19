@@ -40,7 +40,7 @@
 
     @include mix.trim-vertical-margins();
 
-    max-width: 65ch;
+    max-width: var.$body-text-max-width;
 
     // Prevents text highlighting from extending to the edges of the page.
     position: relative;
