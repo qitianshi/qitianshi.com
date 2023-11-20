@@ -24,7 +24,7 @@
 
 }
 
-.u-background-scribble-modal {
+.u-background-scribble {
 
     @each $theme in "light", "dark" {
         @include mix.color-theme($theme) {
