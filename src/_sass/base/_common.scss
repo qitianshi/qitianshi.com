@@ -14,11 +14,11 @@
 
     @include mix.default-shadow();
 
-    @include mix.color-theme(light) {
+    @include mix.color-theme("light") {
         background-color: func.palette("light", "background", 1);
     }
 
-    @include mix.color-theme(dark) {
+    @include mix.color-theme("dark") {
         background-color: func.palette("dark", "background", 2);
     }
 
