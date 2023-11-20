@@ -1,0 +1,58 @@
+# Project dependencies and licensing information.
+
+# Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+GitHub Actions:
+  - name: "actions/checkout"
+    license: "MIT License"
+    license_url: "https://github.com/actions/checkout/blob/main/LICENSE"
+  - name: "actions/configure-pages"
+    license: "MIT License"
+    license_url: "https://github.com/actions/configure-pages/blob/main/LICENSE"
+  - name: "actions/deploy-pages"
+    license: "MIT License"
+    license_url: "https://github.com/actions/deploy-pages/blob/main/LICENSE"
+  - name: "actions/setup-node"
+    license: "MIT License"
+    license_url: "https://github.com/actions/setup-node/blob/main/LICENSE"
+  - name: "actions/upload-pages-artifact"
+    license: "MIT License"
+    license_url: "https://github.com/actions/upload-pages-artifact/blob/main/LICENSE"
+  - name: "ruby/setup-ruby"
+    license: "MIT License"
+    license_url: "https://github.com/ruby/setup-ruby/blob/master/LICENSE"
+
+npm:
+  - name: "@babel/core"
+    license: "MIT License"
+    license_url: "https://github.com/babel/babel/blob/main/LICENSE"
+  - name: "@babel/preset-env"
+    license: "MIT License"
+    license_url: "https://github.com/babel/babel/blob/main/LICENSE"
+  - name: "babel-loader"
+    license: "MIT License"
+    license_url: "https://github.com/babel/babel-loader/blob/main/LICENSE"
+  - name: "ESLint"
+    license: "MIT License"
+    license_url: "https://github.com/eslint/eslint/blob/main/LICENSE"
+  - name: "lodash.throttle"
+    license: "MIT License"
+    license_url: "https://github.com/lodash/lodash/blob/master/LICENSE"
+  - name: "webpack"
+    license: "MIT License"
+    license_url: "https://github.com/webpack/webpack/blob/main/LICENSE"
+  - name: "webpack-cli"
+    license: "MIT License"
+    license_url: "https://github.com/webpack/webpack-cli/blob/master/LICENSE"
+
+RubyGems:
+  - name: "execjs"
+    license: "MIT License"
+    license_url: "https://github.com/rails/execjs/blob/master/MIT-LICENSE"
+  - name: "Jekyll"
+    license: "MIT License"
+    license_url: "https://github.com/jekyll/jekyll/blob/master/LICENSE"
+  - name: "jekyll-autoprefixer"
+    license: "MIT License"
+    license_url: "https://github.com/vwochnik/jekyll-autoprefixer/blob/master/LICENSE.md"
