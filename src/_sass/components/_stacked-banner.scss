@@ -82,7 +82,7 @@
     // .c-body-text.
     &--text-header &__content {
 
-        @include mix.mobile-horizontal-spacing($space-interior: false);
+        @include mix.mobile-horizontal-spacing("margin");
 
         // Makes the heading the same width as the body text.
         width: calc(100vw - 2 * var.$body-text-horizontal-padding);

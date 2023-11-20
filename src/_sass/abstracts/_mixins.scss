@@ -3,6 +3,8 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "sass:list";
+
 @use "abstracts/functions" as func;
 @use "abstracts/variables" as var;
 
@@ -30,22 +32,27 @@
 
 /// Adjusts the horizontal spacing of an element for mobile screens.
 ///
-/// @param {Bool} $space-interior - Whether the interior or the exterior should
-///     be adjusted. If true, the paddings of the element are changed; if
-///     false, the margins are changed and its width is reset.
-@mixin mobile-horizontal-spacing($space-interior) {
+/// @param {String} $property - Either `padding` or `margin`. Controls whether
+///     the interior (`padding`) or exterior (`margin`) spacing of the element
+///     is adjusted. `margin` will cause the width of the element to be reset.
+@mixin mobile-horizontal-spacing($property) {
+
+    @if (not list.index(("padding", "margin"), $property)) {
+        @error "Invalid value of enumerated parameter $property.";
+    }
+
     @include respond-to-breakpoint("small") {
 
-        $adjusted-property: if($space-interior, padding, margin);
-        #{$adjusted-property}-left: var.$mobile-padding;
-        #{$adjusted-property}-right: var.$mobile-padding;
+        #{$property}-left: var.$mobile-padding;
+        #{$property}-right: var.$mobile-padding;
 
-        @if (not $space-interior) {
+        @if ($property == "margin") {
             width: unset;
             max-width: unset;
         }
 
     }
+
 }
 
 /// Sets the color palette for a chosen color theme as CSS variables.
