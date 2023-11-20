@@ -14,7 +14,6 @@
     <nav>
 
         <a href="/" id="global-header__home-navlink" aria-label="To the homepage">
-            <!-- SVG is embedded to allow animatable color with `fill="currentColor"`. From /assets/brand/wordmark.svg -->
             {% include svg/tian-wordmark.svg attributes='id="global-header__logo"' %}
         </a>
 
@@ -45,10 +44,9 @@
 
                 <!-- Each span is a line that is styled and animated in CSS. -->
                 <div id="global-header__hamburger-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    {% for i in (1..4) %}
+                        <span></span>
+                    {% endfor %}
                 </div>
 
             </label>
