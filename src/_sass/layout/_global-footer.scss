@@ -137,19 +137,23 @@ $_color-theme-toggle-label-vertical-padding: 1px;
 
         }
 
-        // On hovering, the toggle becomes the accent color.
-        &:hover {
+        // On hovering, the toggle becomes the accent color. An additional
+        // media query is used to prevent the toggle from staying colored on
+        // touchscreen devices.
+        @media (any-hover: hover) {
+            &:hover {
 
-            border-color: var(--tiangerine-tangerine);
+                border-color: var(--tiangerine-tangerine);
 
-            label span {
-                color: var(--tiangerine-tangerine);
+                label span {
+                    color: var(--tiangerine-tangerine);
+                }
+
+                input:checked+label {
+                    background-color: var(--tiangerine-tangerine);
+                }
+
             }
-
-            input:checked + label {
-                background-color: var(--tiangerine-tangerine);
-            }
-
         }
 
     }
