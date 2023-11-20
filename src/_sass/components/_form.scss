@@ -4,6 +4,7 @@
 
 
 @use "abstracts/functions" as func;
+@use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
 // Gives form UI elements the same font family as the rest of the website,
@@ -197,12 +198,7 @@ button {
     // focused, the label moves to the top and becomes smaller.
     &__text-field {
 
-        display: grid;
-
-        // Stacks all immediate children in the same grid area.
-        & > * {
-            grid-area: 1 / -1;
-        }
+        @include mix.z-stack();
 
         input[type=text],
         input[type=email],

@@ -111,3 +111,15 @@
     }
 
 }
+
+/// Causes the immediate descendants of the element to be stacked in the
+/// z-axis.
+@mixin z-stack() {
+
+    display: grid;
+
+    & > * {
+        grid-area: 1 / -1;
+    }
+
+}
