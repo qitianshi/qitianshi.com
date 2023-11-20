@@ -6,16 +6,10 @@
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
-// Fills the entire viewport.
-.o-fill-viewport-container {
-    width: 100vw;
-    height: 100vh;
-}
-
-// Fills half the height of the viewport.
-.o-half-height-viewport-container {
-    width: 100vw;
-    height: 50vh;
+// A container whose size is relative to the viewport.
+.o-viewport-relative-container {
+    &-full { width: 100vw; height: 100vh; }
+    &-half-height { width: 100vw; height: 50vh; }
 }
 
 // A card with rounded corners.
