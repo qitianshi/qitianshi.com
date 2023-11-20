@@ -157,7 +157,7 @@ a {
 
 small {
 
-    font-size: 0.65rem;
+    font-size: var.$small-font-size;
     color: var(--foreground-secondary-color);
 
     margin-block: 1em;

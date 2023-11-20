@@ -4,12 +4,13 @@
 
 
 @use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
 
 // For classes in the footer.
 .global-footer {
 
     * {
-        font-size: 0.65rem;
+        font-size: var.$small-font-size;
         color: var(--foreground-secondary-color);
     }
 
