@@ -34,53 +34,17 @@ navbar_transparency_theme: "dark"
     Direct dependencies of this project are listed here. For a full list of all direct and transitive dependencies, see the <a href="https://github.com/qitianshi/qitianshi.github.io/network/dependencies" target="_blank" class="external-link">dependency graph on GitHub</a>.
 </p>
 
-<h3>GitHub Actions</h3>
-<p>
-    <i>actions/checkout</i> is licensed under the <a href="https://github.com/actions/checkout/blob/main/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>actions/configure-pages</i> is licensed under the <a href="https://github.com/actions/configure-pages/blob/main/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>actions/deploy-pages</i> is licensed under the <a href="https://github.com/actions/deploy-pages/blob/main/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>actions/setup-node</i> is licensed under the <a href="https://github.com/actions/setup-node/blob/main/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>actions/upload-pages-artifact</i> is licensed under the <a href="https://github.com/actions/upload-pages-artifact/blob/main/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>ruby/setup-ruby</i> is licensed under the <a href="https://github.com/ruby/setup-ruby/blob/master/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
+<!-- Generates dependency list programmatically. -->
+{% for ecosystem in site.data.legal.acknowledgments.dependencies %}
 
-<h3>npm</h3>
-<p>
-    <i>@babel/core</i> and <i>@babel/preset-env</i> are licensed under the <a href="https://github.com/babel/babel/blob/main/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>babel-loader</i> is licensed under the <a href="https://github.com/babel/babel-loader/blob/main/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>ESLint</i> is licensed under the <a href="https://github.com/eslint/eslint/blob/main/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>lodash.throttle</i> is licensed under the <a href="https://github.com/lodash/lodash/blob/master/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>webpack</i> is licensed under the <a href="https://github.com/webpack/webpack/blob/main/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>webpack-cli</i> is licensed under the <a href="https://github.com/webpack/webpack-cli/blob/master/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
+    <h3>{{ ecosystem[0] }}</h3>
 
-<h3>RubyGems</h3>
-<p>
-    <i>execjs</i> is licensed under the <a href="https://github.com/rails/execjs/blob/master/MIT-LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>Jekyll</i> is licensed under the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank" class="external-link">MIT License</a>.
-</p>
-<p>
-    <i>jekyll-autoprefixer</i> is licensed under the <a href="https://github.com/vwochnik/jekyll-autoprefixer/blob/master/LICENSE.md" target="_blank" class="external-link">MIT License</a>.
-</p>
+    {% for dependency in ecosystem[1] %}
+
+        <p>
+            <i>{{ dependency.name }}</i> is licensed under the <a href="{{ dependency.license_url }}" target="_blank" class="external-link">{{ dependency.license }}</a>.
+        </p>
+
+    {% endfor %}
+
+{% endfor %}
