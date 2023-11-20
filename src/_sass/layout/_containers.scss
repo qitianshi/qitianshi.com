@@ -24,7 +24,10 @@
 
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+
+    &--wrappable {
+        flex-wrap: wrap;
+    }
 
 }
 
