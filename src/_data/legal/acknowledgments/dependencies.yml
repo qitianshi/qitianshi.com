@@ -56,3 +56,6 @@ RubyGems:
   - name: "jekyll-autoprefixer"
     license: "MIT"
     license_url: "https://github.com/vwochnik/jekyll-autoprefixer/blob/master/LICENSE.md"
+  - name: "jekyll-minifier"
+    license: "GPL-3.0"
+    license_url: "https://github.com/digitalsparky/jekyll-minifier/blob/master/LICENSE"
