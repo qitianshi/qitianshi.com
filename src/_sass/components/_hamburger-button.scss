@@ -15,7 +15,7 @@ $_icon-gap-height: calc(($_icon-height - 3 * $_icon-line-weight) / 2);
 
 .c-hamburger-button {
 
-    &__checkbox {
+    input {
         display: none;
     }
 
@@ -45,7 +45,7 @@ $_icon-gap-height: calc(($_icon-height - 3 * $_icon-line-weight) / 2);
             height: $_icon-line-weight;
             width: 100%;
 
-            background-color: var(--foreground-primary-color);
+            background-color: var(--foreground-secondary-color);
             border-radius: $_icon-line-weight;
 
             // For the opening and closing animations.
@@ -72,6 +72,8 @@ $_icon-gap-height: calc(($_icon-height - 3 * $_icon-line-weight) / 2);
 
     // Selects the <span>s if the checkbox is checked.
     &__checkbox:checked + &__button span {
+
+        background-color: var(--foreground-primary-color);
 
         &:nth-of-type(1),
         &:nth-of-type(4) {
