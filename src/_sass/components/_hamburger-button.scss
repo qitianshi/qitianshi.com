@@ -1,4 +1,7 @@
 // A hamburger button with open and closed states.
+//
+// Custom properties:
+//   --hamburger-button-height
 
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
@@ -21,7 +24,7 @@ $_icon-gap-height: calc(($_icon-height - 3 * $_icon-line-weight) / 2);
         display: block;
 
         // Padding keeps the icon centered.
-        padding: calc((var.$global-header-height - $_icon-height) / 2) var.$mobile-padding;
+        padding: calc((var(--hamburger-button-height) - $_icon-height) / 2) var.$mobile-padding;
 
         cursor: pointer;
 

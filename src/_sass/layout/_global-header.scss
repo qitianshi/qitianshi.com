@@ -154,6 +154,8 @@ $_mobile-navlink-height: 64px;
         // below overrides this property.
         display: none;
 
+        --hamburger-button-height: #{var.$global-header-height};
+
     }
 
     &.global-header--transparent {
