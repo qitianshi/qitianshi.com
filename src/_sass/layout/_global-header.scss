@@ -12,13 +12,7 @@
 $_navlink-horizontal-padding: 35px;
 $_mobile-navlink-height: 64px;
 
-// Hamburger button
-$_hamburger-icon-width: 24px;
-$_hamburger-icon-height: 18px;
-$_hamburger-line-weight: var.$default-accent-line-weight;
-$_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-weight) / 2);
-
-// Transparent mode
+// The bottom border of the navbar when the --transparent modifier is active.
 @mixin _transparent-mode-border($theme) {
 
     // CSS color variables don't support adding alpha channels, so a mixin with
@@ -40,7 +34,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
     transition-duration: 0.2s;
 
     // Checks for backdrop-filter support. If available, the default
-    // background-color of .u-elevated is overridden.
+    // background-color of .u-hierarchy-elevated is overridden.
     @supports (backdrop-filter: blur()) {
 
         backdrop-filter: blur(30px);
@@ -73,6 +67,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
         height: var.$global-header-height;
 
+        // For :hover.
         transition: transform 0.3s var.$fast-ease-out;
 
         #global-header__logo {
@@ -153,90 +148,11 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
     }
 
-    &__hamburger {
+    .c-hamburger-button {
 
-        &-container {
-
-            // By default, the hamburger button is hidden. The media query
-            // below overrides this property.
-            display: none;
-
-        }
-
-        &-checkbox {
-            display: none;
-        }
-
-        &-button {
-
-            display: block;
-
-            // Padding keeps the icon centered.
-            padding: calc((var.$global-header-height - $_hamburger-icon-height) / 2) var.$mobile-padding;
-
-            cursor: pointer;
-
-        }
-
-        &-icon {
-
-            width: $_hamburger-icon-width;
-            height: $_hamburger-icon-height;
-            position: relative;
-
-            span {
-
-                display: block;
-                position: absolute;
-                left: 0;
-
-                height: $_hamburger-line-weight;
-                width: 100%;
-
-                background-color: var(--foreground-primary-color);
-                border-radius: $_hamburger-line-weight;
-
-                // For the opening and closing animations.
-                transition: 0.15s ease-out;
-
-                &:nth-of-type(1) {
-                    top: 0px;
-                }
-
-                // Places the two overlaid middle bars in the middle of the icon.
-                &:nth-of-type(2),
-                &:nth-of-type(3) {
-                    top: calc($_hamburger-line-weight + $_hamburger-gap-height);
-                }
-
-                // Places the bottom bar at the bottom of the icon.
-                &:nth-of-type(4) {
-                    top: calc(($_hamburger-line-weight + $_hamburger-gap-height) * 2);
-                }
-
-            }
-
-        }
-
-        // Selects the <span>s if the checkbox is checked.
-        &-checkbox:checked + &-button span {
-
-            &:nth-of-type(1),
-            &:nth-of-type(4) {
-                top: calc($_hamburger-line-weight + $_hamburger-gap-height);
-                width: 0%;
-                left: 50%;
-            }
-
-            &:nth-of-type(2) {
-                transform: rotate(45deg);
-            }
-
-            &:nth-of-type(3) {
-                transform: rotate(-45deg);
-            }
-
-        }
+        // By default, the hamburger button is hidden. The media query
+        // below overrides this property.
+        display: none;
 
     }
 
@@ -275,7 +191,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
             // Creates a 2 by 2 grid to place the logo, the hamburger button,
             // and the navigation links.
             display: grid;
-            grid-template-columns: auto calc($_hamburger-icon-width + 2 * var.$mobile-padding);
+            grid-template-columns: auto calc(var.$hamburger-button-icon-width + 2 * var.$mobile-padding);
             grid-template-areas:
                 "logo hamburger"
                 "menu menu";
@@ -365,9 +281,9 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
         }
 
-        &__hamburger-container {
+        .c-hamburger-button {
             display: block;
-            grid-area: hamburger;
+            grid-area: "hamburger";
         }
 
         // This class is applied to the navigation links in JS when the
