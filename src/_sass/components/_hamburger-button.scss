@@ -28,6 +28,9 @@ $_icon-gap-height: calc(($_icon-height - 3 * $_icon-line-weight) / 2);
 
         cursor: pointer;
 
+        // Makes the button less visible in the closed state.
+        opacity: 60%;
+
     }
 
     &__icon {
@@ -45,7 +48,7 @@ $_icon-gap-height: calc(($_icon-height - 3 * $_icon-line-weight) / 2);
             height: $_icon-line-weight;
             width: 100%;
 
-            background-color: var(--foreground-secondary-color);
+            background-color: var(--foreground-primary-color);
             border-radius: $_icon-line-weight;
 
             // For the opening and closing animations.
@@ -71,23 +74,27 @@ $_icon-gap-height: calc(($_icon-height - 3 * $_icon-line-weight) / 2);
     }
 
     // Selects the <span>s if the checkbox is checked.
-    &__checkbox:checked + &__button span {
+    &__checkbox:checked + &__button {
 
-        background-color: var(--foreground-primary-color);
+        opacity: 100%;
 
-        &:nth-of-type(1),
-        &:nth-of-type(4) {
-            top: calc($_icon-line-weight + $_icon-gap-height);
-            width: 0%;
-            left: 50%;
-        }
+        span {
 
-        &:nth-of-type(2) {
-            transform: rotate(45deg);
-        }
+            &:nth-of-type(1),
+            &:nth-of-type(4) {
+                top: calc($_icon-line-weight + $_icon-gap-height);
+                width: 0%;
+                left: 50%;
+            }
 
-        &:nth-of-type(3) {
-            transform: rotate(-45deg);
+            &:nth-of-type(2) {
+                transform: rotate(45deg);
+            }
+
+            &:nth-of-type(3) {
+                transform: rotate(-45deg);
+            }
+
         }
 
     }
