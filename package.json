@@ -5,7 +5,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "serve": "webpack --mode development --devtool eval-cheap-source-map --watch & JEKYLL_ENV=development bundle exec jekyll serve",
-    "preview": "webpack --mode production --watch & JEKYLL_ENV=production bundle exec jekyll serve",
+    "preview": "webpack --mode production --no-devtool --watch & JEKYLL_ENV=production bundle exec jekyll serve",
     "build": "webpack --mode production && JEKYLL_ENV=production bundle exec jekyll build"
   },
   "dependencies": {
