@@ -7,3 +7,17 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+
+@keyframes fade-and-move-in {
+
+    from {
+        transform: translateY(-1em);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+}

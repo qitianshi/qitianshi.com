@@ -182,7 +182,13 @@ $_mobile-navlink-height: 64px;
     // The width at which the screen is too narrow to fit the navbar links.
     @media screen and (max-width: 750px) {
 
-        // Adjusts margins to make the navbar less crowded in narrow screens.
+        // Adds a transition for max-height to animate the dropdown.
+        transition: background-color 0.2s, backdrop-filter 0.2s, max-height 0.3s ease-in;
+
+        max-height: var.$global-header-height;
+
+        // Hides the navigation links when the dropdown is closed.
+        overflow: clip;
 
         nav {
 
@@ -215,9 +221,6 @@ $_mobile-navlink-height: 64px;
         }
 
         &__navigation-links {
-
-            // By default, navigation links are hidden.
-            display: none;
 
             // Resets default values.
             height: unset;
@@ -291,7 +294,20 @@ $_mobile-navlink-height: 64px;
         // This class is applied to the navigation links in JS when the
         // hamburger button is clicked.
         &.global-header--mobile-expanded &__navigation-links {
-            display: block;
+
+            // Applies animations with successive delays for each of the 4
+            // navigation links.
+            @for $i from 1 through 4 {
+                li:nth-of-type(#{$i}) {
+                    animation: 1s var.$fast-ease-out (0.06s * ($i)) normal both 1 fade-and-move-in;
+                }
+            }
+
+        }
+
+        // Allows the navbar height to be animated.
+        &.global-header--mobile-expanded {
+            max-height: 100vw;
         }
 
     }
