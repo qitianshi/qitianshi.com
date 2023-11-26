@@ -21,6 +21,11 @@ $_mobile-navlink-height: 64px;
 
 }
 
+// The transition properties for the --transparent modifier.
+@function _transparency-transitions($delay) {
+    @return background-color 0.2s #{$delay}, backdrop-filter 0.2s #{$delay};
+}
+
 #global-header {
 
     // Places header above other page elements.
@@ -29,9 +34,7 @@ $_mobile-navlink-height: 64px;
 
     width: 100vw;
 
-    // For the --transparent modifier.
-    transition-property: background-color, backdrop-filter;
-    transition-duration: 0.2s;
+    transition: _transparency-transitions($delay: 0s);
 
     // Checks for backdrop-filter support. If available, the default
     // background-color of .u-hierarchy-elevated is overridden.
@@ -158,7 +161,7 @@ $_mobile-navlink-height: 64px;
 
     }
 
-    &.global-header--transparent {
+    &.global-header--transparent:not(.global-header--mobile-expanded) {
 
         background-color: transparent !important;
         backdrop-filter: none;
@@ -182,8 +185,14 @@ $_mobile-navlink-height: 64px;
     // The width at which the screen is too narrow to fit the navbar links.
     @media screen and (max-width: 750px) {
 
-        // Adds a transition for max-height to animate the dropdown.
-        transition: background-color 0.2s, backdrop-filter 0.2s, max-height 0.3s ease-in;
+        // The .global-header--mobile-closing is applied in JS for the duration
+        // of the max-height transition (0.3s) to apply a delay in the
+        // transparency transitions until after the dropdown has fully closed.
+        &.global-header--transparent.global-header--mobile-closing {
+            transition: _transparency-transitions(0.3s), max-height 0.3s ease-in;
+        }
+
+        transition: _transparency-transitions(0s), max-height 0.3s ease-in;
 
         max-height: var.$global-header-height;
 
