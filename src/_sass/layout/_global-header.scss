@@ -242,6 +242,7 @@ $_mobile-navlink-height: 64px;
 
             li {
 
+                position: relative;
                 display: block;
                 height: $_mobile-navlink-height;
 
@@ -270,7 +271,7 @@ $_mobile-navlink-height: 64px;
 
                         content: '';
                         position: absolute;
-                        left: 0;
+                        left: calc(-1 * var.$mobile-padding);
                         width: var.$default-accent-line-weight;
                         height: $_mobile-navlink-height;
 
