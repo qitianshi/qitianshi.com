@@ -231,6 +231,9 @@ $_mobile-navlink-height: 64px;
 
         &__navigation-links {
 
+            // Navigation links are hidden until the header is expanded.
+            display: none;
+
             // Resets default values.
             height: unset;
             padding: 0 var.$mobile-padding;
@@ -318,6 +321,12 @@ $_mobile-navlink-height: 64px;
         // Allows the navbar height to be animated.
         &.global-header--mobile-expanded {
             max-height: 100vw;
+        }
+
+        &.global-header--mobile-expanded, &.global-header--mobile-closing {
+            #global-header__navigation-links {
+                display: block;
+            }
         }
 
     }
