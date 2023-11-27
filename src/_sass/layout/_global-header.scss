@@ -161,7 +161,7 @@ $_mobile-navlink-height: 64px;
 
     }
 
-    &.global-header--transparent:not(.global-header--mobile-expanded) {
+    &.global-header--transparent:not(.global-header--mobile-expanded):not(.global-header--mobile-closing) {
 
         background-color: transparent !important;
         backdrop-filter: none;
