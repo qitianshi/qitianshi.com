@@ -9,14 +9,16 @@
 @use "themes/themes";
 
 $_navlink-horizontal-padding: 35px;
+$_light-divider-weight: 1px;
 $_mobile-navlink-height: 64px;
+$_num-of-navlinks: 4;
 
 /// The bottom border of the navbar when the --transparent modifier is active.
 @mixin _transparent-mode-border($theme) {
 
     // CSS color variables don't support adding alpha channels, so a mixin with
     // Sass variables is used instead.
-    border-bottom: 0.5px solid rgba(func.palette($theme, "foreground", 1), 0.2);
+    border-bottom: $_light-divider-weight solid rgba(func.palette($theme, "foreground", 1), 0.2);
 
 }
 
@@ -242,7 +244,7 @@ $_mobile-navlink-height: 64px;
             padding: 0 var.$mobile-padding;
 
             // Adds a border between the navigation links and the navbar.
-            border-top: 1px solid var(--foreground-tertiary-color);
+            border-top: $_light-divider-weight solid var(--foreground-tertiary-color);
 
             li {
 
@@ -312,14 +314,15 @@ $_mobile-navlink-height: 64px;
 
         &.global-header--mobile-expanded {
 
-            // Allows the navbar height to be animated.
-            max-height: 100vw;
+            // Allows the navbar height to be animated. Calculated as the
+            // natural height of the global header.
+            max-height: calc(var.$global-header-height + $_num-of-navlinks * ($_mobile-navlink-height + $_light-divider-weight));
 
             // Applies animations with successive delays for each of the 4
             // navigation links.
-            @for $i from 1 through 4 {
+            @for $i from 1 through $_num-of-navlinks {
                 #global-header__navigation-links li:nth-of-type(#{$i}) {
-                    animation: 1s var.$fast-ease-out (0.06s * ($i)) normal both 1 fade-and-move-in;
+                    animation: 1s var.$fast-ease-out (0.07s * ($i)) normal both 1 fade-and-move-in;
                 }
             }
 
