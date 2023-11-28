@@ -34,15 +34,19 @@ navbar_transparency_theme: "dark"
     Direct dependencies of this project are listed here. For a full list of all direct and transitive dependencies, see the <a href="https://github.com/qitianshi/qitianshi.github.io/network/dependencies" target="_blank" class="external-link">dependency graph on GitHub</a>.
 </p>
 
-<!-- Generates dependency list programmatically. -->
-{% for ecosystem in site.data.legal.acknowledgments.dependencies %}
+{% comment %} Generates dependency list programmatically. {% endcomment %}
+{% assign dependency_list = site.data.legal.acknowledgments.dependencies %}
+{% for ecosystem in dependency_list.dependencies %}
 
-    <h3>{{ ecosystem[0] }}</h3>
+    {% assign this_ecosystem = ecosystem[0] %}
+    {% assign this_dependencies = ecosystem[1] | sort: "name" %}
 
-    {% for dependency in ecosystem[1] %}
+    <h3>{{ this_ecosystem }}</h3>
+
+    {% for dependency in this_dependencies %}
 
         <p>
-            <i>{{ dependency.name }}</i> is licensed under the <a href="{{ dependency.license_url }}" target="_blank" class="external-link">{{ dependency.license }} License</a>.
+            <code><a href="{{ dependency_list.ecosystems[this_ecosystem] }}/{{ dependency.name }}" class="external-link">{{ dependency.name }}</a></code> is licensed under the <a href="{{ dependency.license_url }}" target="_blank" class="external-link">{{ dependency.license }} License</a>.
         </p>
 
     {% endfor %}
