@@ -8,11 +8,10 @@
 @use "abstracts/variables" as var;
 @use "themes/themes";
 
-// Navbar layout
 $_navlink-horizontal-padding: 35px;
 $_mobile-navlink-height: 64px;
 
-// The bottom border of the navbar when the --transparent modifier is active.
+/// The bottom border of the navbar when the --transparent modifier is active.
 @mixin _transparent-mode-border($theme) {
 
     // CSS color variables don't support adding alpha channels, so a mixin with
@@ -21,7 +20,7 @@ $_mobile-navlink-height: 64px;
 
 }
 
-// The transition properties for the --transparent modifier.
+/// The transition properties for the --transparent modifier.
 @function _transparency-transitions($delay) {
     @return background-color 0.2s #{$delay}, backdrop-filter 0.2s #{$delay};
 }
@@ -30,8 +29,7 @@ $_mobile-navlink-height: 64px;
 
     // Places header above other page elements.
     position: fixed;
-    z-index: 999;
-
+    z-index: 99;
     width: 100vw;
 
     transition: _transparency-transitions($delay: 0s);
@@ -58,7 +56,7 @@ $_mobile-navlink-height: 64px;
 
         // Links have horizontal padding to increase their clickable area, but
         // remain visually aligned.
-        padding: 0 calc(10vw - $_navlink-horizontal-padding);
+        padding: 0 calc(var.$body-text-horizontal-padding - $_navlink-horizontal-padding);
 
         display: flex;
         justify-content: space-between;
@@ -104,10 +102,11 @@ $_mobile-navlink-height: 64px;
 
     &__navigation-links {
 
-        list-style-type: none;
+        height: var.$global-header-height;
         margin: 0;
         padding: 0;
-        height: var.$global-header-height;
+
+        list-style-type: none;
 
         li {
 
@@ -140,7 +139,7 @@ $_mobile-navlink-height: 64px;
 
                 border-top: var.$default-accent-line-weight solid var(--tiangerine-tangerine);
 
-                // Compensates for the 2px border by shifting the text upwards.
+                // Compensates for the border by shifting the text upwards.
                 a {
                     margin-top: calc(-1 * var.$default-accent-line-weight);
                 }
@@ -161,9 +160,10 @@ $_mobile-navlink-height: 64px;
 
     }
 
+    // Transparency effect is only applied when the navbar is not expanded.
     &.global-header--transparent:not(.global-header--mobile-expanded):not(.global-header--mobile-closing) {
 
-        background-color: transparent !important;
+        background-color: transparent;
         backdrop-filter: none;
         box-shadow: none;
 
@@ -185,19 +185,21 @@ $_mobile-navlink-height: 64px;
     // The width at which the screen is too narrow to fit the navbar links.
     @media screen and (max-width: 750px) {
 
+        // Using max-height allows the height change to be animated.
+        max-height: var.$global-header-height;
+
+        // Hides the navigation links when the dropdown is being closed.
+        overflow: clip;
+
+        // Adds the height transition to transparency transitions.
+        transition: _transparency-transitions(0s), max-height 0.3s ease-in;
+
         // The .global-header--mobile-closing is applied in JS for the duration
         // of the max-height transition (0.3s) to apply a delay in the
         // transparency transitions until after the dropdown has fully closed.
         &.global-header--transparent.global-header--mobile-closing {
             transition: _transparency-transitions(0.3s), max-height 0.3s ease-in;
         }
-
-        transition: _transparency-transitions(0s), max-height 0.3s ease-in;
-
-        max-height: var.$global-header-height;
-
-        // Hides the navigation links when the dropdown is closed.
-        overflow: clip;
 
         nav {
 
@@ -233,12 +235,11 @@ $_mobile-navlink-height: 64px;
 
             // Navigation links are hidden until the header is expanded.
             display: none;
+            grid-area: menu;
 
             // Resets default values.
             height: unset;
             padding: 0 var.$mobile-padding;
-
-            grid-area: menu;
 
             // Adds a border between the navigation links and the navbar.
             border-top: 1px solid var(--foreground-tertiary-color);
@@ -251,6 +252,12 @@ $_mobile-navlink-height: 64px;
 
                 // Adds a border between each link.
                 border-top: inherit;
+
+                // The first link doesn't need a border because the parent
+                // element already has a top border.
+                &:first-of-type {
+                    border-top: none;
+                }
 
                 a {
 
@@ -267,7 +274,9 @@ $_mobile-navlink-height: 64px;
 
                 &.global-header__navlink--active {
 
+                    // Overrides defaults.
                     border-top: inherit;
+                    a { margin-top: 0; }
 
                     // Places a line against the left edge of the screen.
                     &::before {
@@ -278,21 +287,10 @@ $_mobile-navlink-height: 64px;
                         width: var.$default-accent-line-weight;
                         height: $_mobile-navlink-height;
 
-                        background: var(--tiangerine-tangerine);
+                        background-color: var(--tiangerine-tangerine);
 
                     }
 
-                    // Overrides default.
-                    a {
-                        margin-top: 0;
-                    }
-
-                }
-
-                // The first link doesn't need a border because the parent
-                // element already has a top border.
-                &:first-of-type {
-                    border-top: none;
                 }
 
             }
@@ -304,29 +302,27 @@ $_mobile-navlink-height: 64px;
             grid-area: hamburger;
         }
 
-        // This class is applied to the navigation links in JS when the
-        // hamburger button is clicked.
-        &.global-header--mobile-expanded &__navigation-links {
+        // Programmatically applied class for expanding the navigation links.
+        &.global-header--mobile-expanded,
+        &.global-header--mobile-closing {
+            #global-header__navigation-links {
+                display: block;
+            }
+        }
+
+        &.global-header--mobile-expanded {
+
+            // Allows the navbar height to be animated.
+            max-height: 100vw;
 
             // Applies animations with successive delays for each of the 4
             // navigation links.
             @for $i from 1 through 4 {
-                li:nth-of-type(#{$i}) {
+                #global-header__navigation-links li:nth-of-type(#{$i}) {
                     animation: 1s var.$fast-ease-out (0.06s * ($i)) normal both 1 fade-and-move-in;
                 }
             }
 
-        }
-
-        // Allows the navbar height to be animated.
-        &.global-header--mobile-expanded {
-            max-height: 100vw;
-        }
-
-        &.global-header--mobile-expanded, &.global-header--mobile-closing {
-            #global-header__navigation-links {
-                display: block;
-            }
         }
 
     }
