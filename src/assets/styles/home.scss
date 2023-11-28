@@ -1,7 +1,7 @@
 ---
 ---
 
-// Stylesheet for ./index.html
+// Stylesheet for /index.html
 
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
@@ -12,26 +12,20 @@
 
 #landing-banner .c-stacked-banner__heading {
 
-    font-size: 2.5rem;
     color: var(--tiangerine-tangerine);
 
-    @include mix.respond-to-breakpoint("small") {
-        font-size: 1.5rem;
-    }
+    font-size: 2.5rem;
+    @include mix.respond-to-breakpoint("small") { font-size: 1.5rem; }
 
     #landing-banner__big-name {
 
-        font-size: 3em;
         color: func.palette("dark", "foreground", 1);
         line-height: 0.9em;
 
-        @media screen and (max-width: 700px) {
-            font-size: 2em;
-        }
-
-        @include mix.respond-to-breakpoint("small") {
-            font-size: 2.5em;
-        }
+        // Manages the font size to keep the name on one line.
+        font-size: 7.5rem;
+        @media screen and (max-width: 720px) { font-size: 5rem; }
+        @include mix.respond-to-breakpoint("small") { font-size: 3.75rem; }
 
     }
 
@@ -54,14 +48,14 @@
         max-width: 90vw;       // Limits width for narrower screens.
         height: auto;
 
-        border: 10px solid var(--background-primary-color);
+        // Crops the image to a circle.
         border-radius: 50%;
+        border: 10px solid var(--background-primary-color);
 
     }
 
 }
 
-// The div that contains the three project cards
 #project-cards-container {
 
     height: 90vh;
@@ -71,65 +65,56 @@
     align-items: center;
     flex-direction: row;
 
-}
+    .project-card {
 
-// A div with an image background and text.
-.project-card {
+        @include mix.default-shadow($hoverable: true);
 
-    @include mix.default-shadow($hoverable: true);
-
-    height: 100%;
-    width: 32%;
-
-    position: relative;
-
-    // For :hover effect
-    transition-property: transform, box-shadow;
-    transition-duration: 0.4s;
-    transition-timing-function: var.$fast-ease-out;
-
-    // On mouseover, the card grows and shadow increases to mimic height.
-    &:hover {
-        transform: scale(102.5%);
-    }
-
-    .c-stacked-banner__content {
-        padding: 10%;
-        font-weight: normal;
-    }
-
-    .c-stacked-banner__background {
-        filter: none;
-    }
-
-    // Applies a legibility gradient over the image.
-    &__background-container::after {
-
-        // An empty block that fills its container.
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
         height: 100%;
-        display: block;
+        width: 32%;
 
-        // Applies a gradient. The stops are defined to to ensure legibility at
-        // all screen sizes.
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent calc(3.5rem + 30%));
+        position: relative;
+
+        // For :hover effect.
+        transition-property: transform, box-shadow;
+        transition-duration: 0.4s;
+        transition-timing-function: var.$fast-ease-out;
+
+        // The card grows and its shadow increases to mimic height.
+        &:hover {
+            transform: scale(102.5%);
+        }
+
+        .c-stacked-banner__content {
+            padding: 10%;
+            font-weight: normal;
+        }
+
+        // Applies a legibility gradient over the image.
+        &__background-container::after {
+
+            // An empty block that fills its container.
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+
+            // Applies a gradient. The stops are defined to to ensure legibility at
+            // all screen sizes.
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent calc(3.5rem + 30%));
+
+        }
 
     }
 
-}
+    // Changes to column layout in mobile versions. 1050px is the size at which
+    // the text begins to get cut off in flex-direction: row;.
+    @media screen and (max-width: 1050px) {
 
-// Changes to column layout in mobile versions. 1000px is the size at which the
-// text begins to get cut off in flex-direction: row;.
-@media screen and (max-width: 1050px) {
-
-    #project-cards-container {
-
-        height: 90vh;
-        min-height: 450px;    // The min height to keep all text visible.
+        // Keeps all text visible.
+        min-height: 450px;
 
         padding: 0 var.$mobile-padding;
 
@@ -137,18 +122,19 @@
         gap: var.$mobile-padding;
         justify-content: space-between;
 
-    }
+        .project-card {
 
-    .project-card {
+            width: 100%;
 
-        width: 100%;
+            .c-stacked-banner__content {
 
-        .c-stacked-banner__content {
+                // Ideally the padding would be 10% of parent element height,
+                // analogous to the row layout being 10% of width. Since the
+                // parent height 90vh, which contains 3 children, 10% is
+                // roughly 3vh.
+                padding: max(3vh, 1.5rem);
 
-            // Ideally the padding would be 10% of parent element height, but
-            // it's difficult without JS. Since the parent height is known as
-            // at least 90vh, which contains 3 children, 10% is roughly 3vh.
-            padding: max(3vh, 1.5rem);
+            }
 
         }
 
@@ -158,14 +144,15 @@
 
 #construction-card {
 
-    @include mix.mobile-horizontal-spacing("margin");
+    // The width fits its content, or is the padded viewport width, whichever
+    // is smaller.
+    box-sizing: border-box;
+    width: fit-content;
+    max-width: calc(100vw - 2 * var.$mobile-padding);
 
     margin: 5rem auto;
     padding: 2rem;
-    width: fit-content;
-    max-width: 70%;
-
-    gap: 1rem;
+    gap: 0.5rem;
 
     .o-media__image {
 
