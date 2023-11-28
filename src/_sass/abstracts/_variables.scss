@@ -41,6 +41,7 @@ $body-text-max-width: 65ch;
 $default-accent-line-weight: 2px;
 $default-corner-radius: 15px;
 $global-header-height: 48px;
+$global-header-clear-space: calc($global-header-height * 1.5);
 $hamburger-button-icon-width: 24px;
 $mobile-padding: 16px;
 $small-font-size: 0.65rem;
