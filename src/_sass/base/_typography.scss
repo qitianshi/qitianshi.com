@@ -173,3 +173,19 @@ small {
     }
 
 }
+
+code {
+
+    font-family: var.$mono-font-family;
+    font-size: 0.9em;
+
+    padding: 0.2em 0.4em;
+    border-radius: 0.4em;
+    background-color: var(--code-background-color);
+
+    a:any-link,
+    a:any-link * {
+        text-decoration: underline;
+    }
+
+}
