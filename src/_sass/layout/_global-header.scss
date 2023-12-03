@@ -120,7 +120,7 @@ $_num-of-navlinks: 4;
                 padding: 0 $_navlink-horizontal-padding;
 
                 color: var(--foreground-primary-color);
-                font-size: 0.9rem;
+                font-size: 0.95rem;
                 font-weight: 300;
                 line-height: var.$global-header-height;       // Centers text vertically.
 
@@ -185,7 +185,7 @@ $_num-of-navlinks: 4;
     }
 
     // The width at which the screen is too narrow to fit the navbar links.
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: 775px) {
 
         // Using max-height allows the height change to be animated.
         max-height: var.$global-header-height;

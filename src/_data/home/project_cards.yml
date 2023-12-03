@@ -3,17 +3,17 @@
 # Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-- title: "Research"
+- title: "research"
   link: "/under-construction"
   image_src: "/assets/images/home/smp-photodiode-probes.jpeg"
   image_alt: "An experiment setup with metallic probes resting on a square photodiode."
 
-- title: "Robotics"
+- title: "robotics"
   link: "/under-construction"
   image_src: "/assets/images/home/robocup-2022-robots-hero-shot.jpeg"
   image_alt: "A pair of RoboCup robots on a RoboCup field in dramatic lighting."
 
-- title: "Tinkering"
+- title: "tinkering"
   link: "/under-construction"
   image_src: "/assets/images/home/nus-project-sensor.jpeg"
   image_alt: "Electrical components on a breadboard to create a light sensor."

@@ -20,7 +20,7 @@ layout: default
     >
 
     <div class="c-stacked-banner__content c-stacked-banner__content--center">
-        <h1 class="c-stacked-banner__heading">{{ page.header_title | default: page.title }}</h1>
+        <h1 class="c-stacked-banner__heading">{{ page.header_title | default: page.title | downcase }}</h1>
     </div>
 
 </section>
