@@ -62,7 +62,8 @@ body * {
     color: var(--foreground-primary-color);
 }
 
-h1, %h1-style {
+h1,
+%h1-style {
 
     font-family: var.$heading-font-family;
     font-size: 2.6rem;
@@ -127,22 +128,27 @@ a {
         text-decoration: underline;
     }
 
+    // Placeholder for links affixed with pseudo-element markers.
+    @at-root %marked-link {
+        font-family: var.$body-font-family;
+    }
+
     // A link that represents a backward navigation.
     &.back-link::before {
-        // A left arrow (&larr;) and a space.
-        content: "\02190\202f";
+        @extend %marked-link;
+        content: "\02190\202f";     // A left arrow (&larr;) and a space.
     }
 
     // A link that represents a forward navigation.
     &.forward-link::after {
-        // A space and a right arrow (&rarr;).
-        content: "\202f\2192";
+        @extend %marked-link;
+        content: "\202f\2192";      // A space and a right arrow (&rarr;).
     }
 
     // A link to an external website.
     &.external-link::after {
-        // A space and a north east arrow (&nearr;).
-        content: "\202f\2197";
+        @extend %marked-link;
+        content: "\202f\2197";      // A space and a north east arrow (&nearr;).
     }
 
     // A link that fills its entire parent element.
@@ -183,6 +189,7 @@ code {
     border-radius: 0.4em;
     background-color: var(--code-background-color);
 
+    // To avoid ambiguity, links in code are always underlined.
     a:any-link,
     a:any-link * {
         text-decoration: underline;
