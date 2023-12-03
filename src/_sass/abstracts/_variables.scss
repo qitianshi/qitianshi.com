@@ -16,14 +16,16 @@ $mono-font-family: "Inconsolata", "ui-monospace", "Courier New", "Courier", mono
 $color-palette: (
     "light": (
         "tiangerine-tangerine": #ef4b07,
-        "background": #ffffff #e8e8e8,
         "foreground": #000000 #6a6a6a #bababa,
+        "background": #ffffff #e8e8e8,
+        "code-background": #edeff2,
         "link": #195ee6 #3670e2,
     ),
     "dark": (
         "tiangerine-tangerine": #e86830,
-        "background": #0f0f0f #232323,
         "foreground": #f5f5f5 #959595 #636363,
+        "background": #0f0f0f #232323,
+        "code-background": #262b33,
         "link": #71a8f4 #68a2f3,
     ),
 );

@@ -60,12 +60,14 @@
 
     --tiangerine-tangerine: #{func.palette($theme, "tiangerine-tangerine")};
 
-    --background-primary-color: #{func.palette($theme, "background", 1)};
-    --background-secondary-color: #{func.palette($theme, "background", 2)};
-
     --foreground-primary-color: #{func.palette($theme, "foreground", 1)};
     --foreground-secondary-color: #{func.palette($theme, "foreground", 2)};
     --foreground-tertiary-color: #{func.palette($theme, "foreground", 3)};
+
+    --background-primary-color: #{func.palette($theme, "background", 1)};
+    --background-secondary-color: #{func.palette($theme, "background", 2)};
+
+    --code-background-color: #{func.palette($theme, "code-background")};
 
     --link-color: #{func.palette($theme, "link", 1)};
     --link-hover-color: #{func.palette($theme, "link", 2)};
