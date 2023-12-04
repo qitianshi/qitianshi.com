@@ -24,6 +24,7 @@
 
 }
 
+/// Adds the Q scribble to the background.
 .u-background-scribble {
 
     @each $theme in "light", "dark" {
