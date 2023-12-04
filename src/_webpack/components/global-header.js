@@ -12,6 +12,7 @@ const hamburgerCheckboxElement = document
     .getElementById("global-header__hamburger-checkbox");
 const mobileExpandedClass = "global-header--mobile-expanded";
 const mobileClosingClass = "global-header--mobile-closing";
+const transparencyEnabledPrefix = "global-header--transparency-theme-";
 const transparencyClass = "global-header--transparent";
 
 /**
@@ -56,7 +57,8 @@ const GlobalHeader = {
         // If the page has opted in, navbar transparency is applied.
         if (
             globalHeaderClasses
-                .contains("global-header--transparency-enabled")
+                .value
+                .includes(transparencyEnabledPrefix)
         ) {
 
             // Applies the transparency on page load.
