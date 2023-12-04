@@ -3,11 +3,13 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@keyframes progress-spinner-rotation {
+/// Rotates clockwise through 360 degrees.
+@keyframes full-rotation {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
+/// Appears by fading in while moving downwards.
 @keyframes fade-and-move-in {
 
     from {

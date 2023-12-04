@@ -185,7 +185,7 @@ button {
 
             // Spins the loading spinner.
             & > span > svg {
-                animation: progress-spinner-rotation 1s infinite;
+                animation: full-rotation 1s infinite;
                 animation-timing-function: cubic-bezier(0.2, 0.5, 0.8, 0.5);
             }
 
