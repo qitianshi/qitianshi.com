@@ -81,8 +81,7 @@ h1,
 
 }
 
-h2, h3, h4, h5, h6 {
-    font-family: var.$body-font-family;
+h2, h3, h4 {
     margin: 2em 0 1em;
     color: var(--tiangerine-tangerine);
 }
@@ -93,7 +92,7 @@ h2 {
 }
 
 h3 {
-    font-weight: 400;
+    font-weight: 300;
     font-size: 1.3em;
 }
 
@@ -103,7 +102,7 @@ h4 {
 }
 
 p {
-    font-family: var.$body-font-family;
+    font-weight: 400;
     font-size: 1rem;
 }
 
