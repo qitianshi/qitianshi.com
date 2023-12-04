@@ -3,15 +3,17 @@
 <!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
 
 
-<header id="global-header"
-    {% if page.navbar_transparency_theme %}
-        class="global-header--transparency-enabled global-header--transparency-theme-{{ page.navbar_transparency_theme }}"
-    {% endif %}
+<header
+    id="global-header"
+    class="
+        {% if page.navbar_transparency_theme %}
+            global-header--transparency-theme-{{ page.navbar_transparency_theme }}
+        {% endif %}
+        u-hierarchy-elevated"
 >
     <nav>
 
         <a href="/" id="global-header__home-navlink" aria-label="To the homepage">
-            <!-- SVG is embedded to allow animatable color with `fill="currentColor"`. From /assets/brand/wordmark.svg -->
             {% include svg/tian-wordmark.svg attributes='id="global-header__logo"' %}
         </a>
 
@@ -32,20 +34,19 @@
         </menu>
 
         <!-- Hamburger button that expands navbar items for narrow screens. -->
-        <div id="global-header__hamburger-container">
+        <div class="c-hamburger-button">
 
             <!-- Checkbox allows opening and closing of the menu without JavaScript. -->
-            <input type="checkbox" id="global-header__hamburger-checkbox">
+            <input type="checkbox" id="global-header__hamburger-checkbox" class="c-hamburger-button__checkbox">
 
             <!-- Clickable area of the button. Clicking the button checks the checkbox. -->
-            <label for="global-header__hamburger-checkbox" id="global-header__hamburger-button" role="button" aria-label="Toggle navigation menu">
+            <label for="global-header__hamburger-checkbox" class="c-hamburger-button__button" role="button" aria-label="Toggle navigation menu">
 
                 <!-- Each span is a line that is styled and animated in CSS. -->
-                <div id="global-header__hamburger-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div class="c-hamburger-button__icon">
+                    {% for i in (1..4) %}
+                        <span></span>
+                    {% endfor %}
                 </div>
 
             </label>

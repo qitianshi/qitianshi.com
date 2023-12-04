@@ -11,6 +11,8 @@ const globalHeaderClasses = document
 const hamburgerCheckboxElement = document
     .getElementById("global-header__hamburger-checkbox");
 const mobileExpandedClass = "global-header--mobile-expanded";
+const mobileClosingClass = "global-header--mobile-closing";
+const transparencyEnabledPrefix = "global-header--transparency-theme-";
 const transparencyClass = "global-header--transparent";
 
 /**
@@ -18,20 +20,8 @@ const transparencyClass = "global-header--transparent";
  */
 function toggleNavbarTransparency() {
 
-    // Navbar is made transparent if the document is scrolled to the top and,
-    // on mobile, it has not been expanded. The 750px value is from the CSS
-    // media selector for changing to the mobile layout in _global-header.scss.
-    if (
-        (window.scrollY <= 0)
-        && (
-            !(globalHeaderClasses.contains(mobileExpandedClass))
-            || window.innerWidth > 750
-        )
-    ) {
-        globalHeaderClasses.add(transparencyClass);
-    } else {
-        globalHeaderClasses.remove(transparencyClass);
-    }
+    // Navbar is made transparent if the document is scrolled to the top.
+    globalHeaderClasses.toggle(transparencyClass, window.scrollY <= 0);
 
 }
 
@@ -46,11 +36,18 @@ function toggleExpandedMobileNavbar() {
     if (hamburgerCheckboxElement.checked) {
         globalHeaderClasses.add(mobileExpandedClass);
     } else {
-        globalHeaderClasses.remove(mobileExpandedClass);
-    }
 
-    // Applies the transparency style if appropriate.
-    toggleNavbarTransparency();
+        globalHeaderClasses.remove(mobileExpandedClass);
+
+        // Adds a closing class, then removes it after 0.3s. Used in CSS to
+        // delay the transparency transitions until after the navbar is closed.
+        // 0.3s is the duration of the closing animation.
+        globalHeaderClasses.add(mobileClosingClass);
+        setTimeout(function () {
+            globalHeaderClasses.remove(mobileClosingClass);
+        }, 300);
+
+    }
 
 }
 
@@ -60,7 +57,8 @@ const GlobalHeader = {
         // If the page has opted in, navbar transparency is applied.
         if (
             globalHeaderClasses
-                .contains("global-header--transparency-enabled")
+                .value
+                .includes(transparencyEnabledPrefix)
         ) {
 
             // Applies the transparency on page load.

@@ -3,10 +3,9 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/functions" as func;
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
-@use "base/common";
-@use "layout/containers";
 
 // Gives form UI elements the same font family as the rest of the website,
 // instead of the default system font.
@@ -27,8 +26,8 @@ textarea {
     padding: 0.5em;
 
     border: none;
-    border-bottom: 2px solid var(--foreground-secondary-color);
-    border-radius: 2px;
+    border-bottom: var.$default-accent-line-weight solid var(--foreground-secondary-color);
+    border-radius: var.$default-accent-line-weight;
 
     background-color: transparent;
 
@@ -68,8 +67,8 @@ button {
 
     padding: 0.5em 2em;
 
-    border: 2px solid var(--tiangerine-tangerine);
-    border-radius: 7.5px;
+    border: var.$default-accent-line-weight solid var(--tiangerine-tangerine);
+    border-radius: calc(var.$default-corner-radius / 2);
 
     font-size: 0.8rem;
     color: var(--tiangerine-tangerine);
@@ -86,24 +85,26 @@ button {
         color: inherit;
     }
 
+    @at-root %focused-button-style,
     &:enabled:hover,
     &:enabled:focus {
 
         background-color: var(--tiangerine-tangerine);
-        color: var.$foreground-primary-color-dark;
+        color: func.palette("dark", "foreground", 1);
 
         transform: scale(105%);
         box-shadow: var.$small-shadow;
 
     }
 
+    &:disabled {
+        cursor: not-allowed;
+    }
+
 }
 
 // The default form object.
 .c-form {
-
-    @extend .o-card-container;
-    @extend .u-elevated;
 
     padding: var.$mobile-padding;
 
@@ -141,9 +142,10 @@ button {
     &__submit {
 
         // The minimum width needed to accommodate every state of the button.
-        width: 166px;
+        width: 168px;
 
-        & > span {
+        & > span[class^="c-form__submit-label"],
+        & > span[class*=" c-form__submit-label"] {
 
             // Only the state that is selected will be displayed.
             display: none;
@@ -160,53 +162,33 @@ button {
                 width: auto;
 
                 position: relative;
-                top: 0.5px;
+                top: 1px;
 
             }
 
         }
 
-        &--default {
-            span.c-form__submit-label--default { display: flex; }
+        // Makes the label for the active state visible.
+        @each $state in "default", "waiting", "success", "failure" {
+            &--#{$state} span.c-form__submit-label--#{$state} {
+                display: flex;
+            }
         }
 
         &--waiting {
 
-            span.c-form__submit-label--waiting { display: flex; }
+            // Matches the style of the focused button.
+            @extend %focused-button-style;
 
-            cursor: wait;
-
-            // Matches the style of the button on :focus.
-            color: var.$foreground-primary-color-dark;
-            background-color: var(--tiangerine-tangerine);
-            transform: scale(105%);
-            box-shadow: var.$small-shadow;
+            // !important overrides the default style for :disabled buttons.
+            cursor: wait !important;
 
             // Spins the loading spinner.
             & > span > svg {
-                animation: continuous-rotation 1s infinite;
+                animation: full-rotation 1s infinite;
                 animation-timing-function: cubic-bezier(0.2, 0.5, 0.8, 0.5);
             }
 
-        }
-
-        &--success {
-
-            span.c-form__submit-label--success { display: flex; }
-
-            cursor: not-allowed;
-
-            // Disables hover effects.
-            &:hover,
-            &:focus {
-                color: var(--tiangerine-tangerine);
-                background-color: transparent;
-            }
-
-        }
-
-        &--failure {
-            span.c-form__submit-label--failure { display: flex; }
         }
 
     }
@@ -216,12 +198,7 @@ button {
     // focused, the label moves to the top and becomes smaller.
     &__text-field {
 
-        display: grid;
-
-        // Stacks all immediate children in the same grid area.
-        & > * {
-            grid-area: 1 / -1;
-        }
+        @include mix.z-stack();
 
         input[type=text],
         input[type=email],
@@ -247,23 +224,12 @@ button {
                 transition-duration: 0.4s;
                 transition-timing-function: var.$fast-ease-out;
 
-                // Applies a background color for legibility, for when the
-                // field is auto-filled.
-                @include mix.light-theme() {
-                    background-color: var.$background-primary-color-light;
-                }
-
-                @include mix.dark-theme() {
-                    background-color: var.$background-secondary-color-dark;
-                }
-
             }
 
             // Transforms the label when the field is focused or when it
             // contains text.
             &:focus,
             &:not(:placeholder-shown) {
-
                 & + label {
 
                     color: var(--foreground-secondary-color);
@@ -271,7 +237,6 @@ button {
                     transform: translateY(-1.25em);
 
                 }
-
             }
 
         }

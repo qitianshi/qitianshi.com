@@ -7,27 +7,20 @@
 
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
-@use "base/common";
 @use "base/typography";
-@use "layout/containers";
 @use "themes/themes";
 
 .c-stacked-banner {
 
-    display: grid;
+    @include mix.z-stack();
 
     // Increases the height of the banner to accommodate content if needed.
     min-height: fit-content;
 
-    // Places all immediate children in the same grid-area for stacking effect.
-    > * {
-        grid-area: 1 / -1;
-    }
-
     // The contents of the banner.
     &__content {
 
-        @extend .u-trim-vertical-margins;
+        @include mix.trim-vertical-margins();
 
         // Required for z-stacking to work, otherwise the filter on the
         // background creates a new stacking context that breaks the grid
@@ -36,17 +29,9 @@
 
         width: fit-content;
 
-        &--leading {
-            margin: auto auto auto 0;
-        }
-
-        &--bottom-leading {
-            margin: auto auto 0 0;
-        }
-
-        &--center {
-            margin: auto;
-        }
+        &--leading { margin: auto auto auto 0; }
+        &--bottom-leading { margin: auto auto 0 0; }
+        &--center { margin: auto; }
 
     }
 
@@ -71,49 +56,41 @@
     // The main heading text in .c-stacked-banner.
     &__heading {
 
-        @extend h1;
+        @extend %h1-style;
 
-        font-size: 3.4rem;
         margin: 1.5rem 0;
 
-        @include mix.respond-to-breakpoint("small") {
-            font-size: 2.6rem;  // Returns the size to the original h1 size.
-        }
-
-        // Emphasized appearance for .c-stacked-banner; gives text the accent
-        // color.
-        &--emphasized {
-            color: var(--tiangerine-tangerine);
+        // Increases the font size for larger screens.
+        @media (min-width: map-get(var.$breakpoints, "small")) {
+            font-size: 3.4rem;
         }
 
     }
 
     // If &__content follows &__background, content is set to dark theme.
     &__background ~ &__content {
-        @extend .t-dark;
+        @extend %t-dark;
     }
 
     // Specific implementation of .c-stacked-banner for hero banners as page
     // headers.
     &--hero &__content {
-        padding: 10%;
+        padding: var.$global-header-clear-space 10%;
     }
 
     // Specific implementation of .c-stacked-banner for headers for
     // .c-body-text.
     &--text-header &__content {
 
-        @include mix.apply-mobile-margin();
+        @include mix.mobile-horizontal-spacing("margin");
 
         // Makes the heading the same width as the body text.
-        width: 80vw;
-        max-width: 65ch;
+        width: calc(100vw - 2 * var.$body-text-horizontal-padding);
+        max-width: var.$body-text-max-width;
 
-        // Vertical padding ensures sufficient separation between text and the
-        // global header.
-        padding: 4rem 0;
+        padding: var.$global-header-clear-space 0;
 
-        // Overrides the width properties in mix.apply-mobile-margin.
+        // Overrides the width properties in mix.mobile-horizontal-spacing.
         @include mix.respond-to-breakpoint("small") {
             width: calc(100vw - 2 * var.$mobile-padding);
         }

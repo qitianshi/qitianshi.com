@@ -5,38 +5,24 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-@use "abstracts/variables" as var;
+@use "abstracts/mixins" as mix;
 
-// Private mixins. Prevents code repetition.
-
-/// Attributes for .t-light
-@mixin _light-attributes() {
-    @include var.light-theme-colors();
-    color-scheme: light;
+.t-light, %t-light {
+    @include mix.set-color-palette(light);
 }
 
-/// Attributes for .t-dark
-@mixin _dark-attributes() {
-    @include var.dark-theme-colors();
-    color-scheme: dark;
-}
-
-.t-light {
-    @include _light-attributes();
-}
-
-.t-dark {
-    @include _dark-attributes();
+.t-dark, %t-dark {
+    @include mix.set-color-palette(dark);
 }
 
 // Follows the user's preferred color scheme, from the prefers-color-scheme
 // media query. Defaults to light theme.
 .t-auto {
 
-    @include _light-attributes();
+    @include mix.set-color-palette(light);
 
     @media screen and (prefers-color-scheme: dark) {
-        @include _dark-attributes();
+        @include mix.set-color-palette(dark);
     }
 
 }

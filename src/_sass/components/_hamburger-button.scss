@@ -1,0 +1,102 @@
+// A hamburger button with open and closed states.
+//
+// Custom properties:
+//   --hamburger-button-height
+
+// Copyright 2023 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/variables" as var;
+
+$_icon-width: var.$hamburger-button-icon-width;
+$_icon-height: 18px;
+$_icon-line-weight: var.$default-accent-line-weight;
+$_icon-gap-height: calc(($_icon-height - 3 * $_icon-line-weight) / 2);
+
+.c-hamburger-button {
+
+    input {
+        display: none;
+    }
+
+    &__button {
+
+        display: block;
+
+        // Padding keeps the icon centered.
+        padding: calc((var(--hamburger-button-height) - $_icon-height) / 2) var.$mobile-padding;
+
+        cursor: pointer;
+
+        // Makes the button less visible in the closed state.
+        opacity: 60%;
+
+    }
+
+    &__icon {
+
+        width: $_icon-width;
+        height: $_icon-height;
+        position: relative;
+
+        span {
+
+            display: block;
+            position: absolute;
+            left: 0;
+
+            height: $_icon-line-weight;
+            width: 100%;
+
+            background-color: var(--foreground-primary-color);
+            border-radius: $_icon-line-weight;
+
+            // For the opening and closing animations.
+            transition: 0.15s ease-out;
+
+            &:nth-of-type(1) {
+                top: 0px;
+            }
+
+            // Places the two overlaid middle bars in the middle of the icon.
+            &:nth-of-type(2),
+            &:nth-of-type(3) {
+                top: calc($_icon-line-weight + $_icon-gap-height);
+            }
+
+            // Places the bottom bar at the bottom of the icon.
+            &:nth-of-type(4) {
+                top: calc(($_icon-line-weight + $_icon-gap-height) * 2);
+            }
+
+        }
+
+    }
+
+    // Selects the <span>s if the checkbox is checked.
+    &__checkbox:checked + &__button {
+
+        opacity: 100%;
+
+        span {
+
+            &:nth-of-type(1),
+            &:nth-of-type(4) {
+                top: calc($_icon-line-weight + $_icon-gap-height);
+                width: 0%;
+                left: 50%;
+            }
+
+            &:nth-of-type(2) {
+                transform: rotate(45deg);
+            }
+
+            &:nth-of-type(3) {
+                transform: rotate(-45deg);
+            }
+
+        }
+
+    }
+
+}

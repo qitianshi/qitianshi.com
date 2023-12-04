@@ -3,14 +3,14 @@
 # Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-- text: "About"
+- text: "about"
   destination: "/under-construction"
 
-- text: "Projects"
+- text: "projects"
   destination: "/under-construction"
 
-- text: "Gallery"
+- text: "gallery"
   destination: "/under-construction"
 
-- text: "Contact"
+- text: "contact"
   destination: "/contact"

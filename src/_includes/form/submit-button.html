@@ -5,32 +5,32 @@
 
 <button
     type="submit"
-    class="c-form__submit c-form__submit--{{ include.state }}"
+    class="c-form__submit c-form__submit--{{ include.state | default: 'default' }}"
     {% if include.state == "waiting" or include.state=="success" %} disabled {% endif %}
     tabindex="0"
 >
 
     <span class="c-form__submit-label--default">
-        Submit
+        submit
     </span>
 
     <span class="c-form__submit-label--waiting o-media">
         {% include svg/progress_activity.svg %}
-        Working&mldr;
+        working&mldr;
     </span>
 
     <span class="c-form__submit-label--success o-media">
         {% include svg/check_circle.svg %}
-        Submitted.
+        submitted.
     </span>
 
     <span class="c-form__submit-label--failure o-media">
         {% include svg/error.svg %}
-        Try again.
+        try again.
     </span>
 
 </button>
 
 <small class="c-form__multiple-failed-submits-warning">
-    Something's been going wrong while trying to submit this form. If you keep seeing this error, try reaching out through my socials instead. <a href="https://status.formspree.io" class="external-link" target="_blank">Formspree status</a>
+    Something's been going wrong while trying to submit this form. If you keep seeing this error, try reaching out through my socials instead. <a href="https://status.formspree.io" target="_blank">Formspree status</a>
 </small>

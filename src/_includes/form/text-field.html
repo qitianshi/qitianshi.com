@@ -11,8 +11,10 @@
             type="{{ include.type }}"
             id="{{ include.id }}"
             name="{{ include.name }}"
-            {% if include.autocomplete %} autocomplete="{{ include.autocomplete }}" {% endif %}
             placeholder="&ZeroWidthSpace;"
+            {% if include.autocomplete %} autocomplete="{{ include.autocomplete }}" {% endif %}
+            {% if include.autocapitalize %} autocapitalize="{{ include.autocapitalize }}" {% endif %}
+            {% if include.autocorrect %} autocorrect="{{ include.autocorrect }}" {% endif %}
             {% if include.required %} required {% endif %}
         >
 
@@ -22,8 +24,9 @@
         <textarea
             id="{{ include.id }}"
             name="{{ include.name }}"
-            placeholder="&ZeroWidthSpace;"
             rows="1"
+            placeholder="&ZeroWidthSpace;"
+            {% if include.autocapitalize %} autocapitalize="{{ include.autocapitalize }}" {% endif %}
             {% if include.required %} required {% endif %}
         ></textarea>
 

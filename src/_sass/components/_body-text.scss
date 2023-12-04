@@ -10,9 +10,9 @@
 .c-body-text {
 
     @extend .o-text-container;
-    @include mix.apply-mobile-padding();
+    @include mix.mobile-horizontal-spacing("padding");
 
     margin: 3rem auto 6rem;
-    padding: 0 10%;
+    padding: 0 var.$body-text-horizontal-padding;
 
 }

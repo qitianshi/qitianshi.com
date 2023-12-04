@@ -3,10 +3,13 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
-
 // ---------- Fonts ----------
+
+// Imports font families Barlow and Grape Nuts from Google Fonts.
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&family=Grape+Nuts&family=Inconsolata&display=swap");
 
 // Adjusts size and descent for Verdana to match Grape Nuts.
 // Not supported in Safari 16.
@@ -19,29 +22,24 @@
     line-gap-override: 0%;
 }
 
-// Import font families Inter and Grape Nuts from Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,700;0,800;1,400;1,700;1,800&family=Grape+Nuts&display=swap');
-
 // --------- Styles ----------
 
 :root {
 
-    color-scheme: light dark;
-
     // Sets the light theme colors as default for compatibility with browsers
     // that don't support prefers-color-scheme.
-    @include var.light-theme-colors();
+    @include mix.set-color-palette(light);
 
     // If the browser requests a dark theme, the light theme variables are
     // overridden.
-    @media (prefers-color-scheme: dark) {
-        @include var.dark-theme-colors();
+    @media screen and (prefers-color-scheme: dark) {
+        @include mix.set-color-palette(dark);
     }
 
 }
 
 html {
-    font-size: 125%;   // Increases all font sizes by 20% for better legibility.
+    font-size: 125%;   // Increases all font sizes by 25% for better legibility.
 }
 
 body {
@@ -64,15 +62,16 @@ body * {
     color: var(--foreground-primary-color);
 }
 
-h1  {
+h1,
+%h1-style {
 
-    font-family: var.$heading-font-family;
+    font-family: var.$display-font-family;
     font-size: 2.6rem;
     line-height: 0.9em;
     margin: 1.8em 0 1rem;
 
     // Adds an accent color beneath the text
-    border-bottom: 2px solid;
+    border-bottom: var.$default-accent-line-weight solid;
     border-color: var(--tiangerine-tangerine);
 
     // Makes the width fit its content; otherwise, the underline would extend
@@ -82,17 +81,28 @@ h1  {
 
 }
 
-h2, h3, h4, h5, h6 {
-    font-family: var.$body-font-family;
+h2, h3, h4 {
     margin: 2em 0 1em;
+    color: var(--tiangerine-tangerine);
 }
 
 h2 {
-    font-weight: 800;
+    font-weight:100;
+    font-size: 2.1em;
+}
+
+h3 {
+    font-weight: 300;
+    font-size: 1.3em;
+}
+
+h4 {
+    font-weight: 700;
+    font-size: 1em;
 }
 
 p {
-    font-family: var.$body-font-family;
+    font-weight: 400;
     font-size: 1rem;
 }
 
@@ -117,22 +127,32 @@ a {
         text-decoration: underline;
     }
 
+    // Placeholder for links affixed with pseudo-element markers.
+    @at-root %marked-link {
+        font-family: var.$body-font-family;
+    }
+
     // A link that represents a backward navigation.
     &.back-link::before {
-        // A left arrow (&larr;) and a space.
-        content: "\02190\202f";
+        @extend %marked-link;
+        content: "\02190\202f";     // A left arrow (&larr;) and a space.
     }
 
     // A link that represents a forward navigation.
     &.forward-link::after {
-        // A space and a right arrow (&rarr;).
-        content: "\202f\2192";
+        @extend %marked-link;
+        content: "\202f\2192";      // A space and a right arrow (&rarr;).
     }
 
-    // A link to an external website.
-    &.external-link::after {
-        // A space and a north east arrow (&nearr;).
-        content: "\202f\2197";
+    // A link to an external website. Automatically detects URLs to external
+    // domains.
+    &.external-link,
+    &[href^="http://"]:not([href^="http://qitianshi.github.io"]),
+    &[href^="https://"]:not([href^="https://qitianshi.github.io"]) {
+        &::after {
+            @extend %marked-link;
+            content: "\202f\2197";  // A space and a north east arrow (&nearr;).
+        }
     }
 
     // A link that fills its entire parent element.
@@ -147,7 +167,7 @@ a {
 
 small {
 
-    font-size: 0.65rem;
+    font-size: var.$small-font-size;
     color: var(--foreground-secondary-color);
 
     margin-block: 1em;
@@ -157,9 +177,26 @@ small {
     }
 
     // By default, any link in <small> is displayed discreetly.
-    & a:any-link,
-    & a:any-link * {
+    a:any-link,
+    a:any-link * {
         @extend .quiet-link;
+    }
+
+}
+
+code {
+
+    font-family: var.$mono-font-family;
+    font-size: 0.9em;
+
+    padding: 0.2em 0.4em;
+    border-radius: 0.4em;
+    background-color: var(--code-background-color);
+
+    // To avoid ambiguity, links in code are always underlined.
+    a:any-link,
+    a:any-link * {
+        text-decoration: underline;
     }
 
 }

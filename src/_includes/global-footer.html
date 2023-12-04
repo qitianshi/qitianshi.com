@@ -3,37 +3,37 @@
 <!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
 
 
-<footer class="global-footer" id="global-footer">
+<footer id="global-footer" class="u-background-scribble u-background-scribble--top-right">
 
-    <div id="global-footer__main" class="global-footer__content">
+    <div id="global-footer__main" class="global-footer__section">
 
         <small>
-            Made in the small hours by <b>Qi Tianshi</b>. <a href="https://github.com/qitianshi/qitianshi.github.io" target="_blank" class="external-link quiet-link">Source code on GitHub</a>
+            Made in the small hours by <b>Qi Tianshi</b>. <a href="https://github.com/qitianshi/qitianshi.github.io" target="_blank" class="quiet-link">Source code on GitHub</a>
         </small>
 
         <!-- A three-way toggle that allows the user to override their browser color scheme. Event handled in JavaScript. -->
-        <div id="global-footer__color-theme-toggle" role="radiogroup">
+        <div id="global-footer__color-theme-toggle" class="c-toggle" role="radiogroup">
 
-            <input type="radio" name="color-theme-toggle" value="light" id="color-theme-toggle__light">
-            <label for="color-theme-toggle__light"><span>Light</span></label>
+            {% assign themes = "light,dark,auto" | split: "," %}
 
-            <input type="radio" name="color-theme-toggle" value="dark" id="color-theme-toggle__dark">
-            <label for="color-theme-toggle__dark"><span>Dark</span></label>
+            {% for option in themes %}
 
-            <input type="radio" name="color-theme-toggle" value="auto" id="color-theme-toggle__auto" checked>
-            <label for="color-theme-toggle__auto"><span>Auto</span></label>
+                <input type="radio" name="color-theme-toggle" value="{{ option }}" id="color-theme-toggle__{{ option }}">
+                <label for="color-theme-toggle__{{ option }}"><span>{{ option }}</span></label>
+
+            {% endfor %}
 
         </div>
 
     </div>
 
-    <div id="global-footer__legal" class="global-footer__content">
+    <div id="global-footer__legal" class="global-footer__section">
 
         <small>&copy; 2023 Qi Tianshi. All rights reserved.</small>
 
         <ul id="global-footer__legal-links">
-            <li><a href="/legal/privacy" class="quiet-link">Privacy</a></li>
-            <li><a href="/legal/acknowledgments" class="quiet-link">Acknowledgments</a></li>
+            <li><a href="/legal/privacy" class="quiet-link">privacy</a></li>
+            <li><a href="/legal/acknowledgments" class="quiet-link">acknowledgments</a></li>
         </ul>
 
     </div>

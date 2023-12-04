@@ -1,8 +1,11 @@
-// Commonly used mixins.
+// Global mixins.
 
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "sass:list";
+
+@use "abstracts/functions" as func;
 @use "abstracts/variables" as var;
 
 /// Applies a media query to adjust styles for screens up to the width of the
@@ -18,64 +21,114 @@
             @content;
         }
 
-    }
+    } @else {
 
-    // Raise warning if the key doesn't exist.
-    @else {
-        @warn "No key `#{$breakpoint}` in $breakpoints.";
+        // Raise warning if the key doesn't exist.
+        @error "No key `#{$breakpoint}` in $breakpoints.";
+
     }
 
 }
 
-/// When the screen is narrow, a margin is applied on the left and right edges
-/// and the width and max-width are reset, so that the element fills the width
-/// of the screen, less the margins.
-@mixin apply-mobile-margin {
+/// Adjusts the horizontal spacing of an element for mobile screens.
+///
+/// @param {String} $property - Either `padding` or `margin`. Controls whether
+///     the interior (`padding`) or exterior (`margin`) spacing of the element
+///     is adjusted. `margin` will cause the width of the element to be reset.
+@mixin mobile-horizontal-spacing($property) {
+
+    @if (not list.index(("padding", "margin"), $property)) {
+        @error "Invalid value of enumerated parameter $property.";
+    }
+
     @include respond-to-breakpoint("small") {
-        margin-left: var.$mobile-padding;
-        margin-right: var.$mobile-padding;
-        width: unset;
-        max-width: unset;
-    }
-}
 
-/// When the screen is narrow, changes the left and right paddings to
-/// var.$mobile-padding.
-@mixin apply-mobile-padding {
-    @include respond-to-breakpoint("small") {
-        padding-left: var.$mobile-padding;
-        padding-right: var.$mobile-padding;
-    }
-}
+        #{$property}-left: var.$mobile-padding;
+        #{$property}-right: var.$mobile-padding;
 
-/// Specifies additional styles for the light theme, whether it's applied using
-/// @media or .t-light. As much as possible, prefer using color variables.
-@mixin light-theme() {
+        @if ($property == "margin") {
+            width: unset;
+            max-width: unset;
+        }
 
-    // When the user has specified the light theme through their browser.
-    @media screen and (prefers-color-scheme: light) {
-        @content;
-    }
-
-    // When the element has been programmatically set to the light theme, or
-    // when it's the child of an element that has.
-    &.t-light,
-    .t-light & {
-        @content;
     }
 
 }
 
-/// Specifies additional styles for the dark theme.
-@mixin dark-theme() {
+/// Sets the color palette for a chosen color theme as CSS variables.
+@mixin set-color-palette($theme) {
 
-    @media screen and (prefers-color-scheme: dark) {
-        @content;
+    --tiangerine-tangerine: #{func.palette($theme, "tiangerine-tangerine")};
+
+    --foreground-primary-color: #{func.palette($theme, "foreground", 1)};
+    --foreground-secondary-color: #{func.palette($theme, "foreground", 2)};
+    --foreground-tertiary-color: #{func.palette($theme, "foreground", 3)};
+
+    --background-primary-color: #{func.palette($theme, "background", 1)};
+    --background-secondary-color: #{func.palette($theme, "background", 2)};
+
+    --code-background-color: #{func.palette($theme, "code-background")};
+
+    --link-color: #{func.palette($theme, "link", 1)};
+    --link-hover-color: #{func.palette($theme, "link", 2)};
+
+    color-scheme: $theme;
+
+}
+
+/// Specifies additional styles for a specific color theme.
+///
+/// @param {String} $theme - The theme for which the styles are applied. Either
+///     `light` or `dark`.
+/// @param {Bool} $as-fallback - Whether these styles should also be included
+///     as a fallback if prefers-color-scheme is not supported. By default,
+///     $theme as `light` is the fallback.
+@mixin color-theme($theme, $as-fallback: ($theme == light)) {
+
+    @if $as-fallback { @content; }
+
+    @media screen and (prefers-color-scheme: $theme) { @content; }
+
+    &.t-#{$theme}, .t-#{$theme} & { @content; }
+
+}
+
+/// Applies the default shadow, with optional :hover styles.
+///
+/// @param {Bool} $hoverable - Increases the shadow on :hover.
+@mixin default-shadow($hoverable: false) {
+
+    box-shadow: var.$small-shadow;
+
+    @if $hoverable {
+        &:hover {
+            box-shadow: var.$big-shadow;
+        }
     }
 
-    &.t-dark,
-    .t-dark & {
-        @content;
+}
+
+/// Removes the top and bottom margins from :first-child and :last-child.
+@mixin trim-vertical-margins() {
+
+    & :first-child {
+        margin-top: 0;
+    }
+
+    & :last-child {
+        margin-bottom: 0;
+    }
+
+}
+
+/// Causes the immediate descendants of the element to be stacked in the
+/// z-axis.
+@mixin z-stack() {
+
+    display: grid;
+
+    & > * {
+        grid-area: 1 / -1;
     }
 
 }

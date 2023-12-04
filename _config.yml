@@ -15,8 +15,10 @@ exclude:
   - "node_modules"
 sass:
   sourcemap: development
+  style: compressed
 plugins:
   - jekyll-autoprefixer
+  - jekyll-minifier
 
 
 # --------- Plugins ---------
@@ -26,3 +28,9 @@ autoprefixer:
   only_production: true
   browsers:
     - last 2 versions
+
+# For jekyll-minifier
+jekyll-minifier:
+  compress_css: false           # Handled by Jekyll natively.
+  compress_javascript: false    # Handled by webpack.
+  remove_intertag_spaces: true

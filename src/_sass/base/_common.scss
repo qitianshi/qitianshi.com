@@ -3,47 +3,41 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/functions" as func;
 @use "abstracts/mixins" as mix;
-@use "abstracts/variables" as var;
-
-/// Applies a shadow.
-.u-shadow {
-
-    box-shadow: var.$small-shadow;
-
-    &--hoverable:hover {
-        box-shadow: var.$big-shadow;
-    }
-
-}
 
 /// Makes elements appear elevated above the primary background. Applies a
 /// shadow; in light theme, keeps the background color the same as the
 /// primary background, and in dark theme, makes the background the secondary
 /// background color.
-.u-elevated {
+.u-hierarchy-elevated {
 
-    @extend .u-shadow;
+    @include mix.default-shadow();
 
-    @include mix.light-theme() {
-        background-color: var.$background-primary-color-light;
+    @include mix.color-theme("light") {
+        background-color: func.palette("light", "background", 1);
     }
 
-    @include mix.dark-theme() {
-        background-color: var.$background-secondary-color-dark;
+    @include mix.color-theme("dark") {
+        background-color: func.palette("dark", "background", 2);
     }
 
 }
 
-/// Removes the top and bottom margins from the first-child and last-child.
-.u-trim-vertical-margins {
+/// Adds the Q scribble to the background.
+.u-background-scribble {
 
-    & :first-child {
-        margin-top: 0;
+    @each $theme in "light", "dark" {
+        @include mix.color-theme($theme) {
+            background-image: url("/assets/images/extras/scribble-#{$theme}.svg");
+        }
     }
 
-    & :last-child {
-        margin-bottom: 0;
-    }
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    // Positioning options.
+    background-position: bottom right 20%;              // Default.
+    &--top-right { background-position: top 20% right 20%; }
 
 }

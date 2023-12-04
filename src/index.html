@@ -14,7 +14,7 @@ navbar_transparency_theme: "dark"
 
 <!-- Main hero banner. -->
 <section
-    class="c-stacked-banner c-stacked-banner--hero o-fill-viewport-container"
+    class="c-stacked-banner c-stacked-banner--hero o-viewport-relative-container-full"
     id="landing-banner"
 >
 
@@ -27,8 +27,8 @@ navbar_transparency_theme: "dark"
 
     <div class="c-stacked-banner__content c-stacked-banner__content--leading">
 
-        <h1 class="c-stacked-banner__heading c-stacked-banner__heading--emphasized">
-            from the desk of <span id="landing-banner__big-name">Qi Tianshi</span>
+        <h1 class="c-stacked-banner__heading">
+            from the desk of<br><span id="landing-banner__big-name">Qi Tianshi</span>
         </h1>
 
         <p>Hello. It seems you've found my little corner of the Internet.</p>
@@ -39,7 +39,7 @@ navbar_transparency_theme: "dark"
 </section>
 
 <!-- Profile pic and introduction. -->
-<section class="o-media" id="introduction-banner">
+<section class="o-media o-media--wrappable" id="introduction-banner">
 
     <img
         src="/assets/images/home/profile-pic.jpg"
@@ -91,9 +91,12 @@ navbar_transparency_theme: "dark"
 </section>
 
 <!-- "Under construction" card -->
-<div class="o-media o-card-container" id="construction-card">
+<div class="o-media o-media--wrappable o-card-container u-hierarchy-elevated u-background-scribble" id="construction-card">
 
-    {% include svg/construction.svg %}
+    {%
+        include svg/construction.svg
+        attributes='class="o-media__image"'
+    %}
 
     <div class="o-media__content">
         <h4>There's more to come.</h4>

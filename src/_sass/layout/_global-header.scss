@@ -3,59 +3,62 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/functions" as func;
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
-@use "base/common";
 @use "themes/themes";
 
-// Navbar layout
-$_navbar-height: 48px;
 $_navlink-horizontal-padding: 35px;
+$_light-divider-weight: 1px;
 $_mobile-navlink-height: 64px;
+$_num-of-navlinks: 4;
 
-// Hamburger button
-$_hamburger-icon-width: 24px;
-$_hamburger-icon-height: 18px;
-$_hamburger-line-weight: 2px;
-$_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-weight) / 2);
+/// The bottom border of the navbar when the --transparent modifier is active.
+@mixin _transparent-mode-border($theme) {
+
+    // CSS color variables don't support adding alpha channels, so a mixin with
+    // Sass variables is used instead.
+    border-bottom: $_light-divider-weight solid rgba(func.palette($theme, "foreground", 1), 0.2);
+
+}
+
+/// The transition properties for the --transparent modifier.
+@function _transparency-transitions($delay) {
+    @return background-color 0.2s #{$delay}, backdrop-filter 0.2s #{$delay};
+}
 
 #global-header {
 
-    @extend .u-elevated;
-
     // Places header above other page elements.
     position: fixed;
-    z-index: 999;
-
+    z-index: 99;
     width: 100vw;
 
-    // For the --transparent modifier.
-    transition-property: background-color, backdrop-filter;
-    transition-duration: 0.2s;
+    transition: _transparency-transitions($delay: 0s);
 
     // Checks for backdrop-filter support. If available, the default
-    // background-color of .u-elevated is overridden.
+    // background-color of .u-hierarchy-elevated is overridden.
     @supports (backdrop-filter: blur()) {
 
         backdrop-filter: blur(30px);
 
-        @include mix.light-theme() {
-            background-color: rgba(var.$background-primary-color-light, 0.8);
+        @include mix.color-theme(light) {
+            background-color: rgba(func.palette("light", "background", 1), 0.8);
         }
 
-        @include mix.dark-theme() {
-            background-color: rgba(var.$background-secondary-color-dark, 0.8);
+        @include mix.color-theme(dark) {
+            background-color: rgba(func.palette("dark", "background", 2), 0.8);
         }
 
     }
 
     nav {
 
-        height: $_navbar-height;
+        height: var.$global-header-height;
 
         // Links have horizontal padding to increase their clickable area, but
         // remain visually aligned.
-        padding: 0 calc(10vw - $_navlink-horizontal-padding);
+        padding: 0 calc(var.$body-text-horizontal-padding - $_navlink-horizontal-padding);
 
         display: flex;
         justify-content: space-between;
@@ -65,8 +68,9 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
     &__home-navlink {
 
-        height: $_navbar-height;
+        height: var.$global-header-height;
 
+        // For :hover.
         transition: transform 0.3s var.$fast-ease-out;
 
         #global-header__logo {
@@ -100,10 +104,11 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
     &__navigation-links {
 
-        list-style-type: none;
+        height: var.$global-header-height;
         margin: 0;
         padding: 0;
-        height: $_navbar-height;
+
+        list-style-type: none;
 
         li {
 
@@ -115,9 +120,9 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
                 padding: 0 $_navlink-horizontal-padding;
 
                 color: var(--foreground-primary-color);
-                font-size: 0.9rem;
+                font-size: 0.95rem;
                 font-weight: 300;
-                line-height: $_navbar-height;       // Centers text vertically.
+                line-height: var.$global-header-height;       // Centers text vertically.
 
                 // For hover effect.
                 transition-property: color, transform;
@@ -134,11 +139,11 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
             &.global-header__navlink--active {
 
-                border-top: 2px solid var(--tiangerine-tangerine);
+                border-top: var.$default-accent-line-weight solid var(--tiangerine-tangerine);
 
-                // Compensates for the 2px border by shifting the text upwards.
+                // Compensates for the border by shifting the text upwards.
                 a {
-                    margin-top: -2px;
+                    margin-top: calc(-1 * var.$default-accent-line-weight);
                 }
 
             }
@@ -147,121 +152,56 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
     }
 
-    &__hamburger {
+    .c-hamburger-button {
 
-        &-container {
+        // By default, the hamburger button is hidden. The media query
+        // below overrides this property.
+        display: none;
 
-            // By default, the hamburger button is hidden. The media query
-            // below overrides this property.
-            display: none;
-
-        }
-
-        &-checkbox {
-            display: none;
-        }
-
-        &-button {
-
-            display: block;
-
-            // Padding keeps the icon centered.
-            padding: calc(($_navbar-height - $_hamburger-icon-height) / 2) var.$mobile-padding;
-
-            cursor: pointer;
-
-        }
-
-        &-icon {
-
-            width: $_hamburger-icon-width;
-            height: $_hamburger-icon-height;
-            position: relative;
-
-            span {
-
-                display: block;
-                position: absolute;
-                left: 0;
-
-                height: $_hamburger-line-weight;
-                width: 100%;
-
-                background-color: var(--foreground-primary-color);
-                border-radius: $_hamburger-line-weight;
-
-                // For the opening and closing animations.
-                transition: 0.15s ease-out;
-
-                &:nth-of-type(1) {
-                    top: 0px;
-                }
-
-                // Places the two overlaid middle bars in the middle of the icon.
-                &:nth-of-type(2),
-                &:nth-of-type(3) {
-                    top: calc($_hamburger-line-weight + $_hamburger-gap-height);
-                }
-
-                // Places the bottom bar at the bottom of the icon.
-                &:nth-of-type(4) {
-                    top: calc(($_hamburger-line-weight + $_hamburger-gap-height) * 2);
-                }
-
-            }
-
-        }
-
-        // Selects the <span>s if the checkbox is checked.
-        &-checkbox:checked + &-button span {
-
-            &:nth-of-type(1),
-            &:nth-of-type(4) {
-                top: calc($_hamburger-line-weight + $_hamburger-gap-height);
-                width: 0%;
-                left: 50%;
-            }
-
-            &:nth-of-type(2) {
-                transform: rotate(45deg);
-            }
-
-            &:nth-of-type(3) {
-                transform: rotate(-45deg);
-            }
-
-        }
+        --hamburger-button-height: #{var.$global-header-height};
 
     }
 
-    &.global-header--transparent {
+    // Transparency effect is only applied when the navbar is not expanded.
+    &.global-header--transparent:not(.global-header--mobile-expanded):not(.global-header--mobile-closing) {
 
-        &.global-header--transparency-theme {
-            &-dark { @extend .t-dark; }
-            &-light { @extend .t-light; }
-        }
-
-        background-color: transparent !important;
+        background-color: transparent;
         backdrop-filter: none;
         box-shadow: none;
 
-        // CSS variables containing colors don't support adding alpha channels
-        // after the fact, so a mixin with Sass variables is used instead.
+        @each $theme in "light", "dark" {
 
-        @include mix.light-theme {
-            border-bottom: 0.5px solid rgba(var.$foreground-primary-color-light, 0.2);
-        }
+            @include mix.color-theme($theme) {
+                @include _transparent-mode-border($theme);
+            }
 
-        @include mix.dark-theme {
-            border-bottom: 0.5px solid rgba(var.$foreground-primary-color-dark, 0.2);
+            &.global-header--transparency-theme-#{$theme} {
+                @extend %t-#{$theme};
+                @include _transparent-mode-border($theme);
+            }
+
         }
 
     }
 
     // The width at which the screen is too narrow to fit the navbar links.
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: 775px) {
 
-        // Adjusts margins to make the navbar less crowded in narrow screens.
+        // Using max-height allows the height change to be animated.
+        max-height: var.$global-header-height;
+
+        // Hides the navigation links when the dropdown is being closed.
+        overflow: clip;
+
+        // Adds the height transition to transparency transitions.
+        transition: _transparency-transitions(0s), max-height 0.3s ease-in;
+
+        // The .global-header--mobile-closing is applied in JS for the duration
+        // of the max-height transition (0.3s) to apply a delay in the
+        // transparency transitions until after the dropdown has fully closed.
+        &.global-header--transparent.global-header--mobile-closing {
+            transition: _transparency-transitions(0.3s), max-height 0.3s ease-in;
+        }
 
         nav {
 
@@ -272,7 +212,7 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
             // Creates a 2 by 2 grid to place the logo, the hamburger button,
             // and the navigation links.
             display: grid;
-            grid-template-columns: auto calc($_hamburger-icon-width + 2 * var.$mobile-padding);
+            grid-template-columns: auto calc(var.$hamburger-button-icon-width + 2 * var.$mobile-padding);
             grid-template-areas:
                 "logo hamburger"
                 "menu menu";
@@ -295,25 +235,31 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
         &__navigation-links {
 
-            // By default, navigation links are hidden.
+            // Navigation links are hidden until the header is expanded.
             display: none;
+            grid-area: menu;
 
             // Resets default values.
             height: unset;
             padding: 0 var.$mobile-padding;
 
-            grid-area: menu;
-
             // Adds a border between the navigation links and the navbar.
-            border-top: 1px solid var(--foreground-tertiary-color);
+            border-top: $_light-divider-weight solid var(--foreground-tertiary-color);
 
             li {
 
+                position: relative;
                 display: block;
                 height: $_mobile-navlink-height;
 
                 // Adds a border between each link.
                 border-top: inherit;
+
+                // The first link doesn't need a border because the parent
+                // element already has a top border.
+                &:first-of-type {
+                    border-top: none;
+                }
 
                 a {
 
@@ -330,47 +276,56 @@ $_hamburger-gap-height: calc(($_hamburger-icon-height - 3 * $_hamburger-line-wei
 
                 &.global-header__navlink--active {
 
+                    // Overrides defaults.
                     border-top: inherit;
+                    a { margin-top: 0; }
 
                     // Places a line against the left edge of the screen.
                     &::before {
 
                         content: '';
                         position: absolute;
-                        left: 0;
-                        width: 2px;
+                        left: calc(-1 * var.$mobile-padding);
+                        width: var.$default-accent-line-weight;
                         height: $_mobile-navlink-height;
 
-                        background: var(--tiangerine-tangerine);
+                        background-color: var(--tiangerine-tangerine);
 
                     }
 
-                    // Overrides default.
-                    a {
-                        margin-top: 0;
-                    }
-
-                }
-
-                // The first link doesn't need a border because the parent
-                // element already has a top border.
-                &:first-of-type {
-                    border-top: none;
                 }
 
             }
 
         }
 
-        &__hamburger-container {
+        .c-hamburger-button {
             display: block;
             grid-area: hamburger;
         }
 
-        // This class is applied to the navigation links in JS when the
-        // hamburger button is clicked.
-        &.global-header--mobile-expanded &__navigation-links {
-            display: block;
+        // Programmatically applied class for expanding the navigation links.
+        &.global-header--mobile-expanded,
+        &.global-header--mobile-closing {
+            #global-header__navigation-links {
+                display: block;
+            }
+        }
+
+        &.global-header--mobile-expanded {
+
+            // Allows the navbar height to be animated. Calculated as the
+            // natural height of the global header.
+            max-height: calc(var.$global-header-height + $_num-of-navlinks * ($_mobile-navlink-height + $_light-divider-weight));
+
+            // Applies animations with successive delays for each of the 4
+            // navigation links.
+            @for $i from 1 through $_num-of-navlinks {
+                #global-header__navigation-links li:nth-of-type(#{$i}) {
+                    animation: 1s var.$fast-ease-out (0.07s * ($i)) normal both 1 fade-and-move-in;
+                }
+            }
+
         }
 
     }

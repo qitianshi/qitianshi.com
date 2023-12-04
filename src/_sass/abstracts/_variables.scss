@@ -1,88 +1,56 @@
-// Preset variables for fonts, colors, and other global values.
+// Global variables.
 
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
 // ---------- Fonts ----------
 
-$heading-font-family: "Grape Nuts", "Verdana Fallback", Verdana, Geneva, Tahoma, sans-serif;
-$body-font-family: "Barlow", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+$display-font-family: "Grape Nuts", "Verdana Fallback", "Verdana", "Geneva", "Tahoma", sans-serif;
+$body-font-family: "Barlow", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+$mono-font-family: "Inconsolata", "ui-monospace", "Courier New", "Courier", monospace;
 
 
 // --------- Colors ----------
 
-// Light theme colors
-$tiangerine-tangerine-light: #ef4b07;
-
-$background-primary-color-light: #ffffff;
-$background-secondary-color-light: #e8e8e8;
-
-$foreground-primary-color-light: #000000;
-$foreground-secondary-color-light: #6a6a6a;
-$foreground-tertiary-color-light: #bababa;
-
-$link-color-light: #195ee6;
-$link-hover-color-light: #3670e2;
-
-// Dark theme colors
-$tiangerine-tangerine-dark: #ff5208;
-
-$background-primary-color-dark: #0f0f0f;
-$background-secondary-color-dark: #232323;
-
-$foreground-primary-color-dark: #f5f5f5;
-$foreground-secondary-color-dark: #959595;
-$foreground-tertiary-color-dark: #636363;
-
-$link-color-dark: #71a8f4;
-$link-hover-color-dark: #68a2f3;
-
-/// Sets the light theme color palette as CSS variables.
-@mixin light-theme-colors() {
-
-    --tiangerine-tangerine: #{$tiangerine-tangerine-light};
-
-    --background-primary-color: #{$background-primary-color-light};
-    --background-secondary-color: #{$background-secondary-color-light};
-
-    --foreground-primary-color: #{$foreground-primary-color-light};
-    --foreground-secondary-color: #{$foreground-secondary-color-light};
-    --foreground-tertiary-color: #{$foreground-tertiary-color-light};
-
-    --link-color: #{$link-color-light};
-    --link-hover-color: #{$link-hover-color-light};
-
-}
-
-/// Sets the dark theme color palette as CSS variables.
-@mixin dark-theme-colors() {
-
-    --tiangerine-tangerine: #{$tiangerine-tangerine-dark};
-
-    --background-primary-color: #{$background-primary-color-dark};
-    --background-secondary-color: #{$background-secondary-color-dark};
-
-    --foreground-primary-color: #{$foreground-primary-color-dark};
-    --foreground-secondary-color: #{$foreground-secondary-color-dark};
-    --foreground-tertiary-color: #{$foreground-tertiary-color-dark};
-
-    --link-color: #{$link-color-dark};
-    --link-hover-color: #{$link-hover-color-dark};
-
-}
+// Color palette map is divided into light and dark palettes, both with color
+// keys mapping to lists of colors in decreasing order of hierarchical level.
+$color-palette: (
+    "light": (
+        "tiangerine-tangerine": #ef4b07,
+        "foreground": #0f0f0f #6a6a6a #bababa,
+        "background": #ffffff #e9e9e9,
+        "code-background": #edeff2,
+        "link": #1a5ee6 #4d80e5,
+    ),
+    "dark": (
+        "tiangerine-tangerine": #e86830,
+        "foreground": #f5f5f5 #959595 #5c5c5c,
+        "background": #0f0f0f #232323,
+        "code-background": #262b33,
+        "link": #70a7f5 #5091ed,
+    ),
+);
 
 
 // ----- Design elements -----
-
-$mobile-padding: 16px;
-
-$small-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
-$big-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
 
 // Used with mix.respond-to-breakpoint for responsive design.
 $breakpoints: (
     "small": 450px
 );
+
+$body-text-horizontal-padding: 10vw;
+$body-text-max-width: 65ch;
+$default-accent-line-weight: 2px;
+$default-corner-radius: 15px;
+$global-header-height: 48px;
+$global-header-clear-space: calc($global-header-height * 1.5);
+$hamburger-button-icon-width: 24px;
+$mobile-padding: 16px;
+$small-font-size: 0.65rem;
+
+$small-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+$big-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.2);
 
 
 // ------- Animations --------
