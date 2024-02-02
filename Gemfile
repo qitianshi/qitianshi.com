@@ -9,7 +9,7 @@ gem "jekyll", "~> 4.3.2"
 
 # A bug in jekyll-autoprefixer causes build to fail with later versions of
 # execjs.
-gem "execjs", "~> 2.7.0"
+gem "execjs", "~> 2.9.1"
 
 group :jekyll_plugins do
     gem "jekyll-autoprefixer", "~> 1.0.2"
