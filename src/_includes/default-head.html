@@ -32,6 +32,11 @@
 <!-- Deferred scripts -->
 <script src="{{ '/assets/scripts/main.js' | relative_url }}" defer></script>
 
+<!-- Local scripts -->
+{% if page.local_script %}
+    <script src="{{ page.local_script | relative_url }}" defer></script>
+{% endif %}
+
 <!-- Favicons -->
 <link rel="icon" href="{{ '/assets/brand/favicon32.png' | relative_url }}" sizes="32x32">
 <link rel="icon" href="{{ '/assets/brand/favicon128.png' | relative_url }}" sizes="128x128">
