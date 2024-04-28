@@ -90,13 +90,9 @@ $_banner-zoom-transformation: scale(110%) translateY(4%);   // The final state o
                 transform: $_banner-zoom-transformation;
                 transition: opacity 2s;
 
-                // For slowly zooming in and out.
-                animation-name: _landing-banner-zoom;
-                animation-delay: 7s;
-                animation-duration: 23s;
-                animation-timing-function: ease-in-out;
-                animation-iteration-count: infinite;
-                animation-direction: alternate-reverse;
+                // For slowly zooming in and out. Duration is chosen to be a
+                // prime number to prevent syncing with the crossfade.
+                animation: 23s ease-in-out 7s infinite alternate-reverse _landing-banner-zoom;
 
                 // Sets the initial conditions.
                 &:first-of-type { z-index: 1; }
@@ -158,17 +154,14 @@ $_banner-zoom-transformation: scale(110%) translateY(4%);   // The final state o
 
                 // Fade and move up; the same as the paragraphs below.
                 @at-root %landing-banner-content-entrance, & {
-                    animation-name: fade-and-move-up;
-                    animation-duration: 3s;
-                    animation-timing-function: var.$fast-ease-out;
-                    animation-fill-mode: backwards;
+                    animation:
+                        3s var.$fast-ease-out backwards fade-in,
+                        3s var.$fast-ease-out backwards move-in-upwards;
                 }
 
                 // Writes the big name.
                 #landing-banner__big-name #mask path {
-                    animation-name: draw-path;
-                    animation-timing-function: linear;
-                    animation-fill-mode: forwards;
+                    animation: linear forwards draw-path;
                 }
 
             }
