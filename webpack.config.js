@@ -1,7 +1,11 @@
 // webpack config file.
 
-// Copyright 2023 Qi Tianshi. All rights reserved.
+// Copyright 2024 Qi Tianshi. All rights reserved.
 
+
+/* global __dirname */
+/* global module */
+/* global require */
 
 // JavaScript source files are placed in ./src/_webpack/. webpack minifies the
 // files and writes the compiled results to ./src/assets/scripts/, where they
