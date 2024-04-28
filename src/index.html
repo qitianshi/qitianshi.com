@@ -4,13 +4,13 @@ layout: "default"
 description: "From the desk of Qi Tianshi &mdash; I'm a student from Singapore, with a desk full of clutter and a pocketful of dreams. Here's some of the stuff I've made."
 
 local_stylesheet: "/assets/styles/home.css"
+local_script: "/assets/scripts/pages/home.js"
 navbar_transparency_theme: "dark"
 ---
 
 <!-- Homepage -->
 
-<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
-
+<!-- Copyright 2024 Qi Tianshi. All rights reserved. -->
 
 <!-- Main hero banner. -->
 <section
@@ -18,17 +18,28 @@ navbar_transparency_theme: "dark"
     id="landing-banner"
 >
 
-    <img
-        src="/assets/images/home/desk-hero-banner.jpeg"
-        class="c-stacked-banner__background"
-        style="filter: brightness(30%);"
-        alt="A dimly lit desk on which there is a laptop displaying colorful lines of code, a notebook full of haphazard scribbles, and other stationery messily strewn about."
-    >
+    <!-- A series of animatable background images. -->
+    {% for i in (0..5) reversed %}
+
+        <img
+            src="/assets/images/home/small-hours-{{i}}.jpg"
+            class="c-stacked-banner__background"
+            alt=""
+        >
+
+    {% endfor %}
+
+    <!-- Legibility filter over the background images. -->
+    <div class="c-stacked-banner__background-filter"></div>
 
     <div class="c-stacked-banner__content c-stacked-banner__content--leading">
 
         <h1 class="c-stacked-banner__heading">
-            from the desk of<br><span id="landing-banner__big-name">Qi Tianshi</span>
+            built in the small hours by<br>
+            {%
+                include /svg/name-animation.svg
+                attributes="id='landing-banner__big-name'"
+            %}
         </h1>
 
         <p>Hello. It seems you've found my little corner of the Internet.</p>
