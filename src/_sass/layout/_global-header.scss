@@ -322,7 +322,7 @@ $_num-of-navlinks: 4;
             // navigation links.
             @for $i from 1 through $_num-of-navlinks {
                 #global-header__navigation-links li:nth-of-type(#{$i}) {
-                    animation: 1s var.$fast-ease-out (0.07s * ($i)) normal both 1 fade-and-move-in;
+                    animation: 1s var.$fast-ease-out (0.07s * ($i)) normal both 1 fade-and-move-down;
                 }
             }
 
