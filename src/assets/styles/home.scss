@@ -189,6 +189,7 @@ $_banner-zoom-transformation: scale(110%) translateY(4%);   // The final state o
     &__heading {
 
         color: var(--tiangerine-tangerine);
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);    // For legibility.
 
         font-size: 2.5rem;
         line-height: 0.75;
