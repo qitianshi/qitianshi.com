@@ -3,7 +3,7 @@
 <!-- Copyright 2024 Qi Tianshi. All rights reserved. -->
 
 
-<title>{{ page.title }} - {{ site.title }}</title>
+<title>{{ page.title }} - {{ site.title }}{% if jekyll.environment == "development" %} (dev){% endif %}</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
@@ -13,13 +13,11 @@
 {% if page.noindex %}
     <meta name="robots" content="noindex">
 {% endif %}
+<meta name="author" content="Qi Tianshi">
 
 <!-- Approximately matches the navbar color over the primary background color. -->
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1f1f1f" media="(prefers-color-scheme: dark)">
-
-<!-- Other metadata -->
-<meta name="author" content="Qi Tianshi">
 
 <!-- Blocking scripts -->
 <script src="{{ '/assets/scripts/preload.js' | relative_url }}"></script>

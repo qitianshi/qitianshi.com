@@ -1,11 +1,12 @@
 # Jekyll configuration file
 
-# Copyright 2023 Qi Tianshi. All rights reserved.
+# Copyright 2024 Qi Tianshi. All rights reserved.
 
 
 # --------- Jekyll ----------
 
 url: "https://qitianshi.github.io"
+prod_url: "https://qitianshi.github.io"
 baseurl: "/"
 title: "tian"
 lang: "en-US"
