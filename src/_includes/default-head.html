@@ -1,9 +1,9 @@
 <!-- The content of <head> in the default layout. -->
 
-<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
+<!-- Copyright 2024 Qi Tianshi. All rights reserved. -->
 
 
-<title>{{ page.title }} - {{ site.title }}</title>
+<title>{{ page.title }} - {{ site.title }}{% if jekyll.environment == "development" %} (dev){% endif %}</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
@@ -13,6 +13,7 @@
 {% if page.noindex %}
     <meta name="robots" content="noindex">
 {% endif %}
+<meta name="author" content="Qi Tianshi">
 
 <!-- Approximately matches the navbar color over the primary background color. -->
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
@@ -31,6 +32,11 @@
 
 <!-- Deferred scripts -->
 <script src="{{ '/assets/scripts/main.js' | relative_url }}" defer></script>
+
+<!-- Local scripts -->
+{% if page.local_script %}
+    <script src="{{ page.local_script | relative_url }}" defer></script>
+{% endif %}
 
 <!-- Favicons -->
 <link rel="icon" href="{{ '/assets/brand/favicon32.png' | relative_url }}" sizes="32x32">

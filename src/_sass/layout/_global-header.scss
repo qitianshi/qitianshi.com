@@ -1,6 +1,6 @@
 // Stylesheet for the global footer.
 
-// Copyright 2023 Qi Tianshi. All rights reserved.
+// Copyright 2024 Qi Tianshi. All rights reserved.
 
 
 @use "abstracts/functions" as func;
@@ -322,7 +322,9 @@ $_num-of-navlinks: 4;
             // navigation links.
             @for $i from 1 through $_num-of-navlinks {
                 #global-header__navigation-links li:nth-of-type(#{$i}) {
-                    animation: 1s var.$fast-ease-out (0.07s * ($i)) normal both 1 fade-and-move-in;
+                    animation:
+                        1s var.$fast-ease-out (0.07s * ($i)) both fade-in,
+                        1s var.$fast-ease-out (0.07s * ($i)) both move-in-downwards;
                 }
             }
 

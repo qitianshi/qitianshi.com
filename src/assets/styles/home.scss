@@ -3,29 +3,201 @@
 
 // Stylesheet for /index.html
 
-// Copyright 2023 Qi Tianshi. All rights reserved.
+// Copyright 2024 Qi Tianshi. All rights reserved.
 
 
 @use "abstracts/functions" as func;
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
-#landing-banner .c-stacked-banner__heading {
+$_banner-image-count: 6;                                    // The number of background images in the landing banner.
+$_banner-content-paragraph-count: 2;                        // The number of paragraphs in the landing banner content.
+$_banner-entrance-animation-duration: 3.5s;                 // The total duration of the entrance animation of the banner background images.
+$_banner-entrance-animation-delay: 0.5s;                    // The delay before the background entrance animation begins.
+$_banner-crossfade-initial-delay: 0.75s;                    // The additional delay after the animation begins to show the first image.
+$_banner-zoom-timing-function: cubic-bezier(.4, 0, 0, .9);  // The timing function for the landing banner zoom.
+$_banner-zoom-transformation: scale(110%) translateY(4%);   // The final state of the landing banner zoom.
 
-    color: var(--tiangerine-tangerine);
+// The zoom effect for the landing banner background images.
+@keyframes _landing-banner-zoom {
+    from { transform: scale(100%) translateY(0); }
+    to { transform: $_banner-zoom-transformation; }
+}
 
-    font-size: 2.5rem;
-    @include mix.respond-to-breakpoint("small") { font-size: 1.5rem; }
+#landing-banner {
+    overflow: hidden;
+}
 
-    #landing-banner__big-name {
+#landing-banner .c-stacked-banner {
 
-        color: func.palette("dark", "foreground", 1);
-        line-height: 0.9em;
+    // Z-indexes
+    // -1: hidden background images (loop)
+    //  0: next background images (loop)
+    //  1: current background image (loop)
+    //  2: background filter
+    //  3: content
 
-        // Manages the font size to keep the name on one line.
-        font-size: 7.5rem;
-        @media screen and (max-width: 720px) { font-size: 5rem; }
-        @include mix.respond-to-breakpoint("small") { font-size: 3.75rem; }
+    // The set of background images.
+    &__background {
+
+        // Triggers the entrance animation.
+        &--animate-entrance {
+
+            // Shows all the images while zooming.
+            animation-name: fade-in, _landing-banner-zoom;
+            animation-duration: 0.2s, $_banner-entrance-animation-duration;
+            animation-timing-function: linear, $_banner-zoom-timing-function;
+            animation-fill-mode: forwards, forwards;
+            animation-direction: reverse, normal;
+
+            // Adds a progressively increasing delay so that the images appear
+            // in succession. Calculated based on the total duration of the
+            // animation.
+            @for $i from 2 through $_banner-image-count {
+                &:nth-of-type(#{$i}) {
+                    animation-delay:
+                        calc(
+                            $_banner-entrance-animation-delay
+                            + $_banner-crossfade-initial-delay
+                            + ($_banner-image-count - $i)
+                            * ($_banner-entrance-animation-duration
+                                - $_banner-entrance-animation-delay
+                                - $_banner-crossfade-initial-delay)
+                            / ($_banner-image-count - 1)
+                        ),
+                        $_banner-entrance-animation-delay;
+                }
+            }
+
+            // The bottom-most image does not have a crossfade animation.
+            &:first-of-type {
+
+                animation-name: _landing-banner-zoom;
+                animation-duration: $_banner-entrance-animation-duration;
+                animation-delay: $_banner-entrance-animation-delay;
+                animation-timing-function: $_banner-zoom-timing-function;
+                animation-fill-mode: forwards;
+                animation-direction: normal;
+
+            }
+
+        }
+
+        // Triggers the looping animation.
+        &--animate-loop {
+
+            // For slowly crossfading between images.
+            transform: $_banner-zoom-transformation;
+            transition: opacity 2s;
+
+            // For slowly zooming in and out. Duration is chosen to be a prime
+            // number to prevent syncing with the crossfade.
+            animation: 23s ease-in-out 7s infinite alternate-reverse _landing-banner-zoom;
+
+            // Sets the initial conditions.
+            &:first-of-type { z-index: 1; }
+            @for $i from 2 through $_banner-image-count {
+                &:nth-of-type(#{$i}) { z-index: -1; }
+            }
+
+        }
+
+    }
+
+    // The dark filter over the background images to make the text more
+    // legible. Used instead of filter() for performance reasons.
+    &__background-filter {
+
+        opacity: 0;                 // Initially disabled.
+        background-color: black;
+        z-index: 2;                 // Over the background but under the text.
+
+        // Enables the filter.
+        &--enabled {
+            opacity: 0.35;
+            transition: opacity 0.5s linear;
+        }
+
+    }
+
+    // The text content of the landing banner.
+    &__content {
+
+        z-index: 3;             // On top of all other elements in the landing banner.
+        & > * { opacity: 0; }   // Contents initially hidden.
+
+        // The animated big name.
+        #landing-banner__big-name {
+
+            width: 30rem;
+            max-width: 80vw;
+            position: relative;
+            top: 0.4em;
+
+            // The visible paths of the graphic.
+            #graphic path {
+                fill: #fff;
+            }
+
+            // The paths for masking the graphic for the writing animation.
+            .mask-path {
+                fill: none;
+                stroke: #fff;
+            }
+
+        }
+
+        // Triggers the heading entrance animation.
+        &--animate-heading-entrance h1 {
+
+            opacity: 1;
+
+            // Fade and move up; the same as the paragraphs below.
+            @at-root %landing-banner-content-entrance, & {
+                animation:
+                    3s var.$fast-ease-out backwards fade-in,
+                    3s var.$fast-ease-out backwards move-in-upwards;
+            }
+
+            // Writes the big name.
+            #landing-banner__big-name #mask path {
+                animation: linear forwards draw-path;
+            }
+
+        }
+
+        // Triggers the body paragraphs' entrance animations.
+        &--animate-body-entrance p {
+
+            // The same as the heading.
+            @extend %landing-banner-content-entrance;
+
+            opacity: 1;
+
+            // Calculates an increasing delay.
+            @for $i from 1 through $_banner-content-paragraph-count {
+                &:nth-of-type(#{$i}) {
+                    animation-delay: calc(0.5s + $i * 0.1s);
+                }
+            }
+
+        }
+
+    }
+
+    // Basic styling for the heading text.
+    &__heading {
+
+        color: var(--tiangerine-tangerine);
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);    // For legibility.
+
+        font-size: 2.5rem;
+        line-height: 0.75;
+
+        // Prevents the text from wrapping.
+        @media screen and (max-width: 650px) {
+            font-size: 1.5rem;
+        }
 
     }
 
@@ -101,8 +273,8 @@
             height: 100%;
             display: block;
 
-            // Applies a gradient. The stops are defined to to ensure legibility at
-            // all screen sizes.
+            // Applies a gradient. The stops are defined to to ensure
+            // legibility at all screen sizes.
             background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent calc(3.5rem + 30%));
 
         }
