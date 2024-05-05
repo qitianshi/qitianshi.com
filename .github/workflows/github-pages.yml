@@ -62,7 +62,7 @@ jobs:
 
       - name: Configure Pages
         id: pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v4
 
       # Bundles ./src/_webpack files into static assets.
       - name: Bundle with webpack
@@ -78,7 +78,7 @@ jobs:
 
       # Uploads the artifact from the ./_site directory.
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
 
   # Deploys to GitHub Pages.
   deploy:
@@ -104,4 +104,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
