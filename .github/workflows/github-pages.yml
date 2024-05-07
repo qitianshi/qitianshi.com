@@ -62,7 +62,7 @@ jobs:
 
       - name: Configure Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       # Bundles ./src/_webpack files into static assets.
       - name: Bundle with webpack
