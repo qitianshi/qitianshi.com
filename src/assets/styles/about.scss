@@ -6,57 +6,49 @@
 // Copyright 2024 Qi Tianshi. All rights reserved.
 
 
+@use "abstracts/functions" as func;
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
-#landing-banner .c-stacked-banner {
+#landing-banner {
 
-    &__heading {
+    &__legibility-gradient {
 
-        margin: 0.5em;
-        font-size: 10rem;
+        // background: linear-gradient(to top right, rgba(0, 0, 0, 0.6) 10%, transparent 40%);
 
-        @media screen and (max-width: 1000px) { font-size: 7.5rem; }
-        @media screen and (max-width: var.$global-header-collapse-width) { font-size: 5rem; }
-        @media screen and (max-width: 325px) { font-size: 3rem; }
+        background: func.legibility-gradient(top right, 10%, 40%),
+                    func.legibility-gradient(bottom, 0%, var.$global-header-clear-space);
 
-    }
-
-    // Centers the image on the focal point.
-    &__background {
-        object-position: 80% 10%;
-    }
-
-    // Applies a legibility gradient over the image.
-    &__shadow {
-
-        // An empty block that fills its container.
-        width: 100%;
-        height: 100%;
-
-        // Applies a gradient. The first is for the banner content, the second
-        // is for the global header.
-        background: linear-gradient(to top right, rgba(0, 0, 0, 0.6) 10%, transparent 40%),
-                    linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent var.$global-header-clear-space);
-
-    }
-
-    // Moves the heading to the center.
-    @media screen and (max-width: var.$global-header-collapse-width) {
-
-        &__content {
-            margin: auto auto 0 auto;
+        @media screen and (max-width: var.$global-header-collapse-width) {
+            background: func.legibility-gradient(top, 20%, 40%),
+                        func.legibility-gradient(bottom, 0%, var.$global-header-clear-space);
         }
 
-        // Increases the bottom margin to avoid conflicting with clear space on
-        // mobile.
+    }
+
+    .c-stacked-banner {
+
         &__heading {
-            margin-bottom: 1em;
+
+            margin: 0.5em;
+            font-size: 10rem;
+
+            @media screen and (max-width: 1000px) { font-size: 7.5rem; }
+            @media screen and (max-width: var.$global-header-collapse-width) { font-size: 5rem; }
+            @media screen and (max-width: 325px) { font-size: 3rem; }
+
         }
 
-        &__shadow {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent 40%),
-                        linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent var.$global-header-clear-space);
+        // Centers the image on the focal point.
+        &__background {
+            object-position: 80% 10%;
+        }
+
+        // Moves the heading to the center. Increases the bottom margin to
+        // avoid conflicting with clear space on mobile.
+        @media screen and (max-width: var.$global-header-collapse-width) {
+            &__content { margin: auto auto 0 auto; }
+            &__heading { margin-bottom: 1em; }
         }
 
     }

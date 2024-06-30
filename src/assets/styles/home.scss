@@ -255,27 +255,15 @@ $_banner-zoom-transformation: scale(110%) translateY(4%);   // The final state o
             transform: scale(102.5%);
         }
 
-        .c-stacked-banner__content {
+        &__content {
             padding: 10%;
             font-weight: normal;
         }
 
-        // Applies a legibility gradient over the image.
-        &__background-container::after {
-
-            // An empty block that fills its container.
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-
-            // Applies a gradient. The stops are defined to to ensure
-            // legibility at all screen sizes.
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent calc(3.5rem + 30%));
-
+        // Applies a legibility gradient over the image. Stops are defined to
+        // ensure legibility at all screen sizes.
+        &__legibility-gradient {
+            background: func.legibility-gradient(top, 10%, calc(3.5rem + 30%));
         }
 
     }

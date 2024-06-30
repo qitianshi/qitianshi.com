@@ -33,3 +33,14 @@
 @function palette($theme, $key, $level: 1) {
     @return list.nth(map-deep-get(var.$color-palette, $theme, $key), $level);
 }
+
+/// Returns a CSS linear-gradient which can be placed between text and images
+/// to improve legibility.
+///
+/// @param {String} $direction - The direction of the gradient, a side or
+///     corner.
+/// @param {Number} $start - The start of the gradient, where it is darkest.
+/// @param {Number} $stop - The end of the gradient, where it is transparent.
+@function legibility-gradient($direction, $start, $stop) {
+    @return linear-gradient(to $direction, rgba(0, 0, 0, 0.6) $start, transparent $stop);
+}
