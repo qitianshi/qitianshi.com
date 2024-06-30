@@ -4,7 +4,7 @@
 
 
 - text: "about"
-  destination: "/under-construction"
+  destination: "/about"
 
 - text: "projects"
   destination: "/under-construction"
