@@ -185,7 +185,7 @@ $_num-of-navlinks: 4;
     }
 
     // The width at which the screen is too narrow to fit the navbar links.
-    @media screen and (max-width: 775px) {
+    @media screen and (max-width: var.$global-header-collapse-width) {
 
         // Using max-height allows the height change to be animated.
         max-height: var.$global-header-height;
