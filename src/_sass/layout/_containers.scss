@@ -8,8 +8,8 @@
 
 // A container whose size is relative to the viewport.
 .o-viewport-relative-container {
-    &-full { width: 100vw; height: 100vh; }
-    &-half-height { width: 100vw; height: 50vh; }
+    &--full { width: 100vw; height: 100vh; }
+    &--half-height { width: 100vw; height: 50vh; }
 }
 
 // A card with rounded corners.
