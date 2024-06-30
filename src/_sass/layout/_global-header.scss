@@ -258,7 +258,7 @@ $_num-of-navlinks: 4;
                 // The first link doesn't need a border because the parent
                 // element already has a top border.
                 &:first-of-type {
-                    border-top: none;
+                    border-top: none !important;
                 }
 
                 a {
@@ -276,7 +276,7 @@ $_num-of-navlinks: 4;
 
                 &.global-header__navlink--active {
 
-                    // Overrides defaults.
+                    // Overrides default style for expanded header.
                     border-top: inherit;
                     a { margin-top: 0; }
 
