@@ -4,11 +4,11 @@
 
 
 // Utils
-import ColorTheme from "./utils/color-theme";
+import ColorTheme from "./utils/color-theme.js";
 
 // Components
-import Form from "./components/form";
-import GlobalHeader from "./components/global-header";
+import Form from "./components/form.js";
+import GlobalHeader from "./components/global-header.js";
 
 // Arranged in order of importance.
 ColorTheme.init();
