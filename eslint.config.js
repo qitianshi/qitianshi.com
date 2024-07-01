@@ -1,7 +1,12 @@
-import globals from "globals";
-import js from "@eslint/js";
+// ESLint config file.
 
-export default [
+// Copyright 2024 Qi Tianshi. All rights reserved.
+
+
+const globals = require("globals");
+const js = require("@eslint/js");
+
+module.exports = [
     js.configs.recommended,
     {
         languageOptions: {
@@ -10,6 +15,7 @@ export default [
             "globals": {
                 ...globals.browser,
                 ...globals.es2021,
+                ...globals.node,
             },
         },
         rules: {
