@@ -12,6 +12,8 @@
 
 #landing-banner {
 
+    overflow: hidden;
+
     .c-legibility-gradient {
 
         &:nth-of-type(1) {
@@ -26,6 +28,7 @@
 
         &:nth-of-type(2) {
             background: func.legibility-gradient(bottom, 0%, var.$global-header-clear-space);
+            z-index: 0;
         }
 
     }
@@ -43,9 +46,11 @@
 
         }
 
-        // Centers the image on the focal point.
+        // Centers the image on the focal point for object-position: fit and
+        // the entrance animation.
         &__background {
             object-position: 80% 10%;
+            transform-origin: 80% 10%;
         }
 
         // Moves the heading to the center. Increases the bottom margin to

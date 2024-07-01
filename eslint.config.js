@@ -16,6 +16,7 @@ module.exports = [
                 ...globals.browser,
                 ...globals.es2021,
                 ...globals.node,
+                "gsap": "readonly",
             },
         },
         rules: {
