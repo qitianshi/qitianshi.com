@@ -262,7 +262,7 @@ $_banner-zoom-transformation: scale(110%) translateY(4%);   // The final state o
 
         // Applies a legibility gradient over the image. Stops are defined to
         // ensure legibility at all screen sizes.
-        &__legibility-gradient {
+        .c-legibility-gradient {
             background: func.legibility-gradient(top, 10%, calc(3.5rem + 30%));
         }
 

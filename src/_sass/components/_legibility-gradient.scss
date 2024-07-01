@@ -1,0 +1,13 @@
+// The legibility gradient component is used to apply a dark gradient between
+// text and a background to improve legibility. Use func.legibility-gradient to
+// generate linear-gradients for the background.
+
+// Copyright 2024 Qi Tianshi. All rights reserved.
+
+
+@use "layout/containers";
+
+.c-legibility-gradient {
+    @extend .o-parent-relative-container--full;
+    display: block;
+}

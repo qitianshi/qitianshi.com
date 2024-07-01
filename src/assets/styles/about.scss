@@ -12,16 +12,20 @@
 
 #landing-banner {
 
-    &__legibility-gradient {
+    .c-legibility-gradient {
 
-        // background: linear-gradient(to top right, rgba(0, 0, 0, 0.6) 10%, transparent 40%);
+        &:nth-of-type(1) {
 
-        background: func.legibility-gradient(top right, 10%, 40%),
-                    func.legibility-gradient(bottom, 0%, var.$global-header-clear-space);
+            background: func.legibility-gradient(top right, 10%, 40%);
 
-        @media screen and (max-width: var.$global-header-collapse-width) {
-            background: func.legibility-gradient(top, 20%, 40%),
-                        func.legibility-gradient(bottom, 0%, var.$global-header-clear-space);
+            @media screen and (max-width: var.$global-header-collapse-width) {
+                background: func.legibility-gradient(top, 20%, 40%);
+            }
+
+        }
+
+        &:nth-of-type(2) {
+            background: func.legibility-gradient(bottom, 0%, var.$global-header-clear-space);
         }
 
     }
