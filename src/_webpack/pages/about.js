@@ -3,6 +3,8 @@
 // Copyright 2024 Qi Tianshi. All rights reserved.
 
 
+const globalHeaderCollapseWidth = 775;
+
 document.addEventListener("DOMContentLoaded", function () {
 
     gsap.registerPlugin(ScrollTrigger);
@@ -18,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ["#landing-banner .c-stacked-banner__content",
             "#landing-banner .c-legibility-gradient:nth-of-type(1)"],
         {
-            x: "-1.5em",
+            x: window.innerWidth <= globalHeaderCollapseWidth ? 0 : "-1.5em",
             y: "1.5em",
             opacity: 0,
             delay: 0.5,
