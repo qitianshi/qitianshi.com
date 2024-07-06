@@ -13,6 +13,7 @@
 #landing-banner {
 
     overflow: hidden;
+    clip-path: content-box;
 
     .c-legibility-gradient {
 
@@ -49,8 +50,9 @@
         // Centers the image on the focal point for object-position: fit and
         // the entrance animation.
         &__background {
-            object-position: 80% 10%;
-            transform-origin: 80% 10%;
+            object-position: 80% 15%;
+            transform-origin: 80% 15%;
+            position: fixed;
         }
 
         // Moves the heading to the center. Increases the bottom margin to
