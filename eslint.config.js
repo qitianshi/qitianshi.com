@@ -17,6 +17,7 @@ module.exports = [
                 ...globals.es2021,
                 ...globals.node,
                 "gsap": "readonly",
+                "ScrollTrigger": "readonly",
             },
         },
         rules: {
