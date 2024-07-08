@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ["#landing-banner .c-stacked-banner__content",
             "#landing-banner .c-legibility-gradient:nth-of-type(1)"],
         {
+            // Changes the entrance direction depending on the page layout.
             x: window.innerWidth <= globalHeaderCollapseWidth ? 0 : "-1.5em",
             y: "1.5em",
             opacity: 0,
@@ -33,17 +34,18 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             scale: 1.025,
             onComplete: function () {
-                gsap.to(
-                    "#landing-banner .c-stacked-banner__background",
-                    {
-                        scale: 1.5,
-                        scrollTrigger: {
-                            trigger: "#landing-banner",
-                            scrub: 0.25,
-                            start: "top top",
-                        },
-                    }
-                );
+
+                // Adds a scrolling animation only after the original scale
+                // completes.
+                gsap.to("#landing-banner .c-stacked-banner__background", {
+                    scale: 1.5,
+                    scrollTrigger: {
+                        trigger: "#landing-banner",
+                        scrub: 0.25,
+                        start: "top top",
+                    },
+                });
+
             },
         },
         "<",
