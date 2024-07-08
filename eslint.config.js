@@ -18,6 +18,7 @@ module.exports = [
                 ...globals.node,
                 "gsap": "readonly",
                 "ScrollTrigger": "readonly",
+                "CustomEase": "readonly",
             },
         },
         rules: {
