@@ -7,7 +7,7 @@
 const landingBannerImages = document
     .querySelectorAll("#landing-banner .c-stacked-banner__background");
 
-/// Animates the landing banner.
+/** Animates the landing banner. */
 function animateLandingBanner() {
 
     // The total duration of the entrance animation of the banner background
@@ -75,6 +75,7 @@ function animateLandingBanner() {
         },
     });
 
+    // Creates a parallax scrolling effect by translating the content downward.
     gsap.to("#landing-banner .c-stacked-banner__content", {
         yPercent: 50,
         scrollTrigger: {
@@ -84,44 +85,6 @@ function animateLandingBanner() {
             scrub: true,
         }
     });
-
-    // Selects the next image to be shown and fades out the topmost image.
-    // Returns the index of the next image.
-    let loopLandingBannerImages = function (currentTop) {
-
-        // Selects an image from the list, excluding the current one.
-        let nextTop = Math.floor(
-            Math.random() * (landingBannerImages.length - 1));
-        nextTop = (nextTop >= currentTop ? nextTop + 1 : nextTop);
-
-        // Resets image positions and z-indexes.
-        landingBannerImages.forEach(function (image, index) {
-
-            image.style.opacity = 1;
-
-            if (index === nextTop) {
-                image.style.zIndex = 0;
-            } else if (index === currentTop) {
-                image.style.zIndex = 1;
-            } else {
-                image.style.zIndex = -1;
-            }
-
-        });
-
-        // Fades out the topmost image.
-        gsap.to(
-            landingBannerImages[currentTop],
-            {
-                opacity: 0,
-                duration: 2,
-                ease: "power1.inOut",
-            }
-        );
-
-        return nextTop;
-
-    };
 
     // The timeline for controlling the landing banner heading. These tweens
     // are separated from the background timeline because they need to be
@@ -139,12 +102,7 @@ function animateLandingBanner() {
             ease: "power4.out",
             onStart: function () {
                 // Triggers the animation for drawing the big name.
-                document
-                    .querySelector(
-                        "#landing-banner .c-stacked-banner__content")
-                    .classList
-                    .add(
-                        "c-stacked-banner__content--animate-heading-entrance");
+                landingBannerBigNameAnimationTimeline().resume();
             },
             onComplete: function () {
                 // Triggers the animation for the paragraphs.
@@ -197,15 +155,20 @@ function animateLandingBanner() {
 
 }
 
-function calculateLandingBannerBigNameAnimations() {
+/**
+ * Creates a GSAP timeline for animating the drawing animation for the landing
+ * banner big name.
+ *
+ * @returns {GSAP.Timeline} A GSAP timeline which, when resumed, will play the
+ * animation.
+ */
+function landingBannerBigNameAnimationTimeline() {
+
+    let drawTimeline = gsap.timeline({ paused: true });
 
     // The paths that act as masks for writing the big name.
     const bigNameMaskingPaths = document
         .querySelectorAll("#landing-banner__big-name #mask path");
-
-    // The total duration that has so far elapsed in the animation that writes
-    // the big name.
-    let writingElapsedDuration = 0;
 
     // Calculates the animations to write the big name.
     for (let i = 0; i < bigNameMaskingPaths.length; i++) {
@@ -216,24 +179,66 @@ function calculateLandingBannerBigNameAnimations() {
         bigNameMaskingPaths[i].style.strokeDasharray = pathLength;
         bigNameMaskingPaths[i].style.strokeDashoffset = pathLength;
 
-        // Calculates the duration the animation should last based on the
-        // length of the stroke. The writing speed also progressively
-        // decreases.
-        const drawDuration = pathLength / (2500 - i * 80);
-        bigNameMaskingPaths[i].style.animationDuration = `${drawDuration}s`;
-
-        // Waits to start each animation until the previous strokes have been
-        // drawn.
-        bigNameMaskingPaths[i].style.animationDelay
-            = `${writingElapsedDuration}s`;
-
-        writingElapsedDuration += drawDuration * 1.1;
+        // The duration is calculated from the length of the stroke to achieve
+        // a consistent drawing speed. The speed progressively decreases for an
+        // easing out effect. A small pause is left between each stroke.
+        drawTimeline.to(bigNameMaskingPaths[i], {
+            strokeDashoffset: 0,
+            duration: pathLength / (2500 - i * 80),
+        }, "+=10%");
 
     }
 
+    return drawTimeline;
+
 }
 
-// Waits for all landing banner background images to load.
+/**
+ * Runs the crossfade portion of the looping landing banner animation. Randomly
+ * chooses the next image to be shown and fades out the current image.
+ *
+ * @param {number} currentTop - The index of the currently shown image (to be
+ *     faded out).
+ * @returns {number} The index of the image being shown after previous top was
+ *     faded out.
+ */
+function loopLandingBannerImages(currentTop) {
+
+    // Selects an image from the list, excluding the current one.
+    let nextTop = Math.floor(
+        Math.random() * (landingBannerImages.length - 1));
+    nextTop = (nextTop >= currentTop ? nextTop + 1 : nextTop);
+
+    // Resets image positions and z-indexes.
+    landingBannerImages.forEach(function (image, index) {
+
+        image.style.opacity = 1;
+
+        if (index === nextTop) {
+            image.style.zIndex = 0;
+        } else if (index === currentTop) {
+            image.style.zIndex = 1;
+        } else {
+            image.style.zIndex = -1;
+        }
+
+    });
+
+    // Fades out the topmost image.
+    gsap.to(
+        landingBannerImages[currentTop],
+        {
+            opacity: 0,
+            duration: 2,
+            ease: "power1.inOut",
+        }
+    );
+
+    return nextTop;
+
+};
+
+/** Waits for all landing banner background images to load. */
 async function allLandingBannerImagesLoaded() {
 
     //TODO: Add error handling. If an image is not loadable, continue the
@@ -256,8 +261,6 @@ async function allLandingBannerImagesLoaded() {
 window.addEventListener("DOMContentLoaded", function () {
 
     gsap.registerPlugin(CustomEase);
-
-    calculateLandingBannerBigNameAnimations();
 
     // Starts the landing banner animations when the images have all loaded.
     allLandingBannerImagesLoaded().then(function () {

@@ -59,11 +59,6 @@
 
         }
 
-        // Triggers the heading entrance animation.
-        &--animate-heading-entrance #landing-banner__big-name #mask path {
-            animation: linear forwards draw-path;
-        }
-
     }
 
     // Basic styling for the heading text.
