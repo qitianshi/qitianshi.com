@@ -75,6 +75,16 @@ function animateLandingBanner() {
         },
     });
 
+    gsap.to("#landing-banner .c-stacked-banner__content", {
+        yPercent: 50,
+        scrollTrigger: {
+            trigger: "#landing-banner",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+        }
+    });
+
     // Selects the next image to be shown and fades out the topmost image.
     // Returns the index of the next image.
     let loopLandingBannerImages = function (currentTop) {
