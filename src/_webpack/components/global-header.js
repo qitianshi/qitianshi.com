@@ -1,6 +1,6 @@
 // Manages the global header.
 
-// Copyright 2023 Qi Tianshi. All rights reserved.
+// Copyright 2024 Qi Tianshi. All rights reserved.
 
 
 import throttle from "lodash.throttle";
@@ -15,9 +15,7 @@ const mobileClosingClass = "global-header--mobile-closing";
 const transparencyEnabledPrefix = "global-header--transparency-theme-";
 const transparencyClass = "global-header--transparent";
 
-/**
- * Toggles the transparent mode of the horizontal navbar.
- */
+/** Toggles the transparent mode of the horizontal navbar. */
 function toggleNavbarTransparency() {
 
     // Navbar is made transparent if the document is scrolled to the top.
@@ -51,6 +49,10 @@ function toggleExpandedMobileNavbar() {
 
 }
 
+/**
+ * Module for managing the global header, including style changes and
+ * animations.
+ */
 const GlobalHeader = {
     init: function () {
 

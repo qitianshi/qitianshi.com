@@ -1,6 +1,6 @@
 // Manages forms.
 
-// Copyright 2023 Qi Tianshi. All rights reserved.
+// Copyright 2024 Qi Tianshi. All rights reserved.
 
 
 /**
@@ -13,10 +13,10 @@ var failedSubmitCount = 0;
 /**
  * Updates the submit button of a form to reflect the form submission state.
  *
- * @param {Element} targetButton The submit button element that is being
- *      submitted.
- * @param {SubmitButtonState} state The state to which the submit button
- *      will be updated.
+ * @param {Element} targetButton - The submit button element that is being
+ *     submitted.
+ * @param {SubmitButtonState} state - The state to which the submit button
+ *     will be updated.
  */
 function updateSubmitButtonState(targetButton, state) {
 
@@ -156,6 +156,10 @@ function resizeTextarea(event) {
 
 }
 
+/**
+ * Module for managing forms, including submission, state updating, and error
+ * handling.
+ */
 const Form = {
     init: function () {
 

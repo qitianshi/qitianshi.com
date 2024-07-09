@@ -1,6 +1,6 @@
 // Manages the color theme toggle in the global footer.
 
-// Copyright 2023 Qi Tianshi. All rights reserved.
+// Copyright 2024 Qi Tianshi. All rights reserved.
 
 
 
@@ -29,7 +29,7 @@ function getPreferredTheme() {
 /**
  * Saves the preferred color theme to localStorage.
  *
- * @param {ColorTheme} theme The theme to be saved.
+ * @param {ColorTheme} theme - The theme to be saved.
  */
 function savePreferredTheme(theme) {
     localStorage.setItem(themePreferenceStorageKey, theme);
@@ -41,7 +41,7 @@ function savePreferredTheme(theme) {
  * or when some script other than the toggle causes the color theme to be
  * changed.
  *
- * @param {ColorTheme} theme The theme to be applied.
+ * @param {ColorTheme} theme - The theme to be applied.
  */
 function updateToggleWithSavedPreference(theme) {
 
@@ -56,7 +56,7 @@ function updateToggleWithSavedPreference(theme) {
 /**
  * Applies the preferred color theme to the webpage.
  *
- * @param {ColorTheme} theme The theme to be applied.
+ * @param {ColorTheme} theme - The theme to be applied.
  */
 function applyPreferredTheme(theme) {
 
@@ -104,6 +104,10 @@ function onUserChangeThemeToggle() {
 
 }
 
+/**
+ * Module for managing the website's color theme, including retrieving
+ * previously saved preferences and managing theme toggles.
+ */
 const ColorTheme = {
 
     init: function () {
