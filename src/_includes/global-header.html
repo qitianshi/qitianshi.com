@@ -32,25 +32,7 @@
 
         </menu>
 
-        <!-- Hamburger button that expands navbar items for narrow screens. -->
-        <div class="c-hamburger-button">
-
-            <!-- Checkbox allows opening and closing of the menu without JavaScript. -->
-            <input type="checkbox" id="global-header__hamburger-checkbox" class="c-hamburger-button__checkbox">
-
-            <!-- Clickable area of the button. Clicking the button checks the checkbox. -->
-            <label for="global-header__hamburger-checkbox" class="c-hamburger-button__button" role="button" aria-label="Toggle navigation menu">
-
-                <!-- Each span is a line that is styled and animated in CSS. -->
-                <div class="c-hamburger-button__icon">
-                    {% for i in (1..4) %}
-                        <span></span>
-                    {% endfor %}
-                </div>
-
-            </label>
-
-        </div>
+        {% include components/hamburger-button.html parent_id="global-header" %}
 
     </nav>
 </header>
