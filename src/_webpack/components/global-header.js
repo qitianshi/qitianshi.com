@@ -66,8 +66,9 @@ function toggleExpandedMobileNavbar(quickReset = false) {
 
                 // Prevents scrolling the body if the browser supports
                 // backdrop filters. Otherwise, there is no reason to prevent
-                // scrolling.
-                if (CSS.supports("backdrop-filter", "blur()")) {
+                // scrolling. -webkit- prefix is for Safari support.
+                if (CSS.supports("backdrop-filter", "blur()")
+                    || CSS.supports("-webkit-backdrop-filter", "blur()")) {
                     document.body.style.overflow = "hidden";
                 }
 
