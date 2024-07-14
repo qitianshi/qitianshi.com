@@ -179,6 +179,24 @@ $_mobile-navlink-height: 64px;
 
     }
 
+    // The background element behind the main nav menu.
+    &__background-filter {
+
+        // Initially hidden.
+        display: none;
+        opacity: 0;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+
+        @supports (backdrop-filter: blur()) {
+            backdrop-filter: blur(30px);
+        }
+
+    }
+
     // The width at which the screen is too narrow to fit the navbar links.
     @media screen and (max-width: var.$global-header-collapse-width) {
 

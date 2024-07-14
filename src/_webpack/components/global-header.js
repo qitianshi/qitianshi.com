@@ -5,9 +5,12 @@
 
 import throttle from "lodash.throttle";
 
-const globalHeaderNavClasses = document.querySelector("#global-header nav").classList;
+const globalHeaderNavClasses = document
+    .querySelector("#global-header nav").classList;
 const hamburgerCheckboxElement = document
     .getElementById("global-header__hamburger-checkbox");
+const globalHeaderBackgroundFilter = document
+    .getElementById("global-header__background-filter");
 
 /** Toggles the transparent mode of the horizontal when scrolled to the top. */
 function toggleNavbarTransparency() {
@@ -39,7 +42,7 @@ function toggleExpandedMobileNavbar() {
             ease: "power1.in",
         });
 
-        // Animates the appearance of the navlinks.
+        // Animates the entrance of the navlinks.
         navbarExpansionTimeline.from("#global-header__navigation-links li", {
             y: "-1rem",
             opacity: 0,
@@ -49,10 +52,29 @@ function toggleExpandedMobileNavbar() {
             ease: "power4.out",
         }, "<");
 
+        // Animates the entrance of the background filter.
+        navbarExpansionTimeline.to(globalHeaderBackgroundFilter, {
+            display: "block",
+            opacity: 1,
+            duration: 0.3,
+            onComplete: function () {
+
+                // Prevents scrolling the body if the browser supports
+                // backdrop filters. Otherwise, there is no reason to prevent
+                // scrolling.
+                if (CSS.supports("backdrop-filter", "blur()")) {
+                    document.body.style.overflow = "hidden";
+                }
+
+            },
+        }, "<");
+
     } else {
 
-        // Collapses the navbar.
-        gsap.to("#global-header__navigation-links", {
+        let navbarCollapseTimeline = gsap.timeline();
+
+        // Animates the collapse of the navbar.
+        navbarCollapseTimeline.to("#global-header__navigation-links", {
             height: 0,
             duration: 0.3,
             ease: "power1.in",
@@ -67,6 +89,16 @@ function toggleExpandedMobileNavbar() {
                 document.querySelector("#global-header__navigation-links")
                     .style.height = null;
 
+            },
+        });
+
+        // Animates the exit of the background filter.
+        navbarCollapseTimeline.to(globalHeaderBackgroundFilter, {
+            display: "none",
+            opacity: 0,
+            duration: 0.3,
+            onStart: function () {
+                document.body.style.overflow = null;     // Restores scrolling.
             },
         });
 
@@ -107,6 +139,12 @@ const GlobalHeader = {
         // Handles the clicking of the hamburger button.
         hamburgerCheckboxElement
             .addEventListener("change", toggleExpandedMobileNavbar);
+
+        // Collapses the navbar if there is a click outside of the menu.
+        globalHeaderBackgroundFilter.addEventListener("click", function () {
+            hamburgerCheckboxElement.checked = false;
+            toggleExpandedMobileNavbar();
+        });
 
     },
 };

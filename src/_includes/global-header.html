@@ -4,6 +4,8 @@
 
 
 <header id="global-header" >
+
+    <!-- The navigation menu. -->
     <nav
         class="
             {% if page.navbar_transparency_theme %}
@@ -35,4 +37,11 @@
         {% include components/hamburger-button.html parent_id="global-header" %}
 
     </nav>
+
+    <!--
+        Blurs the rest of the page when the navbar is expanded in mobile
+        layout, and allows the navbar to be dismissed by clicking outside it.
+    -->
+    <div id="global-header__background-filter" class="o-viewport-relative-container--full"></div>
+
 </header>
