@@ -18,8 +18,13 @@ function toggleNavbarTransparency() {
         .toggle("global-header--transparent", window.scrollY <= 0);
 }
 
-/** Animates the mobile navbar state between expanded and collapsed. */
-function toggleExpandedMobileNavbar() {
+/**
+ * Animates the mobile navbar state between expanded and collapsed.
+ *
+ * @param {Boolean} [quickReset = false] - If true, the navbar is collapsed
+ *     with no animation.
+ */
+function toggleExpandedMobileNavbar(quickReset = false) {
 
     const mobileExpandedClass = "global-header--mobile-expanded";
 
@@ -78,7 +83,7 @@ function toggleExpandedMobileNavbar() {
         // Animates the collapse of the navbar.
         navbarCollapseTimeline.to("#global-header__navigation-links", {
             height: 0,
-            duration: 0.3,
+            duration: (quickReset ? 0 : 0.3),
             ease: "power1.in",
             clearProps: true,       // If toggled back to wide layout.
             onComplete: function () {
@@ -130,15 +135,32 @@ const GlobalHeader = {
 
         }
 
-        // Handles the clicking of the hamburger button.
-        hamburgerCheckboxElement
-            .addEventListener("change", toggleExpandedMobileNavbar);
+        // Handles the clicking of the hamburger button. Wraps the function
+        // call in an anonymous function because otherwise the event object
+        // would be passed.
+        hamburgerCheckboxElement.addEventListener("change", function () {
+            toggleExpandedMobileNavbar();
+        });
 
         // Collapses the navbar if there is a click outside of the menu.
         globalHeaderBackgroundFilter.addEventListener("click", function () {
             hamburgerCheckboxElement.checked = false;
             toggleExpandedMobileNavbar();
         });
+
+        // If the window is resized to the wide layout mode of the navbar while
+        // the mobile expanded layout is active, the navbar is collapsed.
+        window.addEventListener("resize", throttle(function () {
+            if (
+                window.getComputedStyle(
+                    document
+                        .querySelector("#global-header .c-hamburger-button")
+                ).display === "none"
+            ) {
+                hamburgerCheckboxElement.checked = false;
+                toggleExpandedMobileNavbar(true);
+            }
+        }, 250), { passive: true });
 
     },
 };
