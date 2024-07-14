@@ -71,24 +71,18 @@ function toggleExpandedMobileNavbar() {
 
     } else {
 
-        let navbarCollapseTimeline = gsap.timeline();
+        let navbarCollapseTimeline = gsap.timeline({defaults: {
+            overwrite: true,
+        }});
 
         // Animates the collapse of the navbar.
         navbarCollapseTimeline.to("#global-header__navigation-links", {
             height: 0,
             duration: 0.3,
             ease: "power1.in",
-            overwrite: true,
+            clearProps: true,       // If toggled back to wide layout.
             onComplete: function () {
-
                 globalHeaderNavClasses.remove(mobileExpandedClass);
-
-                // Unsets the style attribute height created by GSAP so it does
-                // not override the CSS styles if the navbar subsequently
-                // changes back to the wide layout.
-                document.querySelector("#global-header__navigation-links")
-                    .style.height = null;
-
             },
         });
 
