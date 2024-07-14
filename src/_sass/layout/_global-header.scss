@@ -11,7 +11,6 @@
 $_navlink-horizontal-padding: 35px;
 $_light-divider-weight: 1px;
 $_mobile-navlink-height: 64px;
-$_num-of-navlinks: 4;
 
 /// The bottom border of the navbar when the --transparent modifier is active.
 @mixin _transparent-mode-border($theme) {
@@ -22,35 +21,12 @@ $_num-of-navlinks: 4;
 
 }
 
-/// The transition properties for the --transparent modifier.
-@function _transparency-transitions($delay) {
-    @return background-color 0.2s #{$delay}, backdrop-filter 0.2s #{$delay};
-}
-
 #global-header {
 
     // Places header above other page elements.
     position: fixed;
     z-index: 99;
     width: 100vw;
-
-    transition: _transparency-transitions($delay: 0s);
-
-    // Checks for backdrop-filter support. If available, the default
-    // background-color of .u-hierarchy-elevated is overridden.
-    @supports (backdrop-filter: blur()) {
-
-        backdrop-filter: blur(30px);
-
-        @include mix.color-theme(light) {
-            background-color: rgba(func.palette("light", "background", 1), 0.8);
-        }
-
-        @include mix.color-theme(dark) {
-            background-color: rgba(func.palette("dark", "background", 2), 0.8);
-        }
-
-    }
 
     nav {
 
@@ -63,6 +39,47 @@ $_num-of-navlinks: 4;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        // For transparency effects.
+        transition: background-color 0.2s, backdrop-filter 0.2s;
+
+        // Checks for backdrop-filter support. If available, the default
+        // background-color of .u-hierarchy-elevated is overridden.
+        @supports (backdrop-filter: blur()) {
+
+            backdrop-filter: blur(30px);
+
+            @include mix.color-theme(light) {
+                background-color: rgba(func.palette("light", "background", 1), 0.8);
+            }
+
+            @include mix.color-theme(dark) {
+                background-color: rgba(func.palette("dark", "background", 2), 0.8);
+            }
+
+        }
+
+        // Transparency effect is only applied when the navbar is not expanded.
+        &.global-header--transparent:not(.global-header--mobile-expanded) {
+
+            background-color: transparent;
+            backdrop-filter: none;
+            box-shadow: none;
+
+            @each $theme in "light", "dark" {
+
+                @include mix.color-theme($theme) {
+                    @include _transparent-mode-border($theme);
+                }
+
+                &.global-header--transparency-theme-#{$theme} {
+                    @extend %t-#{$theme};
+                    @include _transparent-mode-border($theme);
+                }
+
+            }
+
+        }
 
     }
 
@@ -159,28 +176,6 @@ $_num-of-navlinks: 4;
         display: none;
 
         --hamburger-button-height: #{var.$global-header-height};
-
-    }
-
-    // Transparency effect is only applied when the navbar is not expanded.
-    &.global-header--transparent:not(.global-header--mobile-expanded) {
-
-        background-color: transparent;
-        backdrop-filter: none;
-        box-shadow: none;
-
-        @each $theme in "light", "dark" {
-
-            @include mix.color-theme($theme) {
-                @include _transparent-mode-border($theme);
-            }
-
-            &.global-header--transparency-theme-#{$theme} {
-                @extend %t-#{$theme};
-                @include _transparent-mode-border($theme);
-            }
-
-        }
 
     }
 

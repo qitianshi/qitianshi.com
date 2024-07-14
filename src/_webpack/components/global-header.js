@@ -5,13 +5,13 @@
 
 import throttle from "lodash.throttle";
 
-const globalHeaderClasses = document.getElementById("global-header").classList;
+const globalHeaderNavClasses = document.querySelector("#global-header nav").classList;
 const hamburgerCheckboxElement = document
     .getElementById("global-header__hamburger-checkbox");
 
 /** Toggles the transparent mode of the horizontal when scrolled to the top. */
 function toggleNavbarTransparency() {
-    globalHeaderClasses
+    globalHeaderNavClasses
         .toggle("global-header--transparent", window.scrollY <= 0);
 }
 
@@ -28,7 +28,7 @@ function toggleExpandedMobileNavbar() {
         let navbarExpansionTimeline = gsap.timeline({
             defaults: { overwrite: true, },
             onStart: function () {
-                globalHeaderClasses.add(mobileExpandedClass);
+                globalHeaderNavClasses.add(mobileExpandedClass);
             },
         });
 
@@ -59,7 +59,7 @@ function toggleExpandedMobileNavbar() {
             overwrite: true,
             onComplete: function () {
 
-                globalHeaderClasses.remove(mobileExpandedClass);
+                globalHeaderNavClasses.remove(mobileExpandedClass);
 
                 // Unsets the style attribute height created by GSAP so it does
                 // not override the CSS styles if the navbar subsequently
@@ -82,7 +82,7 @@ const GlobalHeader = {
     init: function () {
 
         // Applies navbar transparency if the page has opted in.
-        if (globalHeaderClasses.value.includes(
+        if (globalHeaderNavClasses.value.includes(
             "global-header--transparency-theme-"
         )) {
 
