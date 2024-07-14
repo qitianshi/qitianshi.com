@@ -77,12 +77,19 @@ function animateLandingBanner() {
 
     // Creates a parallax scrolling effect by translating the content downward.
     gsap.to("#landing-banner .c-stacked-banner__content", {
-        yPercent: 50,
+        y: function () {
+            // Moves the content to the bottom of the banner.
+            return ((document.querySelector("#landing-banner").offsetHeight
+                - document.querySelector(
+                    "#landing-banner .c-stacked-banner__content").offsetHeight)
+                / 2);
+        },
         scrollTrigger: {
             trigger: "#landing-banner",
             start: "top top",
             end: "bottom top",
             scrub: true,
+            invalidateOnRefresh: true,
         }
     });
 
