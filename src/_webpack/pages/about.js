@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // completes.
                 gsap.to("#landing-banner .c-stacked-banner__background", {
                     scale: 1.5,
+                    yPercent: 60,
                     scrollTrigger: {
                         trigger: "#landing-banner",
                         scrub: 0.25,
