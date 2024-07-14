@@ -5,45 +5,70 @@
 
 import throttle from "lodash.throttle";
 
-const globalHeaderClasses = document
-    .getElementById("global-header")
-    .classList;
+const globalHeaderClasses = document.getElementById("global-header").classList;
 const hamburgerCheckboxElement = document
     .getElementById("global-header__hamburger-checkbox");
-const mobileExpandedClass = "global-header--mobile-expanded";
-const mobileClosingClass = "global-header--mobile-closing";
-const transparencyEnabledPrefix = "global-header--transparency-theme-";
-const transparencyClass = "global-header--transparent";
 
-/** Toggles the transparent mode of the horizontal navbar. */
+/** Toggles the transparent mode of the horizontal when scrolled to the top. */
 function toggleNavbarTransparency() {
-
-    // Navbar is made transparent if the document is scrolled to the top.
-    globalHeaderClasses.toggle(transparencyClass, window.scrollY <= 0);
-
+    globalHeaderClasses
+        .toggle("global-header--transparent", window.scrollY <= 0);
 }
 
-/**
- * Handles the event of the user clicking the hamburger button by toggling the
- * navigation links on mobile.
- */
+/** Animates the mobile navbar state between expanded and collapsed. */
 function toggleExpandedMobileNavbar() {
 
-    // Reads the value of the hamburger button checkbox, and applies a class to
-    // the navigation links. CSS will cause the links to appear.
+    const mobileExpandedClass = "global-header--mobile-expanded";
+
+    // Reads the value of the hamburger button checkbox.
     if (hamburgerCheckboxElement.checked) {
-        globalHeaderClasses.add(mobileExpandedClass);
+
+        // Overwrite is required to kill the current animation if the state is
+        // toggled before animation finishes.
+        let navbarExpansionTimeline = gsap.timeline({
+            defaults: { overwrite: true, },
+            onStart: function () {
+                globalHeaderClasses.add(mobileExpandedClass);
+            },
+        });
+
+        // Animates the height change of the navbar.
+        navbarExpansionTimeline.to("#global-header__navigation-links", {
+            height: "auto",
+            duration: 0.3,
+            ease: "power1.in",
+        });
+
+        // Animates the appearance of the navlinks.
+        navbarExpansionTimeline.from("#global-header__navigation-links li", {
+            y: "-1rem",
+            opacity: 0,
+            duration: 1,
+            delay: 0.09,
+            stagger: 0.07,
+            ease: "power4.out",
+        }, "<");
+
     } else {
 
-        globalHeaderClasses.remove(mobileExpandedClass);
+        // Collapses the navbar.
+        gsap.to("#global-header__navigation-links", {
+            height: 0,
+            duration: 0.3,
+            ease: "power1.in",
+            overwrite: true,
+            onComplete: function () {
 
-        // Adds a closing class, then removes it after 0.3s. Used in CSS to
-        // delay the transparency transitions until after the navbar is closed.
-        // 0.3s is the duration of the closing animation.
-        globalHeaderClasses.add(mobileClosingClass);
-        setTimeout(function () {
-            globalHeaderClasses.remove(mobileClosingClass);
-        }, 300);
+                globalHeaderClasses.remove(mobileExpandedClass);
+
+                // Unsets the style attribute height created by GSAP so it does
+                // not override the CSS styles if the navbar subsequently
+                // changes back to the wide layout.
+                document.querySelector("#global-header__navigation-links")
+                    .style.height = null;
+
+            },
+        });
 
     }
 
@@ -56,12 +81,10 @@ function toggleExpandedMobileNavbar() {
 const GlobalHeader = {
     init: function () {
 
-        // If the page has opted in, navbar transparency is applied.
-        if (
-            globalHeaderClasses
-                .value
-                .includes(transparencyEnabledPrefix)
-        ) {
+        // Applies navbar transparency if the page has opted in.
+        if (globalHeaderClasses.value.includes(
+            "global-header--transparency-theme-"
+        )) {
 
             // Applies the transparency on page load.
             toggleNavbarTransparency();
@@ -69,20 +92,13 @@ const GlobalHeader = {
             // Adds event listeners for scroll and resize.
             for (const type of ["scroll", "resize"]) {
 
-                window
-                    .addEventListener(
-
-                        type,
-
-                        // Throttles the function call to reduce the rate it's
-                        // triggered at.
-                        throttle(toggleNavbarTransparency, 250),
-
-                        // Makes the event listener passive for performance
-                        // optimizations.
-                        { passive: true }
-
-                    );
+                // The callback is throttled and the event listener is passive
+                // to reduce compute load.
+                window.addEventListener(
+                    type,
+                    throttle(toggleNavbarTransparency, 250),
+                    { passive: true }
+                );
 
             }
 
