@@ -10,7 +10,7 @@ navbar_transparency_theme: "dark"
 
 <!-- Acknowledgments and licensing information. -->
 
-<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
+<!-- Copyright 2024 Qi Tianshi. All rights reserved. -->
 
 
 <h2>typography</h2>
@@ -49,7 +49,7 @@ navbar_transparency_theme: "dark"
     {% for dependency in this_dependencies %}
 
         <p>
-            <code><a href="{{ dependency_list.ecosystems[this_ecosystem] }}/{{ dependency.name }}" target="_blank">{{ dependency.name }}</a></code> is licensed under the <a href="{{ dependency.license_url }}" target="_blank">{{ dependency.license }} License</a>.
+            <code><a href="{{ dependency_list.ecosystems[this_ecosystem] }}/{{ dependency.name }}" target="_blank">{{ dependency.name }}</a></code> is licensed under the <a href="{{ dependency.license_url }}" target="_blank">{{ dependency.license }} License</a>{% if dependency.cdn %}, and served by <a href="{{ dependency.cdn_url }}" target="_blank">{{ dependency.cdn }}</a>{% endif %}.
         </p>
 
     {% endfor %}

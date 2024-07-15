@@ -1,6 +1,6 @@
 # Project dependencies and licensing information.
 
-# Copyright 2023 Qi Tianshi. All rights reserved.
+# Copyright 2024 Qi Tianshi. All rights reserved.
 
 
 # The base URLs to access dependencies for each ecosystem.
@@ -9,7 +9,7 @@ ecosystems:
   npm: "https://www.npmjs.com/package"
   RubyGems: "https://rubygems.org/gems"
 
-# Dependencies with licensing information.
+# Dependencies with licensing and optional CDN information.
 dependencies:
 
   GitHub Actions:
@@ -45,6 +45,11 @@ dependencies:
     - name: "eslint"
       license: "MIT"
       license_url: "https://github.com/eslint/eslint/blob/main/LICENSE"
+    - name: "gsap"
+      license: "GreenSock Standard"
+      license_url: "https://gsap.com/standard-license"
+      cdn: "jsDelivr"
+      cdn_url: "https://www.jsdelivr.com/gsap"
     - name: "lodash.throttle"
       license: "MIT"
       license_url: "https://github.com/lodash/lodash/blob/master/LICENSE"

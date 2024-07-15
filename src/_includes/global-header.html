@@ -1,17 +1,18 @@
 <!-- Global header -->
 
-<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
+<!-- Copyright 2024 Qi Tianshi. All rights reserved. -->
 
 
-<header
-    id="global-header"
-    class="
-        {% if page.navbar_transparency_theme %}
-            global-header--transparency-theme-{{ page.navbar_transparency_theme }}
-        {% endif %}
-        u-hierarchy-elevated"
->
-    <nav>
+<header id="global-header" >
+
+    <!-- The navigation menu. -->
+    <nav
+        class="
+            {% if page.navbar_transparency_theme %}
+                global-header--transparency-theme-{{ page.navbar_transparency_theme }}
+            {% endif %}
+            u-hierarchy-elevated"
+    >
 
         <a href="/" id="global-header__home-navlink" aria-label="To the homepage">
             {% include svg/tian-wordmark.svg attributes='id="global-header__logo"' %}
@@ -33,25 +34,14 @@
 
         </menu>
 
-        <!-- Hamburger button that expands navbar items for narrow screens. -->
-        <div class="c-hamburger-button">
-
-            <!-- Checkbox allows opening and closing of the menu without JavaScript. -->
-            <input type="checkbox" id="global-header__hamburger-checkbox" class="c-hamburger-button__checkbox">
-
-            <!-- Clickable area of the button. Clicking the button checks the checkbox. -->
-            <label for="global-header__hamburger-checkbox" class="c-hamburger-button__button" role="button" aria-label="Toggle navigation menu">
-
-                <!-- Each span is a line that is styled and animated in CSS. -->
-                <div class="c-hamburger-button__icon">
-                    {% for i in (1..4) %}
-                        <span></span>
-                    {% endfor %}
-                </div>
-
-            </label>
-
-        </div>
+        {% include components/hamburger-button.html parent_id="global-header" %}
 
     </nav>
+
+    <!--
+        Blurs the rest of the page when the navbar is expanded in mobile
+        layout, and allows the navbar to be dismissed by clicking outside it.
+    -->
+    <div id="global-header__background-filter" class="o-viewport-relative-container--full"></div>
+
 </header>

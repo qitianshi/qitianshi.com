@@ -1,0 +1,25 @@
+<!-- An animated hamburger button. -->
+
+<!-- Copyright 2024 Qi Tianshi. All rights reserved. -->
+
+
+<!-- Hamburger button that expands navbar items for narrow screens. -->
+<div class="c-hamburger-button">
+
+    <!-- Checkbox allows opening and closing of the menu without JavaScript. -->
+    <input type="checkbox" id="{{ include.parent_id }}__hamburger-checkbox" class="c-hamburger-button__checkbox">
+
+    <!-- Clickable area of the button. Clicking the button checks the checkbox. -->
+    <label for="{{ include.parent_id }}__hamburger-checkbox" class="c-hamburger-button__button" role="button"
+        aria-label="Toggle navigation menu">
+
+        <!-- Each span is a line that is styled and animated in CSS. -->
+        <div class="c-hamburger-button__icon">
+            {% for i in (1..4) %}
+                <span></span>
+            {% endfor %}
+        </div>
+
+    </label>
+
+</div>

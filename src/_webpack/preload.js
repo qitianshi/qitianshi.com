@@ -3,6 +3,6 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
-import ColorTheme from "./utils/color-theme";
+import ColorTheme from "./utils/color-theme.js";
 
 ColorTheme.initPreload();

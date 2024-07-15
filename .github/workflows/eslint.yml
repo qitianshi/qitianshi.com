@@ -1,0 +1,36 @@
+# Runs ESLint on JavaScript files.
+
+# Copyright 2024 Qi Tianshi. All rights reserved.
+
+
+name: Run ESLint
+
+on:
+  push:
+    paths:
+      - "src/_webpack/**/*.js"
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.2"
+          cache: "npm"
+          cache-dependency-path: "package-lock.json"
+
+      - name: Install npm packages
+        run: npm ci
+
+      - name: Run ESLint
+        run: npx eslint src/_webpack

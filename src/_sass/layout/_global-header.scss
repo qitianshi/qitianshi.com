@@ -11,7 +11,6 @@
 $_navlink-horizontal-padding: 35px;
 $_light-divider-weight: 1px;
 $_mobile-navlink-height: 64px;
-$_num-of-navlinks: 4;
 
 /// The bottom border of the navbar when the --transparent modifier is active.
 @mixin _transparent-mode-border($theme) {
@@ -22,35 +21,12 @@ $_num-of-navlinks: 4;
 
 }
 
-/// The transition properties for the --transparent modifier.
-@function _transparency-transitions($delay) {
-    @return background-color 0.2s #{$delay}, backdrop-filter 0.2s #{$delay};
-}
-
 #global-header {
 
     // Places header above other page elements.
     position: fixed;
     z-index: 99;
     width: 100vw;
-
-    transition: _transparency-transitions($delay: 0s);
-
-    // Checks for backdrop-filter support. If available, the default
-    // background-color of .u-hierarchy-elevated is overridden.
-    @supports (backdrop-filter: blur()) {
-
-        backdrop-filter: blur(30px);
-
-        @include mix.color-theme(light) {
-            background-color: rgba(func.palette("light", "background", 1), 0.8);
-        }
-
-        @include mix.color-theme(dark) {
-            background-color: rgba(func.palette("dark", "background", 2), 0.8);
-        }
-
-    }
 
     nav {
 
@@ -63,6 +39,47 @@ $_num-of-navlinks: 4;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        // For transparency effects.
+        transition: background-color 0.2s, backdrop-filter 0.2s;
+
+        // Checks for backdrop-filter support. If available, the default
+        // background-color of .u-hierarchy-elevated is overridden.
+        @supports (backdrop-filter: blur()) {
+
+            backdrop-filter: blur(30px);
+
+            @include mix.color-theme(light) {
+                background-color: rgba(func.palette("light", "background", 1), 0.8);
+            }
+
+            @include mix.color-theme(dark) {
+                background-color: rgba(func.palette("dark", "background", 2), 0.8);
+            }
+
+        }
+
+        // Transparency effect is only applied when the navbar is not expanded.
+        &.global-header--transparent:not(.global-header--mobile-expanded) {
+
+            background-color: transparent;
+            backdrop-filter: none;
+            box-shadow: none;
+
+            @each $theme in "light", "dark" {
+
+                @include mix.color-theme($theme) {
+                    @include _transparent-mode-border($theme);
+                }
+
+                &.global-header--transparency-theme-#{$theme} {
+                    @extend %t-#{$theme};
+                    @include _transparent-mode-border($theme);
+                }
+
+            }
+
+        }
 
     }
 
@@ -162,46 +179,26 @@ $_num-of-navlinks: 4;
 
     }
 
-    // Transparency effect is only applied when the navbar is not expanded.
-    &.global-header--transparent:not(.global-header--mobile-expanded):not(.global-header--mobile-closing) {
+    // The background element behind the main nav menu.
+    &__background-filter {
 
-        background-color: transparent;
-        backdrop-filter: none;
-        box-shadow: none;
+        // Initially hidden.
+        display: none;
+        opacity: 0;
 
-        @each $theme in "light", "dark" {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
 
-            @include mix.color-theme($theme) {
-                @include _transparent-mode-border($theme);
-            }
-
-            &.global-header--transparency-theme-#{$theme} {
-                @extend %t-#{$theme};
-                @include _transparent-mode-border($theme);
-            }
-
+        @supports (backdrop-filter: blur()) {
+            backdrop-filter: blur(30px);
         }
 
     }
 
     // The width at which the screen is too narrow to fit the navbar links.
-    @media screen and (max-width: 775px) {
-
-        // Using max-height allows the height change to be animated.
-        max-height: var.$global-header-height;
-
-        // Hides the navigation links when the dropdown is being closed.
-        overflow: clip;
-
-        // Adds the height transition to transparency transitions.
-        transition: _transparency-transitions(0s), max-height 0.3s ease-in;
-
-        // The .global-header--mobile-closing is applied in JS for the duration
-        // of the max-height transition (0.3s) to apply a delay in the
-        // transparency transitions until after the dropdown has fully closed.
-        &.global-header--transparent.global-header--mobile-closing {
-            transition: _transparency-transitions(0.3s), max-height 0.3s ease-in;
-        }
+    @media screen and (max-width: var.$global-header-collapse-width) {
 
         nav {
 
@@ -236,15 +233,14 @@ $_num-of-navlinks: 4;
         &__navigation-links {
 
             // Navigation links are hidden until the header is expanded.
-            display: none;
+            height: 0;
+            overflow: clip;
+            padding: 0 var.$mobile-padding;
             grid-area: menu;
 
-            // Resets default values.
-            height: unset;
-            padding: 0 var.$mobile-padding;
-
-            // Adds a border between the navigation links and the navbar.
-            border-top: $_light-divider-weight solid var(--foreground-tertiary-color);
+            .global-header--mobile-expanded & {
+                border-top: $_light-divider-weight solid var(--foreground-tertiary-color);
+            }
 
             li {
 
@@ -258,7 +254,7 @@ $_num-of-navlinks: 4;
                 // The first link doesn't need a border because the parent
                 // element already has a top border.
                 &:first-of-type {
-                    border-top: none;
+                    border-top: none !important;
                 }
 
                 a {
@@ -276,7 +272,7 @@ $_num-of-navlinks: 4;
 
                 &.global-header__navlink--active {
 
-                    // Overrides defaults.
+                    // Overrides default style for expanded header.
                     border-top: inherit;
                     a { margin-top: 0; }
 
@@ -302,32 +298,6 @@ $_num-of-navlinks: 4;
         .c-hamburger-button {
             display: block;
             grid-area: hamburger;
-        }
-
-        // Programmatically applied class for expanding the navigation links.
-        &.global-header--mobile-expanded,
-        &.global-header--mobile-closing {
-            #global-header__navigation-links {
-                display: block;
-            }
-        }
-
-        &.global-header--mobile-expanded {
-
-            // Allows the navbar height to be animated. Calculated as the
-            // natural height of the global header.
-            max-height: calc(var.$global-header-height + $_num-of-navlinks * ($_mobile-navlink-height + $_light-divider-weight));
-
-            // Applies animations with successive delays for each of the 4
-            // navigation links.
-            @for $i from 1 through $_num-of-navlinks {
-                #global-header__navigation-links li:nth-of-type(#{$i}) {
-                    animation:
-                        1s var.$fast-ease-out (0.07s * ($i)) both fade-in,
-                        1s var.$fast-ease-out (0.07s * ($i)) both move-in-downwards;
-                }
-            }
-
         }
 
     }
