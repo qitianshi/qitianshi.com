@@ -10,69 +10,64 @@
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
-#landing-banner {
+.landing-banner {
+
     overflow: hidden;
-}
-
-#landing-banner .c-stacked-banner {
-
-    // Z-indexes
-    // -1: hidden background images (loop)
-    //  0: next background images (loop)
-    //  1: current background image (loop)
-    //  2: background filter
-    //  3: content
 
     // The dark filter over the background images to make the text more
     // legible. Used instead of filter() for performance reasons.
     &__background-filter {
-        visibility: hidden;         // Initially hidden.
+        visibility: hidden; // Initially hidden.
         opacity: 0.35;
         background-color: black;
-        z-index: 2;                 // Over the background but under the text.
+        z-index: 2; // Over the background but under the text.
     }
 
-    // The text content of the landing banner.
-    &__content {
+    // The animated big name.
+    &__big-name {
 
-        visibility: hidden;     // Initially hidden.
-        z-index: 3;             // On top of all other elements in the landing banner.
+        width: 30rem;
+        max-width: 80vw;
+        position: relative;
+        top: 0.4em;
 
-        // The animated big name.
-        #landing-banner__big-name {
-
-            width: 30rem;
-            max-width: 80vw;
-            position: relative;
-            top: 0.4em;
-
-            // The visible paths of the graphic.
-            #graphic path {
-                fill: #fff;
-            }
-
-            // The paths for masking the graphic for the writing animation.
-            .mask-path {
-                fill: none;
-                stroke: #fff;
-            }
-
+        .c-drawable-graphic__graphic path {
+            fill: white;
         }
 
     }
 
-    // Basic styling for the heading text.
-    &__heading {
+    .c-stacked-banner {
 
-        color: var(--tiangerine-tangerine);
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);    // For legibility.
+        // Z-indexes
+        // -1: hidden background images (loop)
+        //  0: next background images (loop)
+        //  1: current background image (loop)
+        //  2: background filter
+        //  3: content
 
-        font-size: 2.5rem;
-        line-height: 0.75;
+        // The text content of the landing banner.
+        &__content {
 
-        // Prevents the text from wrapping.
-        @media screen and (max-width: 650px) { font-size: 1.5rem; }
-        @media screen and (max-width: 400px) { font-size: 1.3rem; }
+            visibility: hidden;     // Initially hidden.
+            z-index: 3;
+
+        }
+
+        // Basic styling for the heading text.
+        &__heading {
+
+            color: var(--tiangerine-tangerine);
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);   // For legibility.
+
+            font-size: 2.5rem;
+            line-height: 0.75;
+
+            // Prevents the text from wrapping.
+            @media screen and (max-width: 650px) { font-size: 1.5rem; }
+            @media screen and (max-width: 400px) { font-size: 1.3rem; }
+
+        }
 
     }
 
@@ -161,14 +156,11 @@
 
             width: 100%;
 
-            .c-stacked-banner__content {
-
-                // Ideally the padding would be 10% of parent element height,
-                // analogous to the row layout being 10% of width. Since the
-                // parent height 90vh, which contains 3 children, 10% is
-                // roughly 3vh.
+            // Ideally the padding would be 10% of parent element height,
+            // analogous to the row layout being 10% of width. Since the parent
+            // height 90vh, which contains 3 children, 10% is roughly 3vh.
+            &__content {
                 padding: max(3vh, 1.5rem);
-
             }
 
         }

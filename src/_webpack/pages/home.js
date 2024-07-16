@@ -5,7 +5,7 @@
 
 // The background images in the landing banner.
 const landingBannerImages = document
-    .querySelectorAll("#landing-banner .c-stacked-banner__background");
+    .querySelectorAll(".landing-banner .c-stacked-banner__background");
 
 /** Animates the landing banner. */
 function animateLandingBanner() {
@@ -24,8 +24,8 @@ function animateLandingBanner() {
     CustomEase.create("bannerZoomTimingFunction", ".4, 0, 0, .9");
 
     // Resets initially hidden elements.
-    gsap.set("#landing-banner .c-stacked-banner__content", { autoAlpha: 1 });
-    gsap.set("#landing-banner .c-stacked-banner__background-filter", {
+    gsap.set(".landing-banner .c-stacked-banner__content", { autoAlpha: 1 });
+    gsap.set(".landing-banner__background-filter", {
         visibility: "inherit",
     });
 
@@ -82,16 +82,16 @@ function animateLandingBanner() {
     });
 
     // Creates a parallax scrolling effect by translating the content downward.
-    gsap.to("#landing-banner .c-stacked-banner__content", {
+    gsap.to(".landing-banner .c-stacked-banner__content", {
         y: function () {
             // Moves the content to the bottom of the banner.
-            return ((document.querySelector("#landing-banner").offsetHeight
+            return ((document.querySelector(".landing-banner").offsetHeight
                 - document.querySelector(
-                    "#landing-banner .c-stacked-banner__content").offsetHeight)
+                    ".landing-banner .c-stacked-banner__content").offsetHeight)
                 / 2);
         },
         scrollTrigger: {
-            trigger: "#landing-banner",
+            trigger: ".landing-banner",
             start: "top top",
             end: "bottom top",
             scrub: true,
@@ -106,7 +106,7 @@ function animateLandingBanner() {
 
     // Moves up and fades in the landing banner heading.
     landingBannerHeadingTimeline.from(
-        "#landing-banner .c-stacked-banner__heading",
+        ".landing-banner .c-stacked-banner__heading",
         {
             y: "1rem",
             opacity: 0,
@@ -125,20 +125,16 @@ function animateLandingBanner() {
     );
 
     // Fades in the background filter with the text.
-    landingBannerHeadingTimeline.from(
-        "#landing-banner .c-stacked-banner__background-filter",
-        {
-            opacity: 0,
-            duration: 0.5,
-        },
-        "<"
-    );
+    landingBannerHeadingTimeline.from(".landing-banner__background-filter", {
+        opacity: 0,
+        duration: 0.5,
+    }, "<");
 
     // Moves up and fades in the landing banner paragraphs. This tween is
     // separated from the rest of the timeline because it needs to be triggered
     // independently if a scroll event occurs.
     let landingBannerParagraphsTween = gsap.from(
-        "#landing-banner .c-stacked-banner__content p",
+        ".landing-banner .c-stacked-banner__content p",
         {
             y: "1rem",
             opacity: 0,
@@ -180,8 +176,8 @@ function landingBannerBigNameAnimationTimeline() {
     let drawTimeline = gsap.timeline({ paused: true });
 
     // The paths that act as masks for writing the big name.
-    const bigNameMaskingPaths = document
-        .querySelectorAll("#landing-banner__big-name #mask path");
+    const bigNameMaskingPaths = document.querySelectorAll(
+        ".landing-banner__big-name .c-drawable-graphic__mask path");
 
     // Calculates the animations to write the big name.
     for (let i = 0; i < bigNameMaskingPaths.length; i++) {
