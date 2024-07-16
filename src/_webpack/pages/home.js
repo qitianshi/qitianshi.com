@@ -23,6 +23,12 @@ function animateLandingBanner() {
     // The timing function for the background image entrance zoom.
     CustomEase.create("bannerZoomTimingFunction", ".4, 0, 0, .9");
 
+    // Resets initially hidden elements.
+    gsap.set("#landing-banner .c-stacked-banner__content", { autoAlpha: 1 });
+    gsap.set("#landing-banner .c-stacked-banner__background-filter", {
+        visibility: "inherit",
+    });
+
     // Scales and moves the landing banner background images.
     landingBannerBackgroundTimeline.to(landingBannerImages, {
         scale: 1.1,
