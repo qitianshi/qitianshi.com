@@ -192,7 +192,7 @@ $_mobile-navlink-height: 64px;
         z-index: -1;
 
         @supports (backdrop-filter: blur()) {
-            backdrop-filter: blur(30px);
+            backdrop-filter: blur(15px);
         }
 
     }
