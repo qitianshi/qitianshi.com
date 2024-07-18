@@ -5,7 +5,7 @@
 
 // The background images in the landing banner.
 const landingBannerImages = document
-    .querySelectorAll(".landing-banner .c-stacked-banner__background");
+    .querySelectorAll(".landing-banner__background-image");
 
 /** Animates the landing banner. */
 function animateLandingBanner() {

@@ -14,13 +14,17 @@
 
     overflow: hidden;
 
+    &__background-container {
+        @include mix.z-stack();
+        align-content: center;
+    }
+
     // The dark filter over the background images to make the text more
     // legible. Used instead of filter() for performance reasons.
     &__background-filter {
         visibility: hidden; // Initially hidden.
         opacity: 0.35;
         background-color: black;
-        z-index: 2; // Over the background but under the text.
     }
 
     // The animated big name.
@@ -39,19 +43,9 @@
 
     .c-stacked-banner {
 
-        // Z-indexes
-        // -1: hidden background images (loop)
-        //  0: next background images (loop)
-        //  1: current background image (loop)
-        //  2: background filter
-        //  3: content
-
         // The text content of the landing banner.
         &__content {
-
             visibility: hidden;     // Initially hidden.
-            z-index: 3;
-
         }
 
         // Basic styling for the heading text.

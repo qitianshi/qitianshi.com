@@ -17,13 +17,19 @@ navbar_transparency_theme: "dark"
 <section class="landing-banner c-stacked-banner c-stacked-banner--hero o-viewport-relative-container--full">
 
     <!-- A series of animatable background images. -->
-    {% for i in (0..5) reversed %}
-        <img
-            src="/assets/images/home/small-hours-{{i}}.jpg"
-            class="c-stacked-banner__background"
-            alt=""
-        >
-    {% endfor %}
+    <div class="landing-banner__background-container c-stacked-banner__background">
+
+        {% for i in (0..5) reversed %}
+            <div class="landing-banner__background-mask">
+                <img
+                    src="/assets/images/home/small-hours-{{i}}.jpg"
+                    class="landing-banner__background-image c-stacked-banner__background"
+                    alt=""
+                >
+            </div>
+        {% endfor %}
+
+    </div>
 
     <!-- Legibility filter over the background images. -->
     <div class="landing-banner__background-filter"></div>
