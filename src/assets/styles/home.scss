@@ -16,7 +16,10 @@
 
     &__background-container {
         @include mix.z-stack();
-        align-content: center;
+    }
+
+    &__background-mask {
+        overflow: hidden;
     }
 
     // The dark filter over the background images to make the text more

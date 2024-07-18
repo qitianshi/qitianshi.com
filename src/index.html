@@ -21,11 +21,13 @@ navbar_transparency_theme: "dark"
 
         {% for i in (0..5) reversed %}
             <div class="landing-banner__background-mask">
-                <img
-                    src="/assets/images/home/small-hours-{{i}}.jpg"
-                    class="landing-banner__background-image c-stacked-banner__background"
-                    alt=""
-                >
+                <div class="o-viewport-relative-container--full">
+                    <img
+                        src="/assets/images/home/small-hours-{{i}}.jpg"
+                        class="landing-banner__background-image c-stacked-banner__background"
+                        alt=""
+                    >
+                </div>
             </div>
         {% endfor %}
 

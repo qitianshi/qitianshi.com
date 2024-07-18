@@ -12,10 +12,13 @@ function animateLandingBanner() {
 
     // The total duration of the entrance animation of the banner background
     // images.
-    let bannerEntranceAnimationDuration = 3.5;
+    const bannerEntranceAnimationDuration = 3.5;
 
     // The additional delay after the animation begins to show the first image.
-    let bannerCrossfadeInitialDelay = 0.75;
+    const bannerCrossfadeInitialDelay = 0.75;
+
+    const backgroundMasks = document
+        .querySelectorAll(".landing-banner__background-mask");
 
     // Timeline for controlling landing banner background image animations.
     let landingBannerBackgroundTimeline = gsap.timeline();
@@ -53,33 +56,32 @@ function animateLandingBanner() {
                 // Starts the entrance animation for the heading.
                 landingBannerHeadingTimeline.resume();
             },
+            onComplete: function () {
+
+                Array.from(backgroundMasks).slice(1).forEach(function (mask) {
+                    mask.style.width = 0;
+                });
+
+                Array.from(landingBannerImages).forEach(function (image) {
+                    image.style.opacity = 1;
+                });
+
+                gsap.to(Array.from(backgroundMasks).slice(1, -1), {
+                    width: "100vw",
+                    stagger: 0.3,
+                    scrollTrigger: {
+                        trigger: ".landing-banner",
+                        start: "top top",
+                        end: "bottom 25%",
+                        scrub: 0.5,
+                    },
+                    paused: true,
+                });
+
+            },
         },
         "<"
     );
-
-    // Continuously zooms and scales the background images.
-    landingBannerBackgroundTimeline.to(landingBannerImages, {
-        scale: 1,
-        yPercent: 0,
-        duration: 23,
-        delay: 7,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        onStart: function () {
-
-            // The index of the image that is currently at the top and visible.
-            // Initially set to the topmost image.
-            let currentTop = 0;
-
-            // Runs the animation once, then at a regular interval.
-            currentTop = loopLandingBannerImages(currentTop);
-            setInterval(function () {
-                currentTop = loopLandingBannerImages(currentTop);
-            }, 5000);
-
-        },
-    });
 
     // Creates a parallax scrolling effect by translating the content downward.
     gsap.to(".landing-banner .c-stacked-banner__content", {
@@ -201,51 +203,6 @@ function landingBannerBigNameAnimationTimeline() {
     return drawTimeline;
 
 }
-
-/**
- * Runs the crossfade portion of the looping landing banner animation. Randomly
- * chooses the next image to be shown and fades out the current image.
- *
- * @param {number} currentTop - The index of the currently shown image (to be
- *     faded out).
- * @returns {number} The index of the image being shown after previous top was
- *     faded out.
- */
-function loopLandingBannerImages(currentTop) {
-
-    // Selects an image from the list, excluding the current one.
-    let nextTop = Math.floor(
-        Math.random() * (landingBannerImages.length - 1));
-    nextTop = (nextTop >= currentTop ? nextTop + 1 : nextTop);
-
-    // Resets image positions and z-indexes.
-    landingBannerImages.forEach(function (image, index) {
-
-        image.style.opacity = 1;
-
-        if (index === nextTop) {
-            image.style.zIndex = 0;
-        } else if (index === currentTop) {
-            image.style.zIndex = 1;
-        } else {
-            image.style.zIndex = -1;
-        }
-
-    });
-
-    // Fades out the topmost image.
-    gsap.to(
-        landingBannerImages[currentTop],
-        {
-            opacity: 0,
-            duration: 2,
-            ease: "power1.inOut",
-        }
-    );
-
-    return nextTop;
-
-};
 
 /** Waits for all landing banner background images to load. */
 async function allLandingBannerImagesLoaded() {
