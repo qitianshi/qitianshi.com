@@ -17,6 +17,8 @@ function animateLandingBanner() {
     // The additional delay after the animation begins to show the first image.
     const bannerCrossfadeInitialDelay = 0.75;
 
+    // The wrappers containing the background images, which act as masks for
+    // the background scroll animation.
     const backgroundMasks = document
         .querySelectorAll(".landing-banner__background-mask");
 
@@ -58,29 +60,36 @@ function animateLandingBanner() {
             },
             onComplete: function () {
 
-                Array.from(backgroundMasks).slice(1).forEach(function (mask) {
-                    mask.style.width = 0;
-                });
+                // Sets up the other background images for the scrolling
+                // animation.
+                Array.from(backgroundMasks).slice(1)
+                    .forEach(function (mask) { mask.style.width = 0; });
+                Array.from(landingBannerImages)
+                    .forEach(function (image) { image.style.opacity = 1; });
 
-                Array.from(landingBannerImages).forEach(function (image) {
-                    image.style.opacity = 1;
-                });
-
-                gsap.to(Array.from(backgroundMasks).slice(1, -1), {
-                    width: "100vw",
-                    stagger: 0.3,
-                    scrollTrigger: {
-                        trigger: ".landing-banner",
-                        start: "top top",
-                        end: "bottom 25%",
-                        scrub: 0.5,
-                    },
-                    paused: true,
-                });
+                // Refreshes the tween with the current states of the
+                // background images.
+                backgroundSwipeTween.invalidate();
 
             },
         },
         "<"
+    );
+
+    // Horizontally swipes between the background images as the user scrolls.
+    let backgroundSwipeTween = gsap.to(
+        Array.from(backgroundMasks).slice(1, -1),
+        {
+            width: "100vw",
+            stagger: 0.3,
+            scrollTrigger: {
+                trigger: ".landing-banner",
+                start: "top top",
+                end: "bottom top",
+                scrub: 0.5,
+                pin: true,
+            },
+        }
     );
 
     // Creates a parallax scrolling effect by translating the content downward.
