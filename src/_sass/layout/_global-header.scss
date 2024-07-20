@@ -60,25 +60,27 @@ $_mobile-navlink-height: 64px;
         }
 
         // Transparency effect is only applied when the navbar is not expanded.
-        &.global-header--transparent:not(.global-header--mobile-expanded) {
+        &.global-header--transparent, &.global-header--transparent-forced {
+            &:not(.global-header--mobile-expanded) {
 
-            background-color: transparent;
-            backdrop-filter: none;
-            box-shadow: none;
+                background-color: transparent;
+                backdrop-filter: none;
+                box-shadow: none;
 
-            @each $theme in "light", "dark" {
+                @each $theme in "light", "dark" {
 
-                @include mix.color-theme($theme) {
-                    @include _transparent-mode-border($theme);
-                }
+                    @include mix.color-theme($theme) {
+                        @include _transparent-mode-border($theme);
+                    }
 
-                &.global-header--transparency-theme-#{$theme} {
-                    @extend %t-#{$theme};
-                    @include _transparent-mode-border($theme);
+                    &.global-header--transparency-theme-#{$theme} {
+                        @extend %t-#{$theme};
+                        @include _transparent-mode-border($theme);
+                    }
+
                 }
 
             }
-
         }
 
     }

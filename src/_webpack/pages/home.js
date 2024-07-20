@@ -23,7 +23,30 @@ function animateLandingBanner() {
         .querySelectorAll(".landing-banner__background-mask");
 
     // Timeline for controlling landing banner background image animations.
-    let landingBannerBackgroundTimeline = gsap.timeline();
+    let landingBannerBackgroundTimeline = gsap.timeline({
+        onStart: function () {
+
+            // Resumes both the heading and paragraph entrance animations
+            // immediately.
+            let enterContentImmediately = function () {
+                landingBannerHeadingTimeline.resume();
+                landingBannerParagraphsTween.resume();
+            };
+
+            // If the user begins scrolling, or some previous scroll position
+            // has been restored from history, the content animations are run
+            // immediately so they won't be missed.
+            if (ScrollTrigger.isInViewport(".landing-banner")) {
+                setGlobalHeaderForcedTransparency(true);
+                window.addEventListener(
+                    "scroll", enterContentImmediately, { once: true }
+                );
+            } else {
+                enterContentImmediately();
+            }
+
+        }
+    });
 
     // The timing function for the background image entrance zoom.
     CustomEase.create("bannerZoomTimingFunction", ".4, 0, 0, .9");
@@ -83,11 +106,25 @@ function animateLandingBanner() {
             width: "100vw",
             stagger: 0.3,
             scrollTrigger: {
+
                 trigger: ".landing-banner",
                 start: "top top",
                 end: "bottom top",
                 scrub: 0.5,
                 pin: true,
+
+                // Overrides the default behavior of the global header
+                // transparency controller because the landing banner is
+                // pinned. onToggle is not used because it causes a flash
+                // onLeaveBack due to the throttling of the global header
+                // scroll listener.
+                onLeave: function () {
+                    setGlobalHeaderForcedTransparency(false);
+                },
+                onEnterBack: function () {
+                    setGlobalHeaderForcedTransparency(true);
+                },
+
             },
         }
     );
@@ -156,23 +193,18 @@ function animateLandingBanner() {
         }
     );
 
-    // Resumes both the heading and paragraph entrance animations immediately.
-    let enterContentImmediately = function () {
-        landingBannerHeadingTimeline.resume();
-        landingBannerParagraphsTween.resume();
-    };
+}
 
-    // If the user begins scrolling, or some previous scroll position has been
-    // restored from history, the content animations are run immediately so
-    // they won't be missed.
-    if (window.scrollY > 0) {
-        enterContentImmediately();
-    } else {
-        window.addEventListener(
-            "scroll", enterContentImmediately, { once: true }
-        );
-    }
-
+/**
+ * Sets the forced transparency state of the global header.
+ *
+ * @param {Boolean} to - The state to which the forced transparency is set.
+ */
+function setGlobalHeaderForcedTransparency(to) {
+    document
+        .querySelector("#global-header nav")
+        .classList
+        .toggle("global-header--transparent-forced", to);
 }
 
 /**
