@@ -22,6 +22,13 @@ function animateLandingBanner() {
     const backgroundMasks = document
         .querySelectorAll(".landing-banner__background-mask");
 
+    // Resumes both the heading and paragraph entrance animations
+    // immediately.
+    let enterContentImmediately = function () {
+        landingBannerHeadingTimeline.resume();
+        landingBannerParagraphsTween.resume();
+    };
+
     // Timeline for controlling landing banner background image animations.
     let landingBannerBackgroundTimeline = gsap.timeline({
         onStart: function () {
@@ -31,21 +38,11 @@ function animateLandingBanner() {
             Array.from(backgroundMasks).slice(1)
                 .forEach(function (mask) { mask.style.width = "100vw"; });
 
-            // Resumes both the heading and paragraph entrance animations
-            // immediately.
-            let enterContentImmediately = function () {
-                landingBannerHeadingTimeline.resume();
-                landingBannerParagraphsTween.resume();
-            };
-
-            // If the user begins scrolling, or some previous scroll position
-            // has been restored from history, the content animations are run
-            // immediately so they won't be missed.
-            if (ScrollTrigger.isInViewport(".landing-banner")) {
+            if (
+                ScrollTrigger
+                    .positionInViewport(".landing-banner", "top") === 0
+            ) {
                 setGlobalHeaderForcedTransparency(true);
-                window.addEventListener(
-                    "scroll", enterContentImmediately, { once: true }
-                );
             } else {
                 enterContentImmediately();
             }
@@ -125,6 +122,7 @@ function animateLandingBanner() {
                 // scroll listener.
                 onLeave: function () {
                     setGlobalHeaderForcedTransparency(false);
+                    enterContentImmediately();
                 },
                 onEnterBack: function () {
                     setGlobalHeaderForcedTransparency(true);
