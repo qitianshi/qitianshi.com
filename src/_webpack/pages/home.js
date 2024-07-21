@@ -26,6 +26,11 @@ function animateLandingBanner() {
     let landingBannerBackgroundTimeline = gsap.timeline({
         onStart: function () {
 
+            //HACK: Sometimes the ScrollTrigger animation on the backgrounds
+            //      causes some of their widths to be like 99.1vw and idk why.
+            Array.from(backgroundMasks).slice(1)
+                .forEach(function (mask) { mask.style.width = "100vw"; });
+
             // Resumes both the heading and paragraph entrance animations
             // immediately.
             let enterContentImmediately = function () {
@@ -45,7 +50,7 @@ function animateLandingBanner() {
                 enterContentImmediately();
             }
 
-        }
+        },
     });
 
     // The timing function for the background image entrance zoom.
