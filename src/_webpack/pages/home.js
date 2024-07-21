@@ -130,7 +130,7 @@ function animateLandingBanner() {
                         // flash between the resets, but it's not noticeable.
                         onComplete: function () {
                             gsap.set(finalVisibleMask, { width: "0vw" });
-                            backgroundScrollTween.scrollTrigger.refresh();
+                            ScrollTrigger.refresh();
                         }
 
                     });
