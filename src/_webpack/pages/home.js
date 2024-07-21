@@ -33,10 +33,11 @@ function animateLandingBanner() {
     let landingBannerBackgroundTimeline = gsap.timeline({
         onStart: function () {
 
-            //HACK: Sometimes the ScrollTrigger animation on the backgrounds
-            //      causes some of their widths to be like 99.1vw and idk why.
+            // Resets masks widths during the entrance animation to disable the
+            // scrolling animation.
             Array.from(backgroundMasks).slice(1)
                 .forEach(function (mask) { mask.style.width = "100vw"; });
+            backgroundSwipeTween.invalidate();
 
             if (
                 ScrollTrigger
@@ -88,7 +89,7 @@ function animateLandingBanner() {
                 // Sets up the other background images for the scrolling
                 // animation.
                 Array.from(backgroundMasks).slice(1)
-                    .forEach(function (mask) { mask.style.width = 0; });
+                    .forEach(function (mask) { mask.style.width = "0vw"; });
                 Array.from(landingBannerImages)
                     .forEach(function (image) { image.style.opacity = 1; });
 
@@ -102,6 +103,11 @@ function animateLandingBanner() {
     );
 
     // Horizontally swipes between the background images as the user scrolls.
+    // During the entrance animation, all the mask widths are set to 100vw,
+    // so this tween will still animate the pinning but not the width change.
+    // After the entrance animation, the widths are set to 0 and the tween is
+    // invalidated to reset the origin and enable the horizontal swiping
+    // animation.
     let backgroundSwipeTween = gsap.to(
         Array.from(backgroundMasks).slice(1, -1),
         {
