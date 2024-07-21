@@ -10,12 +10,17 @@ const landingBannerImages = document
 /** Animates the landing banner. */
 function animateLandingBanner() {
 
-    // The total duration of the entrance animation of the banner background
-    // images.
-    const bannerEntranceAnimationDuration = 3.5;
+    // The total duration of the background entrance animation.
+    const backgroundEntranceDuration = 3.5;
 
-    // The additional delay after the animation begins to show the first image.
-    const bannerCrossfadeInitialDelay = 0.75;
+    // The delay before the first image is faded out in the entrance animation.
+    const backgroundCrossfadeDelay = 0.75;
+
+    // The stagger between fading out successive backgrounds.
+    const backgroundCrossfadeStagger = (
+        (backgroundEntranceDuration - backgroundCrossfadeDelay)
+        / (landingBannerImages.length - 1)
+    );
 
     // The wrappers containing the background images, which act as masks for
     // the background scroll animation.
@@ -25,19 +30,19 @@ function animateLandingBanner() {
     // Resumes both the heading and paragraph entrance animations
     // immediately.
     let enterContentImmediately = function () {
-        landingBannerHeadingTimeline.resume();
-        landingBannerParagraphsTween.resume();
+        headingEntranceTimeline.resume();
+        paragraphEntranceTween.resume();
     };
 
     // Timeline for controlling landing banner background image animations.
-    let landingBannerBackgroundTimeline = gsap.timeline({
+    let backgroundEntranceTimeline = gsap.timeline({
         onStart: function () {
 
             // Resets masks widths during the entrance animation to disable the
             // scrolling animation.
             Array.from(backgroundMasks).slice(1)
                 .forEach(function (mask) { mask.style.width = "100vw"; });
-            backgroundSwipeTween.invalidate();
+            backgroundScrollTween.invalidate();
 
             if (
                 ScrollTrigger
@@ -61,28 +66,25 @@ function animateLandingBanner() {
     });
 
     // Scales and moves the landing banner background images.
-    landingBannerBackgroundTimeline.to(landingBannerImages, {
+    backgroundEntranceTimeline.to(landingBannerImages, {
         scale: 1.1,
         yPercent: 4,
-        duration: bannerEntranceAnimationDuration,
+        duration: backgroundEntranceDuration,
         delay: 0.5,
         ease: "bannerZoomTimingFunction",
     });
 
     // Fades out successive landing banner background images, except the first.
-    landingBannerBackgroundTimeline.to(
+    backgroundEntranceTimeline.to(
         Array.from(landingBannerImages).slice(1).reverse(),
         {
             opacity: 0,
             duration: 0.2,
-            delay: bannerCrossfadeInitialDelay,
-            stagger: (
-                (bannerEntranceAnimationDuration - bannerCrossfadeInitialDelay)
-                / (landingBannerImages.length - 1)
-            ),
+            delay: backgroundCrossfadeDelay,
+            stagger: backgroundCrossfadeStagger,
             onStart: function () {
                 // Starts the entrance animation for the heading.
-                landingBannerHeadingTimeline.resume();
+                headingEntranceTimeline.resume();
             },
             onComplete: function () {
 
@@ -96,20 +98,20 @@ function animateLandingBanner() {
                     // The scrub delay must be temporarily set to 0 to prevent
                     // the animation from showing during the scroll reset.
                     const originalScrubValue
-                        = backgroundSwipeTween.scrollTrigger.vars.scrub;
-                    backgroundSwipeTween.scrollTrigger.vars.scrub = 0;
+                        = backgroundScrollTween.scrollTrigger.vars.scrub;
+                    backgroundScrollTween.scrollTrigger.vars.scrub = 0;
                     ScrollTrigger.refresh();
 
                     window.scrollTo({ top: 0, behavior: "instant" });
 
                     // Restores original.
-                    backgroundSwipeTween.scrollTrigger.vars.scrub
+                    backgroundScrollTween.scrollTrigger.vars.scrub
                         = originalScrubValue;
                     ScrollTrigger.refresh();
 
                 } else {
 
-                    const swipedMasks = backgroundSwipeTween.targets();
+                    const swipedMasks = backgroundScrollTween.targets();
                     const finalVisibleMask
                         = swipedMasks[swipedMasks.length - 1];
 
@@ -119,6 +121,7 @@ function animateLandingBanner() {
                         width: "100vw",
                         duration: 0.5,
                         ease: "power3.out",
+                        delay: backgroundCrossfadeStagger,
 
                         // Sets the width back to zero before refreshing the
                         // scrollTrigger. Otherwise, the end state of this
@@ -127,7 +130,7 @@ function animateLandingBanner() {
                         // flash between the resets, but it's not noticeable.
                         onComplete: function () {
                             gsap.set(finalVisibleMask, { width: "0vw" });
-                            backgroundSwipeTween.scrollTrigger.refresh();
+                            backgroundScrollTween.scrollTrigger.refresh();
                         }
 
                     });
@@ -142,7 +145,7 @@ function animateLandingBanner() {
 
                 // Refreshes the tween with the current states of the
                 // background images.
-                backgroundSwipeTween.invalidate();
+                backgroundScrollTween.invalidate();
 
             },
         },
@@ -155,7 +158,7 @@ function animateLandingBanner() {
     // After the entrance animation, the widths are set to 0 and the tween is
     // invalidated to reset the origin and enable the horizontal swiping
     // animation.
-    let backgroundSwipeTween = gsap.to(
+    let backgroundScrollTween = gsap.to(
         Array.from(backgroundMasks).slice(1, -1),
         {
             width: "100vw",
@@ -206,10 +209,10 @@ function animateLandingBanner() {
     // The timeline for controlling the landing banner heading. These tweens
     // are separated from the background timeline because they need to be
     // triggered independently if a scroll event occurs.
-    let landingBannerHeadingTimeline = gsap.timeline({ paused: true });
+    let headingEntranceTimeline = gsap.timeline({ paused: true });
 
     // Moves up and fades in the landing banner heading.
-    landingBannerHeadingTimeline.from(
+    headingEntranceTimeline.from(
         ".landing-banner .c-stacked-banner__heading",
         {
             y: "1rem",
@@ -223,13 +226,13 @@ function animateLandingBanner() {
             },
             onComplete: function () {
                 // Triggers the animation for the paragraphs.
-                landingBannerParagraphsTween.resume();
+                paragraphEntranceTween.resume();
             }
         }
     );
 
     // Fades in the background filter with the text.
-    landingBannerHeadingTimeline.from(".landing-banner__background-filter", {
+    headingEntranceTimeline.from(".landing-banner__background-filter", {
         opacity: 0,
         duration: 0.5,
     }, "<");
@@ -237,7 +240,7 @@ function animateLandingBanner() {
     // Moves up and fades in the landing banner paragraphs. This tween is
     // separated from the rest of the timeline because it needs to be triggered
     // independently if a scroll event occurs.
-    let landingBannerParagraphsTween = gsap.from(
+    let paragraphEntranceTween = gsap.from(
         ".landing-banner .c-stacked-banner__content p",
         {
             y: "1rem",
