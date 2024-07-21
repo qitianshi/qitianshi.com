@@ -86,12 +86,59 @@ function animateLandingBanner() {
             },
             onComplete: function () {
 
+                // Resets the scroll back to the top if the landing banner is
+                // still pinned to prevent a jump in the scrolling animation.
+                if (
+                    ScrollTrigger
+                        .positionInViewport(".landing-banner", "top") === 0
+                ) {
+
+                    // The scrub delay must be temporarily set to 0 to prevent
+                    // the animation from showing during the scroll reset.
+                    const originalScrubValue
+                        = backgroundSwipeTween.scrollTrigger.vars.scrub;
+                    backgroundSwipeTween.scrollTrigger.vars.scrub = 0;
+                    ScrollTrigger.refresh();
+
+                    window.scrollTo({ top: 0, behavior: "instant" });
+
+                    // Restores original.
+                    backgroundSwipeTween.scrollTrigger.vars.scrub
+                        = originalScrubValue;
+                    ScrollTrigger.refresh();
+
+                } else {
+
+                    const swipedMasks = backgroundSwipeTween.targets();
+                    const finalVisibleMask
+                        = swipedMasks[swipedMasks.length - 1];
+
+                    // Animates to the final state of the scroll animation.
+                    gsap.to(finalVisibleMask, {
+
+                        width: "100vw",
+                        duration: 0.5,
+                        ease: "power3.out",
+
+                        // Sets the width back to zero before refreshing the
+                        // scrollTrigger. Otherwise, the end state of this
+                        // tween would end up being the start state of the
+                        // scrolling tween. This technically causes a brief
+                        // flash between the resets, but it's not noticeable.
+                        onComplete: function () {
+                            gsap.set(finalVisibleMask, { width: "0vw" });
+                            backgroundSwipeTween.scrollTrigger.refresh();
+                        }
+
+                    });
+
+                }
+
                 // Sets up the other background images for the scrolling
                 // animation.
-                Array.from(backgroundMasks).slice(1)
-                    .forEach(function (mask) { mask.style.width = "0vw"; });
-                Array.from(landingBannerImages)
-                    .forEach(function (image) { image.style.opacity = 1; });
+                gsap.set(
+                    Array.from(backgroundMasks).slice(1), { width: "0vw" });
+                gsap.set(landingBannerImages, { opacity: 1 });
 
                 // Refreshes the tween with the current states of the
                 // background images.
