@@ -14,24 +14,27 @@ navbar_transparency_theme: "dark"
 
 
 <!-- Main hero banner. -->
-<section
-    class="c-stacked-banner c-stacked-banner--hero o-viewport-relative-container--full"
-    id="landing-banner"
->
+<section class="landing-banner c-stacked-banner c-stacked-banner--hero o-viewport-relative-container--full">
 
     <!-- A series of animatable background images. -->
-    {% for i in (0..5) reversed %}
+    <div class="landing-banner__background-container c-stacked-banner__background">
 
-        <img
-            src="/assets/images/home/small-hours-{{i}}.jpg"
-            class="c-stacked-banner__background"
-            alt=""
-        >
+        {% for i in (0..5) reversed %}
+            <div class="landing-banner__background-mask">
+                <div class="o-viewport-relative-container--full">
+                    <img
+                        src="/assets/images/home/small-hours-{{i}}.jpg"
+                        class="landing-banner__background-image c-stacked-banner__background"
+                        alt=""
+                    >
+                </div>
+            </div>
+        {% endfor %}
 
-    {% endfor %}
+    </div>
 
     <!-- Legibility filter over the background images. -->
-    <div class="c-stacked-banner__background-filter"></div>
+    <div class="landing-banner__background-filter"></div>
 
     <div class="c-stacked-banner__content c-stacked-banner__content--leading">
 
@@ -39,7 +42,8 @@ navbar_transparency_theme: "dark"
             built in the small hours by<br>
             {%
                 include /svg/name-animation.svg
-                attributes="id='landing-banner__big-name'"
+                id="landing-banner__big-name"
+                attributes="class='landing-banner__big-name'"
             %}
         </h1>
 

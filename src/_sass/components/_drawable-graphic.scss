@@ -1,0 +1,11 @@
+// An animatable graphic. The SVG file contains .c-drawable-graphic__mask and
+// .c-drawable-graphic__graphic. By animating each path's stroke-dashoffset
+// from the path length to 0, the path appears to be drawn.
+
+// Copyright 2024 Qi Tianshi. All rights reserved.
+
+
+.c-drawable-graphic__mask path {
+    fill: none;
+    stroke: white;
+}

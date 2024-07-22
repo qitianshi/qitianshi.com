@@ -5,87 +5,196 @@
 
 // The background images in the landing banner.
 const landingBannerImages = document
-    .querySelectorAll("#landing-banner .c-stacked-banner__background");
+    .querySelectorAll(".landing-banner__background-image");
 
 /** Animates the landing banner. */
 function animateLandingBanner() {
 
-    // The total duration of the entrance animation of the banner background
-    // images.
-    let bannerEntranceAnimationDuration = 3.5;
+    // The total duration of the background entrance animation.
+    const backgroundEntranceDuration = 3.5;
 
-    // The additional delay after the animation begins to show the first image.
-    let bannerCrossfadeInitialDelay = 0.75;
+    // The delay before the first image is faded out in the entrance animation.
+    const backgroundCrossfadeDelay = 0.75;
 
-    // Timeline for controlling landing banner background image animations.
-    let landingBannerBackgroundTimeline = gsap.timeline();
+    // The stagger between fading out successive backgrounds.
+    const backgroundCrossfadeStagger = (
+        (backgroundEntranceDuration - backgroundCrossfadeDelay)
+        / (landingBannerImages.length - 1)
+    );
+
+    // The wrappers containing the background images, which act as masks for
+    // the background scroll animation.
+    const backgroundMasks = document
+        .querySelectorAll(".landing-banner__background-mask");
+
+    // Resumes both the heading and paragraph entrance animations
+    // immediately.
+    let enterContentImmediately = function () {
+        headingEntranceTimeline.resume();
+        paragraphEntranceTween.resume();
+    };
 
     // The timing function for the background image entrance zoom.
     CustomEase.create("bannerZoomTimingFunction", ".4, 0, 0, .9");
 
+    // Resets initially hidden elements.
+    gsap.set(".landing-banner .c-stacked-banner__content", { autoAlpha: 1 });
+    gsap.set(".landing-banner__background-filter", {
+        visibility: "inherit",
+    });
+
+    // Timeline for controlling landing banner background image animations.
+    let backgroundEntranceTimeline = gsap.timeline({
+        onStart: function () {
+
+            // Resets masks widths during the entrance animation to disable the
+            // scrolling animation.
+            Array.from(backgroundMasks).slice(1)
+                .forEach(function (mask) { mask.style.width = "100vw"; });
+            backgroundScrollTween.invalidate();
+
+            if (
+                ScrollTrigger
+                    .positionInViewport(".landing-banner", "top") === 0
+            ) {
+                setGlobalHeaderForcedTransparency(true);
+            } else {
+                enterContentImmediately();
+            }
+
+        },
+        onComplete: function () {
+
+            // Resets the scroll back to the top if the landing banner is still
+            // pinned to prevent a jump in the scrolling animation.
+            if (
+                ScrollTrigger
+                    .positionInViewport(".landing-banner", "top") === 0
+            ) {
+
+                // The scrub delay must be temporarily set to 0 to prevent the
+                // animation from showing during the scroll reset.
+                const originalScrubValue
+                    = backgroundScrollTween.scrollTrigger.vars.scrub;
+                backgroundScrollTween.scrollTrigger.vars.scrub = 0;
+                ScrollTrigger.refresh();
+
+                window.scrollTo({ top: 0, behavior: "instant" });
+
+                // Restores original.
+                backgroundScrollTween.scrollTrigger.vars.scrub
+                    = originalScrubValue;
+                ScrollTrigger.refresh();
+
+            } else {
+
+                const swipedMasks = backgroundScrollTween.targets();
+                const finalVisibleMask = swipedMasks[swipedMasks.length - 1];
+
+                // Animates to the final state of the scroll animation.
+                gsap.to(finalVisibleMask, {
+
+                    width: "100vw",
+                    duration: 0.5,
+                    ease: "power3.out",
+                    delay: backgroundCrossfadeStagger,
+
+                    // Sets the width back to zero before refreshing the
+                    // scrollTrigger. Otherwise, the end state of this tween
+                    // would end up being the start state of the scrolling
+                    // tween. This technically causes a brief flash between the
+                    // resets, but it's not noticeable.
+                    onComplete: function () {
+                        gsap.set(finalVisibleMask, { width: "0vw" });
+                        ScrollTrigger.refresh();
+                    }
+
+                });
+
+            }
+
+            // Sets up the other background images for the scrolling animation.
+            gsap.set(Array.from(backgroundMasks).slice(1), { width: "0vw" });
+            gsap.set(landingBannerImages, { opacity: 1 });
+
+            // Refreshes the tween with the current states of the backgrounds.
+            backgroundScrollTween.invalidate();
+
+        },
+    });
+
     // Scales and moves the landing banner background images.
-    landingBannerBackgroundTimeline.to(landingBannerImages, {
+    backgroundEntranceTimeline.to(landingBannerImages, {
         scale: 1.1,
         yPercent: 4,
-        duration: bannerEntranceAnimationDuration,
+        duration: backgroundEntranceDuration,
         delay: 0.5,
         ease: "bannerZoomTimingFunction",
     });
 
     // Fades out successive landing banner background images, except the first.
-    landingBannerBackgroundTimeline.to(
+    backgroundEntranceTimeline.to(
         Array.from(landingBannerImages).slice(1).reverse(),
         {
             opacity: 0,
             duration: 0.2,
-            delay: bannerCrossfadeInitialDelay,
-            stagger: (
-                (bannerEntranceAnimationDuration - bannerCrossfadeInitialDelay)
-                / (landingBannerImages.length - 1)
-            ),
+            delay: backgroundCrossfadeDelay,
+            stagger: backgroundCrossfadeStagger,
             onStart: function () {
                 // Starts the entrance animation for the heading.
-                landingBannerHeadingTimeline.resume();
+                headingEntranceTimeline.resume();
             },
         },
         "<"
     );
 
-    // Continuously zooms and scales the background images.
-    landingBannerBackgroundTimeline.to(landingBannerImages, {
-        scale: 1,
-        yPercent: 0,
-        duration: 23,
-        delay: 7,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        onStart: function () {
+    // Horizontally swipes between the background images as the user scrolls.
+    // During the entrance animation, all the mask widths are set to 100vw,
+    // so this tween will still animate the pinning but not the width change.
+    // After the entrance animation, the widths are set to 0 and the tween is
+    // invalidated to reset the origin and enable the horizontal swiping
+    // animation.
+    let backgroundScrollTween = gsap.to(
+        Array.from(backgroundMasks).slice(1, -1),
+        {
+            width: "100vw",
+            stagger: 0.3,
+            scrollTrigger: {
 
-            // The index of the image that is currently at the top and visible.
-            // Initially set to the topmost image.
-            let currentTop = 0;
+                trigger: ".landing-banner",
+                start: "top top",
+                end: "bottom top",
+                scrub: 0.5,
+                pin: true,
 
-            // Runs the animation once, then at a regular interval.
-            currentTop = loopLandingBannerImages(currentTop);
-            setInterval(function () {
-                currentTop = loopLandingBannerImages(currentTop);
-            }, 5000);
+                // Overrides the default behavior of the global header
+                // transparency controller because the landing banner is
+                // pinned. onToggle is not used because it causes a flash
+                // onLeaveBack due to the throttling of the global header
+                // scroll listener.
+                onLeave: function () {
+                    setGlobalHeaderForcedTransparency(false);
+                    enterContentImmediately();
+                },
+                onEnterBack: function () {
+                    setGlobalHeaderForcedTransparency(true);
+                },
 
-        },
-    });
+            },
+        }
+    );
 
     // Creates a parallax scrolling effect by translating the content downward.
-    gsap.to("#landing-banner .c-stacked-banner__content", {
+    gsap.to(".landing-banner .c-stacked-banner__content", {
         y: function () {
             // Moves the content to the bottom of the banner.
-            return ((document.querySelector("#landing-banner").offsetHeight
+            return ((document.querySelector(".landing-banner").offsetHeight
                 - document.querySelector(
-                    "#landing-banner .c-stacked-banner__content").offsetHeight)
+                    ".landing-banner .c-stacked-banner__content").offsetHeight)
                 / 2);
         },
         scrollTrigger: {
-            trigger: "#landing-banner",
+            trigger: ".landing-banner",
             start: "top top",
             end: "bottom top",
             scrub: true,
@@ -96,11 +205,11 @@ function animateLandingBanner() {
     // The timeline for controlling the landing banner heading. These tweens
     // are separated from the background timeline because they need to be
     // triggered independently if a scroll event occurs.
-    let landingBannerHeadingTimeline = gsap.timeline({ paused: true });
+    let headingEntranceTimeline = gsap.timeline({ paused: true });
 
     // Moves up and fades in the landing banner heading.
-    landingBannerHeadingTimeline.from(
-        "#landing-banner .c-stacked-banner__heading",
+    headingEntranceTimeline.from(
+        ".landing-banner .c-stacked-banner__heading",
         {
             y: "1rem",
             opacity: 0,
@@ -113,26 +222,22 @@ function animateLandingBanner() {
             },
             onComplete: function () {
                 // Triggers the animation for the paragraphs.
-                landingBannerParagraphsTween.resume();
+                paragraphEntranceTween.resume();
             }
         }
     );
 
     // Fades in the background filter with the text.
-    landingBannerHeadingTimeline.from(
-        "#landing-banner .c-stacked-banner__background-filter",
-        {
-            opacity: 0,
-            duration: 0.5,
-        },
-        "<"
-    );
+    headingEntranceTimeline.from(".landing-banner__background-filter", {
+        opacity: 0,
+        duration: 0.5,
+    }, "<");
 
     // Moves up and fades in the landing banner paragraphs. This tween is
     // separated from the rest of the timeline because it needs to be triggered
     // independently if a scroll event occurs.
-    let landingBannerParagraphsTween = gsap.from(
-        "#landing-banner .c-stacked-banner__content p",
+    let paragraphEntranceTween = gsap.from(
+        ".landing-banner .c-stacked-banner__content p",
         {
             y: "1rem",
             opacity: 0,
@@ -143,23 +248,18 @@ function animateLandingBanner() {
         }
     );
 
-    // Resumes both the heading and paragraph entrance animations immediately.
-    let enterContentImmediately = function () {
-        landingBannerHeadingTimeline.resume();
-        landingBannerParagraphsTween.resume();
-    };
+}
 
-    // If the user begins scrolling, or some previous scroll position has been
-    // restored from history, the content animations are run immediately so
-    // they won't be missed.
-    if (window.scrollY > 0) {
-        enterContentImmediately();
-    } else {
-        window.addEventListener(
-            "scroll", enterContentImmediately, { once: true }
-        );
-    }
-
+/**
+ * Sets the forced transparency state of the global header.
+ *
+ * @param {Boolean} to - The state to which the forced transparency is set.
+ */
+function setGlobalHeaderForcedTransparency(to) {
+    document
+        .querySelector("#global-header nav")
+        .classList
+        .toggle("global-header--transparent-forced", to);
 }
 
 /**
@@ -174,8 +274,8 @@ function landingBannerBigNameAnimationTimeline() {
     let drawTimeline = gsap.timeline({ paused: true });
 
     // The paths that act as masks for writing the big name.
-    const bigNameMaskingPaths = document
-        .querySelectorAll("#landing-banner__big-name #mask path");
+    const bigNameMaskingPaths = document.querySelectorAll(
+        ".landing-banner__big-name .c-drawable-graphic__mask path");
 
     // Calculates the animations to write the big name.
     for (let i = 0; i < bigNameMaskingPaths.length; i++) {
@@ -199,51 +299,6 @@ function landingBannerBigNameAnimationTimeline() {
     return drawTimeline;
 
 }
-
-/**
- * Runs the crossfade portion of the looping landing banner animation. Randomly
- * chooses the next image to be shown and fades out the current image.
- *
- * @param {number} currentTop - The index of the currently shown image (to be
- *     faded out).
- * @returns {number} The index of the image being shown after previous top was
- *     faded out.
- */
-function loopLandingBannerImages(currentTop) {
-
-    // Selects an image from the list, excluding the current one.
-    let nextTop = Math.floor(
-        Math.random() * (landingBannerImages.length - 1));
-    nextTop = (nextTop >= currentTop ? nextTop + 1 : nextTop);
-
-    // Resets image positions and z-indexes.
-    landingBannerImages.forEach(function (image, index) {
-
-        image.style.opacity = 1;
-
-        if (index === nextTop) {
-            image.style.zIndex = 0;
-        } else if (index === currentTop) {
-            image.style.zIndex = 1;
-        } else {
-            image.style.zIndex = -1;
-        }
-
-    });
-
-    // Fades out the topmost image.
-    gsap.to(
-        landingBannerImages[currentTop],
-        {
-            opacity: 0,
-            duration: 2,
-            ease: "power1.inOut",
-        }
-    );
-
-    return nextTop;
-
-};
 
 /** Waits for all landing banner background images to load. */
 async function allLandingBannerImagesLoaded() {
