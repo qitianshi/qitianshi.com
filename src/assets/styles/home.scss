@@ -70,6 +70,78 @@
 
 }
 
+.night-day-banner {
+
+    @include mix.z-stack();
+
+    height: calc((100vh - var.$global-header-height));
+    width: 100vw;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--background-primary-color);
+    transition: background-color 0.5s;
+
+    &__image {
+
+        position: relative;
+        height: 100%;
+        width: 20vw;
+
+        display: flex;
+        justify-content: center;
+
+        img {
+
+            position: absolute;
+            height: 100%;
+            width: auto;
+
+            transform-origin: 50% 96.938%;
+
+            filter: drop-shadow(-10px -3px 3px rgba(0,0,0,0.4));
+
+        }
+
+        &-iron {
+            visibility: hidden;
+        }
+
+    }
+
+    &__text {
+
+        width: calc((100vw - 20vw) / 2);
+
+        span {
+
+            display: block;
+            visibility: hidden;
+
+            font-weight: 100;
+            font-size: 6em;
+
+            transition: color 0.5s;
+
+        }
+
+        &-day {
+            text-align: right;
+        }
+
+        &--special {
+            font-family: var.$display-font-family;
+            font-size: 8em !important;
+            color: var(--tiangerine-tangerine);
+        }
+
+    }
+
+}
+
 #introduction-banner {
 
     @include mix.mobile-horizontal-spacing("padding");
