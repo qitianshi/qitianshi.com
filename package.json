@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "eslint": "^9.7.0",
-    "globals": "^15.7.0",
+    "globals": "^15.9.0",
     "gsap": "^3.12.5"
   }
 }
