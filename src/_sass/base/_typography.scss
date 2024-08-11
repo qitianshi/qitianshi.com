@@ -147,6 +147,8 @@ a {
     // A link to an external website. Automatically detects URLs to external
     // domains.
     &.external-link,
+    &[href^="http://"]:not([href^="http://qitianshi.com"]),
+    &[href^="https://"]:not([href^="https://qitianshi.com"]),
     &[href^="http://"]:not([href^="http://qitianshi.github.io"]),
     &[href^="https://"]:not([href^="https://qitianshi.github.io"]) {
         &::after {
