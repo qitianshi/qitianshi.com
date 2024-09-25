@@ -84,9 +84,8 @@ jobs:
   deploy:
 
     # This step is not run if the workflow trigger was `pull_request`, or
-    # `workflow_dispatch` with `no_deploy` set to `true`.
-    if: |
-      !(github.event_name == 'pull_request' || github.event.inputs.no_deploy)
+    # `workflow_dispatch` with `no_deploy` set to 'true'.
+    if: ${{ !(github.event_name == 'pull_request' || github.event.inputs.no_deploy == 'true') }}
 
     environment:
       name: github-pages
