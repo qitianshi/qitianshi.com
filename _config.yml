@@ -5,8 +5,8 @@
 
 # --------- Jekyll ----------
 
-url: "https://qitianshi.github.io"
-prod_url: "https://qitianshi.github.io"
+url: "https://qitianshi.com"
+prod_url: "https://qitianshi.com"
 baseurl: "/"
 title: "tian"
 lang: "en-US"
