@@ -320,98 +320,6 @@ async function allLandingBannerImagesLoaded() {
 
 }
 
-/** Animates the Night and Day banner. */
-function animateNightDayBanner() {
-
-    let imageTimeline = gsap.timeline({
-        paused: true,
-        defaults: { ease: "none" },
-        scrollTrigger: {
-            trigger: ".night-day-banner",
-            scrub: 0.5,
-            pin: true,
-            start: "top-=48 top",
-            once: true,
-            onLeave: function (self) {
-                self.scroll(self.start);
-                self.disable();
-                self.animation.progress(1);
-                ScrollTrigger.refresh();
-            },
-        }
-    });
-
-    imageTimeline.set(".night-day-banner__image img", { rotate: 180 });
-
-    imageTimeline.fromTo(".night-day-banner__image img", { yPercent: 5 }, {
-        yPercent: -65,
-        ease: "none",
-        duration: 1,
-    });
-
-    imageTimeline.to(".night-day-banner__image img", {
-        rotate: 90,
-        scale: 2.5,
-        duration: 0.5,
-        ease: "sine.in",
-        force3D: false,     // Prevents blurry scaling on WebKit browsers.
-    }, ">-=0.5").add("imageHorizontalPoint", ">");
-
-    imageTimeline.to(".night-day-banner__text-day span", {
-        autoAlpha: 1,
-        stagger: 0.1,
-        duration: 0.3,
-        ease: "power2.out",
-    }, "<-=50%");
-
-    imageTimeline.from(".night-day-banner__text-day span", {
-        xPercent: 10,
-        stagger: 0.1,
-        duration: 0.3,
-        ease: "power2.out",
-    }, "<");
-
-    imageTimeline.to(".night-day-banner__image img", {
-        scale: 1,
-        rotate: 0,
-        yPercent: 0,
-        duration: 1,
-        ease: "sine.out",
-    }, "imageHorizontalPoint").add("imageEndPoint", ">");
-
-    imageTimeline.add(function () {
-
-        gsap.to(".night-day-banner__image-pen", {
-            autoAlpha: 0,
-        });
-
-        gsap.to(".night-day-banner__image-iron", {
-            autoAlpha: 1,
-        });
-
-        document.querySelector(".night-day-banner").classList
-            .remove("t-light");
-        document.querySelector(".night-day-banner").classList
-            .add("t-dark");
-
-    }, "<");
-
-    imageTimeline.to(".night-day-banner__text-night span", {
-        autoAlpha: 1,
-        stagger: 0.1,
-        duration: 0.3,
-        ease: "power2.out",
-    }, "imageEndPoint");
-
-    imageTimeline.from(".night-day-banner__text-night span", {
-        xPercent: -10,
-        stagger: 0.1,
-        duration: 0.3,
-        ease: "power2.out",
-    }, "<");
-
-}
-
 window.addEventListener("DOMContentLoaded", function () {
 
     gsap.registerPlugin(CustomEase);
@@ -419,7 +327,6 @@ window.addEventListener("DOMContentLoaded", function () {
     // Starts the landing banner animations when the images have all loaded.
     allLandingBannerImagesLoaded().then(function () {
         animateLandingBanner();
-        animateNightDayBanner();
     });
 
 });
