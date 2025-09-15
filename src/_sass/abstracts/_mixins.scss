@@ -90,7 +90,9 @@
 
     @media screen and (prefers-color-scheme: $theme) { @content; }
 
-    &.t-#{$theme}, .t-#{$theme} & { @content; }
+    // Duplicated t-theme to increase specificity for elements with the theme
+    // class directly applied (over descendants of explicitly-themed elements).
+    &.t-#{$theme}.t-#{$theme}, .t-#{$theme} & { @content; }
 
 }
 
