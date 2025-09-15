@@ -148,9 +148,7 @@ a {
     // domains.
     &.external-link,
     &[href^="http://"]:not([href^="http://qitianshi.com"]),
-    &[href^="https://"]:not([href^="https://qitianshi.com"]),
-    &[href^="http://"]:not([href^="http://qitianshi.github.io"]),
-    &[href^="https://"]:not([href^="https://qitianshi.github.io"]) {
+    &[href^="https://"]:not([href^="https://qitianshi.com"]) {
         &::after {
             @extend %marked-link;
             content: "\202f\2197";  // A space and a north east arrow (&nearr;).
