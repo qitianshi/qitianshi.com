@@ -5,6 +5,8 @@
 // Copyright 2023 Qi Tianshi. All rights reserved.
 
 
+@use "sass:map";
+
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 @use "base/typography";
@@ -61,7 +63,7 @@
         margin: 1.5rem 0;
 
         // Increases the font size for larger screens.
-        @media (min-width: map-get(var.$breakpoints, "small")) {
+        @media (min-width: map.get(var.$breakpoints, "small")) {
             font-size: 3.4rem;
         }
 

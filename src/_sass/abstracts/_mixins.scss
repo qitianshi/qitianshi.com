@@ -4,6 +4,7 @@
 
 
 @use "sass:list";
+@use "sass:map";
 
 @use "abstracts/functions" as func;
 @use "abstracts/variables" as var;
@@ -15,9 +16,9 @@
 /// @require var.$breakpoints
 @mixin respond-to-breakpoint($breakpoint) {
 
-    @if map-has-key($map: var.$breakpoints, $key: $breakpoint) {
+    @if map.has-key($map: var.$breakpoints, $key: $breakpoint) {
 
-        @media screen and (max-width: map-get(var.$breakpoints, $breakpoint)) {
+        @media screen and (max-width: map.get(var.$breakpoints, $breakpoint)) {
             @content;
         }
 
