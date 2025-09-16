@@ -21,6 +21,17 @@ const captchaNarrowLayoutThreshold = 380;
 /** The Sass mobile-padding variable, in px. */
 const mobilePadding = 16;
 
+/** The class assigned to active (visible) captcha containers. */
+const captchaContainerActiveClass = "c-captcha--active";
+
+/** The GSAP params for the entrance and exit of the captcha popup. */
+const captchaPopupAnimationParams = {
+    autoAlpha: 0,
+    scale: 0,
+    translateY: "-100%",
+    duration: 0.3,
+};
+
 /**
  * Updates the submit button of a form to reflect the form submission state.
  *
@@ -68,16 +79,27 @@ async function onFormSubmitted(event) {
 /**
  * Makes an AJAX request to submit the form's data to the `action` attribute of
  * the form, and updates the submit button of the form with the status. Appends
- * the captcha token to the form data.
+ * the captcha token to the form data. Dismisses the captcha popup.
  *
- * @param {*} targetForm
- * @param {*} captchaToken
+ * @param {Element} targetForm - The form being submitted.
+ * @param {*} captchaToken - The captcha token.
+ * @param {Element} captchaContainer - The captcha popup container.
  */
-function postFormData(targetForm, captchaToken) {
+function submitFormData(targetForm, captchaToken, captchaContainer) {
 
     const submitButton = targetForm.querySelector("button[type='submit']");
     const submittedData = new FormData(targetForm);
     submittedData.append("g-recaptcha-response", captchaToken);
+
+    // Animates the dismissal of the popup.
+    gsap.to(captchaContainer, {
+        ...captchaPopupAnimationParams,
+        delay: 0.5,
+        ease: "back.in",
+        onComplete: function () {
+            captchaContainer.classList.remove(captchaContainerActiveClass);
+        },
+    });
 
     fetch(targetForm.action, {
 
@@ -186,12 +208,12 @@ function resizeTextarea(event) {
 /**
  * Activates the captcha popup container.
  *
- * @param {Element} container
- * @param {Element} submit
+ * @param {Element} container - The captcha popup container element.
+ * @param {Element} submitButton - The submit button element.
  */
 function activateCaptcha(container, submitButton) {
 
-    container.classList.add("c-captcha--active");
+    container.classList.add(captchaContainerActiveClass);
 
     var positionContainer = function () {
 
@@ -220,6 +242,12 @@ function activateCaptcha(container, submitButton) {
         { passive: true }
     );
 
+    // Animates the activation of the popup.
+    gsap.from(container, {
+        ...captchaPopupAnimationParams,
+        ease: "back.out"
+    });
+
 }
 
 // Callback when all reCAPTCHA dependencies have loaded.
@@ -243,7 +271,7 @@ window.onCaptchaLoaded = function () {
             {
                 "sitekey": reCaptchaSiteKey,
                 "callback": function (token) {
-                    postFormData(form, token);
+                    submitFormData(form, token, container);
                 },
                 "size": captchaSize,
             }
