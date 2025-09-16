@@ -72,8 +72,6 @@
 
 #introduction-banner {
 
-    @include mix.mobile-horizontal-spacing("padding");
-
     justify-content: center;
     gap: 3rem;
 
@@ -92,6 +90,8 @@
         border: 10px solid var(--background-primary-color);
 
     }
+
+    @include mix.mobile-horizontal-spacing("padding");
 
 }
 
