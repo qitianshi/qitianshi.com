@@ -3,12 +3,36 @@
 // Copyright 2024 Qi Tianshi. All rights reserved.
 
 
+import throttle from "lodash.throttle";
+
 /**
  * @typedef {"default" | "waiting" | "success" | "failure"} SubmitButtonState
  *      States that may be displayed by the submit button of a form.
  */
 
 var failedSubmitCount = 0;
+
+/** reCAPTCHA site key. */
+const reCaptchaSiteKey = "6LdKP8ErAAAAAO3NaAQ5q_-BpY_Jc6t-pubXOfGv";
+
+var captchaLoaded = false;
+
+/** The threshold for using the narrower layout of reCAPTCHA, in px. */
+const captchaNarrowLayoutThreshold = 380;
+
+/** The Sass mobile-padding variable, in px. */
+const mobilePadding = 16;
+
+/** The class assigned to active (visible) captcha containers. */
+const captchaContainerActiveClass = "c-captcha--active";
+
+/** The GSAP params for the entrance and exit of the captcha popup. */
+const captchaPopupAnimationParams = {
+    autoAlpha: 0,
+    scale: 0,
+    translateY: "-100%",
+    duration: 0.3,
+};
 
 /**
  * Updates the submit button of a form to reflect the form submission state.
@@ -35,8 +59,7 @@ function updateSubmitButtonState(targetButton, state) {
 }
 
 /**
- * Makes an AJAX request to submit the form's data to the `action` attribute of
- * the form, and updates the submit button of the form with the status.
+ * Updates the submit button status and activates the captcha challenge.
  *
  * @param {Event} event
  */
@@ -47,11 +70,39 @@ async function onFormSubmitted(event) {
     // The form that is being submitted, its submit button, and its data.
     const targetForm = event.target;
     const submitButton = targetForm.querySelector("button[type='submit']");
-    const submittedData = new FormData(targetForm);
+    const captchaContainer = document.querySelector(
+        `div.c-captcha[data-form-id='${targetForm.id}'`);
 
     updateSubmitButtonState(submitButton, "waiting");
+    activateCaptcha(captchaContainer, submitButton);
 
-    // Sends an AJAX request to submit the form.
+}
+
+/**
+ * Makes an AJAX request to submit the form's data to the `action` attribute of
+ * the form, and updates the submit button of the form with the status. Appends
+ * the captcha token to the form data. Dismisses the captcha popup.
+ *
+ * @param {Element} targetForm - The form being submitted.
+ * @param {*} captchaToken - The captcha token.
+ * @param {Element} captchaContainer - The captcha popup container.
+ */
+function submitFormData(targetForm, captchaToken, captchaContainer) {
+
+    const submitButton = targetForm.querySelector("button[type='submit']");
+    const submittedData = new FormData(targetForm);
+    submittedData.append("g-recaptcha-response", captchaToken);
+
+    // Animates the dismissal of the popup.
+    gsap.to(captchaContainer, {
+        ...captchaPopupAnimationParams,
+        delay: 0.5,
+        ease: "back.in",
+        onComplete: function () {
+            captchaContainer.classList.remove(captchaContainerActiveClass);
+        },
+    });
+
     fetch(targetForm.action, {
 
         method: targetForm.method,
@@ -77,8 +128,7 @@ async function onFormSubmitted(event) {
             //TODO: If the submission limit is hit, Formspree responds with
             //      code 429.
 
-            updateSubmitButtonState(submitButton, "failure");
-            failedSubmitCount++;
+            failedSubmission(submitButton);
 
             // Tries to parse the result and logs the error to the console.
             response.json().then(data => {
@@ -106,8 +156,7 @@ async function onFormSubmitted(event) {
 
         // Handles errors that occur before the response is received.
 
-        updateSubmitButtonState(submitButton, "failure");
-        failedSubmitCount++;
+        failedSubmission(submitButton);
 
         console.error(
             "An error occurred while making an AJAX request to submit a form.",
@@ -128,6 +177,16 @@ async function onFormSubmitted(event) {
 
     });
 
+}
+
+/**
+ * Handles a failure during submission.
+ *
+ * @param {Element} submitButton The submit button of the form.
+ */
+function failedSubmission(submitButton) {
+    updateSubmitButtonState(submitButton, "failure");
+    failedSubmitCount++;
 }
 
 /**
@@ -155,6 +214,88 @@ function resizeTextarea(event) {
         = targetTextarea.value;
 
 }
+
+/**
+ * Activates the captcha popup container.
+ *
+ * @param {Element} container - The captcha popup container element.
+ * @param {Element} submitButton - The submit button element.
+ */
+function activateCaptcha(container, submitButton) {
+
+    if (!captchaLoaded) {
+        failedSubmission(submitButton);
+        return;
+    }
+
+    container.classList.add(captchaContainerActiveClass);
+
+    var positionContainer = function () {
+
+        const submitRect = submitButton.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+
+        // Calculates the x, y, and arrow of the popup.
+        var targetTop = window.scrollY + submitRect.top + submitRect.height + 20;
+        var targetCenter = window.scrollX + submitRect.left + submitRect.width / 2;
+        var targetLeft = targetCenter - containerRect.width / 2;
+        targetLeft = targetLeft < mobilePadding ? mobilePadding : targetLeft;
+        var targetArrow = (targetCenter - targetLeft) / containerRect.width;
+
+        container.style.top = `${targetTop}px`;
+        container.style.left = `${targetLeft}px`;
+
+        container.style.setProperty("--arrow-left", `${100 * targetArrow}%`);
+
+    };
+
+    // Positions it initially and adds an event listener.
+    positionContainer();
+    window.addEventListener(
+        "resize",
+        throttle(positionContainer, 50),
+        { passive: true }
+    );
+
+    // Animates the activation of the popup.
+    gsap.from(container, {
+        ...captchaPopupAnimationParams,
+        ease: "back.out"
+    });
+
+}
+
+// Callback when all reCAPTCHA dependencies have loaded.
+window.onCaptchaLoaded = function () {
+
+    captchaLoaded = true;
+
+    // Compact size for narrower windows.
+    const captchaSize = (
+        window.innerWidth < captchaNarrowLayoutThreshold ? "compact" : "normal"
+    );
+
+    // Renders the captcha container for each element.
+    document.querySelectorAll(".c-captcha").forEach(function (container) {
+
+        document.body.appendChild(container);
+
+        const formId = container.dataset.formId;
+        const form = document.getElementById(formId);
+
+        grecaptcha.render(
+            container,
+            {
+                "sitekey": reCaptchaSiteKey,
+                "callback": function (token) {
+                    submitFormData(form, token, container);
+                },
+                "size": captchaSize,
+            }
+        );
+
+    });
+};
 
 /**
  * Module for managing forms, including submission, state updating, and error

@@ -7,6 +7,9 @@
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
+// The minimum width needed to accommodate every state of the button.
+$_submit-button-width: 168px;
+
 // Gives form UI elements the same font family as the rest of the website,
 // instead of the default system font.
 button,
@@ -53,6 +56,10 @@ input[type=email] {
         background-color: var(--foreground-primary-color);
     }
 
+}
+
+input[name=_gotcha] {
+    display: none;
 }
 
 // Styles for long text-style inputs.
@@ -141,8 +148,7 @@ button {
 
     &__submit {
 
-        // The minimum width needed to accommodate every state of the button.
-        width: 168px;
+        width: $_submit-button-width;
 
         & > span[class^="c-form__submit-label"],
         & > span[class*=" c-form__submit-label"] {
@@ -263,6 +269,39 @@ button {
     // Programmatically displayed in JavaScript.
     &__multiple-failed-submits-warning {
         display: none;
+    }
+
+}
+
+// Captcha popup box.
+.c-captcha {
+
+    position: absolute;
+    display: none;
+    overflow: visible;
+
+    padding: 1rem;
+
+    background-color: func.palette("light", "background", 2) !important;
+
+    &--active {
+        display: block;
+    }
+
+    // The top-edge arrow pointing to the submit button.
+    // The top is deliberately slightly less than the size of the arrow to
+    // produce some overlap and avoid rendering inconsistencies.
+    &::before {
+        content: "";
+        position: absolute;
+        top: -12px;
+        left: var(--arrow-left);
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 14px solid transparent;
+        border-right: 14px solid transparent;
+        border-bottom: 14px solid func.palette("light", "background", 2);
     }
 
 }

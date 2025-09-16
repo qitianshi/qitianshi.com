@@ -16,9 +16,10 @@ module.exports = [
                 ...globals.browser,
                 ...globals.es2021,
                 ...globals.node,
+                "CustomEase": "readonly",
+                "grecaptcha": "readonly",
                 "gsap": "readonly",
                 "ScrollTrigger": "readonly",
-                "CustomEase": "readonly",
             },
         },
         rules: {

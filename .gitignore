@@ -28,3 +28,4 @@ src/assets/scripts/
 # ----------- Misc -----------
 
 .vscode/
+.DS_STORE

@@ -38,7 +38,7 @@ jobs:
     steps:
 
       - name: Git checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Runs `bundle install` and caches installed gems automatically.
       - name: Set up Ruby
@@ -49,7 +49,7 @@ jobs:
           cache-version: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "20.2"
           cache: "npm"
@@ -78,7 +78,7 @@ jobs:
 
       # Uploads the artifact from the ./_site directory.
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
 
   # Deploys to GitHub Pages.
   deploy:
