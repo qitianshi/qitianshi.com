@@ -55,6 +55,10 @@ input[type=email] {
 
 }
 
+input[name=_gotcha] {
+    display: none;
+}
+
 // Styles for long text-style inputs.
 textarea {
     resize: none;
