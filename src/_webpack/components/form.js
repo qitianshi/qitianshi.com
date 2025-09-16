@@ -15,6 +15,8 @@ var failedSubmitCount = 0;
 /** reCAPTCHA site key. */
 const reCaptchaSiteKey = "6LdKP8ErAAAAAO3NaAQ5q_-BpY_Jc6t-pubXOfGv";
 
+var captchaLoaded = false;
+
 /** The threshold for using the narrower layout of reCAPTCHA, in px. */
 const captchaNarrowLayoutThreshold = 380;
 
@@ -126,8 +128,7 @@ function submitFormData(targetForm, captchaToken, captchaContainer) {
             //TODO: If the submission limit is hit, Formspree responds with
             //      code 429.
 
-            updateSubmitButtonState(submitButton, "failure");
-            failedSubmitCount++;
+            failedSubmission(submitButton);
 
             // Tries to parse the result and logs the error to the console.
             response.json().then(data => {
@@ -155,8 +156,7 @@ function submitFormData(targetForm, captchaToken, captchaContainer) {
 
         // Handles errors that occur before the response is received.
 
-        updateSubmitButtonState(submitButton, "failure");
-        failedSubmitCount++;
+        failedSubmission(submitButton);
 
         console.error(
             "An error occurred while making an AJAX request to submit a form.",
@@ -177,6 +177,16 @@ function submitFormData(targetForm, captchaToken, captchaContainer) {
 
     });
 
+}
+
+/**
+ * Handles a failure during submission.
+ *
+ * @param {Element} submitButton The submit button of the form.
+ */
+function failedSubmission(submitButton) {
+    updateSubmitButtonState(submitButton, "failure");
+    failedSubmitCount++;
 }
 
 /**
@@ -212,6 +222,11 @@ function resizeTextarea(event) {
  * @param {Element} submitButton - The submit button element.
  */
 function activateCaptcha(container, submitButton) {
+
+    if (!captchaLoaded) {
+        failedSubmission(submitButton);
+        return;
+    }
 
     container.classList.add(captchaContainerActiveClass);
 
@@ -252,6 +267,8 @@ function activateCaptcha(container, submitButton) {
 
 // Callback when all reCAPTCHA dependencies have loaded.
 window.onCaptchaLoaded = function () {
+
+    captchaLoaded = true;
 
     // Compact size for narrower windows.
     const captchaSize = (
