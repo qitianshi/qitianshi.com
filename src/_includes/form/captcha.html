@@ -1,0 +1,13 @@
+<!-- Captcha for forms. -->
+
+<!-- Copyright 2025 Qi Tianshi. All rights reserved. -->
+
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onCaptchaLoaded&render=explicit" async defer></script>
+
+<div
+    class="c-captcha t-light u-hierarchy-elevated o-card-container"
+    {% if include.form-id %} data-form-id="{{ include.form-id }}" {% endif %}
+>
+    <!-- Explicitly rendered reCAPTCHA element. -->
+</div>

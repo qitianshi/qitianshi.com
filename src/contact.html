@@ -20,7 +20,7 @@ navbar_transparency_theme: "dark"
 
 <form
     id="contact-form"
-    class="c-form o-card-container u-hierarchy-elevated u-background-scribble"
+    class="c-form c-form--captcha o-card-container u-hierarchy-elevated u-background-scribble"
     action="https://formspree.io/f/xvojwlwq"
     method="post"
 >
@@ -75,3 +75,5 @@ navbar_transparency_theme: "dark"
     </small>
 
 </form>
+
+{% include form/captcha.html form-id="contact-form" %}
