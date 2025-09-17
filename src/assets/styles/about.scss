@@ -3,7 +3,7 @@
 
 // Stylesheet for /about.html
 
-// Copyright 2024 Qi Tianshi. All rights reserved.
+// Copyright 2025 Qi Tianshi. All rights reserved.
 
 
 @use "abstracts/functions" as func;
@@ -20,7 +20,7 @@
 
             background: func.legibility-gradient(top right, 10%, 40%);
 
-            @media screen and (max-width: var.$global-header-collapse-width) {
+            @media (max-width: var.$global-header-collapse-width) {
                 background: func.legibility-gradient(top, 20%, 40%);
             }
 
@@ -40,9 +40,9 @@
             margin: 0.5em;
             font-size: 10rem;
 
-            @media screen and (max-width: 1000px) { font-size: 7.5rem; }
-            @media screen and (max-width: var.$global-header-collapse-width) { font-size: 5rem; }
-            @media screen and (max-width: 325px) { font-size: 3rem; }
+            @media (max-width: 1000px) { font-size: 7.5rem; }
+            @media (max-width: var.$global-header-collapse-width) { font-size: 5rem; }
+            @media (max-width: 325px) { font-size: 3rem; }
 
         }
 
@@ -55,7 +55,7 @@
 
         // Moves the heading to the center. Increases the bottom margin to
         // avoid conflicting with clear space on mobile.
-        @media screen and (max-width: var.$global-header-collapse-width) {
+        @media (max-width: var.$global-header-collapse-width) {
             &__content { margin: auto auto 0 auto; }
             &__heading { margin-bottom: 1em; }
         }

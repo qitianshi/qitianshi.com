@@ -1,6 +1,6 @@
 // Stylesheet for the global footer.
 
-// Copyright 2024 Qi Tianshi. All rights reserved.
+// Copyright 2025 Qi Tianshi. All rights reserved.
 
 
 @use "abstracts/functions" as func;
@@ -200,7 +200,7 @@ $_mobile-navlink-height: 64px;
     }
 
     // The width at which the screen is too narrow to fit the navbar links.
-    @media screen and (max-width: var.$global-header-collapse-width) {
+    @media (max-width: var.$global-header-collapse-width) {
 
         nav {
 
