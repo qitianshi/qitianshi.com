@@ -8,7 +8,7 @@
 
 .global-footer {
 
-    padding: 1rem 0;
+    padding: 1.5rem 0 1rem;
     background-color: var(--background-secondary-color);
 
     font-size: var.$small-font-size;
@@ -35,52 +35,110 @@
 
     }
 
+    &__socials {
+
+        margin-bottom: 0.5rem;
+
+        &-list {
+            display: grid;
+            grid-template-columns: min-content min-content min-content min-content;
+            grid-template-rows: min-content;
+            column-gap: 2em;
+        }
+
+        &-button {
+
+            @include mix.z-stack();
+
+            height: 2.5em;
+            width: min-content;
+
+            &:hover .c-social-icon__foreground {
+                fill: var(--foreground-primary-color);
+            }
+
+        }
+
+        &-icon {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 2.5em;
+            width: min-content;
+
+            .c-social-icon {
+
+                height: 75%;
+                width: auto;
+
+                &__foreground {
+                    fill: var(--foreground-secondary-color);
+                }
+
+                &__background {
+                    fill: var(--background-secondary-color);
+                }
+
+            }
+
+        }
+
+    }
+
     // Places the authorship text and the toggle at opposite ends.
     &__main {
         flex-wrap: wrap-reverse;
     }
 
     &__legal {
+
         border-top: 1px solid var(--foreground-tertiary-color);
-    }
 
-    // Links to legal pages.
-    &__legal-links {
+        // Links to legal pages.
+        &-links {
 
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
+            margin: 0 0 0.5rem;
+            padding: 0;
+            list-style-type: none;
 
-        // Collapses the space between <li> to zero. Otherwise, there would be
-        // a space between each <li>.
-        font-size: 0;
+            // Collapses the space between <li> to zero. Otherwise, there would
+            // be a space between each <li>.
+            font-size: 0;
 
-        // Gives each <li> a horizontal padding, except the leading and
-        // trailing <li>.
-        li {
+            // Gives each <li> a horizontal padding, except the leading and
+            // trailing <li>.
+            li {
 
-            margin: 0;
-            padding: 0 0.25rem;
-            display: inline;
+                margin: 0;
+                padding: 0 0.25rem;
+                display: inline;
 
-            font-size: var.$small-font-size;
+                font-size: var.$small-font-size;
 
-            &:first-of-type { padding-left: 0; }
-            &:last-of-type { padding-right: 0; }
+                &:first-of-type { padding-left: 0; }
+                &:last-of-type { padding-right: 0; }
 
-        }
+            }
 
-        // Places a vertical border between each <li>.
-        & > li + li {
-            border-left: 1px solid var(--foreground-tertiary-color);
+            // Places a vertical border between each <li>.
+            & > li + li {
+                border-left: 1px solid var(--foreground-tertiary-color);
+            }
+
         }
 
     }
 
     // Changes colors to match the rest of the footer.
     &__color-theme-toggle {
+
         --toggle-unfocused-foreground-color: var(--foreground-secondary-color);
         --toggle-background-color: var(--background-secondary-color);
+
+        margin-top: 0.5em;
+
     }
 
 }
