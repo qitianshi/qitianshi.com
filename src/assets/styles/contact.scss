@@ -57,6 +57,15 @@
 
             }
 
+            // Animating the fill color is nontrivial because applying a
+            // transition also affects the initial render on page load.
+            // Adding a delay prevents a flash of color if the pointer travels
+            // quickly over the element.
+            &__foreground, &__background {
+                transition-property: fill;
+                transition-delay: 0.05s;
+            }
+
         }
 
         &--linkedin:hover {
