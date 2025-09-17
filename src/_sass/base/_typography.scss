@@ -1,6 +1,6 @@
 // Base stylesheet, including typography and resets.
 
-// Copyright 2023 Qi Tianshi. All rights reserved.
+// Copyright 2025 Qi Tianshi. All rights reserved.
 
 
 @use "abstracts/mixins" as mix;
@@ -146,9 +146,9 @@ a {
 
     // A link to an external website. Automatically detects URLs to external
     // domains.
-    &.external-link,
-    &[href^="http://"]:not([href^="http://qitianshi.com"]),
-    &[href^="https://"]:not([href^="https://qitianshi.com"]) {
+    &.external-link:not(.fill-link),
+    &[href^="http://"]:not([href^="http://qitianshi.com"]):not(.fill-link),
+    &[href^="https://"]:not([href^="https://qitianshi.com"]):not(.fill-link) {
         &::after {
             @extend %marked-link;
             content: "\202f\2197";  // A space and a north east arrow (&nearr;).
@@ -198,5 +198,14 @@ code {
     a:any-link * {
         text-decoration: underline;
     }
+
+}
+
+hr {
+
+    border: none;
+    height: 1px;
+
+    background-color: var(--foreground-tertiary-color);
 
 }

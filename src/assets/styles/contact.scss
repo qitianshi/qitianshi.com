@@ -1,0 +1,177 @@
+---
+---
+
+// Stylesheet for /contact.html
+
+// Copyright 2025 Qi Tianshi. All rights reserved.
+
+
+@use "abstracts/functions" as func;
+@use "abstracts/mixins" as mix;
+@use "abstracts/variables" as var;
+
+.social-links {
+
+    display: grid;
+    grid-template-rows: min-content;
+    grid-template-columns: min-content min-content min-content;
+    column-gap: 1em;
+
+    margin: 1em 0;
+
+    &__item {
+
+        @include mix.default-shadow($hoverable: true);
+        @include mix.z-stack();
+
+        height: 3em;
+        width: 6em;
+
+        // For :hover effect.
+        transition-property: transform, box-shadow, background-color;
+        transition-duration: 0.4s;
+        transition-timing-function: var.$fast-ease-out;
+
+        &:hover {
+            transform: scale(105%);
+        }
+
+        .c-social-icon {
+
+            height: 50%;
+            width: auto;
+
+            &__foreground {
+                fill: var(--foreground-primary-color);
+            }
+
+            &__background {
+
+                @include mix.color-theme("light") {
+                    fill: func.palette("light", "background", 1);
+                }
+
+                @include mix.color-theme("dark") {
+                    fill: func.palette("dark", "background", 2);
+                }
+
+            }
+
+            // Animating the fill color is nontrivial because applying a
+            // transition also affects the initial render on page load.
+            // Adding a delay prevents a flash of color if the pointer travels
+            // quickly over the element.
+            &__foreground, &__background {
+                transition-property: fill;
+                transition-delay: 0.05s;
+            }
+
+        }
+
+        &--linkedin:hover {
+
+            background-color: #0072b1;
+
+            * { color: white; }
+
+            .c-social-icon {
+                &__foreground { fill: white; }
+                &__background { fill: #0072b1; }
+            }
+
+        }
+
+        &--github:hover {
+
+            @include mix.color-theme("light") {
+
+                background-color: #1B1F24;
+
+                * { color: white; }
+
+                .c-social-icon {
+                    &__foreground { fill: white; }
+                }
+
+            }
+
+            @include mix.color-theme("dark") {
+
+                background-color: white;
+
+                * { color: black; }
+
+                .c-social-icon {
+                    &__foreground { fill: #1B1F24; }
+                }
+
+            }
+
+        }
+
+        &--medium:hover {
+
+            @include mix.color-theme("light") {
+
+                background-color: black;
+
+                * { color: white; }
+
+                .c-social-icon {
+                    &__foreground { fill: white; }
+                    &__background { fill: black; }
+                }
+
+            }
+
+            @include mix.color-theme("dark") {
+
+                background-color: white;
+
+                * { color: black; }
+
+                .c-social-icon {
+                    &__foreground { fill: black; }
+                    &__background { fill: white; }
+                }
+
+            }
+
+        }
+
+    }
+
+    &__icon {
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+        align-items: center;
+        width: 6em;
+        height: 3em;
+    }
+
+    &__label {
+        display: none;
+    }
+
+    @media (max-width: 510px) {
+
+        grid-template-rows: min-content min-content min-content;
+        grid-template-columns: auto;
+        row-gap: 1em;
+
+        &__item {
+            width: 100%;
+        }
+
+        &__icon {
+            width: 100%;
+        }
+
+        &__label {
+            display: block;
+        }
+
+    }
+
+}

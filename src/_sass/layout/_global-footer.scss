@@ -6,82 +6,139 @@
 @use "abstracts/mixins" as mix;
 @use "abstracts/variables" as var;
 
-.global-footer__section {
+.global-footer {
 
-    // Width follows .c-stacked-banner--hero and .c-body-text.
-    width: calc(100vw - var.$body-text-horizontal-padding);
-    max-width: calc(2 * var.$body-text-max-width);
-
-    margin: 0 auto;
-
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    column-gap: 1rem;
-
-    * {
-        color: var(--foreground-secondary-color);
-    }
-
-    // Places a horizontal border between each section.
-    #global-footer > & + & {
-        border-top: 1px solid var(--foreground-tertiary-color);
-    }
-
-    @include mix.mobile-horizontal-spacing("margin");
-
-}
-
-#global-footer {
-
-    padding: 1rem 0;
+    padding: 1.5rem 0 1rem;
     background-color: var(--background-secondary-color);
 
     font-size: var.$small-font-size;
+
+    &__section {
+
+        // Width follows .c-stacked-banner--hero and .c-body-text.
+        width: calc(100vw - var.$body-text-horizontal-padding);
+        max-width: calc(2 * var.$body-text-max-width);
+
+        margin: 0 auto;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        column-gap: 1rem;
+
+        * {
+            color: var(--foreground-secondary-color);
+        }
+
+        @include mix.mobile-horizontal-spacing("margin");
+
+    }
+
+    &__socials {
+
+        margin-bottom: 0.5rem;
+
+        &-list {
+            display: grid;
+            grid-template-columns: min-content min-content min-content min-content;
+            grid-template-rows: min-content;
+            column-gap: 2em;
+        }
+
+        &-button {
+
+            @include mix.z-stack();
+
+            height: 2.5em;
+            width: min-content;
+
+            &:hover .c-social-icon__foreground {
+                fill: var(--foreground-primary-color);
+            }
+
+        }
+
+        &-icon {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 2.5em;
+            width: min-content;
+
+            .c-social-icon {
+
+                height: 75%;
+                width: auto;
+
+                &__foreground {
+                    fill: var(--foreground-secondary-color);
+                }
+
+                &__background {
+                    fill: var(--background-secondary-color);
+                }
+
+            }
+
+        }
+
+    }
 
     // Places the authorship text and the toggle at opposite ends.
     &__main {
         flex-wrap: wrap-reverse;
     }
 
-    // Links to legal pages.
-    &__legal-links {
+    &__legal {
 
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
+        border-top: 1px solid var(--foreground-tertiary-color);
 
-        // Collapses the space between <li> to zero. Otherwise, there would be
-        // a space between each <li>.
-        font-size: 0;
+        // Links to legal pages.
+        &-links {
 
-        // Gives each <li> a horizontal padding, except the leading and
-        // trailing <li>.
-        li {
+            margin: 0 0 0.5rem;
+            padding: 0;
+            list-style-type: none;
 
-            margin: 0;
-            padding: 0 0.25rem;
-            display: inline;
+            // Collapses the space between <li> to zero. Otherwise, there would
+            // be a space between each <li>.
+            font-size: 0;
 
-            font-size: var.$small-font-size;
+            // Gives each <li> a horizontal padding, except the leading and
+            // trailing <li>.
+            li {
 
-            &:first-of-type { padding-left: 0; }
-            &:last-of-type { padding-right: 0; }
+                margin: 0;
+                padding: 0 0.25rem;
+                display: inline;
 
-        }
+                font-size: var.$small-font-size;
 
-        // Places a vertical border between each <li>.
-        & > li + li {
-            border-left: 1px solid var(--foreground-tertiary-color);
+                &:first-of-type { padding-left: 0; }
+                &:last-of-type { padding-right: 0; }
+
+            }
+
+            // Places a vertical border between each <li>.
+            & > li + li {
+                border-left: 1px solid var(--foreground-tertiary-color);
+            }
+
         }
 
     }
 
     // Changes colors to match the rest of the footer.
     &__color-theme-toggle {
+
         --toggle-unfocused-foreground-color: var(--foreground-secondary-color);
         --toggle-background-color: var(--background-secondary-color);
+
+        margin-top: 0.5em;
+
     }
 
 }

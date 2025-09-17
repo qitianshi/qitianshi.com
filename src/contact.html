@@ -7,15 +7,60 @@ active_navlink: "contact"
 header_background_brightness: 75%
 header_background_src: "/assets/images/extras/generic-banner.svg"
 navbar_transparency_theme: "dark"
+local_stylesheet: "/assets/styles/contact.css"
 ---
 
 <!-- Contact page. -->
 
-<!-- Copyright 2023 Qi Tianshi. All rights reserved. -->
-
+<!-- Copyright 2025 Qi Tianshi. All rights reserved. -->
 
 <p>
-    I'm happy to hear from you! If you wanna get in touch, leave your message here and I'll do my best to get back to you.
+    I'm happy to hear from you! Get in touch, and I'll do my best to get back to you.
+</p>
+
+<hr>
+
+<p>
+    Find me on my socials.
+</p>
+
+<div class="social-links">
+
+    {% comment %} Jekyll Liquid can't interpolate include tags. {% endcomment %}
+
+    <!-- LinkedIn -->
+    <div class="social-links__item social-links__item--linkedin o-card-container u-hierarchy-elevated">
+        <div class="social-links__icon">
+            {% include svg/socials/linkedin.svg %}
+            <label class="social-links__label">in/qitianshi</label>
+        </div>
+        <a class="fill-link" href="https://linkedin.com/in/qitianshi" target="_blank" title="LinkedIn" aria-label="LinkedIn"></a>
+    </div>
+
+    <!-- GitHub -->
+    <div class="social-links__item social-links__item--github o-card-container u-hierarchy-elevated">
+        <div class="social-links__icon">
+            {% include svg/socials/github.svg %}
+            <label class="social-links__label">@qitianshi</label>
+        </div>
+        <a class="fill-link" href="https://github.com/qitianshi" target="_blank" title="GitHub" aria-label="GitHub"></a>
+    </div>
+
+    <!-- Medium -->
+    <div class="social-links__item social-links__item--medium o-card-container u-hierarchy-elevated">
+        <div class="social-links__icon">
+            {% include svg/socials/medium.svg %}
+            <label class="social-links__label">@qitianshi</label>
+        </div>
+        <a class="fill-link" href="https://qitianshi.medium.com" target="_blank" title="Medium" aria-label="Medium"></a>
+    </div>
+
+</div>
+
+<hr>
+
+<p>
+    Or, leave your message here.
 </p>
 
 <form

@@ -47,7 +47,7 @@ function updateToggleWithSavedPreference(theme) {
 
     // Selects the option whose value corresponds to the selected theme.
     document
-        .querySelector(`#global-footer__color-theme-toggle [value=${theme}]`)
+        .querySelector(`.global-footer__color-theme-toggle [value=${theme}]`)
         .checked
         = true;
 
@@ -118,7 +118,7 @@ const ColorTheme = {
 
         // Adds the event listener for the user choosing a color theme.
         document
-            .getElementById("global-footer__color-theme-toggle")
+            .querySelector(".global-footer__color-theme-toggle")
             .addEventListener("change", onUserChangeThemeToggle);
 
     },
