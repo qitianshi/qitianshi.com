@@ -1,6 +1,6 @@
 // Manages forms.
 
-// Copyright 2024 Qi Tianshi. All rights reserved.
+// Copyright 2025 Qi Tianshi. All rights reserved.
 
 
 import throttle from "lodash.throttle";
@@ -256,6 +256,17 @@ function activateCaptcha(container, submitButton) {
         throttle(positionContainer, 50),
         { passive: true }
     );
+
+    // Scrolls the window downward if the captcha popup is not fully visible.
+    const containerRenderedRect = container.getBoundingClientRect();
+    const containerRenderedBottom = (
+        containerRenderedRect.top + containerRenderedRect.height + mobilePadding);
+    if (containerRenderedBottom > window.innerHeight) {
+        window.scrollBy({
+            top: containerRenderedBottom - window.innerHeight,
+            behavior: "smooth"
+        });
+    }
 
     // Animates the activation of the popup.
     gsap.from(container, {
