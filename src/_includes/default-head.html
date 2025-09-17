@@ -1,9 +1,13 @@
 <!-- The content of <head> in the default layout. -->
 
-<!-- Copyright 2024 Qi Tianshi. All rights reserved. -->
+<!-- Copyright 2025 Qi Tianshi. All rights reserved. -->
 
 
-<title>{{ page.title }} - {{ site.title }}{% if jekyll.environment == "development" %} (dev){% endif %}</title>
+<title>
+    {% if page.title %}{{ page.title }} - {{ site.title }}{% endif %}
+    {% if page.full_title %}{{ page.full_title }}{% endif %}
+    {% if jekyll.environment == "development" %}(dev){% endif %}
+</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
