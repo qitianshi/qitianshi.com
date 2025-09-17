@@ -47,11 +47,13 @@
 
             &__background {
 
+                @include mix.color-theme("light") {
+                    fill: func.palette("light", "background", 1);
+                }
+
                 @include mix.color-theme("dark") {
                     fill: func.palette("dark", "background", 2);
                 }
-
-                fill: var(--background-primary-color);
 
             }
 
@@ -72,12 +74,16 @@
 
         &--github:hover {
 
-            background-color: #1B1F24;
+            @include mix.color-theme("light") {
 
-            * { color: white; }
+                background-color: #1B1F24;
 
-            .c-social-icon {
-                &__foreground { fill: white; }
+                * { color: white; }
+
+                .c-social-icon {
+                    &__foreground { fill: white; }
+                }
+
             }
 
             @include mix.color-theme("dark") {
@@ -96,13 +102,17 @@
 
         &--medium:hover {
 
-            background-color: black;
+            @include mix.color-theme("light") {
 
-            * { color: white; }
+                background-color: black;
 
-            .c-social-icon {
-                &__foreground { fill: white; }
-                &__background { fill: black; }
+                * { color: white; }
+
+                .c-social-icon {
+                    &__foreground { fill: white; }
+                    &__background { fill: black; }
+                }
+
             }
 
             @include mix.color-theme("dark") {
