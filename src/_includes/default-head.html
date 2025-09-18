@@ -3,7 +3,7 @@
 <!-- Copyright 2025 Qi Tianshi. All rights reserved. -->
 
 
-<title>{% if page.title %}{{ page.title }} - {{ site.title }}{% elsif page.full_title %}{{ page.full_title }}{% endif %}{% if jekyll.environment == "development" %}(dev){% endif %}</title>
+<title>{% if page.title %}{{ page.title }} - {{ site.title }}{% elsif page.full_title %}{{ page.full_title }}{% endif %}{% if jekyll.environment == "development" %} (dev){% endif %}</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
@@ -61,7 +61,7 @@
 {% endif %}
 <meta property="og:image:alt" content="A banner with the 'tian' wordmark.">
 {% if page.description %} <meta property="og:description" content="{{ page.description }}"> {% endif %}
-<meta property="og:site_name" content="tian">
+<meta property="og:site_name" content="Qi Tianshi">
 
 <!-- Twitter/X -->
 <meta name="twitter:card" content="summary_large_image">
@@ -72,3 +72,14 @@
 {% else %}
     <meta name="twitter:image" content="{{ '/assets/brand/og-image.jpeg' | absolute_url }}">
 {% endif %}
+
+<!-- Google WebSite -->
+<script type="application/ld+json">
+    {
+        "@context" : "https://schema.org",
+        "@type" : "WebSite",
+        "name" : "Qi Tianshi",
+        "alternateName": "tian",
+        "url" : "https://qitianshi.com/"
+    }
+</script>
